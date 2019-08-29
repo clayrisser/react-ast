@@ -1,7 +1,6 @@
 # react-ast
 
 [![npm](https://img.shields.io/npm/v/react-ast.svg?style=flat-square)](https://www.npmjs.com/package/react-ast)
-[![npm](https://img.shields.io/npm/dt/react-ast.svg?style=flat-square)]( [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/react-ast))
 [![GitHub stars](https://img.shields.io/github/stars/codejamninja/react-ast.svg?style=social&label=Stars)](https://github.com/codejamninja/react-ast)
 
 > render abstract syntax trees using react
