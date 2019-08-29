@@ -8,6 +8,12 @@ declare namespace JSX {
       path?: string;
       replacements?: object;
     };
+    Expression: {
+      children: string;
+      options?: object;
+      path?: string;
+      replacements?: object;
+    };
     File: {};
     Program: {};
   }

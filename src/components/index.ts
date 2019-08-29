@@ -1,3 +1,3 @@
-export * from './Class';
+export * from './ClassDeclaration';
 export * from './Code';
-export * from './Function';
+export * from './FunctionDeclaration';

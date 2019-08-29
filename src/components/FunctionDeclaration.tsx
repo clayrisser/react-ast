@@ -4,13 +4,13 @@ import { Smart } from '..';
 
 export interface FunctionProps {
   children?: object;
-  name: string;
+  identifierName: string;
 }
 
-export class Function extends Component<FunctionProps> {
+export class FunctionDeclaration extends Component<FunctionProps> {
   static propTypes = {
-    name: PropTypes.string.isRequired,
-    children: PropTypes.node
+    children: PropTypes.node,
+    identifierName: PropTypes.string.isRequired
   };
 
   static defaultProps = {
@@ -18,7 +18,7 @@ export class Function extends Component<FunctionProps> {
   };
 
   render() {
-    const code = `function ${this.props.name}() {}`;
+    const code = `function ${this.props.identifierName}() {}`;
     return <Smart code={code}>{this.props.children}</Smart>;
   }
 }

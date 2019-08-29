@@ -36,15 +36,15 @@ npm install --save react-ast
 
 ```ts
 import React from 'react';
-import { render, Code, Class, Function } from 'react-ast';
+import { render, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
 
 const code = render(
-  <Class name="Hello">
+  <ClassDeclaration identifierName="Hello" superClassName="Array">
     <Code>const hello = 'world'</Code>
-    <Function name="foo">
+    <FunctionDeclaration identifierName="foo">
       <Code>return 'bar'</Code>
-    </Function>
-  </Class>
+    </FunctionDeclaration>
+  </ClassDeclaration>
 );
 
 console.log(code);
@@ -70,18 +70,18 @@ rendering the code.
 
 ```ts
 import React from 'react';
-import { renderAst, Code, Class, Function } from 'react-ast';
+import { render, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
 
-const ast = renderAst(
-  <Class name="Hello">
+const code = render(
+  <ClassDeclaration identifierName="Hello" superClassName="Array">
     <Code>const hello = 'world'</Code>
-    <Function name="foo">
+    <FunctionDeclaration identifierName="foo">
       <Code>return 'bar'</Code>
-    </Function>
-  </Class>
+    </FunctionDeclaration>
+  </ClassDeclaration>
 );
 
-console.log(ast);
+console.log(code);
 ```
 
 ## Support
