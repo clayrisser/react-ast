@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "incremental": true,
+    "lib": ["ES2018", "ESNext.AsyncIterable"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "outDir": ".tmp",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "target": "ESNext"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules/**"]
+}
