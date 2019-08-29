@@ -84,6 +84,20 @@ const ast = renderAst(
 console.log(ast);
 ```
 
+The rendered AST
+
+```js
+{ type: 'File',
+  program:
+   { type: 'Program',
+     body: [ [Object] ],
+     directives: [],
+     sourceType: 'script',
+     interpreter: null },
+  comments: [],
+  tokens: [] }
+```
+
 ## Support
 
 Submit an [issue](https://github.com/codejamninja/react-ast/issues/new)
