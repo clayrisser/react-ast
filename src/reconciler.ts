@@ -17,15 +17,8 @@ import {
 } from './types';
 import elements from './elements';
 
-// https://blog.atulr.com/react-custom-renderer-3
-// https://github.com/nitin42/Making-a-custom-React-renderer/blob/master/part-one.md
-
-const { env } = process;
 const log = console;
 const { Smart } = elements;
-const debug: boolean = !!(
-  env.REACT_GTK_DEBUG && (env.REACT_GTK_DEBUG || '').toLowerCase() !== 'false'
-);
 
 export default ReactReconciler<
   Type,
@@ -47,7 +40,6 @@ export default ReactReconciler<
     _rootContainerInstance: Container,
     _hostContext: HostContext
   ): Instance {
-    if (debug) log.info(type);
     return createElement(type, props);
   },
 
@@ -73,7 +65,6 @@ export default ReactReconciler<
     _rootContainerInstance: Container,
     _hostContext: HostContext
   ): TextInstance {
-    if (debug) log.info('text');
     const label = new Smart({});
     label.commitMount(); // prob should run at a later point
     return label;
@@ -145,7 +136,6 @@ export default ReactReconciler<
   },
 
   shouldSetTextContent(_type: Type, props: Props): boolean {
-    // not exactly sure how this works
     if (typeof props.children === 'string') return true;
     return false;
   },

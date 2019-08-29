@@ -2,13 +2,10 @@ import t from '@babel/types';
 import Element from './Element';
 import { Props } from '../types';
 
-/**
- * <Program />
- */
 export default class Program extends Element {
-  propTypes: object;
+  static propTypes: object;
 
-  defaultProps: Props;
+  static defaultProps: Props;
 
   constructor(props: Props = {}) {
     super(t.program([]), props);

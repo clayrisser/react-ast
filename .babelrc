@@ -1,13 +1,14 @@
 {
   "presets": [
     [
-      "babel-preset-jam",
+      "jam",
       {
         "targets": {
           "node": "6"
         }
       }
     ],
-    "@babel/preset-typescript"
+    "@babel/typescript",
+    "@babel/react"
   ]
 }

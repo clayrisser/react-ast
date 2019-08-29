@@ -1,7 +1,7 @@
-import render from './render';
-
-const Element = 'Element';
+const Smart = 'Smart';
 const File = 'File';
 const Program = 'Program';
 
-export { render, Element, File, Program };
+export { Smart, File, Program };
+export * from './components';
+export * from './render';

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import template, {
   TemplateBuilderOptions,
   PublicReplacements
@@ -5,20 +6,30 @@ import template, {
 import Element from './Element';
 import { Props } from '../types';
 
-/**
- * <Smart replacements={{}} options={{}} path="" bodyPath="">
- *   class Hello {}
- * </Smart>
- */
 export default class Smart extends Element {
-  propTypes: object;
+  static propTypes = {
+    bodyPath: PropTypes.string,
+    children: PropTypes.node,
+    code: PropTypes.string.isRequired,
+    options: PropTypes.object,
+    path: PropTypes.string,
+    replacements: PropTypes.object
+  };
 
-  defaultProps: Props;
+  static defaultProps = {
+    bodyPath: '',
+    children: null,
+    options: {},
+    path: '',
+    replacements: {}
+  };
 
   constructor(props: Props = {}) {
-    const code = '';
-    const replacements: PublicReplacements = [];
-    const templateBuilderOptions: TemplateBuilderOptions = {};
-    super(template.smart(code, templateBuilderOptions)(replacements), props);
+    super(
+      template.smart(props.code, props.options as TemplateBuilderOptions)(
+        props.replacements as PublicReplacements
+      ),
+      props
+    );
   }
 }

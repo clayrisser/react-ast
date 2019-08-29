@@ -6,6 +6,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "incremental": true,
+    "jsx": "preserve",
     "lib": ["ES2018", "ESNext.AsyncIterable"],
     "module": "CommonJS",
     "moduleResolution": "Node",
@@ -16,6 +17,6 @@
     "strictPropertyInitialization": false,
     "target": "ESNext"
   },
-  "include": ["src"],
+  "include": ["src", "example"],
   "exclude": ["node_modules/**"]
 }
