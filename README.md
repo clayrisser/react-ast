@@ -70,9 +70,9 @@ rendering the code.
 
 ```ts
 import React from 'react';
-import { render, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
+import { renderAst, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
 
-const code = render(
+const ast = renderAst(
   <ClassDeclaration identifierName="Hello" superClassName="Array">
     <Code>const hello = 'world'</Code>
     <FunctionDeclaration identifierName="foo">
@@ -81,7 +81,7 @@ const code = render(
   </ClassDeclaration>
 );
 
-console.log(code);
+console.log(ast);
 ```
 
 The rendered AST
