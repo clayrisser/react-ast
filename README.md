@@ -53,7 +53,7 @@ console.log(code);
 The rendered code
 
 ```js
-class Hello {
+class Hello extends Array {
   const hello = 'world';
 
   function foo() {
