@@ -17,6 +17,6 @@
     "strictPropertyInitialization": false,
     "target": "ESNext"
   },
-  "include": ["src"],
+  "include": ["."],
   "exclude": ["node_modules/**"]
 }
