@@ -15,6 +15,10 @@ syntax trees. It can be used to build powerful unopinionated code generators and
 plugins that are easy to read and can scale without creating a rats nest of unreadable
 code.
 
+You can read a post I wrote about this project at the link below.
+
+[Render Abstract Syntax Trees with React](https://dev.to/codejamninja/render-abstract-syntax-trees-with-react-349j)
+
 ## Features
 
 - works with babel ast
