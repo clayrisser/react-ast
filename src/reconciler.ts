@@ -15,10 +15,9 @@ import {
   Type,
   UpdatePayload
 } from './types';
-import elements from './elements';
+import { Smart } from './elements';
 
 const log = console;
-const { Smart } = elements;
 
 export default ReactReconciler<
   Type,

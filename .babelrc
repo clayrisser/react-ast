@@ -10,5 +10,6 @@
     ],
     "@babel/typescript",
     "@babel/react"
-  ]
+  ],
+  "plugins": ["typescript-to-proptypes"]
 }

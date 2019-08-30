@@ -13,7 +13,9 @@ export function renderAst(
   const file = new File();
   file.node = ast;
   const root = Renderer.createContainer(file, false, false);
-  Renderer.updateContainer(element, root, null, () => {});
+  Renderer.updateContainer(element, root, null, () => {
+    // noop
+  });
   Renderer.injectIntoDevTools({
     bundleType: Number(dev) as BundleType,
     rendererPackageName: pkg.name,

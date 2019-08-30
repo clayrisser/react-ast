@@ -32,7 +32,7 @@ export default class Element implements Instance {
   };
 
   getBodyPath(path?: Path | null): string {
-    return flattenPath(path ? path : this.meta.bodyPath);
+    return flattenPath(path || this.meta.bodyPath);
   }
 
   getBody(
@@ -75,7 +75,7 @@ export default class Element implements Instance {
   }
 
   commitMount() {
-    this.update();
+    // noop
   }
 
   commitUpdate(newProps: Props) {
@@ -83,10 +83,7 @@ export default class Element implements Instance {
       ...this.props,
       ...newProps
     };
-    this.update();
   }
-
-  update() {}
 
   getProps(props: Props): Props {
     props = { ...props };

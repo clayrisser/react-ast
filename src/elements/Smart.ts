@@ -15,7 +15,6 @@ export default class Smart extends Element {
     code: PropTypes.string.isRequired,
     options: PropTypes.object,
     parantBodyPath: PropTypes.string,
-    path: PropTypes.string,
     replacements: PropTypes.object,
     scopePath: PropTypes.any
   };
@@ -25,7 +24,6 @@ export default class Smart extends Element {
     children: null,
     options: {},
     parentBodyPath: null,
-    path: '',
     replacements: {},
     scopePath: ''
   };

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Smart } from '..';
 
@@ -7,10 +6,6 @@ export interface CodeProps {
 }
 
 export class Code extends Component<CodeProps> {
-  static propTypes = {
-    children: PropTypes.string.isRequired
-  };
-
   render() {
     return <Smart code={this.props.children} />;
   }

@@ -1,38 +1,21 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import { oc } from 'ts-optchain.macro';
-import Element from '../elements/Element';
 import { Smart, Param, ReturnStatement } from '..';
 
 export interface FunctionDeclarationProps {
-  children?: object;
+  children?: ReactNode;
   name: string;
-  params?: (object | string)[];
-  returnStatement?: string | object | null;
+  params?: (string | ReactNode)[];
+  returnStatement?: string | ReactNode;
 }
 
 export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
-  static propTypes = {
-    children: PropTypes.node,
-    name: PropTypes.string.isRequired,
-    params: PropTypes.arrayOf(PropTypes.node),
-    returnStatement: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-  };
-
-  static defaultProps = {
-    children: null,
-    params: [],
-    returnStatement: null
-  };
-
-  self: Element;
-
   renderParams() {
     return oc(this.props)
       .params([])
-      .map((param: object | string, i: number) => {
+      .map((param: ReactNode) => {
         if (typeof param === 'string') {
-          return <Param key={`${i}${param}`}>{param}</Param>;
+          return <Param key={param}>{param}</Param>;
         }
         return param;
       });

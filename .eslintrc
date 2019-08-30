@@ -1,7 +1,15 @@
 {
   "extends": ["jam/typescript"],
   "rules": {
+    "import/export": "off",
     "import/named": "off",
-    "no-unused-vars": "off"
+    "import/no-unresolved": "off",
+    "no-unused-vars": "off",
+    "react/forbid-foreign-prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ]
   }
 }

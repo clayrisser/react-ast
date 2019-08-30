@@ -22,8 +22,6 @@ export type TimeoutHandle = any;
 
 export type NoTimeout = any;
 
-export interface TextInstance extends Instance {}
-
 export interface Container extends Instance {}
 
 export interface TextInstance extends Instance {}
