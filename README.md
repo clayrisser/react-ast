@@ -83,7 +83,12 @@ rendering the code.
 
 ```ts
 import React from 'react';
-import { renderAst, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
+import {
+  renderAst,
+  Code,
+  ClassDeclaration,
+  FunctionDeclaration
+} from 'react-ast';
 
 const ast = renderAst(
   <ClassDeclaration name="Hello" superClassName="Array">
