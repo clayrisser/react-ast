@@ -5,6 +5,7 @@ declare namespace JSX {
       children?: object;
       code: string;
       options?: object;
+      parentBodyPath?: any;
       path?: string;
       ref?: (node: object) => any;
       replacements?: object;

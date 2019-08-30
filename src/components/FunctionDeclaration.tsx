@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Element from '../elements/Element';
-import { Smart } from '..';
 import { oc } from 'ts-optchain.macro';
+import Element from '../elements/Element';
+import { Param } from '.';
+import { Smart } from '..';
 
 export interface FunctionDeclarationProps {
   children?: object;
@@ -24,10 +25,24 @@ export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
 
   self: Element;
 
-  render() {
-    const code = `function ${this.props.name}(${oc(this.props)
+  renderParams() {
+    return oc(this.props)
       .params([])
-      .join(', ')}) {}`;
-    return <Smart code={code}>{this.props.children}</Smart>;
+      .map((param: object | string, i: number) => {
+        if (typeof param === 'string') {
+          return <Param key={`${i}${param}`}>{param}</Param>;
+        }
+        return param;
+      });
+  }
+
+  render() {
+    const code = `function ${this.props.name}() {}`;
+    return (
+      <Smart code={code}>
+        <>{this.renderParams()}</>
+        {this.props.children}
+      </Smart>
+    );
   }
 }

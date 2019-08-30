@@ -14,6 +14,7 @@ export default class Smart extends Element {
     children: PropTypes.node,
     code: PropTypes.string.isRequired,
     options: PropTypes.object,
+    parantBodyPath: PropTypes.string,
     path: PropTypes.string,
     replacements: PropTypes.object,
     scopePath: PropTypes.any
@@ -23,6 +24,7 @@ export default class Smart extends Element {
     bodyPath: 'body.body',
     children: null,
     options: {},
+    parentBodyPath: null,
     path: '',
     replacements: {},
     scopePath: ''
@@ -39,7 +41,10 @@ export default class Smart extends Element {
         ? _.get(baseNode, scopePath)
         : baseNode,
       props,
-      { bodyPath: props.bodyPath || 'body.body' }
+      {
+        bodyPath: props.bodyPath || 'body.body',
+        parentBodyPath: props.parentBodyPath
+      }
     );
   }
 }

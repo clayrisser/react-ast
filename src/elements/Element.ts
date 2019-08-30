@@ -12,6 +12,7 @@ export interface ElementConstructor {
 
 export interface Meta {
   bodyPath: Path;
+  parentBodyPath: Path | null;
 }
 
 export default class Element implements Instance {
@@ -26,11 +27,21 @@ export default class Element implements Instance {
   children: Element[] = [];
 
   meta: Meta = {
-    bodyPath: 'body.body'
+    bodyPath: 'body.body',
+    parentBodyPath: null
   };
 
-  get bodyPath(): string {
-    return flattenPath(this.meta.bodyPath);
+  getBodyPath(path?: Path | null): string {
+    return flattenPath(path ? path : this.meta.bodyPath);
+  }
+
+  getBody(
+    body: BaseNode | BaseNode[],
+    path?: Path | null
+  ): BaseNode | BaseNode[] {
+    const bodyPath = this.getBodyPath(path);
+    if (!bodyPath.length) return body;
+    return _.get(body, bodyPath);
   }
 
   constructor(
@@ -50,14 +61,14 @@ export default class Element implements Instance {
   }
 
   appendChild(child: Element) {
-    const body = _.get(this.node, this.bodyPath);
+    const body = this.getBody(this.node, child.meta.parentBodyPath);
     if (!body || !Array.isArray(body)) return;
     this.children.push(child);
     body.push(child.node);
   }
 
   removeChild(child: Element) {
-    const body = _.get(this.node, this.bodyPath);
+    const body = this.getBody(this.node, child.meta.parentBodyPath);
     if (!body || !Array.isArray(body)) return;
     this.children.splice(this.children.indexOf(child), 1);
     body.splice(body.indexOf(child.node), 1);
