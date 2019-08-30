@@ -36,15 +36,28 @@ npm install --save react-ast
 
 ```ts
 import React from 'react';
-import { render, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
+import {
+  ClassDeclaration,
+  Code,
+  FunctionDeclaration,
+  Param,
+  ReturnStatement,
+  render
+} from 'react-ast';
 
 const code = render(
-  <ClassDeclaration name="Hello" superClassName="Array">
-    <Code>const hello = 'world'</Code>
-    <FunctionDeclaration name="foo">
-      <Code>return 'bar'</Code>
+  <>
+    <ClassDeclaration name="Hello" superClassName="Array">
+      <Code>hello = 'world'</Code>
+    </ClassDeclaration>
+    <FunctionDeclaration
+      name="add"
+      params={[<Param key="a">a</Param>, <Param key="b">b</Param>]}
+      returnStatement={<ReturnStatement>result</ReturnStatement>}
+    >
+      <Code>const result=a+b</Code>
     </FunctionDeclaration>
-  </ClassDeclaration>
+  </>
 );
 
 console.log(code);
@@ -54,12 +67,12 @@ The rendered code
 
 ```js
 class Hello extends Array {
-  const hello = 'world';
+  hello = 'world';
+}
 
-  function foo() {
-    return 'bar';
-  }
-
+function add(a, b) {
+  const result = a + b;
+  return result;
 }
 ```
 
@@ -70,12 +83,7 @@ rendering the code.
 
 ```ts
 import React from 'react';
-import {
-  renderAst,
-  Code,
-  ClassDeclaration,
-  FunctionDeclaration
-} from 'react-ast';
+import { renderAst, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
 
 const ast = renderAst(
   <ClassDeclaration name="Hello" superClassName="Array">

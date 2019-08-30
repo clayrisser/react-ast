@@ -9,8 +9,10 @@ import {
 } from '../src';
 
 const code = render(
-  <ClassDeclaration name="Hello" superClassName="Array">
-    <Code>const hello = 'world'</Code>
+  <>
+    <ClassDeclaration name="Hello" superClassName="Array">
+      <Code>hello = 'world'</Code>
+    </ClassDeclaration>
     <FunctionDeclaration
       name="add"
       params={[<Param key="a">a</Param>, <Param key="b">b</Param>]}
@@ -18,7 +20,7 @@ const code = render(
     >
       <Code>const result=a+b</Code>
     </FunctionDeclaration>
-  </ClassDeclaration>
+  </>
 );
 
 console.log(code);
