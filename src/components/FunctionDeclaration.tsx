@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Element from '../elements/Element';
 import { Smart } from '..';
 import { oc } from 'ts-optchain.macro';
 
@@ -20,6 +21,8 @@ export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
     children: null,
     params: []
   };
+
+  self: Element;
 
   render() {
     const code = `function ${this.props.name}(${oc(this.props)

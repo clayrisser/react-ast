@@ -1,7 +1,8 @@
-const Smart = 'Smart';
+const Expression = 'Expression';
 const File = 'File';
 const Program = 'Program';
+const Smart = 'Smart';
 
-export { Smart, File, Program };
+export { Expression, File, Program, Smart };
 export * from './components';
 export * from './render';

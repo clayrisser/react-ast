@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { BaseNode } from '@babel/types';
-import { Node, Instance, Props } from '../types';
+import { Path, Node, Instance, Props } from '../types';
+import { flattenPath } from '../util';
 
 export interface ElementConstructor {
   new (props?: Props): Element;
@@ -10,7 +11,7 @@ export interface ElementConstructor {
 }
 
 export interface Meta {
-  bodyPath: string;
+  bodyPath: Path;
 }
 
 export default class Element implements Instance {
@@ -27,6 +28,10 @@ export default class Element implements Instance {
   meta: Meta = {
     bodyPath: 'body.body'
   };
+
+  get bodyPath(): string {
+    return flattenPath(this.meta.bodyPath);
+  }
 
   constructor(
     baseNode: BaseNode | BaseNode[],
@@ -45,14 +50,14 @@ export default class Element implements Instance {
   }
 
   appendChild(child: Element) {
-    const body = _.get(this.node, this.meta.bodyPath);
+    const body = _.get(this.node, this.bodyPath);
     if (!body || !Array.isArray(body)) return;
     this.children.push(child);
     body.push(child.node);
   }
 
   removeChild(child: Element) {
-    const body = _.get(this.node, this.meta.bodyPath);
+    const body = _.get(this.node, this.bodyPath);
     if (!body || !Array.isArray(body)) return;
     this.children.splice(this.children.indexOf(child), 1);
     body.splice(body.indexOf(child.node), 1);
@@ -70,13 +75,7 @@ export default class Element implements Instance {
     this.update();
   }
 
-  update() {
-    this.updateNode();
-  }
-
-  updateNode() {
-    // noop
-  }
+  update() {}
 
   getProps(props: Props): Props {
     props = { ...props };

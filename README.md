@@ -39,9 +39,9 @@ import React from 'react';
 import { render, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
 
 const code = render(
-  <ClassDeclaration identifierName="Hello" superClassName="Array">
+  <ClassDeclaration name="Hello" superClassName="Array">
     <Code>const hello = 'world'</Code>
-    <FunctionDeclaration identifierName="foo">
+    <FunctionDeclaration name="foo">
       <Code>return 'bar'</Code>
     </FunctionDeclaration>
   </ClassDeclaration>
@@ -73,9 +73,9 @@ import React from 'react';
 import { renderAst, Code, ClassDeclaration, FunctionDeclaration } from 'react-ast';
 
 const ast = renderAst(
-  <ClassDeclaration identifierName="Hello" superClassName="Array">
+  <ClassDeclaration name="Hello" superClassName="Array">
     <Code>const hello = 'world'</Code>
-    <FunctionDeclaration identifierName="foo">
+    <FunctionDeclaration name="foo">
       <Code>return 'bar'</Code>
     </FunctionDeclaration>
   </ClassDeclaration>

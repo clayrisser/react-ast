@@ -1,11 +1,11 @@
 import React from 'react';
-import { render, Code, ClassDeclaration, FunctionDeclaration } from '../src';
+import { ClassDeclaration, Code, FunctionDeclaration, render } from '../src';
 
 const code = render(
-  <ClassDeclaration identifierName="Hello" superClassName="Array">
+  <ClassDeclaration name="Hello" superClassName="Array">
     <Code>const hello = 'world'</Code>
-    <FunctionDeclaration identifierName="foo">
-      <Code>return 'bar'</Code>
+    <FunctionDeclaration name="foo" params={['hello']}>
+      <Code>return bar</Code>
     </FunctionDeclaration>
   </ClassDeclaration>
 );

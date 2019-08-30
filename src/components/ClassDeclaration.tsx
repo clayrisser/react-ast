@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Smart } from '..';
 
-export interface ClassProps {
+export interface ClassDeclarationProps {
   children?: object;
-  identifierName: string;
+  name: string;
   superClassName?: string;
 }
 
-export class ClassDeclaration extends Component<ClassProps> {
+export class ClassDeclaration extends Component<ClassDeclarationProps> {
   static propTypes = {
     children: PropTypes.node,
-    identifierName: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     superClassName: PropTypes.string
   };
 
@@ -21,7 +21,7 @@ export class ClassDeclaration extends Component<ClassProps> {
   };
 
   render() {
-    const code = `class ${this.props.identifierName} ${
+    const code = `class ${this.props.name} ${
       this.props.superClassName ? `extends ${this.props.superClassName} ` : ''
     }{}`;
     return <Smart code={code}>{this.props.children}</Smart>;
