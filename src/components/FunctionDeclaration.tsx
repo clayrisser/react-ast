@@ -1,24 +1,30 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Smart } from '..';
+import { oc } from 'ts-optchain.macro';
 
-export interface FunctionProps {
+export interface FunctionDeclarationProps {
   children?: object;
-  identifierName: string;
+  name: string;
+  params?: (object | string)[];
 }
 
-export class FunctionDeclaration extends Component<FunctionProps> {
+export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
   static propTypes = {
     children: PropTypes.node,
-    identifierName: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    params: PropTypes.arrayOf(PropTypes.node)
   };
 
   static defaultProps = {
-    children: null
+    children: null,
+    params: []
   };
 
   render() {
-    const code = `function ${this.props.identifierName}() {}`;
+    const code = `function ${this.props.name}(${oc(this.props)
+      .params([])
+      .join(', ')}) {}`;
     return <Smart code={code}>{this.props.children}</Smart>;
   }
 }
