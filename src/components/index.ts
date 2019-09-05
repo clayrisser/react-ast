@@ -3,3 +3,4 @@ export * from './Code';
 export * from './FunctionDeclaration';
 export * from './Param';
 export * from './ReturnStatement';
+export * from './VariableDeclaration';

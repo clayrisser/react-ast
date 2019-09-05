@@ -44,6 +44,16 @@ export default class Element implements Instance {
     return _.get(body, bodyPath);
   }
 
+  setBody(
+    body: BaseNode | BaseNode[],
+    value: BaseNode | BaseNode[],
+    path?: Path | null
+  ): BaseNode | BaseNode[] {
+    const bodyPath = this.getBodyPath(path);
+    if (!bodyPath.length) return body;
+    return _.set(body, bodyPath, value);
+  }
+
   constructor(
     baseNode: BaseNode | BaseNode[],
     props: Props = {},
@@ -62,9 +72,12 @@ export default class Element implements Instance {
 
   appendChild(child: Element) {
     const body = this.getBody(this.node, child.meta.parentBodyPath);
-    if (!body || !Array.isArray(body)) return;
     this.children.push(child);
-    body.push(child.node);
+    if (Array.isArray(body)) {
+      body.push(child.node);
+    } else {
+      this.setBody(this.node, child.node, child.meta.parentBodyPath);
+    }
   }
 
   removeChild(child: Element) {
