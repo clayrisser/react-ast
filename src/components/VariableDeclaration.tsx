@@ -15,10 +15,7 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
   render() {
     const code = `${this.props.kind} ${this.props.name};`;
     return (
-      <Smart
-        code={code}
-        bodyPath="declarations.0.init"
-      >
+      <Smart code={code} bodyPath="declarations.0.init">
         {this.props.children}
       </Smart>
     );
