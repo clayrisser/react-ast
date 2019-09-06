@@ -1,4 +1,6 @@
 import { BaseNode } from '@babel/types';
+import { GeneratorOptions } from '@babel/generator';
+import { ParserOptions } from '@babel/parser';
 
 export type BundleType = 0 | 1;
 
@@ -54,4 +56,9 @@ export interface Context {
 
 export interface Node extends BaseNode {
   body?: BaseNode[];
+}
+
+export interface Options {
+  generatorOptions?: GeneratorOptions;
+  parserOptions?: ParserOptions;
 }

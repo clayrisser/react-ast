@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { ParserOptions } from '@babel/parser';
 import template, {
   TemplateBuilderOptions,
   PublicReplacements
@@ -28,11 +29,11 @@ export default class Smart extends Element {
     scopePath: ''
   };
 
-  constructor(props: Props) {
-    const baseNode = template.smart(
-      props.code,
-      props.options as TemplateBuilderOptions
-    )(props.replacements as PublicReplacements);
+  constructor(props: Props, parserOptions: ParserOptions = {}) {
+    const baseNode = template.smart(props.code, {
+      ...parserOptions,
+      ...props.options
+    } as TemplateBuilderOptions)(props.replacements as PublicReplacements);
     const scopePath = flattenPath(props.scopePath);
     super(
       props.scopePath && scopePath.length

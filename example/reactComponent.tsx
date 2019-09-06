@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  ImportDeclaration,
   ClassDeclaration,
   ClassMethod,
+  ImportDeclaration,
   render
 } from '../src';
 
@@ -16,7 +16,12 @@ const code = render(
     <ClassDeclaration name="Button" superClassName="Component">
       <ClassMethod name="render" returnStatement="[]" />
     </ClassDeclaration>
-  </>
+  </>,
+  {
+    parserOptions: {
+      plugins: ['jsx']
+    }
+  }
 );
 
 console.log(code);

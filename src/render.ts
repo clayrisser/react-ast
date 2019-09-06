@@ -1,15 +1,18 @@
 import * as t from '@babel/types';
-import generate, { GeneratorOptions } from '@babel/generator';
+import generate from '@babel/generator';
 import pkg from 'npm-pkg-json';
 import Renderer from './reconciler';
 import dev from './dev';
-import { BundleType } from './types';
+import { BundleType, Options } from './types';
 import { File } from './elements';
+import { updateContext } from './context';
 
 export function renderAst(
   element: JSX.Element,
+  options: Options = {},
   ast: t.File = t.file(t.program([]), [], [])
 ): t.File {
+  updateContext({ parserOptions: options.parserOptions || {} });
   const file = new File();
   file.node = ast;
   const root = Renderer.createContainer(file, false, false);
@@ -26,8 +29,11 @@ export function renderAst(
 
 export function render(
   element: JSX.Element,
-  ast: t.File = t.file(t.program([]), [], []),
-  generatorOptions: GeneratorOptions = {}
+  options: Options = {},
+  ast: t.File = t.file(t.program([]), [], [])
 ): string {
-  return generate(renderAst(element, ast), generatorOptions).code;
+  return generate(
+    renderAst(element, options, ast),
+    options.generatorOptions || {}
+  ).code;
 }

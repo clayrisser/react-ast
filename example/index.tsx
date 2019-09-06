@@ -5,6 +5,7 @@ import {
   Code,
   FunctionDeclaration,
   ImportDeclaration,
+  JsxElement,
   Param,
   ReturnStatement,
   VariableDeclaration,
@@ -13,6 +14,7 @@ import {
 
 const code = render(
   <>
+    <JsxElement name="Hello" attributes={{ a: '1' }} />
     <ImportDeclaration
       defaultExport="hello"
       exports={['one', 'two']}
@@ -31,7 +33,12 @@ const code = render(
         <ClassDeclaration name="SomeClass" />
       </VariableDeclaration>
     </FunctionDeclaration>
-  </>
+  </>,
+  {
+    parserOptions: {
+      plugins: ['jsx']
+    }
+  }
 );
 
 console.log(code);
