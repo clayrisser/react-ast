@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Smart } from '..';
+import { Smart } from '../..';
 
 export interface ReturnStatementProps {
   children: string;
