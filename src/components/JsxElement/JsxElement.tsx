@@ -24,6 +24,11 @@ export class JsxElement extends Component<JsxElementProps> {
 
   render() {
     const code = `<${this.props.name} />`;
-    return <Smart code={code}>{this.renderAttributes()}</Smart>;
+    return (
+      <Smart code={code}>
+        {this.renderAttributes()}
+        {this.props.children}
+      </Smart>
+    );
   }
 }

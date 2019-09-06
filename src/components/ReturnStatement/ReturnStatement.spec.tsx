@@ -4,7 +4,7 @@ import { render } from '../..';
 
 describe('<ReturnStatement />', () => {
   it('renders', () => {
-    const code = render(<ReturnStatement />);
-    expect(code).toBe('class Button extends Component {}');
+    const code = render(<ReturnStatement>r</ReturnStatement>);
+    expect(code).toBe('return r;');
   });
 });

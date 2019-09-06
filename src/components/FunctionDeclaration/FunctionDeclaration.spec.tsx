@@ -5,6 +5,6 @@ import { render } from '../..';
 describe('<FunctionDeclaration />', () => {
   it('renders', () => {
     const code = render(<FunctionDeclaration name="hello" />);
-    expect(code).toBe('class Button extends Component {}');
+    expect(code).toBe('function hello() {}');
   });
 });
