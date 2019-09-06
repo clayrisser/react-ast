@@ -19,8 +19,8 @@ const code = render(
       params={[<Param key="a">a</Param>, <Param key="b">b</Param>]}
       returnStatement={<ReturnStatement>result</ReturnStatement>}
     >
-      <VariableDeclaration name="result">
-        <ClassDeclaration name="one" />
+      <VariableDeclaration kind="const" name="result">
+        <ClassDeclaration name="SomeClass" />
       </VariableDeclaration>
     </FunctionDeclaration>
   </>
