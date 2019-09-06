@@ -5,7 +5,7 @@ import { render, Literal } from '../..';
 describe('<ReturnStatement />', () => {
   it('renders', () => {
     const code = render(<ReturnStatement>r</ReturnStatement>);
-    expect(code).toBe("return 'r';;");
+    expect(code).toBe("return 'r';");
   });
 
   it('renders with react children', () => {

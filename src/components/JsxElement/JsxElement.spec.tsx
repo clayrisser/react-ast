@@ -9,7 +9,7 @@ describe('<JsxElement />', () => {
         plugins: ['jsx']
       }
     });
-    expect(code).toBe('<Hello />;');
+    expect(code).toBe('<Hello />');
   });
 
   it('renders jsx with attributes', () => {
@@ -21,6 +21,6 @@ describe('<JsxElement />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello one />;');
+    expect(code).toBe('<Hello one />');
   });
 });

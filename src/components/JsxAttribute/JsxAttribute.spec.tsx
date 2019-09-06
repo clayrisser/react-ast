@@ -15,6 +15,6 @@ describe('<JsxAttribute />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello hello="world" />;');
+    expect(code).toBe('<Hello hello="world"></Hello>');
   });
 });

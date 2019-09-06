@@ -7,7 +7,7 @@ describe('<ClassProperty />', () => {
     const code = render(<ClassProperty name="hello">world</ClassProperty>, {
       parserOptions: { plugins: ['classProperties'] }
     });
-    expect(code).toBe("hello = 'world';;");
+    expect(code).toBe("hello = 'world';");
   });
 });
 
@@ -21,6 +21,6 @@ describe('<ClassProperty static />', () => {
         parserOptions: { plugins: ['classProperties'] }
       }
     );
-    expect(code).toBe("static hello = 'world';;");
+    expect(code).toBe("static hello = 'world';");
   });
 });

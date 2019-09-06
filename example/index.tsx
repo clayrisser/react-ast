@@ -16,7 +16,9 @@ import {
 const code = render(
   <>
     <Literal>{{ a: 'a' }}</Literal>
-    <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }} />
+    <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }}>
+      <JsxElement name="World" />
+    </JsxElement>
     <ImportDeclaration
       defaultExport="hello"
       exports={['one', 'two']}

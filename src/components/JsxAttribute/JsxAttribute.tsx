@@ -24,7 +24,7 @@ export class JsxAttribute extends Component<JsxAttributeProps> {
       return (
         <Smart
           code={code}
-          parentBodyPath="expression.openingElement.attributes"
+          parentBodyPath="openingElement.attributes"
           scopePath="expression.openingElement.attributes.0"
         />
       );
@@ -34,7 +34,7 @@ export class JsxAttribute extends Component<JsxAttributeProps> {
       <Smart
         code={code}
         bodyPath="value.expression"
-        parentBodyPath="expression.openingElement.attributes"
+        parentBodyPath="openingElement.attributes"
         scopePath="expression.openingElement.attributes.0"
       >
         {this.props.children}

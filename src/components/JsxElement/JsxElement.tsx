@@ -23,9 +23,10 @@ export class JsxElement extends Component<JsxElementProps> {
   }
 
   render() {
-    const code = `<${this.props.name} />`;
+    let code = `<${this.props.name} />`;
+    if (this.props.children) code = `<${this.props.name}></${this.props.name}>`;
     return (
-      <Smart code={code}>
+      <Smart code={code} scopePath="expression" bodyPath="children">
         {this.renderAttributes()}
         {this.props.children}
       </Smart>

@@ -7,6 +7,6 @@ describe('<VariableDeclaration />', () => {
     const code = render(
       <VariableDeclaration name="hello">world</VariableDeclaration>
     );
-    expect(code).toBe("var hello = 'world';;");
+    expect(code).toBe("var hello = 'world';");
   });
 });

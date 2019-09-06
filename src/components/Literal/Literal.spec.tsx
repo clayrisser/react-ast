@@ -21,16 +21,16 @@ describe('<Literal />', () => {
 
   it('renders string', () => {
     const code = render(<Literal>hello</Literal>, options);
-    expect(code).toBe("'hello';");
+    expect(code).toBe("'hello'");
   });
 
   it('renders number', () => {
     const code = render(<Literal>{88}</Literal>, options);
-    expect(code).toBe('88;');
+    expect(code).toBe('88');
   });
 
   it('renders boolean', () => {
     const code = render(<Literal>{true}</Literal>, options);
-    expect(code).toBe('true;');
+    expect(code).toBe('true');
   });
 });

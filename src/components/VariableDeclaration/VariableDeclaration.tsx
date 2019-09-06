@@ -1,5 +1,4 @@
 import React, { Component, ReactNode } from 'react';
-import { Code } from '../Code';
 import { Smart } from '../..';
 
 export interface VariableDeclarationProps {
@@ -16,13 +15,15 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
   renderChildren() {
     if (typeof this.props.children === 'string') {
       const code = `'${this.props.children}'`;
-      return <Code>{code}</Code>;
+      return <Smart code={code} scopePath="expression" />;
     }
     if (
       typeof this.props.children === 'number' ||
       typeof this.props.children === 'boolean'
     ) {
-      return <Code>{this.props.children.toString()}</Code>;
+      return (
+        <Smart code={this.props.children.toString()} scopePath="expression" />
+      );
     }
     return this.props.children;
   }
