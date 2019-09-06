@@ -1,9 +1,10 @@
 import React from 'react';
 import {
   ClassDeclaration,
+  ClassMethod,
   Code,
   FunctionDeclaration,
-  ClassMethod,
+  ImportDeclaration,
   Param,
   ReturnStatement,
   VariableDeclaration,
@@ -12,6 +13,7 @@ import {
 
 const code = render(
   <>
+    <ImportDeclaration name="hello" source="world" />
     <ClassDeclaration name="Hello" superClassName="Array">
       <ClassMethod name="hello" params={['a']} returnStatement="a" />
       <Code>hello = 'world'</Code>

@@ -1,5 +1,6 @@
 import React from 'react';
-import { ClassDeclaration, render } from '../..';
+import { ClassDeclaration } from './ClassDeclaration';
+import { render } from '../..';
 
 describe('<ClassDeclaration />', () => {
   it('renders', () => {
