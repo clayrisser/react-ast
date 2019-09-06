@@ -2,7 +2,7 @@ import React from 'react';
 import {
   ClassDeclaration,
   ClassMethod,
-  Code,
+  ClassProperty,
   FunctionDeclaration,
   ImportDeclaration,
   JsxElement,
@@ -22,7 +22,7 @@ const code = render(
     />
     <ClassDeclaration name="Hello" superClassName="Array">
       <ClassMethod name="hello" params={['a']} returnStatement="a" />
-      <Code>hello = 'world'</Code>
+      <ClassProperty name="hello">world</ClassProperty>
     </ClassDeclaration>
     <FunctionDeclaration
       name="add"
@@ -36,7 +36,7 @@ const code = render(
   </>,
   {
     parserOptions: {
-      plugins: ['jsx']
+      plugins: ['jsx', 'classProperties']
     }
   }
 );

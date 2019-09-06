@@ -1,5 +1,6 @@
 export * from './ClassDeclaration';
 export * from './ClassMethod';
+export * from './ClassProperty';
 export * from './Code';
 export * from './FunctionDeclaration';
 export * from './ImportDeclaration';
