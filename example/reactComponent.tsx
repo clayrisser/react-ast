@@ -1,10 +1,22 @@
 import React from 'react';
-import { ClassDeclaration, ClassMethod, render } from '../src';
+import {
+  ImportDeclaration,
+  ClassDeclaration,
+  ClassMethod,
+  render
+} from '../src';
 
 const code = render(
-  <ClassDeclaration name="Button" superClassName="Component">
-    <ClassMethod name="render" returnStatement="[]" />
-  </ClassDeclaration>
+  <>
+    <ImportDeclaration
+      defaultExport="React"
+      exports={['Component']}
+      source="react"
+    />
+    <ClassDeclaration name="Button" superClassName="Component">
+      <ClassMethod name="render" returnStatement="[]" />
+    </ClassDeclaration>
+  </>
 );
 
 console.log(code);

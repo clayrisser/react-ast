@@ -13,7 +13,11 @@ import {
 
 const code = render(
   <>
-    <ImportDeclaration name="hello" source="world" />
+    <ImportDeclaration
+      defaultExport="hello"
+      exports={['one', 'two']}
+      source="world"
+    />
     <ClassDeclaration name="Hello" superClassName="Array">
       <ClassMethod name="hello" params={['a']} returnStatement="a" />
       <Code>hello = 'world'</Code>

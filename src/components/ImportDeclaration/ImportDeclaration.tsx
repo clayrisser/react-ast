@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
+import { oc } from 'ts-optchain.macro';
 import { Smart } from '../..';
 
 export interface ImportDeclarationProps {
-  name: string;
+  defaultExport?: string;
+  exports?: string[];
   source: string;
 }
 
 export class ImportDeclaration extends Component<ImportDeclarationProps> {
   render() {
-    const code = `import ${this.props.name} from '${this.props.source}'`;
+    const exports = oc(this.props).exports([]);
+    const code = `import ${
+      this.props.defaultExport
+        ? `${this.props.defaultExport}${exports.length ? ',' : ''} `
+        : ''
+    }${exports.length ? `{${exports.join(',')}} ` : ''}from '${
+      this.props.source
+    }'`;
     return <Smart code={code} />;
   }
 }
