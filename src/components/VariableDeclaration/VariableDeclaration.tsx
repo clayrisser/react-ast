@@ -17,7 +17,8 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
     if (typeof this.props.children === 'string') {
       const code = `'${this.props.children}'`;
       return <Code>{code}</Code>;
-    } else if (
+    }
+    if (
       typeof this.props.children === 'number' ||
       typeof this.props.children === 'boolean'
     ) {

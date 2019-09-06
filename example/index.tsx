@@ -14,7 +14,7 @@ import {
 
 const code = render(
   <>
-    <JsxElement name="Hello" attributes={{ a: 55 }} />
+    <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }} />
     <ImportDeclaration
       defaultExport="hello"
       exports={['one', 'two']}

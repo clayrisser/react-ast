@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { BaseNode } from '@babel/types';
 import { ParserOptions } from '@babel/parser';
-import { Path, Node, Instance, Props } from '../types';
+import { BaseNode, Path, Node, Instance, Props } from '../types';
 import { flattenPath } from '../util';
 
 export interface ElementConstructor {

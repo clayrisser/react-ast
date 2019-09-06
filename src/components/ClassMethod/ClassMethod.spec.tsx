@@ -8,3 +8,10 @@ describe('<ClassMethod />', () => {
     expect(code).toBe('hello() {}');
   });
 });
+
+describe('<ClassMethod static />', () => {
+  it('renders', () => {
+    const code = render(<ClassMethod static name="hello" />);
+    expect(code).toBe('static hello() {}');
+  });
+});

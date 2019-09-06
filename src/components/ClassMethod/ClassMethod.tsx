@@ -7,9 +7,14 @@ export interface ClassMethodProps {
   name: string;
   params?: (string | ReactNode)[];
   returnStatement?: string | ReactNode;
+  static?: boolean;
 }
 
 export class ClassMethod extends Component<ClassMethodProps> {
+  static defaultProps = {
+    static: false
+  };
+
   renderParams() {
     return oc(this.props)
       .params([])
@@ -29,7 +34,9 @@ export class ClassMethod extends Component<ClassMethodProps> {
   }
 
   render() {
-    const code = `class c {${this.props.name}() {}}`;
+    const code = `class c {${this.props.static ? 'static ' : ''}${
+      this.props.name
+    }() {}}`;
     return (
       <Smart code={code} scopePath="body.body.0">
         {this.renderParams()}

@@ -1,6 +1,16 @@
-import { BaseNode } from '@babel/types';
+import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
 import { GeneratorOptions } from '@babel/generator';
 import { ParserOptions } from '@babel/parser';
+
+export interface BaseNode {
+  leadingComments: ReadonlyArray<Comment> | null;
+  innerComments: ReadonlyArray<Comment> | null;
+  trailingComments: ReadonlyArray<Comment> | null;
+  start: number | null;
+  end: number | null;
+  loc: SourceLocation | null;
+  type: BabelNode['type'];
+}
 
 export type BundleType = 0 | 1;
 
