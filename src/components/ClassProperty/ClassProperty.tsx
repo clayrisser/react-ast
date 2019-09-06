@@ -21,7 +21,7 @@ export class ClassProperty extends Component<ClassPropertyProps> {
       typeof this.props.children === 'number' ||
       typeof this.props.children === 'boolean'
     ) {
-      return <Code>this.props.children</Code>;
+      return <Code>{this.props.children.toString()}</Code>;
     }
     return this.props.children;
   }

@@ -2,7 +2,9 @@ import React from 'react';
 import {
   ClassDeclaration,
   ClassMethod,
+  ClassProperty,
   ImportDeclaration,
+  Literal,
   render
 } from '../src';
 
@@ -14,12 +16,15 @@ const code = render(
       source="react"
     />
     <ClassDeclaration name="Button" superClassName="Component">
-      <ClassMethod name="render" returnStatement="[]" />
+      <ClassProperty static name="defaultProps">
+        <Literal>{{ hello: 'world' }}</Literal>
+      </ClassProperty>
+      <ClassMethod name="render" returnStatement={<Literal>{[]}</Literal>} />
     </ClassDeclaration>
   </>,
   {
     parserOptions: {
-      plugins: ['jsx']
+      plugins: ['jsx', 'classProperties']
     }
   }
 );

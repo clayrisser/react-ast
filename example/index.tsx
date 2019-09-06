@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ClassDeclaration,
+  Literal,
   ClassMethod,
   ClassProperty,
   FunctionDeclaration,
@@ -14,6 +15,7 @@ import {
 
 const code = render(
   <>
+    <Literal>{{ a: 'a' }}</Literal>
     <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }} />
     <ImportDeclaration
       defaultExport="hello"
@@ -22,12 +24,18 @@ const code = render(
     />
     <ClassDeclaration name="Hello" superClassName="Array">
       <ClassMethod name="hello" params={['a']} returnStatement="a" />
-      <ClassProperty name="hello">world</ClassProperty>
+      <ClassProperty name="hello">
+        <JsxElement name="Hello" />
+      </ClassProperty>
     </ClassDeclaration>
     <FunctionDeclaration
       name="add"
       params={[<Param key="a">a</Param>, <Param key="b">b</Param>]}
-      returnStatement={<ReturnStatement>result</ReturnStatement>}
+      returnStatement={
+        <ReturnStatement>
+          <Literal>{true}</Literal>
+        </ReturnStatement>
+      }
     >
       <VariableDeclaration kind="const" name="result">
         <ClassDeclaration name="SomeClass" />

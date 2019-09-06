@@ -1,4 +1,5 @@
 import React, { Component, ReactNode } from 'react';
+import _ from 'lodash';
 import { oc } from 'ts-optchain.macro';
 import { Smart, Param, ReturnStatement } from '../..';
 
@@ -28,8 +29,7 @@ export class ClassMethod extends Component<ClassMethodProps> {
 
   renderReturnStatement() {
     const { returnStatement } = this.props;
-    if (!returnStatement) return <></>;
-    if (typeof returnStatement !== 'string') return returnStatement;
+    if (_.isNil(returnStatement)) return <></>;
     return <ReturnStatement>{returnStatement}</ReturnStatement>;
   }
 

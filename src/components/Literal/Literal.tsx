@@ -1,12 +1,12 @@
 import React, { Component, ReactNode } from 'react';
-import { Smart, Code } from '../..';
+import { Code, Smart } from '../..';
 
-export interface ReturnStatementProps {
+export interface LiteralProps {
   children: ReactNode | number | string;
 }
 
-export class ReturnStatement extends Component<ReturnStatementProps> {
-  renderChildren() {
+export class Literal extends Component<LiteralProps> {
+  render() {
     if (typeof this.props.children === 'string') {
       const code = `'${this.props.children}'`;
       return <Code>{code}</Code>;
@@ -17,15 +17,7 @@ export class ReturnStatement extends Component<ReturnStatementProps> {
     ) {
       return <Code>{this.props.children.toString()}</Code>;
     }
-    return this.props.children;
-  }
-
-  render() {
-    const code = `function f() {return null}`;
-    return (
-      <Smart code={code} scopePath="body.body.0" bodyPath="argument">
-        {this.renderChildren()}
-      </Smart>
-    );
+    const code = `(${JSON.stringify(this.props.children)})`;
+    return <Smart code={code} scopePath="expression" />;
   }
 }

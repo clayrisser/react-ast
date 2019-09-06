@@ -6,3 +6,4 @@ const Smart = 'Smart';
 export { Expression, File, Program, Smart };
 export * from './components';
 export * from './render';
+export * from './types';
