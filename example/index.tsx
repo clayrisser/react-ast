@@ -5,6 +5,7 @@ import {
   FunctionDeclaration,
   Param,
   ReturnStatement,
+  VariableDeclaration,
   render
 } from '../src';
 
@@ -18,7 +19,9 @@ const code = render(
       params={[<Param key="a">a</Param>, <Param key="b">b</Param>]}
       returnStatement={<ReturnStatement>result</ReturnStatement>}
     >
-      <Code>const result=a+b</Code>
+      <VariableDeclaration kind="const" name="result">
+        <ClassDeclaration name="SomeClass" />
+      </VariableDeclaration>
     </FunctionDeclaration>
   </>
 );
