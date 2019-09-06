@@ -45,7 +45,7 @@
     "lint": "npm run format && tsc --allowJs --noEmit && eslint --ext .ts,.tsx ./",
     "lint:fix": "npm run format && tsc --noEmit && eslint --ext .ts,.tsx --fix ./",
     "prepublish": "npm run build",
-    "start": "babel-node --extensions \".ts,.tsx\" example",
+    "start": "babel-node --extensions \".ts,.tsx\"",
     "test": "npm run lint && jest --coverage"
   },
   "dependencies": {

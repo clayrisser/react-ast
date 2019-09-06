@@ -3,6 +3,7 @@ import {
   ClassDeclaration,
   Code,
   FunctionDeclaration,
+  ClassMethod,
   Param,
   ReturnStatement,
   VariableDeclaration,
@@ -12,6 +13,7 @@ import {
 const code = render(
   <>
     <ClassDeclaration name="Hello" superClassName="Array">
+      <ClassMethod name="hello" params={['a']} returnStatement="a" />
       <Code>hello = 'world'</Code>
     </ClassDeclaration>
     <FunctionDeclaration

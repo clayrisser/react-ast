@@ -2,14 +2,14 @@ import React, { Component, ReactNode } from 'react';
 import { oc } from 'ts-optchain.macro';
 import { Smart, Param, ReturnStatement } from '..';
 
-export interface MethodDeclarationProps {
+export interface ClassMethodProps {
   children?: ReactNode;
   name: string;
   params?: (string | ReactNode)[];
   returnStatement?: string | ReactNode;
 }
 
-export class MethodDeclaration extends Component<MethodDeclarationProps> {
+export class ClassMethod extends Component<ClassMethodProps> {
   renderParams() {
     return oc(this.props)
       .params([])
@@ -31,9 +31,7 @@ export class MethodDeclaration extends Component<MethodDeclarationProps> {
   render() {
     const code = `class c {${this.props.name}() {}}`;
     return (
-      <Smart code={code}
-        ref={r=>console.log(r.node)}
-      >
+      <Smart code={code} scopePath="body.body.0">
         {this.renderParams()}
         {this.props.children}
         {this.renderReturnStatement()}
