@@ -38,7 +38,7 @@
     "url": "https://github.com/codejamninja/react-ast"
   },
   "scripts": {
-    "build": "npm run lint && babel src -d lib --extensions \".ts,.tsx\" --source-maps inline && tsc -d --emitDeclarationOnly",
+    "build": "npm run test && babel src -d lib --extensions \".ts,.tsx\" --source-maps inline && tsc -d --emitDeclarationOnly",
     "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* && jest --clearCache",
     "clean:purge": "jest --clearCache && git clean -fXd",
     "format": "prettier --write ./**/*.{json,md,scss,yaml,yml,js,jsx,ts,tsx} --ignore-path .gitignore",
@@ -93,7 +93,10 @@
     "lib"
   ],
   "jest": {
-    "testRegex": "tests(/|/.*/)[^_/]*[jt]sx?$",
-    "verbose": true
+    "testRegex": "((tests(/|/.*/)[^_/]*)|.(test|spec)).[jt]sx?$",
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "./tests/_setup.ts"
+    ]
   }
 }
