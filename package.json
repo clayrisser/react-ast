@@ -1,6 +1,6 @@
 {
   "name": "react-ast",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "render abstract syntax trees with react",
   "keywords": [
     "abstract",
@@ -38,6 +38,7 @@
     "url": "https://github.com/codejamninja/react-ast"
   },
   "scripts": {
+    "babel": "babel-node --extensions \".ts,.tsx\"",
     "build": "npm run test && babel src -d lib --extensions \".ts,.tsx\" --source-maps inline && tsc -d --emitDeclarationOnly",
     "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/* && jest --clearCache",
     "clean:purge": "jest --clearCache && git clean -fXd",
@@ -45,7 +46,7 @@
     "lint": "npm run format && tsc --allowJs --noEmit && eslint --ext .ts,.tsx ./",
     "lint:fix": "npm run format && tsc --noEmit && eslint --ext .ts,.tsx --fix ./",
     "prepublish": "npm run build",
-    "start": "babel-node --extensions \".ts,.tsx\"",
+    "start": "npm run babel example",
     "test": "npm run lint && jest --coverage"
   },
   "dependencies": {
@@ -79,6 +80,7 @@
     "eslint": "^6.2.2",
     "eslint-config-airbnb-typescript": "^4.0.1",
     "eslint-config-jam": "^0.2.19",
+    "eslint-plugin-jest": "^22.17.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "jest": "^24.9.0",
@@ -93,7 +95,7 @@
     "lib"
   ],
   "jest": {
-    "testRegex": "((tests(/|/.*/)[^_/]*)|.(test|spec)).[jt]sx?$",
+    "testRegex": "((tests(/|/.*/)[^_/]*)|\\.spec)\\.[jt]sx?$",
     "verbose": true,
     "setupFilesAfterEnv": [
       "./tests/_setup.ts"

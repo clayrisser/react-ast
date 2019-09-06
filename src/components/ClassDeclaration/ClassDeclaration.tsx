@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { Smart } from '..';
+import { Smart } from '../..';
 
 export interface ClassDeclarationProps {
   children?: ReactNode;

@@ -1,5 +1,14 @@
 {
   "extends": ["jam/typescript"],
+  "overrides": [
+    {
+      "files": ["*.spec.tsx"],
+      "env": {
+        "jest": true
+      },
+      "plugins": ["jest"]
+    }
+  ],
   "rules": {
     "import/export": "off",
     "import/named": "off",
