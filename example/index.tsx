@@ -8,6 +8,7 @@ import {
   ImportDeclaration,
   JsxElement,
   Param,
+  CallExpression,
   ReturnStatement,
   VariableDeclaration,
   render
@@ -15,6 +16,7 @@ import {
 
 const code = render(
   <>
+    <CallExpression name="hello" />
     <Literal>{{ a: 'a' }}</Literal>
     <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }}>
       <JsxElement name="World" />

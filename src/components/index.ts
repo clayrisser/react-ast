@@ -1,3 +1,4 @@
+export * from './CallExpression';
 export * from './ClassDeclaration';
 export * from './ClassMethod';
 export * from './ClassProperty';
