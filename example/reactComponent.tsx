@@ -4,6 +4,7 @@ import {
   ClassMethod,
   ClassProperty,
   ImportDeclaration,
+  JsxElement,
   Literal,
   render
 } from '../src';
@@ -19,7 +20,12 @@ const code = render(
       <ClassProperty static name="defaultProps">
         <Literal>{{ hello: 'world' }}</Literal>
       </ClassProperty>
-      <ClassMethod name="render" returnStatement={<Literal>{[]}</Literal>} />
+      <ClassMethod
+        name="render"
+        returnStatement={
+          <JsxElement name="Hello">{{ hello: 'world' }}</JsxElement>
+        }
+      />
     </ClassDeclaration>
   </>,
   {
