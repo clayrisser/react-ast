@@ -19,6 +19,9 @@ const code = render(
     <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }}>
       <JsxElement name="World" />
     </JsxElement>
+    <JsxElement name="Hello" attributes={{ a: true, b: 'b', c: 55 }}>
+      {88}
+    </JsxElement>
     <ImportDeclaration
       defaultExport="hello"
       exports={['one', 'two']}

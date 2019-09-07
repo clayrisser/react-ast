@@ -1,20 +1,17 @@
 import React from 'react';
-import { JsxAttribute } from './JsxAttribute';
 import { JsxElement } from '../JsxElement';
 import { render } from '../..';
 
 describe('<JsxAttribute />', () => {
   it('renders', () => {
     const code = render(
-      <JsxElement name="Hello">
-        <JsxAttribute name="hello">world</JsxAttribute>
-      </JsxElement>,
+      <JsxElement name="Hello" attributes={{ hello: 'world' }} />,
       {
         parserOptions: {
           plugins: ['jsx']
         }
       }
     );
-    expect(code).toBe('<Hello hello="world"></Hello>');
+    expect(code).toBe('<Hello hello="world" />');
   });
 });

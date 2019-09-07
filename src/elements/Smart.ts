@@ -30,10 +30,10 @@ export default class Smart extends Element {
   };
 
   constructor(props: Props, parserOptions: ParserOptions = {}) {
-    const baseNode = template.smart(props.code, {
-      ...parserOptions,
-      ...props.options
-    } as TemplateBuilderOptions)(props.replacements as PublicReplacements);
+    const baseNode = template.smart(props.code, _.merge(
+      parserOptions,
+      props.options
+    ) as TemplateBuilderOptions)(props.replacements as PublicReplacements);
     const scopePath = flattenPath(props.scopePath);
     super(
       props.scopePath && scopePath.length

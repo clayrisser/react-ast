@@ -1,19 +1,19 @@
 import _ from 'lodash';
-import { ParserOptions } from '@babel/parser';
+import { TemplateBuilderOptions } from '@babel/template';
 
 const _context: Context = {
-  parserOptions: {}
+  parserOptions: {
+    placeholderPattern: false,
+    placeholderWhitelist: new Set()
+  }
 };
 
 export interface Context {
-  parserOptions: ParserOptions;
+  parserOptions: TemplateBuilderOptions;
 }
 
 export function updateContext(context: Context): Context {
-  _.assign(_context, {
-    ..._context,
-    ...context
-  });
+  _.assign(_context, _.merge(_context, context));
   return getContext();
 }
 

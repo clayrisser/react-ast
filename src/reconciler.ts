@@ -60,11 +60,11 @@ export default ReactReconciler<
   },
 
   createTextInstance(
-    _text: string,
+    text: string,
     _rootContainerInstance: Container,
     _hostContext: HostContext
   ): TextInstance {
-    const label = new Smart({});
+    const label = new Smart({ code: text }, {});
     label.commitMount(); // prob should run at a later point
     return label;
   },

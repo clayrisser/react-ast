@@ -1,6 +1,6 @@
-import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
 import { GeneratorOptions } from '@babel/generator';
-import { ParserOptions } from '@babel/parser';
+import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
+import { TemplateBuilderOptions } from '@babel/template';
 
 export interface BaseNode {
   leadingComments: ReadonlyArray<Comment> | null;
@@ -70,5 +70,5 @@ export interface Node extends BaseNode {
 
 export interface Options {
   generatorOptions?: GeneratorOptions;
-  parserOptions?: ParserOptions;
+  parserOptions?: TemplateBuilderOptions;
 }
