@@ -3,7 +3,7 @@ import {
   Code,
   ExportDefaultDeclaration,
   ImportDeclaration,
-  FunctionExpression,
+  ArrowFunctionExpression,
   VariableDeclaration
 } from '../../src';
 
@@ -22,7 +22,8 @@ const ReactFunctionalComponent: FC<ReactFunctionalComponentProps> = (
       source="react"
     />
     <VariableDeclaration kind="const" name={props.name}>
-      <FunctionExpression
+      <ArrowFunctionExpression
+        params={['props']}
         returnStatement={props.children || <Code>null</Code>}
       />
     </VariableDeclaration>
