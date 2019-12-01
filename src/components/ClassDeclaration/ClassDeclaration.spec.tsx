@@ -5,7 +5,8 @@ import { render } from '../..';
 describe('<ClassDeclaration />', () => {
   it('renders', () => {
     const code = render(
-      <ClassDeclaration name="Button" superClassName="Component" />
+      <ClassDeclaration name="Button" superClassName="Component" />,
+      { prettier: false }
     );
     expect(code).toBe('class Button extends Component {}');
   });

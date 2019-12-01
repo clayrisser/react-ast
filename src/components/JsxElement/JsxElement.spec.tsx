@@ -7,7 +7,8 @@ describe('<JsxElement />', () => {
     const code = render(<JsxElement name="Hello" />, {
       parserOptions: {
         plugins: ['jsx']
-      }
+      },
+      prettier: false
     });
     expect(code).toBe('<Hello />');
   });
@@ -18,7 +19,8 @@ describe('<JsxElement />', () => {
       {
         parserOptions: {
           plugins: ['jsx']
-        }
+        },
+        prettier: false
       }
     );
     expect(code).toBe('<Hello one />');
@@ -34,7 +36,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
       {
         parserOptions: {
           plugins: ['jsx']
-        }
+        },
+        prettier: false
       }
     );
     expect(code).toBe('<Hello><World /></Hello>');
@@ -48,7 +51,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
       {
         parserOptions: {
           plugins: ['jsx']
-        }
+        },
+        prettier: false
       }
     );
     expect(code).toBe("<Hello>{'world'}</Hello>");
@@ -58,7 +62,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
     const code = render(<JsxElement name="Hello"> world </JsxElement>, {
       parserOptions: {
         plugins: ['jsx']
-      }
+      },
+      prettier: false
     });
     expect(code).toBe('<Hello>world</Hello>');
   });
@@ -67,7 +72,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
     const code = render(<JsxElement name="Hello">{true}</JsxElement>, {
       parserOptions: {
         plugins: ['jsx']
-      }
+      },
+      prettier: false
     });
     expect(code).toBe('<Hello>{true}</Hello>');
   });
@@ -76,7 +82,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
     const code = render(<JsxElement name="Hello">{88}</JsxElement>, {
       parserOptions: {
         plugins: ['jsx']
-      }
+      },
+      prettier: false
     });
     expect(code).toBe('<Hello>{88}</Hello>');
   });
@@ -87,7 +94,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
       {
         parserOptions: {
           plugins: ['jsx']
-        }
+        },
+        prettier: false
       }
     );
     expect(code).toBe('<Hello>{{\n    "hello": "world"\n  }}</Hello>');
@@ -97,7 +105,8 @@ describe('<JsxElement>{children}</JsxElement>', () => {
     const code = render(<JsxElement name="Hello">{[1, 2, 3]}</JsxElement>, {
       parserOptions: {
         plugins: ['jsx']
-      }
+      },
+      prettier: false
     });
     expect(code).toBe('<Hello>{[1, 2, 3]}</Hello>');
   });

@@ -8,7 +8,8 @@ describe('<Param />', () => {
     const code = render(
       <FunctionDeclaration name="f">
         <Param>p</Param>
-      </FunctionDeclaration>
+      </FunctionDeclaration>,
+      { prettier: false }
     );
     expect(code).toBe('function f(p) {}');
   });

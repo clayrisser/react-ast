@@ -4,7 +4,9 @@ import { render, Literal } from '../..';
 
 describe('<ReturnStatement />', () => {
   it('renders', () => {
-    const code = render(<ReturnStatement>r</ReturnStatement>);
+    const code = render(<ReturnStatement>r</ReturnStatement>, {
+      prettier: false
+    });
     expect(code).toBe("return 'r';");
   });
 
@@ -12,7 +14,8 @@ describe('<ReturnStatement />', () => {
     const code = render(
       <ReturnStatement>
         <Literal>{[]}</Literal>
-      </ReturnStatement>
+      </ReturnStatement>,
+      { prettier: false }
     );
     expect(code).toBe('return [];');
   });

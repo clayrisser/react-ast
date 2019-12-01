@@ -1,5 +1,6 @@
 import { GeneratorOptions } from '@babel/generator';
 import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
+import { Options as PrettierOptions } from 'prettier';
 import { TemplateBuilderOptions } from '@babel/template';
 
 export interface BaseNode {
@@ -71,4 +72,5 @@ export interface Node extends BaseNode {
 export interface Options {
   generatorOptions?: GeneratorOptions;
   parserOptions?: TemplateBuilderOptions;
+  prettier?: boolean | PrettierOptions;
 }

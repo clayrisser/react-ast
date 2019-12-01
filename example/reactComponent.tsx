@@ -3,7 +3,7 @@ import {
   ClassDeclaration,
   ClassMethod,
   ClassProperty,
-  ExportNamedDeclaration,
+  ExportDefaultDeclaration,
   ImportDeclaration,
   JsxElement,
   Literal,
@@ -17,7 +17,7 @@ const code = render(
       exports={['Component']}
       source="react"
     />
-    <ExportNamedDeclaration>
+    <ExportDefaultDeclaration>
       <ClassDeclaration name="Button" superClassName="Component">
         <ClassProperty static name="defaultProps">
           <Literal>{{ hello: 'world' }}</Literal>
@@ -29,11 +29,14 @@ const code = render(
           }
         />
       </ClassDeclaration>
-    </ExportNamedDeclaration>
+    </ExportDefaultDeclaration>
   </>,
   {
     parserOptions: {
       plugins: ['jsx', 'classProperties']
+    },
+    prettier: {
+      singleQuote: true
     }
   }
 );

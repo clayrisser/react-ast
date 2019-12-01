@@ -4,14 +4,16 @@ import { render } from '../..';
 
 describe('<ClassMethod />', () => {
   it('renders', () => {
-    const code = render(<ClassMethod name="hello" />);
+    const code = render(<ClassMethod name="hello" />, { prettier: false });
     expect(code).toBe('hello() {}');
   });
 });
 
 describe('<ClassMethod static />', () => {
   it('renders', () => {
-    const code = render(<ClassMethod static name="hello" />);
+    const code = render(<ClassMethod static name="hello" />, {
+      prettier: false
+    });
     expect(code).toBe('static hello() {}');
   });
 });

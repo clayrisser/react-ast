@@ -8,7 +8,8 @@ describe('<ExportDefaultDeclaration />', () => {
     const code = render(
       <ExportDefaultDeclaration>
         <ClassDeclaration name="C" />
-      </ExportDefaultDeclaration>
+      </ExportDefaultDeclaration>,
+      { prettier: false }
     );
     expect(code).toBe('export default class C {}');
   });

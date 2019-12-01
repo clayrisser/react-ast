@@ -1,4 +1,5 @@
 import * as t from '@babel/types';
+import prettier from 'prettier';
 import generate from '@babel/generator';
 import pkg from 'npm-pkg-json';
 import Renderer from './reconciler';
@@ -32,8 +33,19 @@ export function render(
   options: Options = {},
   ast: t.File = t.file(t.program([]), [], [])
 ): string {
-  return generate(
+  options = {
+    prettier: true,
+    ...options
+  };
+  const { code } = generate(
     renderAst(element, options, ast),
     options.generatorOptions || {}
-  ).code;
+  );
+  if (options.prettier) {
+    return prettier.format(
+      code,
+      typeof options.prettier === 'boolean' ? {} : options.prettier
+    );
+  }
+  return code;
 }

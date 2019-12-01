@@ -9,7 +9,8 @@ describe('<JsxAttribute />', () => {
       {
         parserOptions: {
           plugins: ['jsx']
-        }
+        },
+        prettier: false
       }
     );
     expect(code).toBe('<Hello hello="world" />');

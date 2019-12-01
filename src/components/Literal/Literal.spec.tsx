@@ -5,7 +5,8 @@ import { render, Options } from '../..';
 const options: Options = {
   parserOptions: {
     plugins: ['jsx']
-  }
+  },
+  prettier: false
 };
 
 describe('<Literal />', () => {
