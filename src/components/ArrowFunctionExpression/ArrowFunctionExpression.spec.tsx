@@ -4,7 +4,7 @@ import { render } from '../..';
 
 describe('<ArrowFunctionExpression />', () => {
   it('renders', () => {
-    const code = render(<ArrowFunctionExpression name="hello" />, {
+    const code = render(<ArrowFunctionExpression />, {
       prettier: false
     });
     expect(code).toBe('() => {}');

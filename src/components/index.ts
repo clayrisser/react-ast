@@ -9,6 +9,7 @@ export * from './ExportNamedDeclaration';
 export * from './FunctionDeclaration';
 export * from './FunctionExpression';
 export * from './ImportDeclaration';
+export * from './InterfaceDeclaration';
 export * from './JsxElement';
 export * from './Literal';
 export * from './Param';
