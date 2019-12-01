@@ -5,7 +5,7 @@ import { Smart, Param, ReturnStatement } from '../..';
 
 export interface ArrowFunctionExpressionProps {
   children?: ReactNode;
-  params?: (string | ReactNode)[];
+  params?: ReactNode[];
   returnStatement?: string | ReactNode;
 }
 

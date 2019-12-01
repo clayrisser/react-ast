@@ -6,7 +6,7 @@ import { Smart, Param, ReturnStatement } from '../..';
 export interface FunctionDeclarationProps {
   children?: ReactNode;
   name: string;
-  params?: (string | ReactNode)[];
+  params?: ReactNode[];
   returnStatement?: string | ReactNode;
 }
 

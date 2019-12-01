@@ -3,6 +3,8 @@ import {
   ArrowFunctionExpression,
   Code,
   Param,
+  TypeAnnotation,
+  InterfaceDeclaration,
   ExportDefaultDeclaration,
   ImportDeclaration,
   VariableDeclaration
@@ -22,9 +24,14 @@ const ReactFunctionalComponent: FC<ReactFunctionalComponentProps> = (
       exports={['Component', 'FC']}
       source="react"
     />
-    <VariableDeclaration kind="const" name={props.name} type="FC">
+    <InterfaceDeclaration name={`${props.name}Props`} />
+    <VariableDeclaration
+      kind="const"
+      name={props.name}
+      type={<TypeAnnotation params={[`${props.name}Props`]}>FC</TypeAnnotation>}
+    >
       <ArrowFunctionExpression
-        params={[<Param type="string">props</Param>]}
+        params={[<Param type={`${props.name}Props`}>props</Param>]}
         returnStatement={props.children || <Code>null</Code>}
       />
     </VariableDeclaration>

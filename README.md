@@ -128,9 +128,9 @@ Submit an [issue](https://github.com/codejamninja/react-ast/issues/new)
 
 You can validate the AST at [astexplorer.net](https://astexplorer.net/) with the following settings.
 
-| Language | `JavaScript` |
-| ParserSettings | `babylon7` |
-| Transform | `babelv7` |
+| Language     | ParserSettings | Transform |
+| ------------ | -------------- | --------- |
+| `JavaScript` | `babylon7`     | `babelv7` |
 
 Enabled the following **babylon7** plugins
 

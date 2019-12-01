@@ -15,4 +15,5 @@ export * from './Literal';
 export * from './Param';
 export * from './ReturnStatement';
 export * from './TypeAnnotation';
+export * from './TypeParam';
 export * from './VariableDeclaration';

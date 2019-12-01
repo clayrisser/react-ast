@@ -7,15 +7,19 @@ export interface ParamProps {
 }
 
 export class Param extends Component<ParamProps> {
+  renderTypeAnnotations() {
+    return typeof this.props.type === 'string' ? (
+      <TypeAnnotation>{this.props.type}</TypeAnnotation>
+    ) : (
+      this.props.type
+    );
+  }
+
   render() {
     const code = `function f(${this.props.children}) {}`;
     return (
       <Smart code={code} scopePath="params.0" parentBodyPath="params">
-        {typeof this.props.type === 'string' ? (
-          <TypeAnnotation>{this.props.type}</TypeAnnotation>
-        ) : (
-          this.props.type
-        )}
+        {this.renderTypeAnnotations()}
       </Smart>
     );
   }

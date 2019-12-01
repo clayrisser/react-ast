@@ -29,6 +29,14 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
     return this.props.children;
   }
 
+  renderTypeAnnotations() {
+    return typeof this.props.type === 'string' ? (
+      <TypeAnnotation>{this.props.type}</TypeAnnotation>
+    ) : (
+      this.props.type
+    );
+  }
+
   render() {
     const code = `${this.props.kind} ${this.props.name} = null`;
     return (
@@ -38,11 +46,7 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
           scopePath="declarations.0.id"
           parentBodyPath="declarations.0.id"
         >
-          {typeof this.props.type === 'string' ? (
-            <TypeAnnotation>{this.props.type}</TypeAnnotation>
-          ) : (
-            this.props.type
-          )}
+          {this.renderTypeAnnotations()}
         </Smart>
         {this.renderChildren()}
       </Smart>
