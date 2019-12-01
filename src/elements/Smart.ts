@@ -15,6 +15,7 @@ export default class Smart extends Element {
     children: PropTypes.node,
     code: PropTypes.string.isRequired,
     options: PropTypes.object,
+    ref: PropTypes.func,
     parantBodyPath: PropTypes.string,
     replacements: PropTypes.object,
     scopePath: PropTypes.any
@@ -25,15 +26,16 @@ export default class Smart extends Element {
     children: null,
     options: {},
     parentBodyPath: null,
+    ref: (f: any) => f,
     replacements: {},
     scopePath: ''
   };
 
   constructor(props: Props, parserOptions: ParserOptions = {}) {
-    const baseNode = template.smart(props.code, _.merge(
-      parserOptions,
-      props.options
-    ) as TemplateBuilderOptions)(props.replacements as PublicReplacements);
+    const baseNode = template.smart(
+      props.code,
+      _.merge(parserOptions, props.options) as TemplateBuilderOptions
+    )(props.replacements as PublicReplacements);
     const scopePath = flattenPath(props.scopePath);
     super(
       props.scopePath && scopePath.length

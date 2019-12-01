@@ -1,6 +1,6 @@
 declare namespace JSX {
   // @ts-ignore
-  import { ReactNode } from 'react';
+  import { ReactNode, Ref } from 'react';
   import template, {
     TemplateBuilderOptions,
     PublicReplacements
@@ -16,6 +16,7 @@ declare namespace JSX {
       code: string;
       options?: TemplateBuilderOptions;
       parentBodyPath?: Path;
+      ref?: Ref;
       replacements?: PublicReplacements;
       scopePath?: Path;
     };

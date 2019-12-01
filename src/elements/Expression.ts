@@ -26,9 +26,10 @@ export default class Expression extends Element {
 
   constructor(props: Props = {}) {
     super(
-      template.expression(props.code, props.options as TemplateBuilderOptions)(
-        props.replacements as PublicReplacements
-      ),
+      template.expression(
+        props.code,
+        props.options as TemplateBuilderOptions
+      )(props.replacements as PublicReplacements),
       props
     );
   }

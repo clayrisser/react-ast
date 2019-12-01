@@ -124,6 +124,30 @@ The rendered AST
 
 Submit an [issue](https://github.com/codejamninja/react-ast/issues/new)
 
+## Development
+
+You can validate the AST at [astexplorer.net](https://astexplorer.net/) with the following settings.
+
+| Language | `JavaScript` |
+| ParserSettings | `babylon7` |
+| Transform | `babelv7` |
+
+Enabled the following **babylon7** plugins
+
+- `jsx`
+- `typescript`
+- `asyncGenerators`
+- `classProperties`
+- `decorators`
+- `doExpressions`
+- `dynamicImport`
+- `functionBind`
+- `functionSent`
+- `numericSeparator`
+- `objectRestSpread`
+- `optionalCatchBinding`
+- `optionalChaining`
+
 ## Contributing
 
 Review the [guidelines for contributing](https://github.com/codejamninja/react-ast/blob/master/CONTRIBUTING.md)

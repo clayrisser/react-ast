@@ -3,6 +3,7 @@ import {
   ClassDeclaration,
   ClassMethod,
   ClassProperty,
+  ExportNamedDeclaration,
   ImportDeclaration,
   JsxElement,
   Literal,
@@ -16,17 +17,19 @@ const code = render(
       exports={['Component']}
       source="react"
     />
-    <ClassDeclaration name="Button" superClassName="Component">
-      <ClassProperty static name="defaultProps">
-        <Literal>{{ hello: 'world' }}</Literal>
-      </ClassProperty>
-      <ClassMethod
-        name="render"
-        returnStatement={
-          <JsxElement name="Hello">{{ hello: 'world' }}</JsxElement>
-        }
-      />
-    </ClassDeclaration>
+    <ExportNamedDeclaration>
+      <ClassDeclaration name="Button" superClassName="Component">
+        <ClassProperty static name="defaultProps">
+          <Literal>{{ hello: 'world' }}</Literal>
+        </ClassProperty>
+        <ClassMethod
+          name="render"
+          returnStatement={
+            <JsxElement name="Hello">{{ hello: 'world' }}</JsxElement>
+          }
+        />
+      </ClassDeclaration>
+    </ExportNamedDeclaration>
   </>,
   {
     parserOptions: {

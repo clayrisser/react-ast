@@ -3,6 +3,7 @@ export * from './ClassDeclaration';
 export * from './ClassMethod';
 export * from './ClassProperty';
 export * from './Code';
+export * from './ExportNamedDeclaration';
 export * from './FunctionDeclaration';
 export * from './ImportDeclaration';
 export * from './JsxElement';
