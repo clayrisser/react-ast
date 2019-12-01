@@ -8,7 +8,7 @@ const code = render(
   </ReactFunctionalComponent>,
   {
     parserOptions: {
-      plugins: ['jsx', 'classProperties']
+      plugins: ['jsx', 'classProperties', 'typescript']
     },
     prettier: {
       singleQuote: true

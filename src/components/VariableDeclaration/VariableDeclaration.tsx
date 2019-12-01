@@ -1,10 +1,11 @@
 import React, { Component, ReactNode } from 'react';
-import { Smart } from '../..';
+import { Smart, TypeAnnotation } from '../..';
 
 export interface VariableDeclarationProps {
-  children?: ReactNode | string | number;
+  children?: ReactNode;
   kind: string;
   name: string;
+  type?: ReactNode;
 }
 
 export class VariableDeclaration extends Component<VariableDeclarationProps> {
@@ -32,6 +33,11 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
     const code = `${this.props.kind} ${this.props.name} = null`;
     return (
       <Smart code={code} bodyPath="declarations.0.init">
+        {typeof this.props.type === 'string' ? (
+          <TypeAnnotation>{this.props.type}</TypeAnnotation>
+        ) : (
+          this.props.type
+        )}
         {this.renderChildren()}
       </Smart>
     );

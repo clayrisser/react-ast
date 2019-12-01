@@ -1,9 +1,10 @@
 import React, { FC, ReactNode } from 'react';
 import {
+  ArrowFunctionExpression,
   Code,
+  Param,
   ExportDefaultDeclaration,
   ImportDeclaration,
-  ArrowFunctionExpression,
   VariableDeclaration
 } from '../../src';
 
@@ -21,9 +22,9 @@ const ReactFunctionalComponent: FC<ReactFunctionalComponentProps> = (
       exports={['Component', 'FC']}
       source="react"
     />
-    <VariableDeclaration kind="const" name={props.name}>
+    <VariableDeclaration kind="const" name={props.name} type="FC">
       <ArrowFunctionExpression
-        params={['props']}
+        params={[<Param type="string">props</Param>]}
         returnStatement={props.children || <Code>null</Code>}
       />
     </VariableDeclaration>
