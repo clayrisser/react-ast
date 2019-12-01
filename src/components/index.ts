@@ -6,6 +6,7 @@ export * from './Code';
 export * from './ExportDefaultDeclaration';
 export * from './ExportNamedDeclaration';
 export * from './FunctionDeclaration';
+export * from './FunctionExpression';
 export * from './ImportDeclaration';
 export * from './JsxElement';
 export * from './Literal';
