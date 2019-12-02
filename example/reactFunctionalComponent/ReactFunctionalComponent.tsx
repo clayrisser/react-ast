@@ -2,11 +2,11 @@ import React, { FC, ReactNode } from 'react';
 import {
   ArrowFunctionExpression,
   Code,
-  Param,
-  TypeAnnotation,
-  InterfaceDeclaration,
   ExportDefaultDeclaration,
   ImportDeclaration,
+  InterfaceDeclaration,
+  Param,
+  TypeAnnotation,
   VariableDeclaration
 } from '../../src';
 
