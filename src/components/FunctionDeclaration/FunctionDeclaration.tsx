@@ -1,13 +1,14 @@
 import React, { Component, ReactNode } from 'react';
 import _ from 'lodash';
 import { oc } from 'ts-optchain.macro';
-import { Smart, Param, ReturnStatement } from '../..';
+import { Smart, Param, ReturnStatement, TypeAnnotation } from '../..';
 
 export interface FunctionDeclarationProps {
   children?: ReactNode;
   name: string;
   params?: ReactNode[];
-  returnStatement?: string | ReactNode;
+  returnStatement?: ReactNode;
+  returnType?: ReactNode;
 }
 
 export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
@@ -26,6 +27,15 @@ export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
     const { returnStatement } = this.props;
     if (_.isNil(returnStatement)) return <></>;
     return <ReturnStatement>{returnStatement}</ReturnStatement>;
+  }
+
+  renderReturnType() {
+    if (typeof this.props.returnType === 'string') {
+      return (
+        <TypeAnnotation returnType>{this.props.returnType}</TypeAnnotation>
+      );
+    }
+    return this.props.returnType;
   }
 
   render() {

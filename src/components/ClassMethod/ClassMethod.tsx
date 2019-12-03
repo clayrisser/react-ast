@@ -1,13 +1,14 @@
 import React, { Component, ReactNode } from 'react';
 import _ from 'lodash';
 import { oc } from 'ts-optchain.macro';
-import { Smart, Param, ReturnStatement } from '../..';
+import { Smart, Param, ReturnStatement, TypeAnnotation } from '../..';
 
 export interface ClassMethodProps {
   children?: ReactNode;
   name: string;
   params?: ReactNode[];
-  returnStatement?: string | ReactNode;
+  returnStatement?: ReactNode;
+  returnType?: ReactNode;
   static?: boolean;
 }
 
@@ -33,6 +34,15 @@ export class ClassMethod extends Component<ClassMethodProps> {
     return <ReturnStatement>{returnStatement}</ReturnStatement>;
   }
 
+  renderReturnType() {
+    if (typeof this.props.returnType === 'string') {
+      return (
+        <TypeAnnotation returnType>{this.props.returnType}</TypeAnnotation>
+      );
+    }
+    return this.props.returnType;
+  }
+
   render() {
     const code = `class c {${this.props.static ? 'static ' : ''}${
       this.props.name
@@ -40,8 +50,9 @@ export class ClassMethod extends Component<ClassMethodProps> {
     return (
       <Smart code={code} scopePath="body.body.0">
         {this.renderParams()}
-        {this.props.children}
         {this.renderReturnStatement()}
+        {this.renderReturnStatement()}
+        {this.props.children}
       </Smart>
     );
   }

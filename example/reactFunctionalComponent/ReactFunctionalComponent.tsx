@@ -21,7 +21,7 @@ const ReactFunctionalComponent: FC<ReactFunctionalComponentProps> = (
   <>
     <ImportDeclaration
       defaultExport="React"
-      exports={['Component', 'FC']}
+      exports={['Component', 'FC', 'ReactNode']}
       source="react"
     />
     <InterfaceDeclaration name={`${props.name}Props`} />
@@ -33,6 +33,7 @@ const ReactFunctionalComponent: FC<ReactFunctionalComponentProps> = (
       <ArrowFunctionExpression
         params={[<Param type={`${props.name}Props`}>props</Param>]}
         returnStatement={props.children || <Code>null</Code>}
+        returnType="ReactNode"
       />
     </VariableDeclaration>
     <ExportDefaultDeclaration>
