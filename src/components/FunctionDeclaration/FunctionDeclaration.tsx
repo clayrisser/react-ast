@@ -43,8 +43,9 @@ export class FunctionDeclaration extends Component<FunctionDeclarationProps> {
     return (
       <Smart code={code}>
         {this.renderParams()}
-        {this.props.children}
         {this.renderReturnStatement()}
+        {this.renderReturnType()}
+        {this.props.children}
       </Smart>
     );
   }

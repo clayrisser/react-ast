@@ -47,7 +47,7 @@
     "lint:fix": "npm run format && tsc --noEmit && eslint --ext .ts,.tsx --fix ./",
     "prepublish": "npm run build",
     "start": "npm run babel example",
-    "test": "npm run lint && jest --coverage"
+    "test": "npm run clean && npm run lint && jest --coverage"
   },
   "dependencies": {
     "@babel/generator": "^7.6.0",

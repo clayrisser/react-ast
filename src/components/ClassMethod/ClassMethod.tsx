@@ -51,7 +51,7 @@ export class ClassMethod extends Component<ClassMethodProps> {
       <Smart code={code} scopePath="body.body.0">
         {this.renderParams()}
         {this.renderReturnStatement()}
-        {this.renderReturnStatement()}
+        {this.renderReturnType()}
         {this.props.children}
       </Smart>
     );

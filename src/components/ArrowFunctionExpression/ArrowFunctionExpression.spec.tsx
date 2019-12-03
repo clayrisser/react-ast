@@ -10,3 +10,15 @@ describe('<ArrowFunctionExpression />', () => {
     expect(code).toBe('() => {}');
   });
 });
+
+describe('<ArrowFunctionExpression returnType="any" />', () => {
+  it('renders', () => {
+    const code = render(<ArrowFunctionExpression returnType="any" />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ['typescript']
+      }
+    });
+    expect(code).toBe('(): any => {}');
+  });
+});

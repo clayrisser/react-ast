@@ -10,3 +10,15 @@ describe('<FunctionExpression />', () => {
     expect(code).toBe('function () {}');
   });
 });
+
+describe('<FunctionExpression returnType="any" />', () => {
+  it('renders', () => {
+    const code = render(<FunctionExpression returnType="any" />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ['typescript']
+      }
+    });
+    expect(code).toBe('function (): any {}');
+  });
+});
