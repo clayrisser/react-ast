@@ -42,12 +42,7 @@ export class ClassProperty extends Component<ClassPropertyProps> {
       this.props.name
     } = null}`;
     return (
-      <Smart
-        code={code}
-        scopePath="body.body.0"
-        bodyPath="value"
-        ref={(r: any) => console.log('cp', r.node)}
-      >
+      <Smart code={code} scopePath="body.body.0" bodyPath="value">
         {this.renderTypeAnnotation()}
         {this.renderChildren()}
       </Smart>
