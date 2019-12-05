@@ -2,6 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import {
   ArrowFunctionExpression,
   Code,
+  MethodSignature,
   ExportDefaultDeclaration,
   ImportDeclaration,
   InterfaceDeclaration,
@@ -24,7 +25,9 @@ const ReactFunctionalComponent: FC<ReactFunctionalComponentProps> = (
       exports={['Component', 'FC', 'ReactNode']}
       source="react"
     />
-    <InterfaceDeclaration name={`${props.name}Props`} />
+    <InterfaceDeclaration name={`${props.name}Props`}>
+      <MethodSignature name="hello" params={['world']} returnType="string" />
+    </InterfaceDeclaration>
     <VariableDeclaration
       kind="const"
       name={props.name}

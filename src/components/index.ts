@@ -12,6 +12,7 @@ export * from './ImportDeclaration';
 export * from './InterfaceDeclaration';
 export * from './JsxElement';
 export * from './Literal';
+export * from './MethodSignature';
 export * from './Param';
 export * from './ReturnStatement';
 export * from './TypeAnnotation';
