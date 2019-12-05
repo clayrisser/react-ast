@@ -1,10 +1,11 @@
 import React, { Component, ReactNode } from 'react';
-import { Smart } from '../..';
+import { Smart, TypeAnnotation } from '../..';
 
 export interface ClassPropertyProps {
   children?: ReactNode;
   name: string;
   static?: boolean;
+  type?: ReactNode;
 }
 
 export class ClassProperty extends Component<ClassPropertyProps> {
@@ -28,12 +29,26 @@ export class ClassProperty extends Component<ClassPropertyProps> {
     return this.props.children;
   }
 
+  renderTypeAnnotation() {
+    return typeof this.props.type === 'string' ? (
+      <TypeAnnotation>{this.props.type}</TypeAnnotation>
+    ) : (
+      this.props.type
+    );
+  }
+
   render() {
     const code = `class C {${this.props.static ? 'static ' : ''}${
       this.props.name
     } = null}`;
     return (
-      <Smart code={code} scopePath="body.body.0" bodyPath="value">
+      <Smart
+        code={code}
+        scopePath="body.body.0"
+        bodyPath="value"
+        ref={(r: any) => console.log('cp', r.node)}
+      >
+        {this.renderTypeAnnotation()}
         {this.renderChildren()}
       </Smart>
     );

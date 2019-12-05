@@ -26,3 +26,18 @@ describe('<ClassProperty static />', () => {
     expect(code).toBe("static hello = 'world';");
   });
 });
+
+describe('<ClassProperty type />', () => {
+  it('renders', () => {
+    const code = render(
+      <ClassProperty name="hello" type="string">
+        world
+      </ClassProperty>,
+      {
+        parserOptions: { plugins: ['classProperties', 'typescript'] },
+        prettier: false
+      }
+    );
+    expect(code).toBe("hello: string = 'world';");
+  });
+});

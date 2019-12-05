@@ -29,7 +29,7 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
     return this.props.children;
   }
 
-  renderTypeAnnotations() {
+  renderTypeAnnotation() {
     return typeof this.props.type === 'string' ? (
       <TypeAnnotation>{this.props.type}</TypeAnnotation>
     ) : (
@@ -46,7 +46,7 @@ export class VariableDeclaration extends Component<VariableDeclarationProps> {
           scopePath="declarations.0.id"
           parentBodyPath="declarations.0.id"
         >
-          {this.renderTypeAnnotations()}
+          {this.renderTypeAnnotation()}
         </Smart>
         {this.renderChildren()}
       </Smart>

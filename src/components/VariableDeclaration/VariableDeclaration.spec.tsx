@@ -11,3 +11,18 @@ describe('<VariableDeclaration />', () => {
     expect(code).toBe("var hello = 'world';");
   });
 });
+
+describe('<VariableDeclaration type />', () => {
+  it('renders', () => {
+    const code = render(
+      <VariableDeclaration name="hello" type="string">
+        world
+      </VariableDeclaration>,
+      {
+        parserOptions: { plugins: ['typescript'] },
+        prettier: false
+      }
+    );
+    expect(code).toBe("var hello: string = 'world';");
+  });
+});
