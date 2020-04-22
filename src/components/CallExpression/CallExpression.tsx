@@ -22,11 +22,7 @@ export class CallExpression extends Component<CallExpressionProps> {
   render() {
     const code = `${this.props.name}()`;
     return (
-      <Smart
-        code={code}
-        ref={(a: any) => console.log(a.node)}
-        scopePath="expression"
-      >
+      <Smart code={code} scopePath="expression">
         {this.renderArguments()}
       </Smart>
     );
