@@ -40,7 +40,7 @@ export default class Element implements Instance {
     path?: Path | null
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
-    if (!bodyPath.length) return body;
+    if (!bodyPath.length || bodyPath === '.') return body;
     return _.get(body, bodyPath);
   }
 
@@ -50,7 +50,14 @@ export default class Element implements Instance {
     path?: Path | null
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
-    if (!bodyPath.length) return body;
+    if (!bodyPath.length || bodyPath === '.') {
+      Object.keys(body).forEach((key: string) => {
+        // @ts-ignore
+        delete body[key];
+      });
+      Object.assign(body, value);
+      return body;
+    }
     return _.set(body, bodyPath, value);
   }
 

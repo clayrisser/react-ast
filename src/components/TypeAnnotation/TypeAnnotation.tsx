@@ -5,6 +5,7 @@ import { Smart, TypeParam } from '../..';
 export interface TypeAnnotationProps {
   children: string;
   params?: ReactNode[];
+  parentBodyPath?: string;
   returnType?: boolean;
 }
 
@@ -27,7 +28,10 @@ export class TypeAnnotation extends Component<TypeAnnotationProps> {
     return (
       <Smart
         code={code}
-        parentBodyPath={this.props.returnType ? 'returnType' : 'typeAnnotation'}
+        parentBodyPath={
+          this.props.parentBodyPath ||
+          (this.props.returnType ? 'returnType' : 'typeAnnotation')
+        }
         scopePath="declarations.0.id.typeAnnotation"
       >
         <Smart
