@@ -75,7 +75,7 @@ export class JsxElement extends Component<JsxElementProps> {
     let { children } = this.props;
     if (Array.isArray(children)) {
       const filteredChildren = children.filter(
-        child => oc(child as any).type() !== JsxAttribute
+        (child) => oc(child as any).type() !== JsxAttribute
       );
       if (filteredChildren.length) {
         children = filteredChildren;

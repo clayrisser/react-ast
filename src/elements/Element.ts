@@ -100,8 +100,8 @@ export default class Element implements Instance {
 
   getProps(props: Props): Props {
     props = { ...props };
-    const { defaultProps, propTypes } = this.constructor as ElementConstructor;
-    Object.keys(defaultProps).forEach(key => {
+    const { defaultProps, propTypes } = this.constructor as typeof Element;
+    Object.keys(defaultProps).forEach((key) => {
       const defaultProp = defaultProps[key];
       if (typeof props[key] === 'undefined' || props[key] === null) {
         props[key] = defaultProp;

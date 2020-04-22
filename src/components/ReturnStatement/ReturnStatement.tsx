@@ -23,7 +23,7 @@ export class ReturnStatement extends Component<ReturnStatementProps> {
   }
 
   render() {
-    const code = `function f() {return null}`;
+    const code = 'function f() {return null}';
     return (
       <Smart code={code} scopePath="body.body.0" bodyPath="argument">
         {this.renderChildren()}

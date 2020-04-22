@@ -1,15 +1,24 @@
 {
   "presets": [
     [
-      "jam",
+      "@babel/preset-env",
       {
+        "corejs": 3,
+        "useBuiltIns": "usage",
         "targets": {
           "node": "6"
         }
       }
     ],
-    "@babel/typescript",
-    "@babel/react"
+    "@babel/preset-typescript",
+    "@babel/preset-react"
   ],
-  "plugins": ["typescript-to-proptypes"]
+  "plugins": [
+    "babel-plugin-macros",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-transform-runtime",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "typescript-to-proptypes"
+  ]
 }

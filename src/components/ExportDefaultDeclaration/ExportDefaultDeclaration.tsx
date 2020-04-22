@@ -9,7 +9,7 @@ export class ExportDefaultDeclaration extends Component<
   ExportDefaultDeclarationProps
 > {
   render() {
-    const code = `export default class C{}`;
+    const code = 'export default class C{}';
     return (
       <Smart code={code} bodyPath="declaration">
         {this.props.children}
