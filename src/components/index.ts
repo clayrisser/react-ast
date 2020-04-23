@@ -12,6 +12,8 @@ export * from './FunctionDeclaration';
 export * from './FunctionExpression';
 export * from './ImportDeclaration';
 export * from './InterfaceDeclaration';
+export * from './InterfaceMethod';
+export * from './InterfaceProperty';
 export * from './JsxElement';
 export * from './Literal';
 export * from './MethodSignature';
