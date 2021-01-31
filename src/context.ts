@@ -1,7 +1,7 @@
 import _merge from 'lodash.merge';
 import { TemplateBuilderOptions } from '@babel/template';
 
-const _context: Context = {
+const globalContext: Context = {
   parserOptions: {
     placeholderPattern: false,
     placeholderWhitelist: new Set()
@@ -13,12 +13,12 @@ export interface Context {
 }
 
 export function updateContext(context: Context): Context {
-  Object.assign(_context, _merge(_context, context));
+  Object.assign(globalContext, _merge(globalContext, context));
   return getContext();
 }
 
 export function getContext(): Context {
-  return _context;
+  return globalContext;
 }
 
 export default getContext();

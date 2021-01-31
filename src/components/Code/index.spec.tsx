@@ -1,0 +1,12 @@
+import React from 'react';
+import { render } from '~/index';
+import Code from './index';
+
+describe('<Code />', () => {
+  it('renders', () => {
+    const code = render(<Code>const hello = &apos;world&apos;</Code>, {
+      prettier: false
+    });
+    expect(code).toBe("const hello = 'world';");
+  });
+});
