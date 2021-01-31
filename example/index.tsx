@@ -9,6 +9,8 @@ const renderedOutput = render(
   <>
     <Hello />
     <Howdy />
+    <Hello />
+    <Hello />
   </>
 );
 
