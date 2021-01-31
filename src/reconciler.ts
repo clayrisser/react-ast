@@ -1,6 +1,7 @@
 import ReactReconciler from 'react-reconciler';
 import createElement from '~/createElement';
 import { Smart } from '~/elements';
+import { dev } from '~/util';
 import {
   ChildSet,
   Container,
@@ -59,7 +60,7 @@ export default ReactReconciler<
     _hostContext: HostContext
   ): boolean {
     logger.debug('finalizeInitialChildren');
-    return false;
+    return true;
   },
 
   createTextInstance(
@@ -68,7 +69,7 @@ export default ReactReconciler<
     _hostContext: HostContext
   ): TextInstance {
     logger.debug('createTextInstance');
-    const label = new Smart({ code: text }, {}); // explicitly specify element to use for text
+    const label = new Smart({ code: text }, {});
     label.commitMount(); // prob should run at a later point
     return label;
   },
@@ -122,6 +123,7 @@ export default ReactReconciler<
     _child: Instance | TextInstance
   ): void {
     logger.debug('removeChildFromContainer');
+    if (dev) logger.warn("'removeChildFromContainer' not supported");
   },
 
   insertBefore(
@@ -130,6 +132,7 @@ export default ReactReconciler<
     _beforeChild: Instance | TextInstance
   ): void {
     logger.debug('insertBefore');
+    if (dev) logger.warn("'insertBefore' not supported");
   },
 
   appendChildToContainer(
@@ -151,61 +154,74 @@ export default ReactReconciler<
     return false;
   },
 
-  // @ts-ignore
   getRootHostContext(_rootContainerInstance: Container): HostContext {
     logger.debug('getRootHostContext');
+    if (dev) logger.warn("'getRootHostContext' not supported");
+    return {};
   },
 
   getChildHostContext(
     _parentHostContext: HostContext,
     _type: Type,
     _rootContainerInstance: Container
-    // @ts-ignore
   ): HostContext {
     logger.debug('getChildHostContext');
+    if (dev) logger.warn("'getChildHostContext' not supported");
+    return {};
   },
 
   now: Date.now,
 
   commitUpdate(
-    _instance: Instance,
+    instance: Instance,
     _updatePayload: any,
     _type: string,
     _oldProps: Props,
-    _newProps: Props
+    newProps: Props
   ): void {
     logger.debug('commitUpdate');
+    return instance.commitUpdate(newProps);
   },
 
-  commitMount(_instance: Instance, _type: Type, _newProps: Props): void {
+  commitMount(instance: Instance, _type: Type, _newProps: Props): void {
     logger.debug('commitMount');
+    instance.commitMount();
   },
 
   shouldDeprioritizeSubtree(): boolean {
     logger.debug('shouldDeprioritizeSubtree');
-    return false;
+    return true;
   },
 
   scheduleDeferredCallback(
-    _callback?: () => any,
+    callback?: () => any,
     _options?: { timeout: number }
   ): any {
     logger.debug('scheduleDeferredCallback');
+    if (callback) {
+      throw new Error(
+        'Scheduling a callback twice is excessive. Instead, keep track of ' +
+          'whether the callback has already been scheduled.'
+      );
+    }
   },
 
   cancelDeferredCallback(_callbackID: any): void {
     logger.debug('cancelDeferredCallback');
+    // noop
   },
 
   setTimeout(
-    _handler: (...args: any[]) => void,
-    _timeout: number
+    handler: (...args: any[]) => void,
+    timeout: number
   ): TimeoutHandle | NoTimeout {
     logger.debug('setTimeout');
+    return setTimeout(handler, timeout);
   },
 
-  clearTimeout(_handle: TimeoutHandle | NoTimeout): void {
+  clearTimeout(handle: TimeoutHandle | NoTimeout): void {
     logger.debug('clearTimeout');
+    return clearTimeout(handle);
   },
 
   noTimeout: -1 as NoTimeout,
