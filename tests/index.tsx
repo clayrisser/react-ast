@@ -1,9 +1,19 @@
 import React from 'react';
-import { render } from '~/index';
+import { render, Smart } from '~/index';
 
 describe('render(<Jsx />)', () => {
-  it('should render jsx', async () => {
-    expect(render(<></>)).toMatchObject({ hello: 'world' });
+  it('should render code', async () => {
+    expect(
+      render(
+        <>
+          <Smart code="const hello = 'world'" />
+          {"const howdy = () => 'texas'"}
+        </>
+      )
+    ).toBe(`const hello = "world";
+
+const howdy = () => "texas";
+`);
   });
 });
 
