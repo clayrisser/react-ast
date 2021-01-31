@@ -1,5 +1,16 @@
+import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
+
+// export interface BaseNode {
+//   [key: string]: any;
+// }
 export interface BaseNode {
-  [key: string]: any;
+  leadingComments: ReadonlyArray<Comment> | null;
+  innerComments: ReadonlyArray<Comment> | null;
+  trailingComments: ReadonlyArray<Comment> | null;
+  start: number | null;
+  end: number | null;
+  loc: SourceLocation | null;
+  type: BabelNode['type'];
 }
 
 export interface Options {
@@ -31,6 +42,8 @@ export type NoTimeout = any;
 export interface Container extends Instance {}
 
 export interface TextInstance extends Instance {}
+
+export type Path = string | number | DeepArray<string | number>;
 
 export interface DeepArray<T> extends Array<T | DeepArray<T>> {}
 

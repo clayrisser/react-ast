@@ -1,10 +1,18 @@
+import _get from 'lodash.get';
+import _set from 'lodash.set';
 import { ParserOptions } from '@babel/parser';
-import { BaseNode, Node, Instance, Props } from '~/types';
+import { BaseNode, Path, Node, Instance, Props } from '~/types';
+import { flattenPath } from '~/util';
 
 export interface IElement {
   new (props?: Props, parserOptions?: ParserOptions): BaseElement;
   propTypes: object;
   defaultProps: Props;
+}
+
+export interface Meta {
+  bodyPath: Path;
+  parentBodyPath: Path | null;
 }
 
 export default class BaseElement implements Instance {
@@ -14,28 +22,79 @@ export default class BaseElement implements Instance {
 
   node: Node;
 
-  props: Props = {};
+  props: Props;
 
   children: BaseElement[] = [];
 
-  constructor(baseNode: BaseNode | BaseNode[], _props: Props = {}) {
+  meta: Meta = {
+    bodyPath: 'body.body',
+    parentBodyPath: null
+  };
+
+  getBodyPath(path?: Path | null): string {
+    return flattenPath(path || this.meta.bodyPath);
+  }
+
+  getBody(
+    body: BaseNode | BaseNode[],
+    path?: Path | null
+  ): BaseNode | BaseNode[] {
+    const bodyPath = this.getBodyPath(path);
+    if (!bodyPath.length) return body;
+    return _get(body, bodyPath);
+  }
+
+  setBody(
+    body: BaseNode | BaseNode[],
+    value: BaseNode | BaseNode[],
+    path?: Path | null
+  ): BaseNode | BaseNode[] {
+    const bodyPath = this.getBodyPath(path);
+    if (!bodyPath.length) return body;
+    return _set(body, bodyPath, value);
+  }
+
+  constructor(
+    baseNode: BaseNode | BaseNode[],
+    props: Props = {},
+    meta?: Partial<Meta>
+  ) {
     if (Array.isArray(baseNode)) throw new Error('cannot be array');
+    if (meta) {
+      this.meta = {
+        ...this.meta,
+        ...meta
+      };
+    }
     this.node = baseNode;
+    this.props = props;
   }
 
-  appendChild(_child: BaseElement) {
-    return undefined;
+  appendChild(child: BaseElement) {
+    const body = this.getBody(this.node, child.meta.parentBodyPath);
+    this.children.push(child);
+    if (Array.isArray(body)) {
+      body.push(child.node);
+    } else {
+      this.setBody(this.node, child.node, child.meta.parentBodyPath);
+    }
   }
 
-  removeChild(_child: BaseElement) {
-    return undefined;
+  removeChild(child: BaseElement) {
+    const body = this.getBody(this.node, child.meta.parentBodyPath);
+    if (!body || !Array.isArray(body)) return;
+    this.children.splice(this.children.indexOf(child), 1);
+    body.splice(body.indexOf(child.node), 1);
   }
 
   commitMount() {
     return undefined;
   }
 
-  commitUpdate(_newProps: Props) {
-    return undefined;
+  commitUpdate(newProps: Props) {
+    this.props = {
+      ...this.props,
+      ...newProps
+    };
   }
 }

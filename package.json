@@ -54,6 +54,8 @@
     "@babel/types": "^7.12.12",
     "@types/babel__parser": "^7.1.1",
     "core-js": "^3.8.3",
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
     "react": "^17.0.1",
     "react-reconciler": "0.25.1"
   },
@@ -69,6 +71,8 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@types/jest": "^26.0.20",
+    "@types/lodash.get": "^4.4.6",
+    "@types/lodash.set": "^4.3.6",
     "@types/react": "^17.0.0",
     "@types/react-reconciler": "^0.18.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
