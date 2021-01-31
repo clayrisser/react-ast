@@ -1,18 +1,11 @@
 import React from 'react';
 import util from 'util';
-import { render, Hello, Howdy } from '../src';
+import { render } from '~/index';
 
 const logger = console;
 
 logger.log('======== RECONCILER LIFECYCLE ========');
-const renderedOutput = render(
-  <>
-    <Hello />
-    <Howdy />
-    <Hello />
-    <Hello />
-  </>
-);
+const renderedOutput = render(<></>);
 
 logger.log('\n\n======== RENDERED OUTPUT ========');
 logger.log(util.inspect(renderedOutput, false, null, true));

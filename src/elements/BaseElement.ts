@@ -1,7 +1,8 @@
+import { ParserOptions } from '@babel/parser';
 import { BaseNode, Node, Instance, Props } from '~/types';
 
 export interface IElement {
-  new (props?: Props): BaseElement;
+  new (props?: Props, parserOptions?: ParserOptions): BaseElement;
   propTypes: object;
   defaultProps: Props;
 }
@@ -13,13 +14,13 @@ export default class BaseElement implements Instance {
 
   node: Node;
 
-  props: Props;
+  props: Props = {};
 
   children: BaseElement[] = [];
 
-  constructor(baseNode: BaseNode | BaseNode[], props: Props = {}) {
+  constructor(baseNode: BaseNode | BaseNode[], _props: Props = {}) {
+    if (Array.isArray(baseNode)) throw new Error('cannot be array');
     this.node = baseNode;
-    this.props = props;
   }
 
   appendChild(_child: BaseElement) {

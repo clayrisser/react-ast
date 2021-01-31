@@ -1,11 +1,11 @@
 import reconciler from '~/reconciler';
-import { Wrapper } from '~/elements';
+import { File } from '~/elements';
 import { Options } from '~/types';
 
 export function render(jsx: JSX.Element, _options: Options = {}) {
   // create root element
   // a root node is already injected by this element constructor
-  const rootElement = new Wrapper();
+  const rootElement = new File();
 
   // create root fiber
   const root = reconciler.createContainer(rootElement, false, false);

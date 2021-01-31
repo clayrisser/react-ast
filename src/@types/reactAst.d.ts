@@ -3,13 +3,7 @@ declare namespace JSX {
   type ReactNode = import('react').ReactNode;
 
   interface IntrinsicElements {
-    Hello: {
-      ref?: Ref<any>;
-    };
-    Howdy: {
-      ref?: Ref<any>;
-    };
-    Wrapper: {
+    File: {
       ref?: Ref<any>;
       children?: ReactNode;
     };

@@ -49,7 +49,10 @@
     "test:watch": "make -s test-watch"
   },
   "dependencies": {
+    "@babel/parser": "^7.12.11",
     "@babel/runtime": "^7.12.5",
+    "@babel/types": "^7.12.12",
+    "@types/babel__parser": "^7.1.1",
     "core-js": "^3.8.3",
     "react": "^17.0.1",
     "react-reconciler": "0.25.1"
