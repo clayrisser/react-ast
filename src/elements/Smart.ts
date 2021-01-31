@@ -23,7 +23,7 @@ export default class Smart extends BaseElement {
   };
 
   static defaultProps = {
-    bodyPath: 'body.body',
+    bodyPath: 'body',
     children: null,
     options: {},
     parentBodyPath: null,
@@ -44,7 +44,7 @@ export default class Smart extends BaseElement {
         : baseNode,
       props,
       {
-        bodyPath: props.bodyPath || 'body.body',
+        bodyPath: props.bodyPath || 'body',
         parentBodyPath: props.parentBodyPath
       }
     );

@@ -1,5 +1,7 @@
+import BaseElement from '~/elements/BaseElement';
 import { Path } from '~/types';
 
+const logger = console;
 const { env } = process;
 
 export function flattenPath(path?: Path | undefined): string {
@@ -21,6 +23,11 @@ function isDev(): boolean {
     env.NODE_ENV.toLowerCase() !== 'prod' ||
     env.NODE_ENV.toLowerCase() !== 'production'
   );
+}
+
+export function debugRef(debug = true) {
+  if (!debug) return () => undefined;
+  return (ref: BaseElement) => logger.debug(JSON.stringify(ref.node, null, 2));
 }
 
 export const dev = isDev();

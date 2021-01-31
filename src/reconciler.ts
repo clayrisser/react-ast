@@ -17,7 +17,10 @@ import {
   UpdatePayload
 } from '~/types';
 
-const logger = console;
+const logger = {
+  ...console,
+  debug: (..._args: any[]) => undefined
+};
 
 // bindings to the react reconciliation lifecycle methods
 export default ReactReconciler<

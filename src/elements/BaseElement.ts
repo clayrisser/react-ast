@@ -28,7 +28,7 @@ export default class BaseElement implements Instance {
   children: BaseElement[] = [];
 
   meta: Meta = {
-    bodyPath: 'body.body',
+    bodyPath: 'body',
     parentBodyPath: null
   };
 

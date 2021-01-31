@@ -89,6 +89,7 @@
     "babel-plugin-macros": "^3.0.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-transform-typescript-metadata": "^0.3.1",
+    "babel-plugin-typescript-to-proptypes": "^1.4.2",
     "cloc": "^2.7.0",
     "cspell": "^5.2.4",
     "eslint": "^7.18.0",
