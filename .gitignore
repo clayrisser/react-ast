@@ -72,10 +72,12 @@ typings/
 # Serverless directories
 .serverless
 
-package-lock.json
-yarn.lock
+# application
 .tern-port
-.DS_Store
+/lib
+package-lock.json
+/dist
+/es
+yarn.lock
 tsconfig.tsbuildinfo
-.tmp
-lib
+pnpm-lock.yaml

@@ -1,51 +1,24 @@
-import * as t from '@babel/types';
-import prettier from 'prettier';
-import generate from '@babel/generator';
-import pkg from 'npm-pkg-json';
-import Renderer from './reconciler';
-import dev from './dev';
-import { BundleType, Options } from './types';
-import { File } from './elements';
-import { updateContext } from './context';
+import reconciler from '~/reconciler';
+import { BaseElement } from '~/elements';
+import { BaseNode, Options } from '~/types';
 
-export function renderAst(
-  element: JSX.Element,
-  options: Options = {},
-  ast: t.File = t.file(t.program([]), [], [])
-): t.File {
-  updateContext({ parserOptions: options.parserOptions || {} });
-  const file = new File();
-  file.node = ast;
-  const root = Renderer.createContainer(file, false, false);
-  Renderer.updateContainer(element, root, null, () => {
-    // noop
-  });
-  Renderer.injectIntoDevTools({
-    bundleType: Number(dev) as BundleType,
-    rendererPackageName: pkg.name,
-    version: pkg.version
-  });
-  return file.node as t.File;
-}
+export function render(jsx: JSX.Element, _options: Options = {}) {
+  // create root node
+  // this is the interface of the renderer that the react renderer is binding to
+  const rootNode: BaseNode = { hello: 'world' };
 
-export function render(
-  element: JSX.Element,
-  options: Options = {},
-  ast: t.File = t.file(t.program([]), [], [])
-): string {
-  options = {
-    prettier: true,
-    ...options
-  };
-  const { code } = generate(
-    renderAst(element, options, ast),
-    options.generatorOptions || {}
-  );
-  if (options.prettier) {
-    return prettier.format(
-      code,
-      typeof options.prettier === 'boolean' ? {} : options.prettier
-    );
-  }
-  return code;
+  // create root element
+  // think of an element as a react component that is directly bound to the reconciliation lifecycle methods
+  // the root element is not created with JSX
+  const rootElement = new BaseElement(rootNode);
+
+  // create root fiber
+  const root = reconciler.createContainer(rootElement, false, false);
+
+  // reconcile virtual dom
+  reconciler.updateContainer(jsx, root, null, () => undefined);
+
+  // return rendered result (not required for side effect renderers)
+  // in this case the rendered result is the node itself
+  return rootElement.node;
 }

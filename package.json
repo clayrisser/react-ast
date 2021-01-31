@@ -1,117 +1,126 @@
 {
   "name": "react-ast",
-  "version": "0.1.30",
+  "version": "0.0.1",
   "description": "render abstract syntax trees with react",
+  "private": true,
+  "sideEffects": false,
   "keywords": [
-    "abstract",
-    "ast",
-    "babel",
-    "generate",
+    "react-ast",
     "react",
-    "reconcile",
-    "reconciler",
-    "render",
-    "syntax",
-    "template",
-    "tree",
-    "ts",
-    "typescript"
+    "ast"
   ],
-  "homepage": "https://github.com/codejamninja/react-ast",
+  "homepage": "https://github.com/clayrisser/react-ast",
   "bugs": {
-    "url": "https://github.com/codejamninja/react-ast/issues",
-    "email": "jam@codejam.ninja"
+    "url": "https://github.com/clayrisser/react-ast/issues",
+    "email": "email@clayrisser.com"
   },
   "license": "MIT",
   "author": {
-    "name": "Jam Risser",
-    "email": "jam@codejam.ninja",
-    "url": "https://codejam.ninja"
+    "name": "Clay Risser",
+    "email": "email@clayrisser.com",
+    "url": "https://clayrisser.com"
   },
   "files": [
-    "lib",
-    "bin"
+    "dist",
+    "es",
+    "lib"
   ],
   "main": "lib/index.js",
+  "module": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/codejamninja/react-ast"
+    "url": "https://github.com/clayrisser/react-ast"
   },
   "scripts": {
     "build": "make -s build",
     "clean": "make -s clean",
+    "coverage": "make -s coverage",
     "format": "make -s format",
-    "inc": "npm version patch --git=false 2>/dev/null || true",
+    "inc": "make -s inc",
     "lint": "make -s lint",
-    "make": "make --version",
+    "make": "make",
     "prepare": "make -s prepare",
     "purge": "make -s purge",
+    "report": "make -s report",
+    "spellcheck": "make -s spellcheck",
     "start": "make -s start",
     "test": "make -s test",
+    "test:ui": "make test-ui",
     "test:watch": "make -s test-watch"
   },
   "dependencies": {
-    "@babel/generator": "^7.9.5",
-    "@babel/parser": "^7.9.4",
-    "@babel/template": "^7.8.6",
-    "@babel/types": "^7.9.5",
-    "core-js": "^3.6.5",
-    "lodash": "^4.17.15",
-    "npm-pkg-json": "^0.1.0",
-    "prettier": "^2.0.5",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-reconciler": "^0.25.1",
-    "ts-optchain.macro": "^1.1.5"
+    "@babel/runtime": "^7.12.5",
+    "core-js": "^3.8.3",
+    "react": "^17.0.1",
+    "react-reconciler": "^0.26.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.7",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-decorators": "^7.8.3",
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/preset-react": "^7.9.4",
-    "@babel/preset-typescript": "^7.9.0",
-    "@types/babel-generator": "^6.25.3",
-    "@types/babel__generator": "^7.6.1",
-    "@types/babel__template": "^7.0.2",
-    "@types/jest": "^25.2.1",
-    "@types/lodash": "^4.14.150",
-    "@types/node": "^13.13.2",
-    "@types/prettier": "^2.0.0",
-    "@types/prop-types": "^15.7.3",
-    "@types/react": "^16.9.34",
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@babel/plugin-proposal-optional-chaining": "^7.12.7",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/jest": "^26.0.20",
+    "@types/react": "^17.0.0",
     "@types/react-reconciler": "^0.18.0",
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
-    "@typescript-eslint/parser": "^2.29.0",
-    "babel-plugin-macros": "^2.8.0",
-    "babel-plugin-typescript-to-proptypes": "^1.3.2",
-    "cspell": "^4.0.57",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-typescript": "^7.2.1",
-    "eslint-config-jam": "^0.2.20",
-    "eslint-config-reactant": "^0.1.144",
-    "eslint-plugin-jest": "^23.8.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "gnumake": "^0.1.0",
-    "jest": "^25.4.0",
-    "typescript": "^3.8.3"
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-inline-import": "^3.0.0",
+    "babel-plugin-macros": "^3.0.1",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-transform-typescript-metadata": "^0.3.1",
+    "cloc": "^2.7.0",
+    "cspell": "^5.2.4",
+    "eslint": "^7.18.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-spellcheck": "^0.0.17",
+    "jest": "^26.6.3",
+    "jest-sonar-reporter": "^2.0.0",
+    "lockfile-lint": "^4.3.7",
+    "majestic": "^1.8.0",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3",
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0"
   },
   "engines": {
     "node": ">=6.0.0"
   },
   "eslintIgnore": [
+    "dist",
+    "es",
     "lib"
   ],
   "jest": {
-    "testRegex": "((tests(/|/.*/)[^_/]*)|\\.spec)\\.[jt]sx?$",
+    "testRegex": "((/(tests|__tests__)((/|/[^_.\n][^/\n]*(/[^_.\n][^/\n]+)*/)[^_.\n][^/\n]*))|((/|/.*/)(([^_.\n][^/\n]*.(spec|test))|(spec|test)))).[jt]sx?$",
+    "testEnvironment": "node",
     "verbose": true,
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist/",
+      "<rootDir>/es/",
+      "<rootDir>/lib/"
+    ],
     "setupFilesAfterEnv": [
-      "./tests/_setup.ts"
+      "<rootDir>/tests/_setup.ts"
     ]
+  },
+  "jestSonar": {
+    "reportPath": "node_modules/.tmp/reports",
+    "reportFile": "test-report.xml",
+    "indent": 4
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none"
   }
 }

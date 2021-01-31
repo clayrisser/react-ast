@@ -1,16 +1,9 @@
-import { GeneratorOptions } from '@babel/generator';
-import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
-import { Options as PrettierOptions } from 'prettier';
-import { TemplateBuilderOptions } from '@babel/template';
-
 export interface BaseNode {
-  leadingComments: ReadonlyArray<Comment> | null;
-  innerComments: ReadonlyArray<Comment> | null;
-  trailingComments: ReadonlyArray<Comment> | null;
-  start: number | null;
-  end: number | null;
-  loc: SourceLocation | null;
-  type: BabelNode['type'];
+  [key: string]: any;
+}
+
+export interface Options {
+  [key: string]: any;
 }
 
 export type BundleType = 0 | 1;
@@ -41,8 +34,6 @@ export interface TextInstance extends Instance {}
 
 export interface DeepArray<T> extends Array<T | DeepArray<T>> {}
 
-export type Path = string | number | DeepArray<string | number>;
-
 export interface Props {
   [key: string]: Prop;
 }
@@ -67,10 +58,4 @@ export interface Context {
 
 export interface Node extends BaseNode {
   body?: BaseNode[];
-}
-
-export interface Options {
-  generatorOptions?: GeneratorOptions;
-  parserOptions?: TemplateBuilderOptions;
-  prettier?: boolean | PrettierOptions;
 }

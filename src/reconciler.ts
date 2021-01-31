@@ -1,6 +1,4 @@
 import ReactReconciler from 'react-reconciler';
-import createElement from './createElement';
-import dev from './dev';
 import {
   ChildSet,
   Container,
@@ -14,11 +12,12 @@ import {
   TimeoutHandle,
   Type,
   UpdatePayload
-} from './types';
-import { Smart } from './elements';
+} from '~/types';
 
+// eslint-disable-next-line no-console
 const log = console;
 
+// bindings to the react reconciliation lifecycle methods
 export default ReactReconciler<
   Type,
   Props,
@@ -34,19 +33,20 @@ export default ReactReconciler<
   NoTimeout
 >({
   createInstance(
-    type: Type,
-    props: Props,
+    _type: Type,
+    _props: Props,
     _rootContainerInstance: Container,
     _hostContext: HostContext
+    // @ts-ignore
   ): Instance {
-    return createElement(type, props);
+    log.debug('createInstance');
   },
 
   appendInitialChild(
-    parentInstance: Instance,
-    child: Instance | TextInstance
+    _parentInstance: Instance,
+    _child: Instance | TextInstance
   ): void {
-    parentInstance.appendChild(child);
+    log.debug('appendInitialChild');
   },
 
   finalizeInitialChildren(
@@ -56,25 +56,26 @@ export default ReactReconciler<
     _rootContainerInstance: Container,
     _hostContext: HostContext
   ): boolean {
-    return true;
+    log.debug('finalizeInitialChildren');
+    return false;
   },
 
   createTextInstance(
-    text: string,
+    _text: string,
     _rootContainerInstance: Container,
     _hostContext: HostContext
+    // @ts-ignore
   ): TextInstance {
-    const label = new Smart({ code: text }, {});
-    label.commitMount(); // prob should run at a later point
-    return label;
+    log.debug('createTextInstance');
   },
 
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
+    log.debug('getPublicInstance');
     return instance;
   },
 
   prepareForCommit(_containerInfo: Container): void {
-    // noop
+    log.debug('prepareForCommit');
   },
 
   prepareUpdate(
@@ -85,15 +86,16 @@ export default ReactReconciler<
     _rootContainerInstance: Container,
     _hostContext: HostContext
   ): null | UpdatePayload {
+    log.debug('prepareUpdate');
     return true;
   },
 
   resetAfterCommit(_containerInfo: Container): void {
-    // noop
+    log.debug('resetAfterCommit');
   },
 
   resetTextContent(_instance: Instance): void {
-    // noop
+    log.debug('resetTextContent');
   },
 
   commitTextUpdate(
@@ -101,18 +103,21 @@ export default ReactReconciler<
     _oldText: string,
     _newText: string
   ): void {
-    throw new Error('commitTextUpdate should not be called');
+    log.debug('commitTextUpdate');
   },
 
-  removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    parentInstance.removeChild(child);
+  removeChild(
+    _parentInstance: Instance,
+    _child: Instance | TextInstance
+  ): void {
+    log.debug('removeChild');
   },
 
   removeChildFromContainer(
     _container: Container,
     _child: Instance | TextInstance
   ): void {
-    if (dev) log.warn("'removeChildFromContainer' not supported");
+    log.debug('removeChildFromContainer');
   },
 
   insertBefore(
@@ -120,84 +125,83 @@ export default ReactReconciler<
     _child: Instance | TextInstance,
     _beforeChild: Instance | TextInstance
   ): void {
-    if (dev) log.warn("'insertBefore' not supported");
+    log.debug('insertBefore');
   },
 
   appendChildToContainer(
-    container: Container,
-    child: Instance | TextInstance
+    _container: Container,
+    _child: Instance | TextInstance
   ): void {
-    return container.appendChild(child);
+    log.debug('appendChildToContainer');
   },
 
-  appendChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    return parentInstance.appendChild(child);
+  appendChild(
+    _parentInstance: Instance,
+    _child: Instance | TextInstance
+  ): void {
+    log.debug('appendChild');
   },
 
-  shouldSetTextContent(_type: Type, props: Props): boolean {
-    if (typeof props.children === 'string') return true;
+  shouldSetTextContent(_type: Type, _props: Props): boolean {
+    log.debug('shouldSetTextContent');
     return false;
   },
 
+  // @ts-ignore
   getRootHostContext(_rootContainerInstance: Container): HostContext {
-    if (dev) log.warn("'getRootHostContext' not supported");
-    return {};
+    log.debug('getRootHostContext');
   },
 
   getChildHostContext(
     _parentHostContext: HostContext,
     _type: Type,
     _rootContainerInstance: Container
+    // @ts-ignore
   ): HostContext {
-    if (dev) log.warn("'getChildHostContext' not supported");
-    return {};
+    log.debug('getChildHostContext');
   },
 
   now: Date.now,
 
   commitUpdate(
-    instance: Instance,
+    _instance: Instance,
     _updatePayload: any,
     _type: string,
     _oldProps: Props,
-    newProps: Props
+    _newProps: Props
   ): void {
-    return instance.commitUpdate(newProps);
+    log.debug('commitUpdate');
   },
 
-  commitMount(instance: Instance, _type: Type, _newProps: Props): void {
-    instance.commitMount();
+  commitMount(_instance: Instance, _type: Type, _newProps: Props): void {
+    log.debug('commitMount');
   },
 
   shouldDeprioritizeSubtree(): boolean {
-    return true;
+    log.debug('shouldDeprioritizeSubtree');
+    return false;
   },
 
   scheduleDeferredCallback(
-    callback?: () => any,
+    _callback?: () => any,
     _options?: { timeout: number }
   ): any {
-    if (callback) {
-      throw new Error(
-        'Scheduling a callback twice is excessive. Instead, keep track of ' +
-          'whether the callback has already been scheduled.'
-      );
-    }
+    log.debug('scheduleDeferredCallback');
   },
 
   cancelDeferredCallback(_callbackID: any): void {
-    // noop
+    log.debug('cancelDeferredCallback');
   },
 
   setTimeout(
-    handler: (...args: any[]) => void,
-    timeout: number
+    _handler: (...args: any[]) => void,
+    _timeout: number
   ): TimeoutHandle | NoTimeout {
-    return setTimeout(handler, timeout);
+    log.debug('setTimeout');
   },
 
-  clearTimeout(handle: TimeoutHandle | NoTimeout): void {
-    return clearTimeout(handle);
+  clearTimeout(_handle: TimeoutHandle | NoTimeout): void {
+    log.debug('clearTimeout');
   },
 
   noTimeout: -1 as NoTimeout,
