@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import _get from 'lodash.get';
 import _set from 'lodash.set';
 import { ParserOptions } from '@babel/parser';
-import { BaseNode, HashMap, Instance, Node, Path, Props } from '~/types';
+import { BaseNode, HashMap, Path, Node, Instance, Props } from '~/types';
 import { flattenPath } from '~/util';
 
 export interface IElement {
@@ -19,7 +19,7 @@ export interface Meta {
 export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
-  static propTypes: HashMap = {};
+  static propTypes: object = {};
 
   node: Node;
 
