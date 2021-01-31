@@ -1,6 +1,6 @@
 import ReactReconciler from 'react-reconciler';
 import createElement from '~/createElement';
-import { Smart } from '~/elements';
+import { SmartElement } from '~/elements';
 import { dev } from '~/util';
 import {
   ChildSet,
@@ -72,7 +72,7 @@ export default ReactReconciler<
     _hostContext: HostContext
   ): TextInstance {
     logger.debug('createTextInstance');
-    const label = new Smart({ code: text }, {});
+    const label = new SmartElement({ code: text }, {});
     label.commitMount(); // prob should run at a later point
     return label;
   },

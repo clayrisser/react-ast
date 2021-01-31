@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
 import BaseElement from '~/elements/BaseElement';
-import { Smart } from '~/index';
+import Smart from '~/components/Smart';
 import { debugRef } from '~/util';
 
 export interface CodeProps {

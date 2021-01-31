@@ -1,12 +1,12 @@
+import { GeneratorOptions } from '@babel/generator';
 import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
+import { Options as PrettierOptions } from 'prettier';
+import { TemplateBuilderOptions } from '@babel/template';
 
 export interface HashMap<T = any> {
   [key: string]: T;
 }
 
-// export interface BaseNode {
-//   [key: string]: any;
-// }
 export interface BaseNode {
   leadingComments: ReadonlyArray<Comment> | null;
   innerComments: ReadonlyArray<Comment> | null;
@@ -15,10 +15,6 @@ export interface BaseNode {
   end: number | null;
   loc: SourceLocation | null;
   type: BabelNode['type'];
-}
-
-export interface Options {
-  [key: string]: any;
 }
 
 export type BundleType = 0 | 1;
@@ -47,6 +43,8 @@ export interface Container extends Instance {}
 
 export interface TextInstance extends Instance {}
 
+export interface DeepArray<T> extends Array<T | DeepArray<T>> {}
+
 export type Path = JSX.Path;
 
 export interface Props {
@@ -73,4 +71,10 @@ export interface Context {
 
 export interface Node extends BaseNode {
   body?: BaseNode[];
+}
+
+export interface Options {
+  generatorOptions?: GeneratorOptions;
+  parserOptions?: TemplateBuilderOptions;
+  prettier?: boolean | PrettierOptions;
 }

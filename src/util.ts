@@ -1,3 +1,4 @@
+import _get from 'lodash.get';
 import BaseElement from '~/elements/BaseElement';
 import { Path } from '~/types';
 
@@ -11,6 +12,24 @@ export function flattenPath(path?: Path | undefined): string {
     .flat()
     .filter((s: Path) => s.toString().length)
     .join('.');
+}
+
+export function deletePath(value: any, path: Path): boolean {
+  if (typeof value === 'undefined') return false;
+  const pathArr = flattenPath(path).split('.');
+  let key: string | number = pathArr.slice(pathArr.length - 1)[0];
+  key = Number.isNaN(Number(key)) ? key : Number(key);
+  const parentDeletePath = pathArr.slice(0, pathArr.length - 1).join('.');
+  const parent = parentDeletePath ? _get(value, parentDeletePath) : value;
+  if (typeof parent === 'undefined') return false;
+  if (Array.isArray(parent) && typeof key === 'number') {
+    const result = parent.length > key;
+    parent.splice(key, 1);
+    return result;
+  }
+  const result = key in parent;
+  delete parent[key];
+  return result;
 }
 
 function isDev(): boolean {

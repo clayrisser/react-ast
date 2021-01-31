@@ -5,8 +5,8 @@ import { ParserOptions } from '@babel/parser';
 import { BaseNode, HashMap, Path, Node, Instance, Props } from '~/types';
 import { flattenPath } from '~/util';
 
-export interface IElement {
-  new (props?: Props, parserOptions?: ParserOptions): BaseElement;
+export interface IElement<P = Props> {
+  new (props?: P, parserOptions?: ParserOptions): BaseElement;
   propTypes: HashMap;
   defaultProps: Props;
 }
@@ -19,7 +19,7 @@ export interface Meta {
 export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
-  static propTypes: object = {};
+  static propTypes: HashMap = {};
 
   node: Node;
 
@@ -51,6 +51,10 @@ export default class BaseElement implements Instance {
     path?: Path | null
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
+    console.log('------');
+    console.log(this.node);
+    console.log(bodyPath);
+    console.log(value);
     if (!bodyPath.length) return body;
     return _set(body, bodyPath, value);
   }

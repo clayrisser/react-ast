@@ -1,35 +1,17 @@
-import PropTypes from 'prop-types';
-import template, {
-  TemplateBuilderOptions,
-  PublicReplacements
-} from '@babel/template';
-import { Props } from '~/types';
+import template from '@babel/template';
 import BaseElement from './BaseElement';
 
 export default class Expression extends BaseElement {
-  static propTypes = {
-    bodyPath: PropTypes.string,
-    children: PropTypes.node,
-    code: PropTypes.string.isRequired,
-    options: PropTypes.object,
-    path: PropTypes.string,
-    replacements: PropTypes.object
-  };
-
-  static defaultProps = {
+  static defaultProps: Partial<JSX.IntrinsicElements['Expression']> = {
     bodyPath: '',
     children: null,
     options: {},
-    path: '',
     replacements: {}
   };
 
-  constructor(props: Props = {}) {
+  constructor(props: JSX.IntrinsicElements['Expression']) {
     super(
-      template.expression(
-        props.code,
-        props.options as TemplateBuilderOptions
-      )(props.replacements as PublicReplacements),
+      template.expression(props.code, props.options)(props.replacements),
       props
     );
   }

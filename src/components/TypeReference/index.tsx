@@ -5,18 +5,24 @@ import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import { debugRef } from '~/util';
 
-export interface BlockStatementProps {
+export interface TypeReferenceProps {
   children?: ReactNode;
+  name: string;
   debug?: boolean;
 }
 
-const BlockStatement = forwardRef<BaseElement, BlockStatementProps>(
-  (props: BlockStatementProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug } = props;
+const TypeReference = forwardRef<BaseElement, TypeReferenceProps>(
+  (props: TypeReferenceProps, forwardedRef: Ref<BaseElement>) => {
+    const { children, name, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = '{}';
+    const code = `const c: ${name}`;
     return (
-      <Smart code={code} ref={mergedRef}>
+      <Smart
+        bodyPath="typeParameters"
+        code={code}
+        ref={mergedRef}
+        scopePath="declarations.0.id.typeAnnotation.typeAnnotation"
+      >
         <ParentBodyPathProvider value={undefined}>
           {children}
         </ParentBodyPathProvider>
@@ -25,6 +31,6 @@ const BlockStatement = forwardRef<BaseElement, BlockStatementProps>(
   }
 );
 
-BlockStatement.defaultProps = { debug: false };
+TypeReference.defaultProps = { debug: false };
 
-export default BlockStatement;
+export default TypeReference;

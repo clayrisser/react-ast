@@ -1,13 +1,10 @@
 import t from '@babel/types';
-import { HashMap, Props } from '~/types';
 import BaseElement from './BaseElement';
 
 export default class Program extends BaseElement {
-  static propTypes: HashMap = {};
+  static defaultProps: Partial<JSX.IntrinsicElements['Program']> = {};
 
-  static defaultProps: Props = {};
-
-  constructor(props: Props = {}) {
+  constructor(props: JSX.IntrinsicElements['Program'] = {}) {
     super(t.program([]), props);
   }
 }

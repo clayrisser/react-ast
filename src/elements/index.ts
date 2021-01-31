@@ -2,12 +2,13 @@ import Ast from './Ast';
 import Expression from './Expression';
 import File from './File';
 import Program from './Program';
-import Smart from './Smart';
+import SmartElement from './SmartElement';
 import { IElement } from './BaseElement';
 
 export interface Elements {
-  [key: string]: IElement;
+  [key: string]: IElement<any>;
 }
 
-export { Ast, Expression, File, Program, Smart };
-export default { Ast, Expression, File, Program, Smart } as Elements;
+export { Ast, Expression, File, Program, SmartElement };
+
+export default { Ast, Expression, File, Program, SmartElement } as Elements;

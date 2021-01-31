@@ -1,22 +1,22 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
+import React, { Ref, forwardRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
 import BaseElement from '~/elements/BaseElement';
 import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import { debugRef } from '~/util';
 
-export interface BlockStatementProps {
-  children?: ReactNode;
+export interface IdentifierProps {
+  children: string;
   debug?: boolean;
 }
 
-const BlockStatement = forwardRef<BaseElement, BlockStatementProps>(
-  (props: BlockStatementProps, forwardedRef: Ref<BaseElement>) => {
+const Identifier = forwardRef<BaseElement, IdentifierProps>(
+  (props: IdentifierProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = '{}';
+    const code = `const ${children}: any`;
     return (
-      <Smart code={code} ref={mergedRef}>
+      <Smart scopePath="declarations.0.id" code={code} ref={mergedRef}>
         <ParentBodyPathProvider value={undefined}>
           {children}
         </ParentBodyPathProvider>
@@ -25,6 +25,6 @@ const BlockStatement = forwardRef<BaseElement, BlockStatementProps>(
   }
 );
 
-BlockStatement.defaultProps = { debug: false };
+Identifier.defaultProps = { debug: false };
 
-export default BlockStatement;
+export default Identifier;

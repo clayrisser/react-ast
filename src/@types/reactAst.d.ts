@@ -8,12 +8,26 @@ declare namespace JSX {
 
   type Path = string | number | DeepArray<string | number>;
 
+  interface HashMap<T = any> {
+    [key: string]: T;
+  }
+
   interface IntrinsicElements {
     Ast: {
+      ast: HashMap;
+      bodyPath?: Path;
+      children?: ReactNode;
+      parentBodyPath?: Path;
       ref?: Ref<any>;
+      scopePath?: Path;
     };
     Expression: {
+      bodyPath?: Path;
+      children?: ReactNode;
+      code: string;
+      options?: TemplateBuilderOptions;
       ref?: Ref<any>;
+      replacements?: PublicReplacements;
     };
     File: {
       ref?: Ref<any>;
@@ -22,10 +36,11 @@ declare namespace JSX {
     Program: {
       ref?: Ref<any>;
     };
-    Smart: {
+    SmartElement: {
       bodyPath?: Path;
       children?: ReactNode;
       code: string;
+      deletePaths?: Path | Path[];
       options?: TemplateBuilderOptions;
       parentBodyPath?: Path;
       ref?: Ref<any>;
