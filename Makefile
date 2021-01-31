@@ -127,7 +127,7 @@ build: _build ~build
 _build:
 	-@rm -rf es lib $(NOFAIL)
 lib:
-	@$(WEBPACK)
+# @$(WEBPACK)
 	@$(BABEL) --env-name umd src -d lib --extensions '.js,.jsx,.ts,.tsx' --source-maps
 	@$(BABEL) --env-name esm src -d es --extensions '.js,.jsx,.ts,.tsx' --source-maps
 	@$(TSC) -p tsconfig.app.json -d --emitDeclarationOnly
