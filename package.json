@@ -52,7 +52,7 @@
     "@babel/runtime": "^7.12.5",
     "core-js": "^3.8.3",
     "react": "^17.0.1",
-    "react-reconciler": "^0.26.1"
+    "react-reconciler": "0.25.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
