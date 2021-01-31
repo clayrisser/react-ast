@@ -1,5 +1,6 @@
 import ReactReconciler from 'react-reconciler';
 import createElement from '~/createElement';
+import { Smart } from '~/elements';
 import {
   ChildSet,
   Container,
@@ -62,12 +63,14 @@ export default ReactReconciler<
   },
 
   createTextInstance(
-    _text: string,
+    text: string,
     _rootContainerInstance: Container,
     _hostContext: HostContext
-    // @ts-ignore
   ): TextInstance {
     logger.debug('createTextInstance');
+    const label = new Smart({ code: text }, {}); // explicitly specify element to use for text
+    label.commitMount(); // prob should run at a later point
+    return label;
   },
 
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
@@ -97,6 +100,7 @@ export default ReactReconciler<
 
   resetTextContent(_instance: Instance): void {
     logger.debug('resetTextContent');
+    // noop
   },
 
   commitTextUpdate(
@@ -105,6 +109,7 @@ export default ReactReconciler<
     _newText: string
   ): void {
     logger.debug('commitTextUpdate');
+    throw new Error('commitTextUpdate should not be called');
   },
 
   removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
@@ -140,8 +145,9 @@ export default ReactReconciler<
     parentInstance.appendChild(child);
   },
 
-  shouldSetTextContent(_type: Type, _props: Props): boolean {
+  shouldSetTextContent(_type: Type, props: Props): boolean {
     logger.debug('shouldSetTextContent');
+    if (typeof props.children === 'string') return true;
     return false;
   },
 

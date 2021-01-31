@@ -8,6 +8,7 @@ logger.log('======== RECONCILER LIFECYCLE ========');
 const renderedOutput = render(
   <>
     <Smart code="const hello = 'world'" />
+    {"const howdy = () => 'texas'"}
   </>
 );
 
