@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import _get from 'lodash.get';
 import _set from 'lodash.set';
 import { ParserOptions } from '@babel/parser';
-import { BaseNode, Path, Node, Instance, Props } from '~/types';
+import { BaseNode, HashMap, Instance, Node, Path, Props } from '~/types';
 import { flattenPath } from '~/util';
 
 export interface IElement {
   new (props?: Props, parserOptions?: ParserOptions): BaseElement;
-  propTypes: object;
+  propTypes: HashMap;
   defaultProps: Props;
 }
 
@@ -18,7 +19,7 @@ export interface Meta {
 export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
-  static propTypes: object = {};
+  static propTypes: HashMap = {};
 
   node: Node;
 
@@ -67,7 +68,7 @@ export default class BaseElement implements Instance {
       };
     }
     this.node = baseNode;
-    this.props = props;
+    this.props = this.getProps(props);
   }
 
   appendChild(child: BaseElement) {
@@ -96,5 +97,18 @@ export default class BaseElement implements Instance {
       ...this.props,
       ...newProps
     };
+  }
+
+  getProps(props: Props): Props {
+    props = { ...props };
+    const { defaultProps, propTypes } = this.constructor as IElement;
+    Object.keys(defaultProps).forEach((key) => {
+      const defaultProp = defaultProps[key];
+      if (typeof props[key] === 'undefined' || props[key] === null) {
+        props[key] = defaultProp;
+      }
+    });
+    PropTypes.checkPropTypes(propTypes, props, 'prop', this.constructor.name);
+    return props;
   }
 }

@@ -36,6 +36,7 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": "off",
     "no-useless-constructor": "off",
+    "react/forbid-foreign-prop-types": "off",
     "react/forbid-prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "react/static-property-placement": "off",
@@ -49,6 +50,7 @@
         "lang": "en_US",
         "skipWords": [
           "ast",
+          "austin",
           "babelrc",
           "deprioritize",
           "dom",

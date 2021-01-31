@@ -1,5 +1,9 @@
 import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
 
+export interface HashMap<T = any> {
+  [key: string]: T;
+}
+
 // export interface BaseNode {
 //   [key: string]: any;
 // }

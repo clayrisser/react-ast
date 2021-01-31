@@ -16,8 +16,8 @@ export default class Smart extends BaseElement {
     children: PropTypes.node,
     code: PropTypes.string.isRequired,
     options: PropTypes.object,
-    ref: PropTypes.func,
     parentBodyPath: PropTypes.string,
+    ref: PropTypes.func,
     replacements: PropTypes.object,
     scopePath: PropTypes.any
   };
