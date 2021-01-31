@@ -43,9 +43,7 @@ export interface Container extends Instance {}
 
 export interface TextInstance extends Instance {}
 
-export type Path = string | number | DeepArray<string | number>;
-
-export interface DeepArray<T> extends Array<T | DeepArray<T>> {}
+export type Path = JSX.Path;
 
 export interface Props {
   [key: string]: Prop;
