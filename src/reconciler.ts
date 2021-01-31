@@ -12,7 +12,7 @@ import {
   TimeoutHandle,
   Type,
   UpdatePayload
-} from '~/types';
+} from './types';
 
 // eslint-disable-next-line no-console
 const log = console;
