@@ -3,6 +3,7 @@ import useMergedRef from '@react-hook/merged-ref';
 import BaseElement from '~/elements/BaseElement';
 import BlockStatement from '~/components/BlockStatement';
 import Code from '~/components/Code';
+import Identifier from '~/components/Identifier';
 import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import TypeAnnotation from '~/components/types/TypeAnnotation';
@@ -12,12 +13,13 @@ export interface FunctionDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
   id: string;
+  params?: ReactNode[];
   returnType?: ReactNode;
 }
 
 const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
   (props: FunctionDeclarationProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, id, debug, returnType } = props;
+    const { children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `function ${id}()${returnType ? ': T' : ''} {}`;
 
@@ -42,6 +44,20 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
       );
     }
 
+    function renderParams() {
+      if (!params?.length) return null;
+      return (
+        <ParentBodyPathProvider value="params">
+          {params.map((param: ReactNode) => {
+            if (typeof param === 'string') {
+              return <Identifier>{param}</Identifier>;
+            }
+            return param;
+          })}
+        </ParentBodyPathProvider>
+      );
+    }
+
     return (
       <Smart
         bodyPath="body"
@@ -51,6 +67,7 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
       >
         <ParentBodyPathProvider value={undefined}>
           {renderReturnType()}
+          {renderParams()}
           <BlockStatement>{renderChildren()}</BlockStatement>
         </ParentBodyPathProvider>
       </Smart>

@@ -61,7 +61,7 @@ describe('<VariableDeclarator />', () => {
     expect(code).toBe('v: T<A, B>');
   });
 
-  it('renders with complex type annotation as string', () => {
+  it('renders with annotation as string', () => {
     const code = render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug />,
       {
