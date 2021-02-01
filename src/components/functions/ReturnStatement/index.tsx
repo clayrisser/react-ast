@@ -15,14 +15,7 @@ const ReturnStatement = forwardRef<BaseElement, ReturnStatementProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `return ${JSON.stringify(children)}`;
 
-    return (
-      <Smart
-        bodyPath="body"
-        code={code}
-        deletePaths="body.body"
-        ref={mergedRef}
-      />
-    );
+    return <Smart code={code} ref={mergedRef} />;
   }
 );
 

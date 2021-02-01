@@ -59,12 +59,7 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
     }
 
     return (
-      <Smart
-        bodyPath="body"
-        code={code}
-        deletePaths="body.body"
-        ref={mergedRef}
-      >
+      <Smart code={code} deletePaths="body.body" ref={mergedRef}>
         <ParentBodyPathProvider value={undefined}>
           {renderReturnType()}
           {renderParams()}
