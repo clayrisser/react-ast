@@ -9,6 +9,7 @@ export * from './BlockStatement';
 export * from './Code';
 export * from './Identifier';
 export * from './Smart';
+export * from './classes';
 export * from './functions';
 export * from './types';
 export * from './variables';

@@ -8,7 +8,7 @@ import { debugRef } from '~/util';
 export interface VariableDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
-  kind?: string;
+  kind?: VariableDeclarationKind;
 }
 
 const VariableDeclaration = forwardRef<BaseElement, VariableDeclarationProps>(
