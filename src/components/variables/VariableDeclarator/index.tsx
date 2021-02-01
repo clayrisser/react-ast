@@ -4,13 +4,12 @@ import BaseElement from '~/elements/BaseElement';
 import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import TypeAnnotation from '~/components/types/TypeAnnotation';
-import { HashMap } from '~/types';
 import { debugRef } from '~/util';
 
 export interface VariableDeclaratorProps {
   debug?: boolean;
   id: string;
-  children?: string | boolean | number | HashMap | any[];
+  children?: ReactNode;
   typeAnnotation?: ReactNode;
 }
 
