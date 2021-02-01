@@ -3,7 +3,7 @@ import useMergedRef from '@react-hook/merged-ref';
 import BaseElement from '~/elements/BaseElement';
 import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
-import TypeAnnotation from '~/components/TypeAnnotation';
+import TypeAnnotation from '~/components/types/TypeAnnotation';
 import { HashMap } from '~/types';
 import { debugRef } from '~/util';
 

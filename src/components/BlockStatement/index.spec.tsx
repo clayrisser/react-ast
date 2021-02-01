@@ -14,14 +14,28 @@ describe('<BlockStatement />', () => {
   it('renders with children', () => {
     const code = render(
       <BlockStatement debug>
-        <Code>hello = &apos;world&apos;;</Code>
+        <Code>const hello = &apos;world&apos;;</Code>
       </BlockStatement>,
       {
         prettier: false
       }
     );
     expect(code).toBe(`{
-  hello = 'world';
+  const hello = 'world';
+}`);
+  });
+
+  it('renders with children as string', () => {
+    const code = render(
+      <BlockStatement debug>
+        <Code>const howdy = &apos;texas&apos;;</Code>
+      </BlockStatement>,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe(`{
+  const howdy = 'texas';
 }`);
   });
 });
