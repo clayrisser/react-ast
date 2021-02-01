@@ -4,12 +4,13 @@ import BaseElement from '~/elements/BaseElement';
 import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import TypeAnnotation from '~/components/TypeAnnotation';
+import { HashMap } from '~/types';
 import { debugRef } from '~/util';
 
 export interface VariableDeclaratorProps {
-  children?: ReactNode;
   debug?: boolean;
   id: string;
+  children?: string | boolean | number | HashMap | any[];
   typeAnnotation?: ReactNode;
 }
 
@@ -17,7 +18,9 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
   (props: VariableDeclaratorProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, id, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `const ${id}${typeAnnotation ? ': any' : ''}`;
+    const code = `const ${id}${typeAnnotation ? ': any' : ''}${
+      typeof children !== 'undefined' ? ` = ${JSON.stringify(children)}` : ''
+    }`;
 
     function renderTypeAnnotation() {
       if (!typeAnnotation) return null;
@@ -35,9 +38,6 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
 
     return (
       <Smart scopePath="declarations.0" code={code} ref={mergedRef}>
-        <ParentBodyPathProvider value={undefined}>
-          {children}
-        </ParentBodyPathProvider>
         {renderTypeAnnotation()}
       </Smart>
     );

@@ -38,7 +38,7 @@ describe('<VariableDeclarator />', () => {
   it('renders with nested type annotation', () => {
     const code = render(
       <VariableDeclarator
-        id="c"
+        id="v"
         typeAnnotation={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -58,12 +58,12 @@ describe('<VariableDeclarator />', () => {
         }
       }
     );
-    expect(code).toBe('c: T<A, B>');
+    expect(code).toBe('v: T<A, B>');
   });
 
   it('renders with complex type annotation as string', () => {
     const code = render(
-      <VariableDeclarator id="c" typeAnnotation="T<A>" debug />,
+      <VariableDeclarator id="v" typeAnnotation="T<A>" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -71,6 +71,68 @@ describe('<VariableDeclarator />', () => {
         }
       }
     );
-    expect(code).toBe('c: T<A>');
+    expect(code).toBe('v: T<A>');
+  });
+
+  it('renders with initial value as string', () => {
+    const code = render(
+      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+        hello
+      </VariableDeclarator>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('v: T<A> = "hello"');
+  });
+
+  it('renders with initial value as boolean', () => {
+    const code = render(
+      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+        {true}
+      </VariableDeclarator>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('v: T<A> = true');
+  });
+
+  it('renders with initial value as number', () => {
+    const code = render(
+      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+        {0}
+      </VariableDeclarator>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('v: T<A> = 0');
+  });
+
+  it('renders with initial value as object', () => {
+    const code = render(
+      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+        {{ hello: 'world' }}
+      </VariableDeclarator>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`v: T<A> = {
+  "hello": "world"
+}`);
   });
 });
