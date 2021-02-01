@@ -51,10 +51,6 @@ export default class BaseElement implements Instance {
     path?: Path | null
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
-    console.log('------');
-    console.log(this.node);
-    console.log(bodyPath);
-    console.log(value);
     if (!bodyPath.length) return body;
     return _set(body, bodyPath, value);
   }

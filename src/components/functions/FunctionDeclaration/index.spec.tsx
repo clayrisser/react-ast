@@ -1,6 +1,12 @@
 import React from 'react';
-import { BlockStatement } from '~/components';
 import { render } from '~/index';
+import {
+  TypeAnnotation,
+  TypeParameterInstantiation,
+  TypeReference,
+  VariableDeclaration,
+  VariableDeclarator
+} from '~/components';
 import FunctionDeclaration from './index';
 
 describe('<FunctionDeclaration />', () => {
@@ -11,10 +17,57 @@ describe('<FunctionDeclaration />', () => {
     expect(code).toBe('function hello() {}');
   });
 
-  it('renders function with children', () => {
+  it('renders function with nested return type', () => {
+    const code = render(
+      <FunctionDeclaration
+        id="hello"
+        returnType={
+          <TypeAnnotation>
+            <TypeReference name="T">
+              <TypeParameterInstantiation>
+                <TypeReference name="A" />
+                <TypeReference name="B" />
+              </TypeParameterInstantiation>
+            </TypeReference>
+          </TypeAnnotation>
+        }
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('function hello(): T<A, B> {}');
+  });
+
+  it('renders function with return type as string', () => {
+    const code = render(
+      <FunctionDeclaration id="hello" returnType="T<A, B, C>" debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('function hello(): T<A, B, C> {}');
+  });
+
+  it('renders function with nested children', () => {
     const code = render(
       <FunctionDeclaration id="hello" debug>
-        <BlockStatement />
+        <VariableDeclaration debug>
+          <VariableDeclarator
+            id="v"
+            typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
+            debug
+          >
+            hello
+          </VariableDeclarator>
+        </VariableDeclaration>
       </FunctionDeclaration>,
       {
         prettier: false,
@@ -23,7 +76,9 @@ describe('<FunctionDeclaration />', () => {
         }
       }
     );
-    expect(code).toBe('function hello() {}');
+    expect(code).toBe(`function hello() {
+  var v: T = "hello";
+}`);
   });
 
   it('renders function with children as string', () => {
@@ -32,10 +87,7 @@ describe('<FunctionDeclaration />', () => {
         const hello = 0;
       </FunctionDeclaration>,
       {
-        prettier: false,
-        parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
+        prettier: false
       }
     );
     expect(code).toBe(`function hello() {

@@ -68,7 +68,7 @@ describe('<VariableDeclaration />', () => {
     const code = render(
       <VariableDeclaration debug>
         <VariableDeclarator
-          id="c"
+          id="v"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
           debug
         >
@@ -82,6 +82,6 @@ describe('<VariableDeclaration />', () => {
         }
       }
     );
-    expect(code).toBe('var c: T = "hello";');
+    expect(code).toBe('var v: T = "hello";');
   });
 });

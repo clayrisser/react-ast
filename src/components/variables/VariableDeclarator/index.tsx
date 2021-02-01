@@ -18,7 +18,7 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
   (props: VariableDeclaratorProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, id, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `const ${id}${typeAnnotation ? ': any' : ''}${
+    const code = `const ${id}${typeAnnotation ? ': T' : ''}${
       typeof children !== 'undefined' ? ` = ${JSON.stringify(children)}` : ''
     }`;
 
