@@ -1,6 +1,11 @@
 import React from 'react';
 import { render } from '~/index';
-import { ClassProperty, ClassPropertyAccessibility } from '~/components';
+import {
+  ClassProperty,
+  ClassPropertyAccessibility,
+  TypeParameterInstantiation,
+  TypeReference
+} from '~/components';
 import ClassDeclaration from './index';
 
 describe('<ClassDeclaration />', () => {
@@ -9,6 +14,60 @@ describe('<ClassDeclaration />', () => {
       prettier: false
     });
     expect(code).toBe('class Hello {}');
+  });
+
+  it('renders with type parameters', () => {
+    const code = render(
+      <ClassDeclaration
+        id="Hello"
+        typeParameters={['A', <TypeReference name="B" />]}
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('class Hello<A, B> {}');
+  });
+
+  it('renders with type parameters as string', () => {
+    const code = render(
+      <ClassDeclaration id="Hello" typeParameters="T" debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('class Hello<T> {}');
+  });
+
+  it('renders with nested type parameters', () => {
+    const code = render(
+      <ClassDeclaration
+        id="Hello"
+        typeParameters={
+          <TypeReference name="T">
+            <TypeParameterInstantiation>
+              <TypeReference name="A" />
+              <TypeReference name="B" />
+            </TypeParameterInstantiation>
+          </TypeReference>
+        }
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('class Hello<T<A, B>> {}');
   });
 
   it('renders with class properties', () => {
