@@ -11,5 +11,6 @@ export * from './Identifier';
 export * from './Smart';
 export * from './classes';
 export * from './functions';
+export * from './interfaces';
 export * from './types';
 export * from './variables';

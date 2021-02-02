@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '~/index';
 import {
+  ClassMethod,
+  ClassMethodAccessibility,
   ClassProperty,
   ClassPropertyAccessibility,
   TypeParameterInstantiation,
@@ -90,6 +92,57 @@ describe('<ClassDeclaration />', () => {
     );
     expect(code).toBe(`class Hello {
   protected hello: T = "world";
+}`);
+  });
+
+  it('renders with class methods', () => {
+    const code = render(
+      <ClassDeclaration id="Hello" debug>
+        <ClassMethod
+          id="hello"
+          typeAnnotation="T"
+          accessibility={ClassPropertyAccessibility.Protected}
+        />
+      </ClassDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`class Hello {
+  protected hello(): T {}
+}`);
+  });
+
+  it('renders with class properties and methods', () => {
+    const code = render(
+      <ClassDeclaration id="Hello" debug>
+        <ClassProperty
+          id="hello"
+          typeAnnotation="T"
+          accessibility={ClassPropertyAccessibility.Protected}
+        >
+          world
+        </ClassProperty>
+        <ClassMethod
+          id="hello"
+          typeAnnotation="T"
+          accessibility={ClassPropertyAccessibility.Protected}
+        />
+      </ClassDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`class Hello {
+  protected hello: T = "world";
+
+  protected hello(): T {}
 }`);
   });
 });
