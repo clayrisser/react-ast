@@ -18,7 +18,7 @@ describe('<ClassProperty />', () => {
     expect(code).toBe('c;');
   });
 
-  it('renders with ', () => {
+  it('renders with accessibility', () => {
     const code = render(
       <ClassProperty
         id="c"
