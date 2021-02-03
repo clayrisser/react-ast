@@ -1,4 +1,5 @@
 import React from 'react';
+import { Identifier, ArrowFunctionExpression } from '~/components';
 import { render } from '~/index';
 import CallExpression from './index';
 
@@ -10,10 +11,51 @@ describe('<CallExpression />', () => {
     expect(code).toBe('hello()');
   });
 
+  it('renders call expression with argument', () => {
+    const code = render(
+      <CallExpression
+        name="hello"
+        arguments={<Identifier>a</Identifier>}
+        debug
+      />,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('hello(a)');
+  });
+
   it('renders call expression with arguments', () => {
+    const code = render(
+      <CallExpression
+        name="hello"
+        arguments={[
+          <Identifier>a</Identifier>,
+          <ArrowFunctionExpression id="hello" />
+        ]}
+        debug
+      />,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('hello(a, () => {})');
+  });
+
+  it('renders call expression with argument as string', () => {
     const code = render(<CallExpression name="hello" arguments="a" debug />, {
       prettier: false
     });
     expect(code).toBe('hello(a)');
+  });
+
+  it('renders call expression with arguments as string', () => {
+    const code = render(
+      <CallExpression name="hello" arguments={['a', 'b', 'c']} debug />,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('hello(a, b, c)');
   });
 });

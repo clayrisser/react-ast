@@ -26,14 +26,22 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
           </ParentBodyPathProvider>
         );
       }
-      return null;
+      return (
+        <ParentBodyPathProvider value="arguments">
+          {argument}
+        </ParentBodyPathProvider>
+      );
     }
 
     function renderArguments() {
-      if (typeof props.arguments === 'string') {
-        return renderArgument(props.arguments);
-      }
-      return null;
+      if (!props.arguments) return null;
+      return (
+        <ParentBodyPathProvider value="typeParameters">
+          {Array.isArray(props.arguments)
+            ? props.arguments.map(renderArgument)
+            : renderArgument(props.arguments)}
+        </ParentBodyPathProvider>
+      );
     }
 
     return (
