@@ -1,12 +1,14 @@
 import React, { Ref, ReactNode, forwardRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import ExportSpecifier from '~/components/modules/ExportSpecifier';
 import BaseElement from '~/elements/BaseElement';
+import Code from '~/components/Code';
+import ExportSpecifier from '~/components/modules/ExportSpecifier';
+import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import { debugRef } from '~/util';
 
 export interface ExportNamedDeclarationProps {
+  children?: ReactNode;
   debug?: boolean;
   defaultSpecifier?: string;
   namespaceSpecifier?: string;
@@ -19,6 +21,7 @@ const ExportNamedDeclaration = forwardRef<
   ExportNamedDeclarationProps
 >((props: ExportNamedDeclarationProps, forwardedRef: Ref<BaseElement>) => {
   const {
+    children,
     debug,
     defaultSpecifier,
     namespaceSpecifier,
@@ -27,6 +30,13 @@ const ExportNamedDeclaration = forwardRef<
   } = props;
   const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
   const code = `export {}${source ? ` from '${source}'` : ''}`;
+
+  function renderChildren() {
+    if (typeof children === 'string') {
+      return <Code>{children}</Code>;
+    }
+    return children;
+  }
 
   function renderSpecifier(specifier: ReactNode) {
     if (typeof specifier === 'string') {
@@ -49,6 +59,7 @@ const ExportNamedDeclaration = forwardRef<
   return (
     <Smart
       code={code}
+      bodyPath="declaration"
       deletePaths={
         defaultSpecifier || namespaceSpecifier ? undefined : 'specifiers.0'
       }
@@ -56,6 +67,7 @@ const ExportNamedDeclaration = forwardRef<
     >
       <ParentBodyPathProvider value={undefined}>
         {renderSpecifiers()}
+        {renderChildren()}
       </ParentBodyPathProvider>
     </Smart>
   );

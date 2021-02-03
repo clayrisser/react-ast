@@ -1,9 +1,10 @@
 import React from 'react';
 import { render } from '~/index';
 import {
+  ArrowFunctionExpression,
   TypeAnnotation,
-  TypeReference,
-  TypeParameterInstantiation
+  TypeParameterInstantiation,
+  TypeReference
 } from '~/components';
 import VariableDeclarator from './index';
 
@@ -134,5 +135,20 @@ describe('<VariableDeclarator />', () => {
     expect(code).toBe(`v: T<A> = {
   "hello": "world"
 }`);
+  });
+
+  it('renders with initial value as component', () => {
+    const code = render(
+      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+        <ArrowFunctionExpression />
+      </VariableDeclarator>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('v: T<A> = () => {}');
   });
 });

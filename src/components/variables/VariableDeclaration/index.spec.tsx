@@ -1,8 +1,9 @@
 import React from 'react';
 import {
-  VariableDeclarator,
+  ArrowFunctionExpression,
   TypeAnnotation,
-  VariableDeclarationKind
+  VariableDeclarationKind,
+  VariableDeclarator
 } from '~/components';
 import { render } from '~/index';
 import VariableDeclaration from './index';
@@ -65,6 +66,27 @@ describe('<VariableDeclaration />', () => {
   });
 
   it('renders with children', () => {
+    const code = render(
+      <VariableDeclaration debug>
+        <VariableDeclarator
+          id="v"
+          typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
+          debug
+        >
+          <ArrowFunctionExpression />
+        </VariableDeclarator>
+      </VariableDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('var v: T = () => {};');
+  });
+
+  it('renders with children as string', () => {
     const code = render(
       <VariableDeclaration debug>
         <VariableDeclarator

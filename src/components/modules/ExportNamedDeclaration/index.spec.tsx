@@ -1,5 +1,10 @@
 import React from 'react';
-import { ExportSpecifier } from '~/components';
+import {
+  ExportSpecifier,
+  VariableDeclaration,
+  VariableDeclarator,
+  ArrowFunctionExpression
+} from '~/components';
 import { render } from '~/index';
 import ExportNamedDeclaration from './index';
 
@@ -76,5 +81,21 @@ describe('<ExportNamedDeclaration />', () => {
       prettier: false
     });
     expect(code).toBe("export {} from 'world';");
+  });
+
+  it('renders with children', () => {
+    const code = render(
+      <ExportNamedDeclaration debug>
+        <VariableDeclaration>
+          <VariableDeclarator id="hello">
+            <ArrowFunctionExpression />
+          </VariableDeclarator>
+        </VariableDeclaration>
+      </ExportNamedDeclaration>,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('export var hello = () => {};');
   });
 });

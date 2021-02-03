@@ -61,6 +61,7 @@
           "jsx",
           "loc",
           "mjs",
+          "namespace",
           "parent",
           "readonly",
           "reconciler",

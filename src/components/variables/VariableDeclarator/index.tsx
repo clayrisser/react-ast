@@ -17,9 +17,30 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
   (props: VariableDeclaratorProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, id, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `const ${id}${typeAnnotation ? ': T' : ''}${
-      typeof children !== 'undefined' ? ` = ${JSON.stringify(children)}` : ''
+    const isComponent = (() => {
+      if (typeof children === 'undefined') return false;
+      const childrenKeys = new Set(Object.keys(children));
+      console.log('childrenKeys', childrenKeys);
+      return (
+        childrenKeys.has('$$typeof') &&
+        childrenKeys.has('key') &&
+        childrenKeys.has('props') &&
+        childrenKeys.has('ref') &&
+        childrenKeys.has('type')
+      );
+    })();
+    const code = `var ${id}${typeAnnotation ? ': T' : ''}${
+      typeof children !== 'undefined' && !isComponent
+        ? ` = ${JSON.stringify(children)}`
+        : ''
     }`;
+
+    function renderChildren() {
+      if (!isComponent) return null;
+      return (
+        <ParentBodyPathProvider value="init">{children}</ParentBodyPathProvider>
+      );
+    }
 
     function renderTypeAnnotation() {
       if (!typeAnnotation) return null;
@@ -36,8 +57,9 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
     }
 
     return (
-      <Smart scopePath="declarations.0" code={code} ref={mergedRef}>
+      <Smart code={code} ref={mergedRef} scopePath="declarations.0">
         {renderTypeAnnotation()}
+        {renderChildren()}
       </Smart>
     );
   }
