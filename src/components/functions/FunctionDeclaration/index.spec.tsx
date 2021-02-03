@@ -18,6 +18,13 @@ describe('<FunctionDeclaration />', () => {
     expect(code).toBe('function hello() {}');
   });
 
+  it('renders anonymous function', () => {
+    const code = render(<FunctionDeclaration debug />, {
+      prettier: false
+    });
+    expect(code).toBe('function () {}');
+  });
+
   it('renders function with nested return type', () => {
     const code = render(
       <FunctionDeclaration

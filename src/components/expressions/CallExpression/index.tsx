@@ -20,23 +20,15 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
 
     function renderArgument(argument: ReactNode) {
       if (typeof argument === 'string') {
-        return (
-          <ParentBodyPathProvider value="arguments">
-            <Identifier>{argument}</Identifier>
-          </ParentBodyPathProvider>
-        );
+        return <Identifier>{argument}</Identifier>;
       }
-      return (
-        <ParentBodyPathProvider value="arguments">
-          {argument}
-        </ParentBodyPathProvider>
-      );
+      return argument;
     }
 
     function renderArguments() {
       if (!props.arguments) return null;
       return (
-        <ParentBodyPathProvider value="typeParameters">
+        <ParentBodyPathProvider value="arguments">
           {Array.isArray(props.arguments)
             ? props.arguments.map(renderArgument)
             : renderArgument(props.arguments)}

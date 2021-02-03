@@ -12,7 +12,7 @@ import { debugRef } from '~/util';
 export interface FunctionDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
-  id: string;
+  id?: string;
   params?: ReactNode[];
   returnType?: ReactNode;
 }
@@ -21,7 +21,7 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
   (props: FunctionDeclarationProps, forwardedRef: Ref<BaseElement>) => {
     const { children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `function ${id}()${returnType ? ': T' : ''} {}`;
+    const code = `var f = function ${id || ''}()${returnType ? ': T' : ''} {}`;
 
     function renderChildren() {
       if (typeof children === 'string') {
@@ -59,7 +59,12 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
     }
 
     return (
-      <Smart code={code} deletePaths="body.body" ref={mergedRef}>
+      <Smart
+        code={code}
+        deletePaths="body.body"
+        ref={mergedRef}
+        scopePath="declarations.0.init"
+      >
         <ParentBodyPathProvider value={undefined}>
           {renderReturnType()}
           {renderParams()}
