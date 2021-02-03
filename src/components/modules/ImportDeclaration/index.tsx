@@ -9,14 +9,26 @@ import { debugRef } from '~/util';
 export interface ImportDeclarationProps {
   debug?: boolean;
   defaultSpecifier?: string;
+  namespaceSpecifier?: string;
+  source?: string;
   specifiers?: ReactNode;
 }
 
 const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
   (props: ImportDeclarationProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug, defaultSpecifier, specifiers } = props;
+    const {
+      debug,
+      defaultSpecifier,
+      namespaceSpecifier,
+      source,
+      specifiers
+    } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `import ${defaultSpecifier || 'I'} from 'm'`;
+    const code = `import ${
+      namespaceSpecifier
+        ? ` * as ${namespaceSpecifier}`
+        : defaultSpecifier || 'I'
+    } from '${source}'`;
 
     function renderSpecifier(specifier: ReactNode) {
       if (typeof specifier === 'string') {
@@ -26,7 +38,7 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
     }
 
     function renderSpecifiers() {
-      if (!specifiers) return null;
+      if (!specifiers || namespaceSpecifier) return null;
       return (
         <ParentBodyPathProvider value="specifiers">
           {Array.isArray(specifiers)
@@ -39,7 +51,9 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
     return (
       <Smart
         code={code}
-        deletePaths={defaultSpecifier ? undefined : 'specifiers.0'}
+        deletePaths={
+          defaultSpecifier || namespaceSpecifier ? undefined : 'specifiers.0'
+        }
         ref={mergedRef}
       >
         <ParentBodyPathProvider value={undefined}>
