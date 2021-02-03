@@ -70,6 +70,7 @@
           "subtree",
           "texas",
           "tsx",
+          "typeof",
           "umd"
         ],
         "skipIfMatch": ["http?://[^s]*", "^[-\\w]+/[-\\w\\.]+$"],

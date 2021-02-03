@@ -19,8 +19,7 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const isComponent = (() => {
       if (typeof children === 'undefined') return false;
-      const childrenKeys = new Set(Object.keys(children));
-      console.log('childrenKeys', childrenKeys);
+      const childrenKeys = new Set(Object.keys(children || {}));
       return (
         childrenKeys.has('$$typeof') &&
         childrenKeys.has('key') &&

@@ -29,10 +29,7 @@ describe('<CallExpression />', () => {
     const code = render(
       <CallExpression
         name="hello"
-        arguments={[
-          <Identifier>a</Identifier>,
-          <ArrowFunctionExpression id="hello" />
-        ]}
+        arguments={[<Identifier>a</Identifier>, <ArrowFunctionExpression />]}
         debug
       />,
       {

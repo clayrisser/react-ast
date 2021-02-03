@@ -1,15 +1,18 @@
+import ExportDefaultDeclaration from './ExportDefaultDeclaration';
 import ExportNamedDeclaration from './ExportNamedDeclaration';
 import ExportSpecifier from './ExportSpecifier';
 import ImportDeclaration from './ImportDeclaration';
 import ImportSpecifier from './ImportSpecifier';
 
 export {
-  ImportDeclaration,
-  ImportSpecifier,
+  ExportDefaultDeclaration,
   ExportNamedDeclaration,
-  ExportSpecifier
+  ExportSpecifier,
+  ImportDeclaration,
+  ImportSpecifier
 };
 
+export * from './ExportDefaultDeclaration';
 export * from './ExportNamedDeclaration';
 export * from './ExportSpecifier';
 export * from './ImportDeclaration';
