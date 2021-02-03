@@ -7,8 +7,6 @@ import TypeAnnotation from '~/components/types/TypeAnnotation';
 import { debugRef } from '~/util';
 
 export interface PropertySignatureProps {
-  accessibility?: PropertySignatureAccessibility;
-  children?: ReactNode;
   debug?: boolean;
   id: string;
   typeAnnotation?: ReactNode;
@@ -16,12 +14,10 @@ export interface PropertySignatureProps {
 
 const PropertySignature = forwardRef<BaseElement, PropertySignatureProps>(
   (props: PropertySignatureProps, forwardedRef: Ref<BaseElement>) => {
-    const { accessibility, children, debug, id, typeAnnotation } = props;
+    const { debug, id, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `class C {
-  ${accessibility ? `${accessibility} ` : ''}${id}${
-      typeAnnotation ? ': T' : ''
-    }${typeof children !== 'undefined' ? ` = ${JSON.stringify(children)}` : ''}
+    const code = `interface I {
+  ${id}${typeAnnotation ? ': T' : ''};
 }`;
 
     function renderTypeAnnotation() {
@@ -44,12 +40,6 @@ const PropertySignature = forwardRef<BaseElement, PropertySignatureProps>(
     );
   }
 );
-
-export enum PropertySignatureAccessibility {
-  Private = 'private',
-  Protected = 'protected',
-  Public = 'public'
-}
 
 PropertySignature.defaultProps = { debug: false };
 

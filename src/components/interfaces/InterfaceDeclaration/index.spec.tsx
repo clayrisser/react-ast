@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '~/index';
 import {
+  MethodSignature,
   PropertySignature,
-  PropertySignatureAccessibility,
   TypeParameterInstantiation,
   TypeReference
 } from '~/components';
@@ -73,16 +73,10 @@ describe('<InterfaceDeclaration />', () => {
     expect(code).toBe('interface Hello<T<A, B>> {}');
   });
 
-  it('renders with interface properties', () => {
+  it('renders with interface property signatures', () => {
     const code = render(
       <InterfaceDeclaration id="Hello" debug>
-        <PropertySignature
-          id="hello"
-          typeAnnotation="T"
-          accessibility={PropertySignatureAccessibility.Protected}
-        >
-          world
-        </PropertySignature>
+        <PropertySignature id="hello" typeAnnotation="T" />
       </InterfaceDeclaration>,
       {
         prettier: false,
@@ -92,7 +86,43 @@ describe('<InterfaceDeclaration />', () => {
       }
     );
     expect(code).toBe(`interface Hello {
-  protected hello: T = "world";
+  hello: T;
+}`);
+  });
+
+  it('renders with interface method signatures', () => {
+    const code = render(
+      <InterfaceDeclaration id="Hello" debug>
+        <MethodSignature id="hello" returnType="T" />
+      </InterfaceDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`interface Hello {
+  hello(): T;
+}`);
+  });
+
+  it('renders with interface method and property signatures', () => {
+    const code = render(
+      <InterfaceDeclaration id="Hello" debug>
+        <PropertySignature id="hello" typeAnnotation="T" />
+        <MethodSignature id="hello" returnType="T" />
+      </InterfaceDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`interface Hello {
+  hello: T;
+  hello(): T;
 }`);
   });
 });

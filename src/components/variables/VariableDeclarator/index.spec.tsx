@@ -9,19 +9,19 @@ import VariableDeclarator from './index';
 
 describe('<VariableDeclarator />', () => {
   it('renders', () => {
-    const code = render(<VariableDeclarator id="c" debug />, {
+    const code = render(<VariableDeclarator id="v" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
       }
     });
-    expect(code).toBe('c');
+    expect(code).toBe('v');
   });
 
   it('renders with type annotation', () => {
     const code = render(
       <VariableDeclarator
-        id="c"
+        id="v"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         debug
       />,
@@ -32,7 +32,7 @@ describe('<VariableDeclarator />', () => {
         }
       }
     );
-    expect(code).toBe('c: T');
+    expect(code).toBe('v: T');
   });
 
   it('renders with nested type annotation', () => {

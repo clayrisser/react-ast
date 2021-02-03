@@ -9,19 +9,19 @@ import ClassProperty, { ClassPropertyAccessibility } from './index';
 
 describe('<ClassProperty />', () => {
   it('renders', () => {
-    const code = render(<ClassProperty id="c" debug />, {
+    const code = render(<ClassProperty id="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
       }
     });
-    expect(code).toBe('c;');
+    expect(code).toBe('p;');
   });
 
   it('renders with accessibility', () => {
     const code = render(
       <ClassProperty
-        id="c"
+        id="p"
         accessibility={ClassPropertyAccessibility.Private}
         debug
       />,
@@ -32,13 +32,13 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe('private c;');
+    expect(code).toBe('private p;');
   });
 
   it('renders with type annotation', () => {
     const code = render(
       <ClassProperty
-        id="c"
+        id="p"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         debug
       />,
@@ -49,13 +49,13 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe('c: T;');
+    expect(code).toBe('p: T;');
   });
 
   it('renders with nested type annotation', () => {
     const code = render(
       <ClassProperty
-        id="v"
+        id="p"
         typeAnnotation={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -75,22 +75,22 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe('v: T<A, B>;');
+    expect(code).toBe('p: T<A, B>;');
   });
 
   it('renders with annotation as string', () => {
-    const code = render(<ClassProperty id="v" typeAnnotation="T<A>" debug />, {
+    const code = render(<ClassProperty id="p" typeAnnotation="T<A>" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
       }
     });
-    expect(code).toBe('v: T<A>;');
+    expect(code).toBe('p: T<A>;');
   });
 
   it('renders with initial value as string', () => {
     const code = render(
-      <ClassProperty id="v" typeAnnotation="T<A>" debug>
+      <ClassProperty id="p" typeAnnotation="T<A>" debug>
         hello
       </ClassProperty>,
       {
@@ -100,12 +100,12 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe('v: T<A> = "hello";');
+    expect(code).toBe('p: T<A> = "hello";');
   });
 
   it('renders with initial value as boolean', () => {
     const code = render(
-      <ClassProperty id="v" typeAnnotation="T<A>" debug>
+      <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {true}
       </ClassProperty>,
       {
@@ -115,12 +115,12 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe('v: T<A> = true;');
+    expect(code).toBe('p: T<A> = true;');
   });
 
   it('renders with initial value as number', () => {
     const code = render(
-      <ClassProperty id="v" typeAnnotation="T<A>" debug>
+      <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {0}
       </ClassProperty>,
       {
@@ -130,12 +130,12 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe('v: T<A> = 0;');
+    expect(code).toBe('p: T<A> = 0;');
   });
 
   it('renders with initial value as object', () => {
     const code = render(
-      <ClassProperty id="v" typeAnnotation="T<A>" debug>
+      <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {{ hello: 'world' }}
       </ClassProperty>,
       {
@@ -145,7 +145,7 @@ describe('<ClassProperty />', () => {
         }
       }
     );
-    expect(code).toBe(`v: T<A> = {
+    expect(code).toBe(`p: T<A> = {
   "hello": "world"
 };`);
   });

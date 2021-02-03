@@ -100,8 +100,8 @@ describe('<ClassDeclaration />', () => {
       <ClassDeclaration id="Hello" debug>
         <ClassMethod
           id="hello"
-          typeAnnotation="T"
-          accessibility={ClassPropertyAccessibility.Protected}
+          returnType="T"
+          accessibility={ClassMethodAccessibility.Protected}
         />
       </ClassDeclaration>,
       {
@@ -128,8 +128,8 @@ describe('<ClassDeclaration />', () => {
         </ClassProperty>
         <ClassMethod
           id="hello"
-          typeAnnotation="T"
-          accessibility={ClassPropertyAccessibility.Protected}
+          returnType="T"
+          accessibility={ClassMethodAccessibility.Protected}
         />
       </ClassDeclaration>,
       {

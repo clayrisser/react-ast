@@ -11,7 +11,7 @@ import {
 import ClassMethod, { ClassMethodAccessibility } from './index';
 
 describe('<ClassMethod />', () => {
-  it('renders empty function', () => {
+  it('renders empty method', () => {
     const code = render(<ClassMethod id="hello" debug />, {
       prettier: false
     });
