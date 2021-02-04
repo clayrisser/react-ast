@@ -19,7 +19,7 @@ describe('<VariableDeclaration />', () => {
   it('renders as kind var', () => {
     const code = render(
       <VariableDeclaration kind={VariableDeclarationKind.Var} debug>
-        <VariableDeclarator id="v" typeAnnotation="T" debug />
+        <VariableDeclarator id="v" typeAnnotation="T" />
       </VariableDeclaration>,
       {
         prettier: false,
@@ -37,7 +37,6 @@ describe('<VariableDeclaration />', () => {
         <VariableDeclarator
           id="c"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
-          debug
         />
       </VariableDeclaration>,
       {
@@ -53,7 +52,7 @@ describe('<VariableDeclaration />', () => {
   it('renders as kind let', () => {
     const code = render(
       <VariableDeclaration kind={VariableDeclarationKind.Let} debug>
-        <VariableDeclarator id="l" debug />
+        <VariableDeclarator id="l" />
       </VariableDeclaration>,
       {
         prettier: false,
@@ -71,7 +70,6 @@ describe('<VariableDeclaration />', () => {
         <VariableDeclarator
           id="v"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
-          debug
         >
           <ArrowFunctionExpression />
         </VariableDeclarator>
@@ -92,7 +90,6 @@ describe('<VariableDeclaration />', () => {
         <VariableDeclarator
           id="v"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
-          debug
         >
           hello
         </VariableDeclarator>

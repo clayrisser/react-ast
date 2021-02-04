@@ -1,4 +1,5 @@
 import React from 'react';
+import { Identifier } from '~/components';
 import { render } from '~/index';
 import ReturnStatement from './index';
 
@@ -13,5 +14,17 @@ describe('<ReturnStatement />', () => {
     expect(code).toBe(`return {
   "hello": "world"
 };`);
+  });
+
+  it('renders return statement with children', () => {
+    const code = render(
+      <ReturnStatement debug>
+        <Identifier>hello</Identifier>
+      </ReturnStatement>,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('return hello;');
   });
 });

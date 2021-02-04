@@ -48,24 +48,25 @@ npm install --save react-ast
 import React from 'react';
 import {
   ClassDeclaration,
-  Code,
   FunctionDeclaration,
-  Param,
+  Identifier,
   ReturnStatement,
+  VariableDeclaration,
+  VariableDeclarationKind,
+  VariableDeclarator,
   render
 } from 'react-ast';
 
 const code = render(
   <>
-    <ClassDeclaration name="Hello" superClassName="Array">
-      <Code>hello = 'world'</Code>
-    </ClassDeclaration>
-    <FunctionDeclaration
-      name="add"
-      params={[<Param key="a">a</Param>, <Param key="b">b</Param>]}
-      returnStatement={<ReturnStatement>result</ReturnStatement>}
-    >
-      <Code>const result=a+b</Code>
+    <ClassDeclaration id="Hello" />
+    <FunctionDeclaration id="add" params={['a', 'b']}>
+      <VariableDeclaration kind={VariableDeclarationKind.Const}>
+        <VariableDeclarator id="result">{0}</VariableDeclarator>
+      </VariableDeclaration>
+      <ReturnStatement>
+        <Identifier>result</Identifier>
+      </ReturnStatement>
     </FunctionDeclaration>
   </>
 );
@@ -76,12 +77,10 @@ console.log(code);
 The rendered code
 
 ```js
-class Hello extends Array {
-  hello = 'world';
-}
+class Hello {}
 
 function add(a, b) {
-  const result = a + b;
+  const result = 0;
   return result;
 }
 ```
@@ -94,19 +93,28 @@ rendering the code.
 ```ts
 import React from 'react';
 import {
-  renderAst,
-  Code,
   ClassDeclaration,
-  FunctionDeclaration
+  FunctionDeclaration,
+  Identifier,
+  ReturnStatement,
+  VariableDeclaration,
+  VariableDeclarationKind,
+  VariableDeclarator,
+  renderAst
 } from 'react-ast';
 
 const ast = renderAst(
-  <ClassDeclaration name="Hello" superClassName="Array">
-    <Code>const hello = 'world'</Code>
-    <FunctionDeclaration name="foo">
-      <Code>return 'bar'</Code>
+  <>
+    <ClassDeclaration id="Hello" />
+    <FunctionDeclaration id="add" params={['a', 'b']}>
+      <VariableDeclaration kind={VariableDeclarationKind.Const}>
+        <VariableDeclarator id="result">{0}</VariableDeclarator>
+      </VariableDeclaration>
+      <ReturnStatement>
+        <Identifier>result</Identifier>
+      </ReturnStatement>
     </FunctionDeclaration>
-  </ClassDeclaration>
+  </>
 );
 
 console.log(ast);
