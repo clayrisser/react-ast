@@ -4,51 +4,111 @@ import { render } from '~/index';
 import JSXElement from './index';
 
 describe('<JSXElement />', () => {
-  it('renders call expression', () => {
+  it('renders jsx element', () => {
     const code = render(<JSXElement name="Hello" debug />, {
-      prettier: false
+      prettier: false,
+      parserOptions: {
+        plugins: ['jsx', 'classProperties', 'typescript']
+      }
     });
     expect(code).toBe('<Hello />');
   });
 
-  it('renders call expression with argument', () => {
-    const code = render(
-      <JSXElement name="hello" arguments={<Identifier>a</Identifier>} debug />,
-      {
-        prettier: false
+  it('force no self closing', () => {
+    const code = render(<JSXElement name="Hello" selfClosing={false} debug />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ['jsx', 'classProperties', 'typescript']
       }
-    );
-    expect(code).toBe('hello(a)');
+    });
+    expect(code).toBe('<Hello></Hello>');
   });
 
-  it('renders call expression with arguments', () => {
+  it('renders jsx element with children', () => {
+    const code = render(
+      <JSXElement name="Hello" debug>
+        <JSXElement name="World" />
+      </JSXElement>,
+
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('<Hello><World /></Hello>');
+  });
+
+  it('disable force self closing with children', () => {
+    const code = render(
+      <JSXElement name="Hello" selfClosing debug>
+        <JSXElement name="World" />
+      </JSXElement>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('<Hello><World /></Hello>');
+  });
+
+  it('renders jsx element with attributes', () => {
     const code = render(
       <JSXElement
-        name="hello"
-        arguments={[<Identifier>a</Identifier>, <ArrowFunctionExpression />]}
+        name="Hello"
+        attributes={{
+          a: <Identifier>a</Identifier>,
+          b: 'b',
+          c: true,
+          d: <ArrowFunctionExpression />
+        }}
         debug
       />,
       {
-        prettier: false
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
       }
     );
-    expect(code).toBe('hello(a, () => {})');
+    expect(code).toBe('<Hello a={a} b="b" c d={() => {}} />');
   });
 
-  it('renders call expression with argument as string', () => {
-    const code = render(<JSXElement name="hello" arguments="a" debug />, {
-      prettier: false
-    });
-    expect(code).toBe('hello(a)');
-  });
-
-  it('renders call expression with arguments as string', () => {
+  it('renders jsx element with attributes and children', () => {
     const code = render(
-      <JSXElement name="hello" arguments={['a', 'b', 'c']} debug />,
+      <JSXElement
+        name="Hello"
+        attributes={{
+          a: <Identifier>a</Identifier>,
+          b: 'b',
+          c: true,
+          d: <ArrowFunctionExpression />
+        }}
+        debug
+      >
+        <JSXElement
+          name="World"
+          attributes={{
+            a: <Identifier>a</Identifier>,
+            b: 'b',
+            c: true,
+            d: <ArrowFunctionExpression />
+          }}
+          debug
+        />
+      </JSXElement>,
       {
-        prettier: false
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
       }
     );
-    expect(code).toBe('hello(a, b, c)');
+    expect(code).toBe(
+      '<Hello a={a} b="b" c d={() => {}}><World a={a} b="b" c d={() => {}} /></Hello>'
+    );
   });
 });

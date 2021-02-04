@@ -8,8 +8,18 @@ import {
 import JSXOpeningElement from './index';
 
 describe('<JSXOpeningElement />', () => {
-  it.skip('renders', () => {
+  it('renders', () => {
     const code = render(<JSXOpeningElement name="Hello" debug />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ['jsx', 'classProperties', 'typescript']
+      }
+    });
+    expect(code).toBe('<Hello>');
+  });
+
+  it('renders self closing', () => {
+    const code = render(<JSXOpeningElement name="Hello" selfClosing debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
@@ -32,7 +42,7 @@ describe('<JSXOpeningElement />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello a="a" />');
+    expect(code).toBe('<Hello a="a">');
   });
 
   it('renders with attribute as string', () => {
@@ -45,7 +55,7 @@ describe('<JSXOpeningElement />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello a />');
+    expect(code).toBe('<Hello a>');
   });
 
   it('renders with attributes as array', () => {
@@ -67,7 +77,7 @@ describe('<JSXOpeningElement />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello a="a" b={b} />');
+    expect(code).toBe('<Hello a="a" b={b}>');
   });
 
   it('renders with attributes as string array', () => {
@@ -80,7 +90,7 @@ describe('<JSXOpeningElement />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello a b c />');
+    expect(code).toBe('<Hello a b c>');
   });
 
   it('renders with attributes as object', () => {
@@ -102,6 +112,6 @@ describe('<JSXOpeningElement />', () => {
         }
       }
     );
-    expect(code).toBe('<Hello a="a" b={b} c={() => {}} d />');
+    expect(code).toBe('<Hello a="a" b={b} c={() => {}} d>');
   });
 });

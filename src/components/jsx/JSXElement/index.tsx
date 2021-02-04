@@ -1,45 +1,59 @@
 import React, { Ref, ReactNode, forwardRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Identifier from '~/components/Identifier';
 import BaseElement from '~/elements/BaseElement';
+import JSXClosingElement from '~/components/jsx/JSXClosingElement';
+import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
 import Smart from '~/components/Smart';
 import { debugRef } from '~/util';
+import JSXOpeningElement, {
+  JSXOpeningElementProps
+} from '~/components/jsx/JSXOpeningElement';
 
-export interface JSXElementProps {
-  arguments?: ReactNode;
-  debug?: boolean;
-  name: string;
+export interface JSXElementProps extends JSXOpeningElementProps {
+  children?: ReactNode;
 }
 
 const JSXElement = forwardRef<BaseElement, JSXElementProps>(
   (props: JSXElementProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug, name } = props;
+    const { attributes, selfClosing, children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `${name}()`;
+    const code = `<${name}${children ? `></${name}` : ' /'}>`;
 
-    function renderArgument(argument: ReactNode) {
-      if (typeof argument === 'string') {
-        return <Identifier>{argument}</Identifier>;
-      }
-      return argument;
-    }
-
-    function renderArguments() {
-      if (!props.arguments) return null;
+    function renderOpeningElement() {
       return (
-        <ParentBodyPathProvider value="arguments">
-          {Array.isArray(props.arguments)
-            ? props.arguments.map(renderArgument)
-            : renderArgument(props.arguments)}
+        <ParentBodyPathProvider value="openingElement">
+          <JSXOpeningElement
+            attributes={attributes}
+            name={name}
+            selfClosing={!children && selfClosing}
+          />
         </ParentBodyPathProvider>
       );
     }
 
+    function renderClosingElement() {
+      return (
+        <ParentBodyPathProvider value="closingElement">
+          <JSXClosingElement name={name} />
+        </ParentBodyPathProvider>
+      );
+    }
+
+    function renderChildren() {
+      return children;
+    }
+
     return (
-      <Smart code={code} ref={mergedRef} scopePath="expression">
+      <Smart
+        code={code}
+        scopePath="expression"
+        bodyPath="children"
+        ref={mergedRef}
+      >
         <ParentBodyPathProvider value={undefined}>
-          {renderArguments()}
+          {renderOpeningElement()}
+          {renderClosingElement()}
+          {renderChildren()}
         </ParentBodyPathProvider>
       </Smart>
     );
@@ -47,7 +61,8 @@ const JSXElement = forwardRef<BaseElement, JSXElementProps>(
 );
 
 JSXElement.defaultProps = {
-  debug: false
+  debug: false,
+  selfClosing: true
 };
 
 export default JSXElement;

@@ -10,13 +10,14 @@ export interface JSXOpeningElementProps {
   attributes?: ReactNode;
   debug?: boolean;
   name: string;
+  selfClosing?: boolean;
 }
 
 const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
   (props: JSXOpeningElementProps, forwardedRef: Ref<BaseElement>) => {
-    const { attributes, debug, name } = props;
+    const { attributes, debug, name, selfClosing } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `<${name} />`;
+    const code = `<${name}${selfClosing ? ' /' : `></${name}`}>`;
 
     function isComponent(value: ReactNode) {
       if (typeof value === 'undefined') return false;
@@ -80,7 +81,8 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
 );
 
 JSXOpeningElement.defaultProps = {
-  debug: false
+  debug: false,
+  selfClosing: false
 };
 
 export default JSXOpeningElement;
