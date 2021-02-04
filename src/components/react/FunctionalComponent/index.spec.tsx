@@ -10,7 +10,7 @@ describe('<FunctionalComponent />', () => {
         plugins: ['jsx', 'classProperties', 'typescript']
       }
     });
-    expect(code).toBe(`import React, { FC } from 'react'
+    expect(code).toBe(`import React, { FC } from 'react';
 
 export interface HelloProps {}
 

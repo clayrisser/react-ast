@@ -1,3 +1,4 @@
+import Export from './Export';
 import ExportDefaultDeclaration from './ExportDefaultDeclaration';
 import ExportNamedDeclaration from './ExportNamedDeclaration';
 import ExportSpecifier from './ExportSpecifier';
@@ -6,6 +7,7 @@ import ImportDeclaration from './ImportDeclaration';
 import ImportSpecifier from './ImportSpecifier';
 
 export {
+  Export,
   ExportDefaultDeclaration,
   ExportNamedDeclaration,
   ExportSpecifier,
@@ -14,6 +16,7 @@ export {
   ImportSpecifier
 };
 
+export * from './Export';
 export * from './ExportDefaultDeclaration';
 export * from './ExportNamedDeclaration';
 export * from './ExportSpecifier';
