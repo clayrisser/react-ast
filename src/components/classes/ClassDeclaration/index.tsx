@@ -14,7 +14,6 @@ export interface ClassDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
   id: string;
-  kind?: string;
   superClass?: ReactNode;
   superTypeParameters?: ReactNode;
   typeParameters?: ReactNode;
