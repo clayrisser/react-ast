@@ -9,14 +9,11 @@ import ImportDeclaration, {
 export interface ImportProps
   extends Omit<
     ImportDeclarationProps,
-    'defaultSpecifier',
-    'source',
-    'specifiers',
-    'namespaceSpecifier'
+    'defaultSpecifier' | 'source' | 'specifiers' | 'namespaceSpecifier'
   > {
   default?: string;
-  imports?: ReactNode;
   from?: string;
+  imports?: ReactNode;
   namespace?: string;
 }
 

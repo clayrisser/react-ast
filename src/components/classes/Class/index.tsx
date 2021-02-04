@@ -18,11 +18,11 @@ export interface ClassProps
 
 const Class = forwardRef<BaseElement, ClassProps>(
   (props: ClassProps, forwardedRef: Ref<BaseElement>) => {
-    const clonedProps = { ...props };
+    const clonedProps: Partial<ClassProps> = { ...props };
     delete clonedProps.debug;
     delete clonedProps.extends;
     delete clonedProps.extendsTypeParameters;
-    delete clonedProps.name;
+    delete (clonedProps as any).name;
     const { debug, extendsTypeParameters, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
 

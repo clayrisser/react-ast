@@ -35,7 +35,7 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
     }`;
 
     function renderChildren() {
-      if (!isComponent) return null;
+      if (!isComponent || typeof children === 'undefined') return null;
       return (
         <ParentBodyPathProvider value="init">{children}</ParentBodyPathProvider>
       );

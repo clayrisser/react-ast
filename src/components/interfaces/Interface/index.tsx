@@ -12,7 +12,7 @@ export interface InterfaceProps extends Omit<InterfaceDeclarationProps, 'id'> {
 
 const Interface = forwardRef<BaseElement, InterfaceProps>(
   (props: InterfaceProps, forwardedRef: Ref<BaseElement>) => {
-    const clonedProps = { ...props };
+    const clonedProps: Partial<InterfaceProps> = { ...props };
     delete clonedProps.debug;
     delete clonedProps.name;
     const { debug, name } = props;

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Export, Import, Interface } from '~/components';
+import { Export, Import, Interface, Var, VarKind } from '~/components';
 
 export interface FunctionalComponentProps {
   name: string;
@@ -16,6 +16,11 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
       <Export>
         <Interface name={`${name}Props`} />
       </Export>
+      <Var
+        kind={VarKind.Const}
+        typeAnnotation={`FC<${name}Props>`}
+        name={name}
+      />
     </>
   );
 };
