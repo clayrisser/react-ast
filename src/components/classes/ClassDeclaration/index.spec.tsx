@@ -5,8 +5,6 @@ import {
   ClassMethodAccessibility,
   ClassProperty,
   ClassPropertyAccessibility,
-  Identifier,
-  TypeAnnotation,
   TypeParameterInstantiation,
   TypeReference
 } from '~/components';
