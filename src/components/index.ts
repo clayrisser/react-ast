@@ -13,6 +13,7 @@ export * from './classes';
 export * from './expressions';
 export * from './functions';
 export * from './interfaces';
+export * from './jsx';
 export * from './modules';
 export * from './types';
 export * from './variables';
