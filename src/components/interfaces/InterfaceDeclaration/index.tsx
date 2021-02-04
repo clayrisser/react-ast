@@ -14,7 +14,6 @@ export interface InterfaceDeclarationProps {
   debug?: boolean;
   id: string;
   typeParameters?: ReactNode;
-  kind?: string;
 }
 
 const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(

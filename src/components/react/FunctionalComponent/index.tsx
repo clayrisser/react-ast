@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Import from '~/components/modules/Import';
+import { Import, Interface } from '~/components';
 
 export interface FunctionalComponentProps {
   name: string;
@@ -13,6 +13,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
   return (
     <>
       <Import default="React" imports={['FC']} from="react" />
+      <Interface name={`${name}Props`} />
     </>
   );
 };

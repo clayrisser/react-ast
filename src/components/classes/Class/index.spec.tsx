@@ -12,7 +12,7 @@ import Class from './index';
 
 describe('<Class />', () => {
   it('renders', () => {
-    const code = render(<Class id="Hello" debug />, {
+    const code = render(<Class name="Hello" debug />, {
       prettier: false
     });
     expect(code).toBe('class Hello {}');
@@ -21,7 +21,7 @@ describe('<Class />', () => {
   it('renders with type parameters', () => {
     const code = render(
       <Class
-        id="Hello"
+        name="Hello"
         typeParameters={['A', <TypeReference name="B" />]}
         debug
       />,
@@ -36,7 +36,7 @@ describe('<Class />', () => {
   });
 
   it('renders with type parameters as string', () => {
-    const code = render(<Class id="Hello" typeParameters="T" debug />, {
+    const code = render(<Class name="Hello" typeParameters="T" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
@@ -48,7 +48,7 @@ describe('<Class />', () => {
   it('renders with nested type parameters', () => {
     const code = render(
       <Class
-        id="Hello"
+        name="Hello"
         typeParameters={
           <TypeReference name="T">
             <TypeParameterInstantiation>
@@ -72,7 +72,7 @@ describe('<Class />', () => {
   it('renders with super class', () => {
     const code = render(
       <Class
-        id="Hello"
+        name="Hello"
         typeParameters={
           <TypeReference name="T">
             <TypeParameterInstantiation>
@@ -104,7 +104,7 @@ describe('<Class />', () => {
 
   it('renders with class properties', () => {
     const code = render(
-      <Class id="Hello" debug>
+      <Class name="Hello" debug>
         <ClassProperty
           id="hello"
           typeAnnotation="T"
@@ -127,7 +127,7 @@ describe('<Class />', () => {
 
   it('renders with class methods', () => {
     const code = render(
-      <Class id="Hello" debug>
+      <Class name="Hello" debug>
         <ClassMethod
           id="hello"
           returnType="T"
@@ -148,7 +148,7 @@ describe('<Class />', () => {
 
   it('renders with class properties and methods', () => {
     const code = render(
-      <Class id="Hello" debug>
+      <Class name="Hello" debug>
         <ClassProperty
           id="hello"
           typeAnnotation="T"

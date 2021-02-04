@@ -23,6 +23,7 @@ export interface ImportProps
 const Import = forwardRef<BaseElement, ImportProps>(
   (props: ImportProps, forwardedRef: Ref<BaseElement>) => {
     const clonedProps = { ...props };
+    delete clonedProps.debug;
     delete clonedProps.default;
     delete clonedProps.from;
     delete clonedProps.imports;
