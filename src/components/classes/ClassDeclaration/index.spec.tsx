@@ -5,6 +5,8 @@ import {
   ClassMethodAccessibility,
   ClassProperty,
   ClassPropertyAccessibility,
+  Identifier,
+  TypeAnnotation,
   TypeParameterInstantiation,
   TypeReference
 } from '~/components';
@@ -70,6 +72,39 @@ describe('<ClassDeclaration />', () => {
       }
     );
     expect(code).toBe('class Hello<T<A, B>> {}');
+  });
+
+  it('renders with super class', () => {
+    const code = render(
+      <ClassDeclaration
+        id="Hello"
+        typeParameters={
+          <TypeReference name="T">
+            <TypeParameterInstantiation>
+              <TypeReference name="A" />
+              <TypeReference name="B" />
+            </TypeParameterInstantiation>
+          </TypeReference>
+        }
+        superClass="Howdy"
+        superTypeParameters={
+          <TypeReference name="A">
+            <TypeParameterInstantiation>
+              <TypeReference name="B" />
+              <TypeReference name="C" />
+            </TypeParameterInstantiation>
+          </TypeReference>
+        }
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('class Hello<T<A, B>> extends Howdy<A<B, C>> {}');
   });
 
   it('renders with class properties', () => {
