@@ -1,13 +1,25 @@
 {
   "name": "react-ast",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "render abstract syntax trees with react",
-  "private": true,
   "sideEffects": false,
   "keywords": [
-    "react-ast",
+    "abstract",
+    "ast",
+    "babel",
+    "generate",
+    "jsx",
     "react",
-    "ast"
+    "react",
+    "reconcile",
+    "reconciler",
+    "render",
+    "renderer",
+    "syntax",
+    "template",
+    "tree",
+    "ts",
+    "typescript"
   ],
   "homepage": "https://github.com/clayrisser/react-ast",
   "bugs": {
