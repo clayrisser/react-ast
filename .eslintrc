@@ -37,10 +37,12 @@
     "no-underscore-dangle": "off",
     "no-use-before-define": "off",
     "no-useless-constructor": "off",
+    "react/destructuring-assignment": "off",
     "react/forbid-foreign-prop-types": "off",
     "react/forbid-prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-wrap-multilines": "off",
+    "react/prop-types": "off",
     "react/static-property-placement": "off",
     "yoda": "off",
     "spellcheck/spell-checker": [

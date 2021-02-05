@@ -21,7 +21,7 @@ declare namespace JSX {
       ref?: Ref<any>;
       scopePath?: Path;
     };
-    Expression: {
+    ExpressionElement: {
       bodyPath?: Path;
       children?: ReactNode;
       code: string;
