@@ -1,6 +1,7 @@
 import React, { Ref, ReactNode, forwardRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
 import BaseElement from '~/elements/BaseElement';
+import ExportDefaultDeclaration from '~/components/modules/ExportDefaultDeclaration';
 import { debugRef } from '~/util';
 import ExportNamedDeclaration, {
   ExportNamedDeclarationProps
@@ -8,8 +9,9 @@ import ExportNamedDeclaration, {
 
 export interface ExportProps
   extends Omit<ExportNamedDeclarationProps, 'specifiers' | 'source'> {
-  from?: string;
+  default?: boolean;
   exports?: ReactNode;
+  from?: string;
 }
 
 const Export = forwardRef<BaseElement, ExportProps>(
@@ -18,9 +20,16 @@ const Export = forwardRef<BaseElement, ExportProps>(
     delete clonedProps.from;
     delete clonedProps.exports;
     delete clonedProps.debug;
-    const { exports, debug } = props;
+    const { children, exports, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
 
+    if (props.default) {
+      return (
+        <ExportDefaultDeclaration ref={mergedRef}>
+          {children}
+        </ExportDefaultDeclaration>
+      );
+    }
     return (
       <ExportNamedDeclaration
         {...clonedProps}
@@ -33,7 +42,8 @@ const Export = forwardRef<BaseElement, ExportProps>(
 );
 
 Export.defaultProps = {
-  debug: false
+  debug: false,
+  default: false
 };
 
 export default Export;

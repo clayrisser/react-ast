@@ -88,4 +88,16 @@ describe('<Export />', () => {
     );
     expect(code).toBe('export var hello = () => {};');
   });
+
+  it('renders default export with children', () => {
+    const code = render(
+      <Export default debug>
+        <ArrowFunctionExpression />
+      </Export>,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('export default (() => {});');
+  });
 });

@@ -20,7 +20,7 @@ const Hello: FC<HelloProps> = (props: HelloProps) => {
 
 Hello.defaultProps = {}
 
-export default Hello
+export default Hello;
 `);
   });
 });
