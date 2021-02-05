@@ -8,15 +8,20 @@ import { debugRef } from '~/util';
 
 export interface CallExpressionProps {
   arguments?: ReactNode;
+  children?: ReactNode;
   debug?: boolean;
   name: string;
 }
 
 const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
   (props: CallExpressionProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug, name } = props;
+    const { children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `${name}()`;
+    const code = `${typeof children === 'undefined' ? '' : 'a.'}${name}()`;
+
+    function renderChildren() {
+      return children;
+    }
 
     function renderArgument(argument: ReactNode) {
       if (typeof argument === 'string') {
@@ -37,9 +42,15 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
     }
 
     return (
-      <Smart code={code} ref={mergedRef} scopePath="expression">
+      <Smart
+        code={code}
+        ref={mergedRef}
+        scopePath="expression"
+        bodyPath="callee.object"
+      >
         <ParentBodyPathProvider value={undefined}>
           {renderArguments()}
+          {renderChildren()}
         </ParentBodyPathProvider>
       </Smart>
     );

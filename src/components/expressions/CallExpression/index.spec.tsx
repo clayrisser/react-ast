@@ -1,5 +1,9 @@
 import React from 'react';
-import { Identifier, ArrowFunctionExpression } from '~/components';
+import {
+  Identifier,
+  ArrowFunctionExpression,
+  MemberExpression
+} from '~/components';
 import { render } from '~/index';
 import CallExpression from './index';
 
@@ -9,6 +13,20 @@ describe('<CallExpression />', () => {
       prettier: false
     });
     expect(code).toBe('hello()');
+  });
+
+  it('renders call expression with children', () => {
+    const code = render(
+      <CallExpression name="world" debug>
+        <MemberExpression name="hello">
+          <Identifier>howdy</Identifier>
+        </MemberExpression>
+      </CallExpression>,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('howdy.hello.world()');
   });
 
   it('renders call expression with argument', () => {

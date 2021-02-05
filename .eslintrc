@@ -54,6 +54,7 @@
           "ast",
           "austin",
           "babelrc",
+          "callee",
           "declarator",
           "deprioritize",
           "dom",

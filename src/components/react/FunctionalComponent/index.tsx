@@ -46,7 +46,6 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
           <Return />
         </Function>
       </Var>
-      <Code />
       <Export default>
         <Identifier>{name}</Identifier>
       </Export>
