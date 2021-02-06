@@ -1,6 +1,8 @@
 import * as t from '@babel/types';
 import generate from '@babel/generator';
-import prettier from 'prettier';
+import parserBabel from 'prettier/parser-babel';
+import prettier from 'prettier/standalone';
+import { Options as PrettierOptions } from 'prettier';
 import Renderer from '~/reconciler';
 import { BundleType, Options } from '~/types';
 import { File } from '~/elements';
@@ -42,10 +44,13 @@ export function render(
     options.generatorOptions || {}
   );
   if (options.prettier) {
-    return prettier.format(
-      code,
-      typeof options.prettier === 'boolean' ? {} : options.prettier
-    );
+    return prettier.format(code, {
+      ...(typeof options.prettier === 'boolean' ? {} : options.prettier),
+      plugins: [
+        parserBabel,
+        ...((options?.prettier as PrettierOptions)?.plugins || [])
+      ]
+    });
   }
   return code;
 }

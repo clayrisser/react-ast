@@ -7,13 +7,14 @@ import { debugRef } from '~/util';
 export interface CodeProps {
   children: string;
   debug?: boolean;
+  scopePath?: string;
 }
 
 const Code = forwardRef<BaseElement, CodeProps>(
   (props: CodeProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug } = props;
+    const { children, scopePath, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    return <Smart code={children} ref={mergedRef} />;
+    return <Smart code={children} scopePath={scopePath} ref={mergedRef} />;
   }
 );
 

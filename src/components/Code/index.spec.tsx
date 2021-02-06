@@ -9,4 +9,19 @@ describe('<Code />', () => {
     });
     expect(code).toBe("const hello = 'world';");
   });
+
+  it('renders with scope path', () => {
+    const code = render(
+      <Code scopePath="expression" debug>
+        {'<></>'}
+      </Code>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('<></>');
+  });
 });
