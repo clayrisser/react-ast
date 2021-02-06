@@ -17,7 +17,9 @@ const JSXElement = forwardRef<BaseElement, JSXElementProps>(
   (props: JSXElementProps, forwardedRef: Ref<BaseElement>) => {
     const { attributes, selfClosing, children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `<${name}${children ? `></${name}` : ' /'}>`;
+    const code = `<${typeof name === 'undefined' ? '' : 'E'}${
+      children || !name ? `></${typeof name === 'undefined' ? '' : 'E'}` : ' /'
+    }>`;
 
     function renderOpeningElement() {
       return (

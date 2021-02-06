@@ -3,7 +3,7 @@ import { render } from '~/index';
 import JSXClosingElement from './index';
 
 describe('<JSXClosingElement />', () => {
-  it('renders call expression', () => {
+  it('renders closing element', () => {
     const code = render(<JSXClosingElement name="Hello" debug />, {
       prettier: false,
       parserOptions: {

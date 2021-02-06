@@ -1,4 +1,5 @@
 import React from 'react';
+import { JSX } from '~/components';
 import { render } from '~/index';
 import FunctionalComponent from './index';
 
@@ -11,7 +12,6 @@ describe('<FunctionalComponent />', () => {
       }
     });
     expect(code).toBe(`import React, { FC } from 'react';
-
 export interface HelloProps {}
 
 const Hello: FC<HelloProps> = (props: HelloProps) => {
@@ -19,8 +19,29 @@ const Hello: FC<HelloProps> = (props: HelloProps) => {
 };
 
 Hello.defaultProps = {}
+export default Hello;`);
+  });
 
-export default Hello;
-`);
+  it('renders functional component with children', () => {
+    const code = render(
+      <FunctionalComponent name="Hello">
+        <JSX name="Hello" />
+      </FunctionalComponent>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`import React, { FC } from 'react';
+export interface HelloProps {}
+
+const Hello: FC<HelloProps> = (props: HelloProps) => {
+  return <><Hello /></>;
+};
+
+Hello.defaultProps = {}
+export default Hello;`);
   });
 });

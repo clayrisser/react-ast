@@ -9,7 +9,7 @@ import { debugRef } from '~/util';
 export interface JSXOpeningElementProps {
   attributes?: ReactNode;
   debug?: boolean;
-  name: string;
+  name?: string;
   selfClosing?: boolean;
 }
 
@@ -17,7 +17,11 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
   (props: JSXOpeningElementProps, forwardedRef: Ref<BaseElement>) => {
     const { attributes, debug, name, selfClosing } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `<${name}${selfClosing ? ' /' : `></${name}`}>`;
+    const code = `<${typeof name === 'undefined' ? '' : name}${
+      typeof name !== 'undefined' && selfClosing
+        ? ' /'
+        : `></${typeof name === 'undefined' ? '' : name}`
+    }>`;
 
     function isComponent(value: ReactNode) {
       if (typeof value === 'undefined') return false;

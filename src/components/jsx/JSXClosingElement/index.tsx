@@ -7,14 +7,16 @@ import { debugRef } from '~/util';
 export interface JSXClosingElementProps {
   arguments?: ReactNode;
   debug?: boolean;
-  name: string;
+  name?: string;
 }
 
 const JSXClosingElement = forwardRef<BaseElement, JSXClosingElementProps>(
   (props: JSXClosingElementProps, forwardedRef: Ref<BaseElement>) => {
     const { debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `<${name}></${name}>`;
+    const code = `<${typeof name === 'undefined' ? '' : name}></${
+      typeof name === 'undefined' ? '' : name
+    }>`;
 
     return (
       <Smart

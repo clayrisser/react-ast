@@ -45,29 +45,53 @@ npm install --save react-ast
 ### Render Code
 
 ```ts
-import React from 'react';
+import React, { FC } from 'react';
 import {
-  ClassDeclaration,
-  FunctionDeclaration,
+  Export,
+  Expression,
+  Function,
   Identifier,
-  ReturnStatement,
-  VariableDeclaration,
-  VariableDeclarationKind,
-  VariableDeclarator,
-  render
+  Import,
+  Interface,
+  JSX,
+  ReactNode,
+  Return,
+  TypeAnnotation,
+  TypeReference,
+  Var,
+  VarKind
 } from 'react-ast';
 
 const code = render(
   <>
-    <ClassDeclaration id="Hello" />
-    <FunctionDeclaration id="add" params={['a', 'b']}>
-      <VariableDeclaration kind={VariableDeclarationKind.Const}>
-        <VariableDeclarator id="result">{0}</VariableDeclarator>
-      </VariableDeclaration>
-      <ReturnStatement>
-        <Identifier>result</Identifier>
-      </ReturnStatement>
-    </FunctionDeclaration>
+    <Import default="React" imports={['FC']} from="react" />
+    <Export>
+      <Interface name="HelloProps" />
+    </Export>
+    <Var kind={VarKind.Const} typeAnnotation="FC<HelloProps>" name="Hello">
+      <Function
+        arrow
+        params={[
+          <Identifier
+            typeAnnotation={
+              <TypeAnnotation>
+                <TypeReference name="HelloProps" />
+              </TypeAnnotation>
+            }
+          >
+            props
+          </Identifier>
+        ]}
+      >
+        <Return>
+          <JSX />
+        </Return>
+      </Function>
+    </Var>
+    <Expression properties="Hello.defaultProps">{{}}</Expression>
+    <Export default>
+      <Identifier>Hello</Identifier>
+    </Export>
   </>
 );
 
@@ -76,13 +100,16 @@ console.log(code);
 
 The rendered code
 
-```js
-class Hello {}
+```ts
+import React, { FC } from 'react';
+export interface HelloProps {}
 
-function add(a, b) {
-  const result = 0;
-  return result;
-}
+const Hello: FC<HelloProps> = (props: HelloProps) => {
+  return <></>;
+};
+
+Hello.defaultProps = {};
+export default Hello;
 ```
 
 ### Render AST
@@ -92,30 +119,9 @@ rendering the code.
 
 ```ts
 import React from 'react';
-import {
-  ClassDeclaration,
-  FunctionDeclaration,
-  Identifier,
-  ReturnStatement,
-  VariableDeclaration,
-  VariableDeclarationKind,
-  VariableDeclarator,
-  renderAst
-} from 'react-ast';
+import { ClassDeclaration, renderAst } from 'react-ast';
 
-const ast = renderAst(
-  <>
-    <ClassDeclaration id="Hello" />
-    <FunctionDeclaration id="add" params={['a', 'b']}>
-      <VariableDeclaration kind={VariableDeclarationKind.Const}>
-        <VariableDeclarator id="result">{0}</VariableDeclarator>
-      </VariableDeclaration>
-      <ReturnStatement>
-        <Identifier>result</Identifier>
-      </ReturnStatement>
-    </FunctionDeclaration>
-  </>
-);
+const ast = renderAst(<Class name="Hello" />);
 
 console.log(ast);
 ```

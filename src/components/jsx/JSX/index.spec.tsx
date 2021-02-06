@@ -1,11 +1,11 @@
 import React from 'react';
 import { Identifier, ArrowFunctionExpression } from '~/components';
 import { render } from '~/index';
-import JSXElement from './index';
+import JSX from './index';
 
-describe('<JSXElement />', () => {
+describe('<JSX />', () => {
   it('renders jsx element', () => {
-    const code = render(<JSXElement name="Hello" debug />, {
+    const code = render(<JSX name="Hello" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
@@ -15,7 +15,7 @@ describe('<JSXElement />', () => {
   });
 
   it('renders jsx element with no name', () => {
-    const code = render(<JSXElement debug />, {
+    const code = render(<JSX debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
@@ -25,7 +25,7 @@ describe('<JSXElement />', () => {
   });
 
   it('force no self closing', () => {
-    const code = render(<JSXElement name="Hello" selfClosing={false} debug />, {
+    const code = render(<JSX name="Hello" selfClosing={false} debug />, {
       prettier: false,
       parserOptions: {
         plugins: ['jsx', 'classProperties', 'typescript']
@@ -36,9 +36,9 @@ describe('<JSXElement />', () => {
 
   it('renders jsx no name with children', () => {
     const code = render(
-      <JSXElement debug>
-        <JSXElement name="World" />
-      </JSXElement>,
+      <JSX debug>
+        <JSX name="World" />
+      </JSX>,
 
       {
         prettier: false,
@@ -52,9 +52,9 @@ describe('<JSXElement />', () => {
 
   it('renders jsx element with children', () => {
     const code = render(
-      <JSXElement name="Hello" debug>
-        <JSXElement name="World" />
-      </JSXElement>,
+      <JSX name="Hello" debug>
+        <JSX name="World" />
+      </JSX>,
 
       {
         prettier: false,
@@ -68,9 +68,9 @@ describe('<JSXElement />', () => {
 
   it('disable force self closing with children', () => {
     const code = render(
-      <JSXElement name="Hello" selfClosing debug>
-        <JSXElement name="World" />
-      </JSXElement>,
+      <JSX name="Hello" selfClosing debug>
+        <JSX name="World" />
+      </JSX>,
       {
         prettier: false,
         parserOptions: {
@@ -83,7 +83,7 @@ describe('<JSXElement />', () => {
 
   it('renders jsx element with attributes', () => {
     const code = render(
-      <JSXElement
+      <JSX
         name="Hello"
         attributes={{
           a: <Identifier>a</Identifier>,
@@ -105,7 +105,7 @@ describe('<JSXElement />', () => {
 
   it('renders jsx element with attributes and children', () => {
     const code = render(
-      <JSXElement
+      <JSX
         name="Hello"
         attributes={{
           a: <Identifier>a</Identifier>,
@@ -115,7 +115,7 @@ describe('<JSXElement />', () => {
         }}
         debug
       >
-        <JSXElement
+        <JSX
           name="World"
           attributes={{
             a: <Identifier>a</Identifier>,
@@ -125,7 +125,7 @@ describe('<JSXElement />', () => {
           }}
           debug
         />
-      </JSXElement>,
+      </JSX>,
       {
         prettier: false,
         parserOptions: {
