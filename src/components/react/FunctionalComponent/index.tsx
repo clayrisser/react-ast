@@ -45,9 +45,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
             </Identifier>
           ]}
         >
-          <Return>
-            <JSX>{children}</JSX>
-          </Return>
+          <Return>{children || <JSX />}</Return>
         </Function>
       </Var>
       <Expression properties={`${name}.defaultProps`}>{{}}</Expression>

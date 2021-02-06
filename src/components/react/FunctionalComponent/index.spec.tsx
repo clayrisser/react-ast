@@ -25,7 +25,9 @@ export default Hello;`);
   it('renders functional component with children', () => {
     const code = render(
       <FunctionalComponent name="Hello">
-        <JSX name="Hello" />
+        <JSX>
+          <JSX name="Hello" />
+        </JSX>
       </FunctionalComponent>,
       {
         prettier: false,
