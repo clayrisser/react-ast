@@ -2,7 +2,6 @@ import * as t from '@babel/types';
 import generate from '@babel/generator';
 import prettier from 'prettier';
 import Renderer from '~/reconciler';
-import pkg from '~/pkg';
 import { BundleType, Options } from '~/types';
 import { File } from '~/elements';
 import { dev } from '~/util';
@@ -22,8 +21,9 @@ export function renderAst(
   });
   Renderer.injectIntoDevTools({
     bundleType: Number(dev) as BundleType,
-    rendererPackageName: pkg.name,
-    version: pkg.version
+    rendererPackageName: 'react-ast',
+    version: '0.2'
+    // version: pkg.version
   });
   return file.node as t.File;
 }
