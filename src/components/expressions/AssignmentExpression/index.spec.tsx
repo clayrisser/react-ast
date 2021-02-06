@@ -1,7 +1,11 @@
 import React from 'react';
-import { ArrowFunctionExpression } from '~/components';
 import { render } from '~/index';
 import AssignmentExpression from './index';
+import {
+  ArrowFunctionExpression,
+  Identifier,
+  MemberExpression
+} from '~/components';
 
 describe('<AssignmentExpression />', () => {
   it('renders with no children', () => {
@@ -9,6 +13,25 @@ describe('<AssignmentExpression />', () => {
       prettier: false
     });
     expect(code).toBe('v = undefined');
+  });
+
+  it('renders with left as component', () => {
+    const code = render(
+      <AssignmentExpression
+        left={
+          <MemberExpression name="howdy" debug>
+            <MemberExpression name="world">
+              <Identifier>hello</Identifier>
+            </MemberExpression>
+          </MemberExpression>
+        }
+        debug
+      />,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('hello.world.howdy = undefined');
   });
 
   it('renders with initial value as string', () => {

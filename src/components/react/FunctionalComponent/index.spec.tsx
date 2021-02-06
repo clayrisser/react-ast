@@ -16,7 +16,7 @@ export interface HelloProps {}
 
 const Hello: FC<HelloProps> = (props: HelloProps) => {
   return <></>;
-}
+};
 
 Hello.defaultProps = {}
 

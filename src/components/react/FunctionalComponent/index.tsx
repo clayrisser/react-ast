@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import {
-  Code,
   Export,
+  Expression,
   Function,
   Identifier,
   Import,
@@ -46,6 +46,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
           <Return />
         </Function>
       </Var>
+      <Expression properties={`${name}.defaultProps`}>{{}}</Expression>
       <Export default>
         <Identifier>{name}</Identifier>
       </Export>

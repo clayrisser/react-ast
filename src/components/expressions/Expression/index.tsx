@@ -1,5 +1,6 @@
 import React, { FC, Ref, ReactNode, forwardRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
+import AssignmentExpression from '~/components/expressions/AssignmentExpression';
 import BaseElement from '~/elements/BaseElement';
 import Identifier from '~/components/Identifier';
 import MemberExpression from '~/components/expressions/MemberExpression';
@@ -10,6 +11,7 @@ import CallExpression, {
 
 export interface ExpressionProps extends Omit<CallExpressionProps, 'name'> {
   call?: boolean;
+  children?: ReactNode;
   properties: string | string[];
 }
 
@@ -21,6 +23,22 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
   (props: ExpressionProps, forwardedRef: Ref<BaseElement>) => {
     const { call, children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
+
+    function renderAssignmentExpression() {
+      const properties = renderProperties(
+        (typeof props.properties === 'string'
+          ? props.properties.split('.')
+          : props.properties) || []
+      );
+      if (typeof children !== 'undefined') {
+        return (
+          <AssignmentExpression left={properties}>
+            {children}
+          </AssignmentExpression>
+        );
+      }
+      return properties;
+    }
 
     function renderProperties(properties: string[]) {
       const Comp = properties.reverse().reduce(
@@ -40,9 +58,7 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
             NewComp = () => (
               <Comp>
                 {call && properties.length <= 1 ? (
-                  <CallExpression arguments={props.arguments} name={property}>
-                    {children}
-                  </CallExpression>
+                  <CallExpression arguments={props.arguments} name={property} />
                 ) : (
                   <Identifier ref={mergedRef}>{property}</Identifier>
                 )}
@@ -56,11 +72,7 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
       return <Comp />;
     }
 
-    return renderProperties(
-      (typeof props.properties === 'string'
-        ? props.properties.split('.')
-        : props.properties) || []
-    );
+    return renderAssignmentExpression();
   }
 );
 

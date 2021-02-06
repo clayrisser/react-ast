@@ -8,43 +8,56 @@ import { debugRef } from '~/util';
 export interface AssignmentExpressionProps {
   children?: ReactNode;
   debug?: boolean;
-  left: string;
+  left: ReactNode;
 }
 
 const AssignmentExpression = forwardRef<BaseElement, AssignmentExpressionProps>(
   (props: AssignmentExpressionProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, left } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const isComponent = (() => {
-      if (typeof children === 'undefined') return false;
-      const childrenKeys = new Set(Object.keys(children || {}));
+    const childrenIsComponent = isComponent(children);
+    const leftIsComponent = isComponent(left);
+
+    function isComponent(value: ReactNode): boolean {
+      if (typeof value === 'undefined') return false;
+      const valueKeys = new Set(Object.keys(value || {}));
       return (
-        childrenKeys.has('$$typeof') &&
-        childrenKeys.has('key') &&
-        childrenKeys.has('props') &&
-        childrenKeys.has('ref') &&
-        childrenKeys.has('type')
+        valueKeys.has('$$typeof') &&
+        valueKeys.has('key') &&
+        valueKeys.has('props') &&
+        valueKeys.has('ref') &&
+        valueKeys.has('type')
       );
-    })();
-    const code = `${left} = ${
-      typeof children !== 'undefined' && !isComponent
+    }
+
+    const code = `${leftIsComponent ? 'l' : left} = ${
+      typeof children !== 'undefined' && !childrenIsComponent
         ? `${JSON.stringify(children)}`
         : 'undefined'
     }`;
 
     function renderChildren() {
-      if (!isComponent) return null;
+      if (!childrenIsComponent) return null;
       return children;
+    }
+
+    function renderLeft() {
+      if (!leftIsComponent) return null;
+      return (
+        <ParentBodyPathProvider value="left">{left}</ParentBodyPathProvider>
+      );
     }
 
     return (
       <Smart
         bodyPath="right"
         code={code}
+        deletePaths={leftIsComponent ? 'left' : undefined}
         ref={mergedRef}
         scopePath="expression"
       >
         <ParentBodyPathProvider value={undefined}>
+          {renderLeft()}
           {renderChildren()}
         </ParentBodyPathProvider>
       </Smart>

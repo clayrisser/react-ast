@@ -106,4 +106,85 @@ describe('<Expression />', () => {
     );
     expect(code).toBe('howdy.texas(a, b, c)');
   });
+
+  it('renders assigning no children', () => {
+    const code = render(<Expression properties="a.b.c" debug />, {
+      prettier: false
+    });
+    expect(code).toBe('a.b.c');
+  });
+
+  it('renders assigning initial value as string', () => {
+    const code = render(
+      <Expression properties="a.b.c" debug>
+        hello
+      </Expression>,
+      {
+        prettier: false
+      }
+    );
+    expect(code).toBe('a.b.c = "hello"');
+  });
+
+  it('renders assigning initial value as boolean', () => {
+    const code = render(
+      <Expression properties="a.b.c" debug>
+        {true}
+      </Expression>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('a.b.c = true');
+  });
+
+  it('renders assigning initial value as number', () => {
+    const code = render(
+      <Expression properties="a.b.c" debug>
+        {0}
+      </Expression>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('a.b.c = 0');
+  });
+
+  it('renders assigning initial value as object', () => {
+    const code = render(
+      <Expression properties="a.b.c" debug>
+        {{ hello: 'world' }}
+      </Expression>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe(`a.b.c = {
+  "hello": "world"
+}`);
+  });
+
+  it('renders assigning initial value as component', () => {
+    const code = render(
+      <Expression properties="a.b.c" debug>
+        <ArrowFunctionExpression />
+      </Expression>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('a.b.c = () => {}');
+  });
 });
