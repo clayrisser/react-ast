@@ -1,9 +1,11 @@
 import _get from 'lodash.get';
 import BaseElement from '~/elements/BaseElement';
-import { Path } from '~/types';
+import { HashMap, Path } from '~/types';
 
 const logger = console;
-const { env } = process;
+const g = typeof window === 'undefined' ? global : window;
+const process =
+  typeof g.process === 'undefined' ? { env: {} as HashMap<string> } : g.process;
 
 export function flattenPath(path?: Path | undefined): string {
   if (typeof path !== 'number' && !path) return '';
@@ -33,14 +35,14 @@ export function deletePath(value: any, path: Path): boolean {
 }
 
 function isDev(): boolean {
-  if (typeof env.NODE_ENV === 'undefined') {
-    return typeof env.__DEV__ === 'undefined'
+  if (typeof process.env.NODE_ENV === 'undefined') {
+    return typeof process.env.__DEV__ === 'undefined'
       ? false
-      : env.__DEV__.toLowerCase() !== 'false';
+      : process.env.__DEV__.toLowerCase() !== 'false';
   }
   return (
-    env.NODE_ENV.toLowerCase() !== 'prod' ||
-    env.NODE_ENV.toLowerCase() !== 'production'
+    process.env.NODE_ENV.toLowerCase() !== 'prod' ||
+    process.env.NODE_ENV.toLowerCase() !== 'production'
   );
 }
 
