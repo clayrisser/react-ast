@@ -92,11 +92,12 @@ describe('<Expression />', () => {
     expect(code).toBe('howdy.texas(a)');
   });
 
-  it.skip('renders called expression with properties and arguments as string', () => {
+  it('renders called expression with properties and arguments as string', () => {
     const code = render(
       <Expression
         properties={['howdy', 'texas']}
         arguments={['a', 'b', 'c']}
+        call
         debug
       />,
       {

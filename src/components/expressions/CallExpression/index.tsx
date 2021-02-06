@@ -19,10 +19,6 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `${typeof children === 'undefined' ? '' : 'a.'}${name}()`;
 
-    function renderChildren() {
-      return children;
-    }
-
     function renderArgument(argument: ReactNode) {
       if (typeof argument === 'string') {
         return <Identifier>{argument}</Identifier>;
@@ -50,7 +46,7 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
       >
         <ParentBodyPathProvider value={undefined}>
           {renderArguments()}
-          {renderChildren()}
+          {children}
         </ParentBodyPathProvider>
       </Smart>
     );
