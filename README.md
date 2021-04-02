@@ -17,7 +17,7 @@ code.
 
 You can read a post I wrote about this project at the link below.
 
-[Render Abstract Syntax Trees with React](https://dev.to/clayrisser/render-abstract-syntax-trees-with-react-349j)
+[Render Abstract Syntax Trees with React](https://dev.to/codejamninja/render-abstract-syntax-trees-with-react-349j)
 
 ## Built by Silicon Hills LLC
 
