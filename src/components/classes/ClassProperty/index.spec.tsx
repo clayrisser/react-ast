@@ -18,6 +18,16 @@ describe('<ClassProperty />', () => {
     expect(code).toBe('p;');
   });
 
+  it('renders with static', () => {
+    const code = render(<ClassProperty static id="p" debug />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ['jsx', 'classProperties', 'typescript']
+      }
+    });
+    expect(code).toBe('static p;');
+  });
+
   it('renders with accessibility', () => {
     const code = render(
       <ClassProperty
@@ -33,6 +43,24 @@ describe('<ClassProperty />', () => {
       }
     );
     expect(code).toBe('private p;');
+  });
+
+  it('renders with static accessibility', () => {
+    const code = render(
+      <ClassProperty
+        accessibility={ClassPropertyAccessibility.Private}
+        static
+        id="p"
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('private static p;');
   });
 
   it('renders with type annotation', () => {

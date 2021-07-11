@@ -18,6 +18,13 @@ describe('<ClassMethod />', () => {
     expect(code).toBe('hello() {}');
   });
 
+  it('renders with static', () => {
+    const code = render(<ClassMethod static id="hello" debug />, {
+      prettier: false
+    });
+    expect(code).toBe('static hello() {}');
+  });
+
   it('renders with accessibility', () => {
     const code = render(
       <ClassMethod
@@ -33,6 +40,24 @@ describe('<ClassMethod />', () => {
       }
     );
     expect(code).toBe('private hello() {}');
+  });
+
+  it('renders with static accessibility', () => {
+    const code = render(
+      <ClassMethod
+        static
+        accessibility={ClassMethodAccessibility.Private}
+        id="hello"
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ['jsx', 'classProperties', 'typescript']
+        }
+      }
+    );
+    expect(code).toBe('private static hello() {}');
   });
 
   it('renders with nested return type', () => {

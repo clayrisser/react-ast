@@ -16,15 +16,16 @@ export interface ClassMethodProps {
   id: string;
   params?: ReactNode[];
   returnType?: ReactNode;
+  static?: boolean;
 }
 
 const ClassMethod = forwardRef<BaseElement, ClassMethodProps>(
   (props: ClassMethodProps, forwardedRef: Ref<BaseElement>) => {
     const { accessibility, children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `class C { ${accessibility ? `${accessibility} ` : ''}${id}()${
-      returnType ? ': T' : ''
-    } {} }`;
+    const code = `class C { ${accessibility ? `${accessibility} ` : ''}${
+      props.static ? 'static ' : ''
+    }${id}()${returnType ? ': T' : ''} {} }`;
 
     function renderChildren() {
       if (typeof children === 'string') {

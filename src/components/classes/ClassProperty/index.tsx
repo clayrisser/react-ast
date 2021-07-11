@@ -11,6 +11,7 @@ export interface ClassPropertyProps {
   children?: ReactNode;
   debug?: boolean;
   id: string;
+  static?: boolean;
   typeAnnotation?: ReactNode;
 }
 
@@ -19,9 +20,11 @@ const ClassProperty = forwardRef<BaseElement, ClassPropertyProps>(
     const { accessibility, children, debug, id, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `class C {
-  ${accessibility ? `${accessibility} ` : ''}${id}${
-      typeAnnotation ? ': T' : ''
-    }${typeof children !== 'undefined' ? ` = ${JSON.stringify(children)}` : ''}
+  ${accessibility ? `${accessibility} ` : ''}${
+      props.static ? 'static ' : ''
+    }${id}${typeAnnotation ? ': T' : ''}${
+      typeof children !== 'undefined' ? ` = ${JSON.stringify(children)}` : ''
+    }
 }`;
 
     function renderTypeAnnotation() {
