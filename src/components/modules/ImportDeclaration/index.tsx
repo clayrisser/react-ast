@@ -16,13 +16,8 @@ export interface ImportDeclarationProps {
 
 const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
   (props: ImportDeclarationProps, forwardedRef: Ref<BaseElement>) => {
-    const {
-      debug,
-      defaultSpecifier,
-      namespaceSpecifier,
-      source,
-      specifiers
-    } = props;
+    const { debug, defaultSpecifier, namespaceSpecifier, source, specifiers } =
+      props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `import ${
       namespaceSpecifier

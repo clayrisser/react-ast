@@ -11,6 +11,7 @@ import {
   NoTimeout,
   Props,
   PublicInstance,
+  SuspenseInstance,
   TextInstance,
   TimeoutHandle,
   Type,
@@ -29,6 +30,7 @@ export default ReactReconciler<
   Container,
   Instance,
   TextInstance,
+  SuspenseInstance,
   HydratableInstance,
   PublicInstance,
   HostContext,
@@ -82,8 +84,9 @@ export default ReactReconciler<
     return instance;
   },
 
-  prepareForCommit(_containerInfo: Container): void {
+  prepareForCommit(_containerInfo: Container): Record<string, any> | null {
     logger.debug('prepareForCommit');
+    return null;
   },
 
   prepareUpdate(
@@ -191,30 +194,7 @@ export default ReactReconciler<
     instance.commitMount();
   },
 
-  shouldDeprioritizeSubtree(): boolean {
-    logger.debug('shouldDeprioritizeSubtree');
-    return true;
-  },
-
-  scheduleDeferredCallback(
-    callback?: () => any,
-    _options?: { timeout: number }
-  ): any {
-    logger.debug('scheduleDeferredCallback');
-    if (callback) {
-      throw new Error(
-        'Scheduling a callback twice is excessive. Instead, keep track of ' +
-          'whether the callback has already been scheduled.'
-      );
-    }
-  },
-
-  cancelDeferredCallback(_callbackID: any): void {
-    logger.debug('cancelDeferredCallback');
-    // noop
-  },
-
-  setTimeout(
+  scheduleTimeout(
     handler: (...args: any[]) => void,
     timeout: number
   ): TimeoutHandle | NoTimeout {
@@ -222,9 +202,21 @@ export default ReactReconciler<
     return setTimeout(handler, timeout);
   },
 
-  clearTimeout(handle: TimeoutHandle | NoTimeout): void {
+  cancelTimeout(handle: TimeoutHandle | NoTimeout): void {
     logger.debug('clearTimeout');
     return clearTimeout(handle);
+  },
+
+  preparePortalMount() {
+    logger.debug('preparePortalMount');
+  },
+
+  queueMicrotask(callback: () => void) {
+    queueMicrotask(callback);
+  },
+
+  clearContainer(_container: Container) {
+    logger.debug('clearContainer');
   },
 
   noTimeout: -1 as NoTimeout,

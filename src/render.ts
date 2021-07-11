@@ -17,7 +17,7 @@ export function renderAst(
   updateContext({ parserOptions: options.parserOptions || {} });
   const file = new File();
   file.node = ast;
-  const root = Renderer.createContainer(file, false, false);
+  const root = Renderer.createContainer(file, 0, false, null);
   Renderer.updateContainer(element, root, null, () => {
     // noop
   });

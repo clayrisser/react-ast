@@ -23,7 +23,7 @@ const Var = forwardRef<BaseElement, VarProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     return (
       <VariableDeclaration
-        kind={(kind as unknown) as VariableDeclarationKind}
+        kind={kind as unknown as VariableDeclarationKind}
         ref={mergedRef}
       >
         <VariableDeclarator id={name} typeAnnotation={typeAnnotation}>
