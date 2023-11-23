@@ -21,7 +21,6 @@ You can read a post I wrote about this project at the link below.
 
 ## Built by Silicon Hills LLC
 
-
 Silicon Hills offers premium Node and React develpoment and support services. Get in touch at [nuevesolutions.com](https://nuevesolutions.com).
 
 ![](assets/react-ast.png)
