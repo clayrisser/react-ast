@@ -18,4 +18,4 @@ export * from './modules';
 export * from './react';
 export * from './types';
 export * from './variables';
-export * from './Literals';
+export * from './literals';

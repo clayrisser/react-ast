@@ -15,7 +15,7 @@ const StringLiteral = forwardRef<BaseElement, StringLiteralProps>(
 
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
 
-    const code = `var a = ${props.children}`;
+    const code = `var a = "${props.children}"`;
 
     return (
       <Smart code={code} ref={mergedRef} scopePath="declarations.0.init" />

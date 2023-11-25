@@ -13,6 +13,7 @@
     }
   },
   "rules": {
+    "react/no-unescaped-entities": "off",
     "@typescript-eslint/comma-dangle": ["error", "never"],
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/no-shadow": "off",

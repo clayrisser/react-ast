@@ -13,7 +13,8 @@ import {
   StringLiteral,
   NumberLiteral,
   ObjectLiteral,
-  CallExpression
+  CallExpression,
+  Var
 } from '~/index';
 
 const logger = console;
@@ -35,7 +36,9 @@ const jsx = (
 logger.log('======== RECONCILER LIFECYCLE ========');
 
 const stringLiteral = (
-  <StringLiteral ref={(r) => logger.log('R.NODE', r?.node)}>"HI"</StringLiteral>
+  <Var name="a">
+    <StringLiteral ref={(r) => logger.log('R.NODE', r?.node)}>a</StringLiteral>
+  </Var>
 );
 
 const numberLiteral = (
@@ -50,5 +53,5 @@ const objectLiteral = (
 
 logger.log('======== RENDER ========');
 logger.log(render(stringLiteral, { prettier: false }));
-logger.log(render(numberLiteral, { prettier: false }));
-logger.log(render(objectLiteral, { prettier: false }));
+// logger.log(render(numberLiteral, { prettier: false }));
+// logger.log(render(objectLiteral, { prettier: false }));
