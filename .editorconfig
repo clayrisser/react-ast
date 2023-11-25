@@ -13,3 +13,16 @@ charset = utf-8
 [*.md]
 charset = utf-8
 trim_trailing_whitespace = false
+
+[Mkpmfile]
+charset = utf-8
+indent_size = 4
+indent_style = tab
+[{M,m}akefile{,.*}]
+charset = utf-8
+indent_size = 4
+indent_style = tab
+[*.mk]
+charset = utf-8
+indent_size = 4
+indent_style = tab

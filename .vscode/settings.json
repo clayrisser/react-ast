@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["risser", "cloc", "proptypes", "microtask"]
+  "cSpell.words": [
+    "risser",
+    "cloc",
+    "proptypes",
+    "microtask"
+  ],
+  "files.associations": {
+    "Mkpmfile": "makefile"
+  }
 }
