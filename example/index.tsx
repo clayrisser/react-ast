@@ -1,4 +1,3 @@
-import { ESLint } from 'eslint';
 import React from 'react';
 
 import {
@@ -12,6 +11,8 @@ import {
   render,
   renderAst,
   StringLiteral,
+  NumberLiteral,
+  ObjectLiteral,
   CallExpression
 } from '~/index';
 
@@ -37,19 +38,17 @@ const stringLiteral = (
   <StringLiteral ref={(r) => logger.log('R.NODE', r?.node)}>"HI"</StringLiteral>
 );
 
-// const renderedOutput = render(jsx);
-// const renderedAst = renderAst(jsx);
+const numberLiteral = (
+  <NumberLiteral ref={(r) => logger.log('R.NODE', r?.node)}>{1}</NumberLiteral>
+);
 
-// logger.log('\n\n======== jsx ========');
+const objectLiteral = (
+  <ObjectLiteral ref={(r) => logger.log('R.NODE', r?.node)}>
+    {JSON.stringify({ a: 1 })}
+  </ObjectLiteral>
+);
 
-// logger.log(stringLiteral);
-
-logger.log('\n\n======== RENDERED AST ========');
-logger.log('Abstract syntax tree', renderAst(stringLiteral).program.body);
-
-// logger.log(JSON.stringify(renderedAst, null, 2));
-logger.log('\n\n======== RENDERED OUTPUT ========');
-// logger.log('output', render(stringLiteral));
-
-// logger.log(renderedOutput);
-// logger.log('\n--------------');
+logger.log('======== RENDER ========');
+logger.log(render(stringLiteral, { prettier: false }));
+logger.log(render(numberLiteral, { prettier: false }));
+logger.log(render(objectLiteral, { prettier: false }));
