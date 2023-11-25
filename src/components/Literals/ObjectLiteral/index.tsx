@@ -1,24 +1,25 @@
 import React, { Ref, forwardRef } from 'react';
 import useMergedRef from '@react-hook/merged-ref';
-import { Smart } from '~/index';
 import BaseElement from '~/elements/BaseElement';
 import { debugRef } from '~/util';
+import { Smart } from '~/index';
 
-export interface StringLiteralProps {
-  children: string;
+export interface ObjectLiteralProps {
+  children: Object;
   debug?: boolean;
 }
 
-export const StringLiteral = forwardRef<BaseElement, StringLiteralProps>(
-  (props: StringLiteralProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug } = props;
+const ObjectLiteral = forwardRef<BaseElement, ObjectLiteralProps>(
+  (props: ObjectLiteralProps, forwardedRef: Ref<BaseElement>) => {
+    const { children, debug } = props;
 
+    const code = `var a = ${children}`;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-
-    const code = `var a = ${props.children}`;
 
     return (
       <Smart code={code} ref={mergedRef} scopePath="declarations.0.init" />
     );
   }
 );
+
+export default ObjectLiteral;

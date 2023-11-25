@@ -9,7 +9,7 @@ export interface NumberLiteralProps {
   debug?: boolean;
 }
 
-export const NumberLiteral = forwardRef<BaseElement, NumberLiteralProps>(
+const NumberLiteral = forwardRef<BaseElement, NumberLiteralProps>(
   (props: NumberLiteralProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug } = props;
 
@@ -21,3 +21,5 @@ export const NumberLiteral = forwardRef<BaseElement, NumberLiteralProps>(
     );
   }
 );
+
+export default NumberLiteral;
