@@ -18,12 +18,7 @@ const StringLiteral = forwardRef<BaseElement, StringLiteralProps>(
     const code = `var a = ${props.children}`;
 
     return (
-      <Smart
-        code={code}
-        ref={mergedRef}
-        scopePath="declarations.0.init"
-        options="{semi: false}"
-      />
+      <Smart code={code} ref={mergedRef} scopePath="declarations.0.init" />
     );
   }
 );
