@@ -1,0 +1,15 @@
+diff --git a/index.d.ts b/index.d.ts
+index 538c0dc1851122fbba808968e02100c9ca5728c4..1075b2287efe5382cd5f6953ec9ed47cb850d8a1 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -614,8 +614,8 @@ export namespace Rule {
+         "SequenceExpression:exit"?: ((node: ESTree.SequenceExpression & NodeParentExtension) => void) | undefined;
+         SpreadElement?: ((node: ESTree.SpreadElement & NodeParentExtension) => void) | undefined;
+         "SpreadElement:exit"?: ((node: ESTree.SpreadElement & NodeParentExtension) => void) | undefined;
+-        StaticBlock?: ((node: ESTree.StaticBlock & NodeParentExtension) => void) | undefined;
+-        "StaticBlock:exit"?: ((node: ESTree.StaticBlock & NodeParentExtension) => void) | undefined;
++        StaticBlock?: ((node: any) => void) | undefined;
++        "StaticBlock:exit"?: ((node: any) => void) | undefined;
+         Super?: ((node: ESTree.Super & NodeParentExtension) => void) | undefined;
+         "Super:exit"?: ((node: ESTree.Super & NodeParentExtension) => void) | undefined;
+         SwitchCase?: ((node: ESTree.SwitchCase & NodeParentExtension) => void) | undefined;
