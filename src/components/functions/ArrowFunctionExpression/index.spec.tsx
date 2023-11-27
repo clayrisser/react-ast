@@ -5,6 +5,7 @@ import {
   TypeAnnotation,
   TypeParameterInstantiation,
   TypeReference,
+  Var,
   VariableDeclaration,
   VariableDeclarator
 } from '~/components';
@@ -164,5 +165,22 @@ describe('<ArrowFunctionExpression />', () => {
     expect(code).toBe(`(a: A, b: B): T<A, B> => {
   var v: T = "hello";
 }`);
+  });
+
+  it('renders async ArrowFunctionExpression', () => {
+    const code = render(<ArrowFunctionExpression async debug />, {
+      prettier: false
+    });
+    expect(code).toBe('async () => {}');
+  });
+
+  it('renders function declaration with async ArrowFunctionExpression', () => {
+    const code = render(
+      <Var name="fetchData">
+        <ArrowFunctionExpression async debug />
+      </Var>,
+      { prettier: false }
+    );
+    expect(code).toBe('var fetchData = async () => {};');
   });
 });

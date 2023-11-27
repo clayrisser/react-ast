@@ -8,12 +8,14 @@ import {
   VariableDeclaration,
   VariableDeclarationKind,
   VariableDeclarator,
-  render
+  render,
   // renderAst,
   // StringLiteral,
   // NumberLiteral,
   // ObjectLiteral,
-  // CallExpression,
+  // Smart,
+  CallExpression,
+  StringLiteral
   // Var
 } from '~/index';
 
@@ -51,14 +53,17 @@ logger.log('======== RECONCILER LIFECYCLE ========');
 //   </ObjectLiteral>
 // );
 
-// const callExpression = render(
-//   <CallExpression name="fn" arguments={<StringLiteral>Hi</StringLiteral>} />,
-//   { prettier: false }
-// );
+const callExpression = render(
+  <CallExpression name="fn" arguments={<StringLiteral>Hi</StringLiteral>} />,
+  { prettier: false }
+);
 
 logger.log('======== RENDER ========');
+logger.log(callExpression);
 
 logger.log(render(jsx, { prettier: false }));
+
+// logger.log(render(jsx, { prettier: false }));
 
 // logger.log(render(stringLiteral, { prettier: false }));
 // logger.log(render(numberLiteral, { prettier: false }));

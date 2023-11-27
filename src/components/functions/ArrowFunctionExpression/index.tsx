@@ -12,6 +12,7 @@ import { debugRef } from '~/util';
 export interface ArrowFunctionExpressionProps {
   children?: ReactNode;
   debug?: boolean;
+  async?: boolean;
   params?: ReactNode[];
   returnType?: ReactNode;
 }
@@ -22,7 +23,9 @@ const ArrowFunctionExpression = forwardRef<
 >((props: ArrowFunctionExpressionProps, forwardedRef: Ref<BaseElement>) => {
   const { children, debug, returnType, params } = props;
   const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-  const code = `()${returnType ? ': T' : ''} => {}`;
+  const code = `${props.async ? 'async' : ''} ()${
+    returnType ? ': T' : ''
+  } => {}`;
 
   function renderChildren() {
     if (typeof children === 'string') {

@@ -13,6 +13,7 @@ export interface FunctionDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
   id?: string;
+  async?: boolean;
   params?: ReactNode[];
   returnType?: ReactNode;
 }
@@ -21,7 +22,9 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
   (props: FunctionDeclarationProps, forwardedRef: Ref<BaseElement>) => {
     const { children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `var f = function ${id || ''}()${returnType ? ': T' : ''} {}`;
+    const code = `var f = ${props.async ? 'async' : ''} function ${id || ''}()${
+      returnType ? ': T' : ''
+    } {}`;
 
     function renderChildren() {
       if (typeof children === 'string') {

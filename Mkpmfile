@@ -132,11 +132,18 @@ lib:
 	@$(BABEL) --env-name esm src -d es --extensions '.js,.jsx,.ts,.tsx' --source-maps
 	@$(TSC) -p tsconfig.app.json -d --emitDeclarationOnly
 
+# .PHONY: publish +publish
+# publish: build
+# 	@$(MAKE) -s +publish
+# +publish:
+# 	@$(NPM) publish
+
+
 .PHONY: publish +publish
-publish: build
-	@$(MAKE) -s +publish
+publish: | ~build +publish ##
 +publish:
-	@$(NPM) publish
+	@$(NPM) publish --access=public
+
 
 .PHONY: pack +pack
 pack: build

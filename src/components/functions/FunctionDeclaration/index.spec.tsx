@@ -177,4 +177,12 @@ describe('<FunctionDeclaration />', () => {
   var v: T = "hello";
 }`);
   });
+
+  it('renders async function', () => {
+    const code = render(<FunctionDeclaration id="hello" async debug />, {
+      prettier: false
+    });
+
+    expect(code).toBe('async function hello() {}');
+  });
 });
