@@ -72,7 +72,7 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 CallExpression.defaultProps = {
