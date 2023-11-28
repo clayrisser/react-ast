@@ -21,12 +21,12 @@
     "ts",
     "typescript"
   ],
-  "homepage": "https://github.com/clayrisser/react-ast",
+  "homepage": "https://gitlab.com/bitspur/community/react-ast",
   "bugs": {
-    "url": "https://github.com/clayrisser/react-ast/issues",
-    "email": "email@clayrisser.com"
+    "url": "https://gitlab.com/bitspur/community/react-ast/issues",
+    "email": "info@bitspur.com"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": {
     "name": "Clay Risser",
     "email": "email@clayrisser.com",
