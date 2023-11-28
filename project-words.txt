@@ -1,4 +1,7 @@
 ast
+astexplorer
+babelv
+bitspur
 cjs
 corejs
 cspell
@@ -15,6 +18,7 @@ lang
 loc
 microtask
 minify
+mkpm
 namespace
 rajak
 reconciler
@@ -26,4 +30,5 @@ tsbuildinfo
 tsup
 txt
 typeof
+unopinionated
 yarnpkg

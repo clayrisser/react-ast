@@ -24,6 +24,9 @@ include $(MKPM)/yarn
 include $(MKPM)/envcache
 include $(MKPM)/dotenv
 
+CLOC ?= cloc
+CSPELL ?= $(call yarn_binary,cspell)
+ESLINT ?= $(call yarn_binary,eslint)
 JEST ?= $(call yarn_binary,jest)
 PRETTIER ?= $(call yarn_binary,prettier)
 TSUP ?= $(call yarn_binary,tsup)
@@ -50,10 +53,8 @@ $(ACTION)/lint: $(call git_deps,\.([jt]sx?)$$)
 
 ACTIONS += test~lint ##
 $(ACTION)/test: $(call git_deps,\.([jt]sx?)$$)
-	-@$(MKDIR) -p node_modules/.tmp
 	-@$(RM) -rf lib $(NOOUT)
-	-@export NODE_OPTIONS="--experimental-vm-modules" && \
-		$(call jest,$?,$(TEST_ARGS))
+	-@$(call test,$?,$(TEST_ARGS))
 	@$(call done,$@)
 
 ACTIONS += build~test ##
@@ -63,12 +64,6 @@ lib/index.js:
 $(ACTION)/build: $(call git_deps,\.([jt]sx?)$$)
 	@NODE_OPTIONS='--max-old-space-size=16384' $(TSUP)
 	@$(call done,$@)
-
-COLLECT_COVERAGE_FROM := ["src/**/*.{js,jsx,ts,tsx}"]
-.PHONY: coverage +coverage
-coverage: | ~lint +coverage
-+coverage:
-	@$(JEST) --coverage --collectCoverageFrom='$(COLLECT_COVERAGE_FROM)' $(ARGS)
 
 .PHONY: count
 count:

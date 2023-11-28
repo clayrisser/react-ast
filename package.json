@@ -109,12 +109,13 @@
     "testRegex": "\\.(spec|test)\\.[cm]?[jt]sx?$",
     "testEnvironment": "node",
     "verbose": true,
+    "testResultsProcessor": "jest-sonar-reporter",
     "testPathIgnorePatterns": [
       "<rootDir>/lib/"
     ]
   },
   "jestSonar": {
-    "reportPath": "node_modules/.tmp/reports",
+    "reportPath": ".mkpm/mkpm/.tmp/reports",
     "reportFile": "test-report.xml",
     "indent": 4
   },

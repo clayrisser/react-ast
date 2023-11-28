@@ -19,9 +19,9 @@ You can read a post I wrote about this project at the link below.
 
 [Render Abstract Syntax Trees with React](https://dev.to/codejamninja/render-abstract-syntax-trees-with-react-349j)
 
-## Built by Silicon Hills LLC
+## Built by BitSpur
 
-Silicon Hills offers premium Node and React develpoment and support services. Get in touch at [nuevesolutions.com](https://nuevesolutions.com).
+BitSpur offers premium Node and React development and support services. Get in touch at [bitspur.com](https://bitspur.com).
 
 ![](assets/react-ast.png)
 
@@ -142,7 +142,7 @@ The rendered AST
 
 ## Support
 
-Submit an [issue](https://github.com/clayrisser/react-ast/issues/new)
+Submit an [issue](https://gitlab.com/bitspur/community/react-ast/issues/new)
 
 ## Development
 
@@ -174,9 +174,9 @@ Review the [guidelines for contributing](https://github.com/clayrisser/react-ast
 
 ## License
 
-[MIT License](https://github.com/clayrisser/react-ast/blob/master/LICENSE)
+[Apache-2.0 License](https://github.com/clayrisser/react-ast/blob/master/LICENSE)
 
-[Jam Risser](https://codejam.ninja) © 2019
+[Clay Risser](https://clayrisser.com) © 2019
 
 ## Changelog
 
@@ -184,7 +184,7 @@ Review the [changelog](https://github.com/clayrisser/react-ast/blob/master/CHANG
 
 ## Credits
 
-- [Jam Risser](https://codejam.ninja) - Author
+- [Clay Risser](https://clayrisser.com) - Author
 
 ## Support on Liberapay
 
