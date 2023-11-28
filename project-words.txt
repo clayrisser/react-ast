@@ -1,5 +1,6 @@
 cjs
 declarator
+dharmendra
 dts
 esm
 estree
