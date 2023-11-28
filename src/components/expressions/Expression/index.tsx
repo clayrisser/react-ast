@@ -19,16 +19,16 @@
  * limitations under the License.
  */
 
-import React, { FC, Ref, ReactNode, forwardRef } from "react";
-import useMergedRef from "@react-hook/merged-ref";
 import AssignmentExpression from "../../../components/expressions/AssignmentExpression";
-import BaseElement from "../../../elements/BaseElement";
+import CallExpression from "../../../components/expressions/CallExpression";
 import Identifier from "../../../components/Identifier";
 import MemberExpression from "../../../components/expressions/MemberExpression";
+import React, { forwardRef } from "react";
+import type BaseElement from "../../../elements/BaseElement";
+import type { CallExpressionProps } from "../../../components/expressions/CallExpression";
+import type { FC, Ref, ReactNode } from "react";
+import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
-import CallExpression, {
-  CallExpressionProps,
-} from "../../../components/expressions/CallExpression";
 
 export interface ExpressionProps extends Omit<CallExpressionProps, "name"> {
   call?: boolean;
@@ -49,7 +49,7 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
       const properties = renderProperties(
         (typeof props.properties === "string"
           ? props.properties.split(".")
-          : props.properties) || []
+          : props.properties) || [],
       );
       if (typeof children !== "undefined") {
         return (
@@ -88,13 +88,13 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
           }
           return NewComp;
         },
-        ({ children }: CompProps) => <>{children}</>
+        ({ children }: CompProps) => <>{children}</>,
       );
       return <Comp />;
     }
 
     return renderAssignmentExpression();
-  }
+  },
 );
 
 Expression.defaultProps = {

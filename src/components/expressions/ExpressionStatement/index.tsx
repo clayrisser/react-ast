@@ -19,11 +19,12 @@
  * limitations under the License.
  */
 
-import React, { Ref, ReactNode, forwardRef } from "react";
-import useMergedRef from "@react-hook/merged-ref";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
-import BaseElement from "../../../elements/BaseElement";
+import React, { forwardRef } from "react";
 import Smart from "../../../components/Smart";
+import type BaseElement from "../../../elements/BaseElement";
+import type { Ref, ReactNode } from "react";
+import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
 
 export interface ExpressionStatementProps {
@@ -49,7 +50,7 @@ const ExpressionStatement = forwardRef<BaseElement, ExpressionStatementProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 ExpressionStatement.defaultProps = {

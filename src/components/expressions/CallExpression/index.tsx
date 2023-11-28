@@ -24,14 +24,6 @@
  * limitations under the License.
  */
 
-<<<<<<< HEAD
-import React, { Ref, ReactNode, forwardRef } from "react";
-import useMergedRef from "@react-hook/merged-ref";
-import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
-import Identifier from "../../../components/Identifier";
-import BaseElement from "../../../elements/BaseElement";
-import Smart from "../../../components/Smart";
-=======
 import Identifier from "../../../components/Identifier";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import React, { forwardRef } from "react";
@@ -39,7 +31,6 @@ import Smart from "../../../components/Smart";
 import type BaseElement from "../../../elements/BaseElement";
 import type { Ref, ReactNode } from "react";
 import useMergedRef from "@react-hook/merged-ref";
->>>>>>> 23c3ab733a93c5560e55719516b5c4ed4f821b27
 import { debugRef } from "../../../util";
 
 export interface CallExpressionProps {
@@ -86,7 +77,7 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 CallExpression.defaultProps = {
