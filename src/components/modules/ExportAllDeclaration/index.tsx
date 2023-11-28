@@ -1,8 +1,8 @@
 /**
  * File: /src/components/modules/ExportAllDeclaration/index.tsx
  * Project: react-ast
- * File Created: 28-11-2023 02:58:22
- * Author: Clay Risser
+ * File Created: 28-11-2023 15:05:44
+ * Author: Lalit rajak
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
@@ -20,7 +20,7 @@
  */
 
 import React, { forwardRef } from "react";
-import Smart from "../../../components/Smart";
+import Smart from "../../Smart";
 import type BaseElement from "../../../elements/BaseElement";
 import type { Ref } from "react";
 import useMergedRef from "@react-hook/merged-ref";

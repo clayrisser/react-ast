@@ -1,8 +1,8 @@
 /**
  * File: /src/components/modules/ExportDefaultDeclaration/index.spec.tsx
  * Project: react-ast
- * File Created: 28-11-2023 02:58:22
- * Author: Clay Risser
+ * File Created: 28-11-2023 15:05:44
+ * Author: Lalit rajak
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
@@ -19,10 +19,10 @@
  * limitations under the License.
  */
 
-import React from "react";
-import { ArrowFunctionExpression } from "../../../components";
-import { render } from "../../../index";
 import ExportDefaultDeclaration from "./index";
+import React from "react";
+import { ArrowFunctionExpression } from "../..";
+import { render } from "../../../index";
 
 describe("<ExportDefaultDeclaration />", () => {
   it("renders with children", () => {

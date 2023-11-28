@@ -1,8 +1,8 @@
 /**
  * File: /src/components/modules/Export/index.spec.tsx
  * Project: react-ast
- * File Created: 28-11-2023 02:58:22
- * Author: Clay Risser
+ * File Created: 28-11-2023 15:05:44
+ * Author: Lalit rajak
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
@@ -19,7 +19,6 @@
  * limitations under the License.
  */
 
-import Export from "./index";
 import React from "react";
 import { render } from "../../../index";
 import {

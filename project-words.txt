@@ -6,7 +6,9 @@ esm
 estree
 hydratable
 jsx
+Lalit
 minify
+rajak
 risser
 transpile
 tsbuildinfo
