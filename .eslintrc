@@ -28,7 +28,7 @@
     "max-classes-per-file": "off",
     "max-lines": ["error", 500],
     "max-lines-per-function": ["error", 350],
-    "no-await-in-loop": "off",
+    // "no-await-in-loop": "off",
     "no-empty-function": ["error", { "allow": ["constructors"] }],
     "no-extra-boolean-cast": "off",
     "no-param-reassign": "off",

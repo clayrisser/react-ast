@@ -9,14 +9,16 @@ import {
   VariableDeclarationKind,
   VariableDeclarator,
   render,
-  // renderAst,
+  renderAst,
+  AwaitExpression,
   // StringLiteral,
   // NumberLiteral,
   // ObjectLiteral,
   // Smart,
-  CallExpression,
-  StringLiteral
-  // Var
+  CallExpression
+  // StringLiteral,
+  // Var,
+  // Code
 } from '~/index';
 
 const logger = console;
@@ -53,18 +55,40 @@ logger.log('======== RECONCILER LIFECYCLE ========');
 //   </ObjectLiteral>
 // );
 
-const callExpression = render(
-  <CallExpression name="fn" arguments={<StringLiteral>Hi</StringLiteral>} />,
-  { prettier: false }
-);
+// const callExpression = render(
+//   <CallExpression name="fn" arguments={<StringLiteral>Hi</StringLiteral>} />,
+//   { prettier: false }
+// );
 
-logger.log('======== RENDER ========');
-logger.log(callExpression);
+// logger.log('======== RENDER ========');
+// logger.log(callExpression);
 
-logger.log(render(jsx, { prettier: false }));
+// logger.log(render(jsx, { prettier: false }));
 
 // logger.log(render(jsx, { prettier: false }));
 
 // logger.log(render(stringLiteral, { prettier: false }));
 // logger.log(render(numberLiteral, { prettier: false }));
 // logger.log(render(objectLiteral, { prettier: false }));
+
+const fuc = (
+  <FunctionDeclaration async id="getData" params={['url']}>
+    <VariableDeclaration kind={VariableDeclarationKind.Const}>
+      <VariableDeclarator id="result">
+        <AwaitExpression>
+          <CallExpression
+            name="fetch"
+            arguments={<Identifier>url</Identifier>}
+          />
+        </AwaitExpression>
+      </VariableDeclarator>
+    </VariableDeclaration>
+  </FunctionDeclaration>
+);
+
+logger.log('======== RENDER AST ========');
+
+logger.log(renderAst(jsx, { prettier: false }).program.body[1]);
+
+logger.log('======== RENDER ========');
+logger.log(render(fuc, { prettier: false }));
