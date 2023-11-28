@@ -20,12 +20,12 @@
  */
 
 import * as t from "@babel/types";
+import Renderer from "./reconciler";
 import generate from "@babel/generator";
 import parserBabel from "prettier/parser-babel";
 import prettier from "prettier/standalone";
-import { Options as PrettierOptions } from "prettier";
-import Renderer from "./reconciler";
-import { BundleType, Options } from "./types";
+import type { BundleType, Options } from "./types";
+import type { Options as PrettierOptions } from "prettier";
 import { File } from "./elements";
 import { dev } from "./util";
 import { updateContext } from "./context";
