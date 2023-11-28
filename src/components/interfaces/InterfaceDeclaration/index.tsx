@@ -1,13 +1,13 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import BlockStatement from '~/components/BlockStatement';
-import Code from '~/components/Code';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import TypeReference from '~/components/types/TypeReference';
-import TypeParameterDeclaration from '~/components/types/TypeParameterDeclaration';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import BlockStatement from "~/components/BlockStatement";
+import Code from "~/components/Code";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import TypeReference from "~/components/types/TypeReference";
+import TypeParameterDeclaration from "~/components/types/TypeParameterDeclaration";
+import { debugRef } from "~/util";
 
 export interface InterfaceDeclarationProps {
   children?: ReactNode;
@@ -23,7 +23,7 @@ const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
     const code = `interface ${id} {}`;
 
     function renderTypeParameter(typeParameter: ReactNode) {
-      return typeof typeParameter === 'string' ? (
+      return typeof typeParameter === "string" ? (
         <TypeReference name={typeParameter} />
       ) : (
         typeParameter
@@ -44,7 +44,7 @@ const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
     }
 
     function renderChildren() {
-      if (typeof children === 'string') {
+      if (typeof children === "string") {
         return <Code>{children}</Code>;
       }
       return children;
@@ -58,11 +58,11 @@ const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 InterfaceDeclaration.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default InterfaceDeclaration;

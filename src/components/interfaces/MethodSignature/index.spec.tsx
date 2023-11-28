@@ -1,25 +1,25 @@
-import React from 'react';
-import { render } from '~/index';
+import React from "react";
+import { render } from "~/index";
 import {
   Identifier,
   TypeAnnotation,
   TypeParameterInstantiation,
-  TypeReference
-} from '~/components';
-import MethodSignature from './index';
+  TypeReference,
+} from "~/components";
+import MethodSignature from "./index";
 
-describe('<MethodSignature />', () => {
-  it('renders empty method signature', () => {
+describe("<MethodSignature />", () => {
+  it("renders empty method signature", () => {
     const code = render(<MethodSignature id="hello" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('hello();');
+    expect(code).toBe("hello();");
   });
 
-  it('renders with nested return type', () => {
+  it("renders with nested return type", () => {
     const code = render(
       <MethodSignature
         id="hello"
@@ -38,37 +38,37 @@ describe('<MethodSignature />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('hello(): T<A, B>;');
+    expect(code).toBe("hello(): T<A, B>;");
   });
 
-  it('renders with return type as string', () => {
+  it("renders with return type as string", () => {
     const code = render(
       <MethodSignature id="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('hello(): T<A, B, C>;');
+    expect(code).toBe("hello(): T<A, B, C>;");
   });
 
-  it('renders with params as string', () => {
+  it("renders with params as string", () => {
     const code = render(
-      <MethodSignature id="hello" params={['a', 'b', 'c']} debug />,
+      <MethodSignature id="hello" params={["a", "b", "c"]} debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello(a, b, c);');
+    expect(code).toBe("hello(a, b, c);");
   });
 
-  it('renders with typed params', () => {
+  it("renders with typed params", () => {
     const code = render(
       <MethodSignature
         id="hello"
@@ -89,27 +89,27 @@ describe('<MethodSignature />', () => {
             }
           >
             c
-          </Identifier>
+          </Identifier>,
         ]}
         debug
       />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('hello(a: A, b: T<A, B>, c: T<A, B, C>);');
+    expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>);");
   });
 
-  it('renders with all props', () => {
+  it("renders with all props", () => {
     const code = render(
       <MethodSignature
         returnType="T<A, B>"
         params={[
           <Identifier typeAnnotation="A">a</Identifier>,
-          <Identifier typeAnnotation="B">b</Identifier>
+          <Identifier typeAnnotation="B">b</Identifier>,
         ]}
         id="hello"
         debug
@@ -117,10 +117,10 @@ describe('<MethodSignature />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('hello(a: A, b: B): T<A, B>;');
+    expect(code).toBe("hello(a: A, b: B): T<A, B>;");
   });
 });

@@ -1,10 +1,10 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import ImportSpecifier from '~/components/modules/ImportSpecifier';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import ImportSpecifier from "~/components/modules/ImportSpecifier";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface ImportDeclarationProps {
   debug?: boolean;
@@ -22,11 +22,11 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
     const code = `import ${
       namespaceSpecifier
         ? ` * as ${namespaceSpecifier}`
-        : defaultSpecifier || 'I'
+        : defaultSpecifier || "I"
     } from '${source}'`;
 
     function renderSpecifier(specifier: ReactNode) {
-      if (typeof specifier === 'string') {
+      if (typeof specifier === "string") {
         return <ImportSpecifier>{specifier}</ImportSpecifier>;
       }
       return specifier;
@@ -47,7 +47,7 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
       <Smart
         code={code}
         deletePaths={
-          defaultSpecifier || namespaceSpecifier ? undefined : 'specifiers.0'
+          defaultSpecifier || namespaceSpecifier ? undefined : "specifiers.0"
         }
         ref={mergedRef}
       >
@@ -56,11 +56,11 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 ImportDeclaration.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default ImportDeclaration;

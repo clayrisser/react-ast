@@ -1,54 +1,54 @@
-import React from 'react';
-import { render } from '~/index';
+import React from "react";
+import { render } from "~/index";
 import {
   ClassMethod,
   ClassMethodAccessibility,
   ClassProperty,
   ClassPropertyAccessibility,
   TypeParameterInstantiation,
-  TypeReference
-} from '~/components';
-import ClassDeclaration from './index';
+  TypeReference,
+} from "~/components";
+import ClassDeclaration from "./index";
 
-describe('<ClassDeclaration />', () => {
-  it('renders', () => {
+describe("<ClassDeclaration />", () => {
+  it("renders", () => {
     const code = render(<ClassDeclaration id="Hello" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('class Hello {}');
+    expect(code).toBe("class Hello {}");
   });
 
-  it('renders with type parameters', () => {
+  it("renders with type parameters", () => {
     const code = render(
       <ClassDeclaration
         id="Hello"
-        typeParameters={['A', <TypeReference name="B" />]}
+        typeParameters={["A", <TypeReference name="B" />]}
         debug
       />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('class Hello<A, B> {}');
+    expect(code).toBe("class Hello<A, B> {}");
   });
 
-  it('renders with type parameters as string', () => {
+  it("renders with type parameters as string", () => {
     const code = render(
       <ClassDeclaration id="Hello" typeParameters="T" debug />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('class Hello<T> {}');
+    expect(code).toBe("class Hello<T> {}");
   });
 
-  it('renders with nested type parameters', () => {
+  it("renders with nested type parameters", () => {
     const code = render(
       <ClassDeclaration
         id="Hello"
@@ -65,14 +65,14 @@ describe('<ClassDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('class Hello<T<A, B>> {}');
+    expect(code).toBe("class Hello<T<A, B>> {}");
   });
 
-  it('renders with super class', () => {
+  it("renders with super class", () => {
     const code = render(
       <ClassDeclaration
         id="Hello"
@@ -98,14 +98,14 @@ describe('<ClassDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('class Hello<T<A, B>> extends Howdy<A<B, C>> {}');
+    expect(code).toBe("class Hello<T<A, B>> extends Howdy<A<B, C>> {}");
   });
 
-  it('renders with class properties', () => {
+  it("renders with class properties", () => {
     const code = render(
       <ClassDeclaration id="Hello" debug>
         <ClassProperty
@@ -119,16 +119,16 @@ describe('<ClassDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`class Hello {
   protected hello: T = "world";
 }`);
   });
 
-  it('renders with class methods', () => {
+  it("renders with class methods", () => {
     const code = render(
       <ClassDeclaration id="Hello" debug>
         <ClassMethod
@@ -140,16 +140,16 @@ describe('<ClassDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`class Hello {
   protected hello(): T {}
 }`);
   });
 
-  it('renders with class properties and methods', () => {
+  it("renders with class properties and methods", () => {
     const code = render(
       <ClassDeclaration id="Hello" debug>
         <ClassProperty
@@ -168,9 +168,9 @@ describe('<ClassDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`class Hello {
   protected hello: T = "world";

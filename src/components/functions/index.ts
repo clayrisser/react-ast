@@ -1,19 +1,19 @@
-import ArrowFunctionExpression from './ArrowFunctionExpression';
-import Function from './Function';
-import FunctionDeclaration from './FunctionDeclaration';
-import Return from './Return';
-import ReturnStatement from './ReturnStatement';
+import ArrowFunctionExpression from "./ArrowFunctionExpression";
+import Function from "./Function";
+import FunctionDeclaration from "./FunctionDeclaration";
+import Return from "./Return";
+import ReturnStatement from "./ReturnStatement";
 
 export {
   ArrowFunctionExpression,
   Function,
   FunctionDeclaration,
   Return,
-  ReturnStatement
+  ReturnStatement,
 };
 
-export * from './ArrowFunctionExpression';
-export * from './Function';
-export * from './FunctionDeclaration';
-export * from './Return';
-export * from './ReturnStatement';
+export * from "./ArrowFunctionExpression";
+export * from "./Function";
+export * from "./FunctionDeclaration";
+export * from "./Return";
+export * from "./ReturnStatement";

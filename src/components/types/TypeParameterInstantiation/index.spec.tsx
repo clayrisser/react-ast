@@ -1,10 +1,10 @@
-import React from 'react';
-import { TypeReference } from '~/components';
-import { render } from '~/index';
-import TypeParameterInstantiation from './index';
+import React from "react";
+import { TypeReference } from "~/components";
+import { render } from "~/index";
+import TypeParameterInstantiation from "./index";
 
-describe('<TypeParameterInstantiation />', () => {
-  it('renders with children ', () => {
+describe("<TypeParameterInstantiation />", () => {
+  it("renders with children ", () => {
     const code = render(
       <TypeParameterInstantiation debug>
         <TypeReference name="A" />
@@ -13,23 +13,23 @@ describe('<TypeParameterInstantiation />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('<A, B>');
+    expect(code).toBe("<A, B>");
   });
 
-  it('renders with children as string', () => {
+  it("renders with children as string", () => {
     const code = render(
       <TypeParameterInstantiation debug>T</TypeParameterInstantiation>,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('<T>');
+    expect(code).toBe("<T>");
   });
 });

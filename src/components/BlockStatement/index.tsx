@@ -1,10 +1,10 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import Code from '~/components/Code';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import Code from "~/components/Code";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface BlockStatementProps {
   children?: ReactNode;
@@ -15,10 +15,10 @@ const BlockStatement = forwardRef<BaseElement, BlockStatementProps>(
   (props: BlockStatementProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = '{}';
+    const code = "{}";
 
     function renderChildren() {
-      if (typeof children === 'string') {
+      if (typeof children === "string") {
         return <Code>{children}</Code>;
       }
       return children;
@@ -31,7 +31,7 @@ const BlockStatement = forwardRef<BaseElement, BlockStatementProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 BlockStatement.defaultProps = { debug: false };

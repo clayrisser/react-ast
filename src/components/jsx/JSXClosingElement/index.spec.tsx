@@ -1,15 +1,15 @@
-import React from 'react';
-import { render } from '~/index';
-import JSXClosingElement from './index';
+import React from "react";
+import { render } from "~/index";
+import JSXClosingElement from "./index";
 
-describe('<JSXClosingElement />', () => {
-  it('renders closing element', () => {
+describe("<JSXClosingElement />", () => {
+  it("renders closing element", () => {
     const code = render(<JSXClosingElement name="Hello" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('</Hello>');
+    expect(code).toBe("</Hello>");
   });
 });

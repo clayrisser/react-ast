@@ -1,13 +1,13 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import BlockStatement from '~/components/BlockStatement';
-import Code from '~/components/Code';
-import Identifier from '~/components/Identifier';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import TypeAnnotation from '~/components/types/TypeAnnotation';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import BlockStatement from "~/components/BlockStatement";
+import Code from "~/components/Code";
+import Identifier from "~/components/Identifier";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import TypeAnnotation from "~/components/types/TypeAnnotation";
+import { debugRef } from "~/util";
 
 export interface ClassMethodProps {
   accessibility?: ClassMethodAccessibility;
@@ -23,12 +23,12 @@ const ClassMethod = forwardRef<BaseElement, ClassMethodProps>(
   (props: ClassMethodProps, forwardedRef: Ref<BaseElement>) => {
     const { accessibility, children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `class C { ${accessibility ? `${accessibility} ` : ''}${
-      props.static ? 'static ' : ''
-    }${id}()${returnType ? ': T' : ''} {} }`;
+    const code = `class C { ${accessibility ? `${accessibility} ` : ""}${
+      props.static ? "static " : ""
+    }${id}()${returnType ? ": T" : ""} {} }`;
 
     function renderChildren() {
-      if (typeof children === 'string') {
+      if (typeof children === "string") {
         return <Code>{children}</Code>;
       }
       return children;
@@ -38,7 +38,7 @@ const ClassMethod = forwardRef<BaseElement, ClassMethodProps>(
       if (!returnType) return null;
       return (
         <ParentBodyPathProvider value="returnType">
-          {typeof returnType === 'string' ? (
+          {typeof returnType === "string" ? (
             <TypeAnnotation>{returnType}</TypeAnnotation>
           ) : (
             returnType
@@ -53,7 +53,7 @@ const ClassMethod = forwardRef<BaseElement, ClassMethodProps>(
       return (
         <ParentBodyPathProvider value="params">
           {params.map((param: ReactNode) => {
-            if (typeof param === 'string') {
+            if (typeof param === "string") {
               return <Identifier>{param}</Identifier>;
             }
             return param;
@@ -76,17 +76,17 @@ const ClassMethod = forwardRef<BaseElement, ClassMethodProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 export enum ClassMethodAccessibility {
-  Private = 'private',
-  Protected = 'protected',
-  Public = 'public'
+  Private = "private",
+  Protected = "protected",
+  Public = "public",
 }
 
 ClassMethod.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default ClassMethod;

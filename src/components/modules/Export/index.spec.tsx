@@ -1,79 +1,79 @@
-import React from 'react';
+import React from "react";
 import {
   ExportSpecifier,
   VariableDeclaration,
   VariableDeclarator,
-  ArrowFunctionExpression
-} from '~/components';
-import { render } from '~/index';
-import Export from './index';
+  ArrowFunctionExpression,
+} from "~/components";
+import { render } from "~/index";
+import Export from "./index";
 
-describe('<Export />', () => {
-  it('renders empty named declaration', () => {
+describe("<Export />", () => {
+  it("renders empty named declaration", () => {
     const code = render(<Export debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('export {};');
+    expect(code).toBe("export {};");
   });
 
-  it('renders with specifier', () => {
+  it("renders with specifier", () => {
     const code = render(
       <Export exports={<ExportSpecifier>hello</ExportSpecifier>} debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('export { hello };');
+    expect(code).toBe("export { hello };");
   });
 
-  it('renders with exports', () => {
+  it("renders with exports", () => {
     const code = render(
       <Export
         exports={[
           <ExportSpecifier>hello</ExportSpecifier>,
-          <ExportSpecifier>world</ExportSpecifier>
+          <ExportSpecifier>world</ExportSpecifier>,
         ]}
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('export { hello, world };');
+    expect(code).toBe("export { hello, world };");
   });
 
-  it('renders with specifier as string', () => {
+  it("renders with specifier as string", () => {
     const code = render(<Export exports="hello" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('export { hello };');
+    expect(code).toBe("export { hello };");
   });
 
-  it('renders with exports as string', () => {
-    const code = render(<Export exports={['hello', 'world']} debug />, {
-      prettier: false
+  it("renders with exports as string", () => {
+    const code = render(<Export exports={["hello", "world"]} debug />, {
+      prettier: false,
     });
-    expect(code).toBe('export { hello, world };');
+    expect(code).toBe("export { hello, world };");
   });
 
-  it('renders with exports and from', () => {
+  it("renders with exports and from", () => {
     const code = render(
-      <Export exports={['hello', 'world']} from="./world" debug />,
+      <Export exports={["hello", "world"]} from="./world" debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("export { hello, world } from './world';");
   });
 
-  it('renders with from', () => {
+  it("renders with from", () => {
     const code = render(<Export from="world" debug />, {
-      prettier: false
+      prettier: false,
     });
     expect(code).toBe("export {} from 'world';");
   });
 
-  it('renders with children', () => {
+  it("renders with children", () => {
     const code = render(
       <Export debug>
         <VariableDeclaration>
@@ -83,21 +83,21 @@ describe('<Export />', () => {
         </VariableDeclaration>
       </Export>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('export var hello = () => {};');
+    expect(code).toBe("export var hello = () => {};");
   });
 
-  it('renders default export with children', () => {
+  it("renders default export with children", () => {
     const code = render(
       <Export default debug>
         <ArrowFunctionExpression />
       </Export>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('export default (() => {});');
+    expect(code).toBe("export default (() => {});");
   });
 });

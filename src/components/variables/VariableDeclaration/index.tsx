@@ -1,9 +1,9 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface VariableDeclarationProps {
   children?: ReactNode;
@@ -28,18 +28,18 @@ const VariableDeclaration = forwardRef<BaseElement, VariableDeclarationProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 export enum VariableDeclarationKind {
-  Const = 'const',
-  Let = 'let',
-  Var = 'var'
+  Const = "const",
+  Let = "let",
+  Var = "var",
 }
 
 VariableDeclaration.defaultProps = {
   debug: false,
-  kind: VariableDeclarationKind.Var
+  kind: VariableDeclarationKind.Var,
 };
 
 export default VariableDeclaration;

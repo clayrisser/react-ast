@@ -1,7 +1,7 @@
-import { GeneratorOptions } from '@babel/generator';
-import { Node as BabelNode, Comment, SourceLocation } from '@babel/types';
-import { Options as PrettierOptions } from 'prettier';
-import { TemplateBuilderOptions } from '@babel/template';
+import { GeneratorOptions } from "@babel/generator";
+import { Node as BabelNode, Comment, SourceLocation } from "@babel/types";
+import { Options as PrettierOptions } from "prettier";
+import { TemplateBuilderOptions } from "@babel/template";
 
 export interface HashMap<T = any> {
   [key: string]: T;
@@ -14,7 +14,7 @@ export interface BaseNode {
   start: number | null;
   end: number | null;
   loc: SourceLocation | null;
-  type: BabelNode['type'];
+  type: BabelNode["type"];
 }
 
 export type BundleType = 0 | 1;

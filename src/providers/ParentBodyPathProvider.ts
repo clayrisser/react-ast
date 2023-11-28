@@ -1,3 +1,3 @@
-import ParentBodyPathContext from '~/contexts/parentBodyPath';
+import ParentBodyPathContext from "~/contexts/parentBodyPath";
 
 export default ParentBodyPathContext.Provider;

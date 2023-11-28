@@ -1,31 +1,31 @@
-import React from 'react';
-import { render } from '~/index';
+import React from "react";
+import { render } from "~/index";
 import {
   Identifier,
   TypeAnnotation,
   TypeParameterInstantiation,
   TypeReference,
   VariableDeclaration,
-  VariableDeclarator
-} from '~/components';
-import ClassMethod, { ClassMethodAccessibility } from './index';
+  VariableDeclarator,
+} from "~/components";
+import ClassMethod, { ClassMethodAccessibility } from "./index";
 
-describe('<ClassMethod />', () => {
-  it('renders empty method', () => {
+describe("<ClassMethod />", () => {
+  it("renders empty method", () => {
     const code = render(<ClassMethod id="hello" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('hello() {}');
+    expect(code).toBe("hello() {}");
   });
 
-  it('renders with static', () => {
+  it("renders with static", () => {
     const code = render(<ClassMethod static id="hello" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('static hello() {}');
+    expect(code).toBe("static hello() {}");
   });
 
-  it('renders with accessibility', () => {
+  it("renders with accessibility", () => {
     const code = render(
       <ClassMethod
         id="hello"
@@ -35,14 +35,14 @@ describe('<ClassMethod />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('private hello() {}');
+    expect(code).toBe("private hello() {}");
   });
 
-  it('renders with static accessibility', () => {
+  it("renders with static accessibility", () => {
     const code = render(
       <ClassMethod
         static
@@ -53,14 +53,14 @@ describe('<ClassMethod />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('private static hello() {}');
+    expect(code).toBe("private static hello() {}");
   });
 
-  it('renders with nested return type', () => {
+  it("renders with nested return type", () => {
     const code = render(
       <ClassMethod
         id="hello"
@@ -79,27 +79,27 @@ describe('<ClassMethod />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('hello(): T<A, B> {}');
+    expect(code).toBe("hello(): T<A, B> {}");
   });
 
-  it('renders with return type as string', () => {
+  it("renders with return type as string", () => {
     const code = render(
       <ClassMethod id="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('hello(): T<A, B, C> {}');
+    expect(code).toBe("hello(): T<A, B, C> {}");
   });
 
-  it('renders with nested children', () => {
+  it("renders with nested children", () => {
     const code = render(
       <ClassMethod id="hello" debug>
         <VariableDeclaration debug>
@@ -115,40 +115,40 @@ describe('<ClassMethod />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`hello() {
   var v: T = "hello";
 }`);
   });
 
-  it('renders with params as string', () => {
+  it("renders with params as string", () => {
     const code = render(
-      <ClassMethod id="hello" params={['a', 'b', 'c']} debug />,
+      <ClassMethod id="hello" params={["a", "b", "c"]} debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello(a, b, c) {}');
+    expect(code).toBe("hello(a, b, c) {}");
   });
 
-  it('renders with children as string', () => {
+  it("renders with children as string", () => {
     const code = render(
       <ClassMethod id="hello" debug>
         const hello = 0;
       </ClassMethod>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe(`hello() {
   const hello = 0;
 }`);
   });
 
-  it('renders with typed params', () => {
+  it("renders with typed params", () => {
     const code = render(
       <ClassMethod
         id="hello"
@@ -169,24 +169,24 @@ describe('<ClassMethod />', () => {
             }
           >
             c
-          </Identifier>
+          </Identifier>,
         ]}
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello(a: A, b: T<A, B>, c: T<A, B, C>) {}');
+    expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>) {}");
   });
 
-  it('renders with all props', () => {
+  it("renders with all props", () => {
     const code = render(
       <ClassMethod
         returnType="T<A, B>"
         params={[
           <Identifier typeAnnotation="A">a</Identifier>,
-          <Identifier typeAnnotation="B">b</Identifier>
+          <Identifier typeAnnotation="B">b</Identifier>,
         ]}
         id="hello"
         debug
@@ -204,9 +204,9 @@ describe('<ClassMethod />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`hello(a: A, b: B): T<A, B> {
   var v: T = "hello";

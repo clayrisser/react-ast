@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import _get from 'lodash.get';
-import _set from 'lodash.set';
-import { ParserOptions } from '@babel/parser';
-import { BaseNode, HashMap, Path, Node, Instance, Props } from '~/types';
-import { flattenPath } from '~/util';
+import PropTypes from "prop-types";
+import _get from "lodash.get";
+import _set from "lodash.set";
+import { ParserOptions } from "@babel/parser";
+import { BaseNode, HashMap, Path, Node, Instance, Props } from "~/types";
+import { flattenPath } from "~/util";
 
 export interface IElement<P = Props> {
   new (props?: P, parserOptions?: ParserOptions): BaseElement;
@@ -28,8 +28,8 @@ export default class BaseElement implements Instance {
   children: BaseElement[] = [];
 
   meta: Meta = {
-    bodyPath: 'body',
-    parentBodyPath: null
+    bodyPath: "body",
+    parentBodyPath: null,
   };
 
   getBodyPath(path?: Path | null): string {
@@ -38,7 +38,7 @@ export default class BaseElement implements Instance {
 
   getBody(
     body: BaseNode | BaseNode[],
-    path?: Path | null
+    path?: Path | null,
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
     if (!bodyPath.length) return body;
@@ -48,7 +48,7 @@ export default class BaseElement implements Instance {
   setBody(
     body: BaseNode | BaseNode[],
     value: BaseNode | BaseNode[],
-    path?: Path | null
+    path?: Path | null,
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
     if (!bodyPath.length) return body;
@@ -58,13 +58,13 @@ export default class BaseElement implements Instance {
   constructor(
     baseNode: BaseNode | BaseNode[],
     props: Props = {},
-    meta?: Partial<Meta>
+    meta?: Partial<Meta>,
   ) {
-    if (Array.isArray(baseNode)) throw new Error('cannot be array');
+    if (Array.isArray(baseNode)) throw new Error("cannot be array");
     if (meta) {
       this.meta = {
         ...this.meta,
-        ...meta
+        ...meta,
       };
     }
     this.node = baseNode;
@@ -95,7 +95,7 @@ export default class BaseElement implements Instance {
   commitUpdate(newProps: Props) {
     this.props = {
       ...this.props,
-      ...newProps
+      ...newProps,
     };
   }
 
@@ -104,11 +104,11 @@ export default class BaseElement implements Instance {
     const { defaultProps, propTypes } = this.constructor as IElement;
     Object.keys(defaultProps).forEach((key) => {
       const defaultProp = defaultProps[key];
-      if (typeof props[key] === 'undefined' || props[key] === null) {
+      if (typeof props[key] === "undefined" || props[key] === null) {
         props[key] = defaultProp;
       }
     });
-    PropTypes.checkPropTypes(propTypes, props, 'prop', this.constructor.name);
+    PropTypes.checkPropTypes(propTypes, props, "prop", this.constructor.name);
     return props;
   }
 }

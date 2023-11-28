@@ -1,21 +1,21 @@
-import React from 'react';
-import { render, renderAst } from '~/index';
+import React from "react";
+import { render, renderAst } from "~/index";
 import {
   TypeAnnotation,
   TypeParameterInstantiation,
-  TypeReference
-} from '~/components';
-import Identifier from './index';
+  TypeReference,
+} from "~/components";
+import Identifier from "./index";
 
-describe('<Identifier />', () => {
-  it('renders', () => {
+describe("<Identifier />", () => {
+  it("renders", () => {
     const code = render(<Identifier debug>i</Identifier>, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('i');
+    expect(code).toBe("i");
   });
 
-  it('renders with nested type annotation', () => {
+  it("renders with nested type annotation", () => {
     const code = renderAst(
       <Identifier
         typeAnnotation={
@@ -35,51 +35,51 @@ describe('<Identifier />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toMatchObject({
       program: {
         body: [
           {
-            name: 'i',
-            type: 'Identifier',
+            name: "i",
+            type: "Identifier",
             typeAnnotation: {
-              type: 'TSTypeAnnotation',
+              type: "TSTypeAnnotation",
               typeAnnotation: {
-                type: 'TSTypeReference',
+                type: "TSTypeReference",
                 typeName: {
-                  name: 'T',
-                  type: 'Identifier'
+                  name: "T",
+                  type: "Identifier",
                 },
                 typeParameters: {
                   params: [
                     {
-                      type: 'TSTypeReference',
+                      type: "TSTypeReference",
                       typeName: {
-                        name: 'A',
-                        type: 'Identifier'
-                      }
+                        name: "A",
+                        type: "Identifier",
+                      },
                     },
                     {
-                      type: 'TSTypeReference',
+                      type: "TSTypeReference",
                       typeName: {
-                        name: 'B',
-                        type: 'Identifier'
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      }
+                        name: "B",
+                        type: "Identifier",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        ],
+      },
     });
   });
 
-  it('renders with nested type annotation as string', () => {
+  it("renders with nested type annotation as string", () => {
     const code = renderAst(
       <Identifier typeAnnotation="T<A, B, C>" debug>
         i
@@ -87,54 +87,54 @@ describe('<Identifier />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toMatchObject({
       program: {
         body: [
           {
-            name: 'i',
-            type: 'Identifier',
+            name: "i",
+            type: "Identifier",
             typeAnnotation: {
-              type: 'TSTypeAnnotation',
+              type: "TSTypeAnnotation",
               typeAnnotation: {
-                type: 'TSTypeReference',
+                type: "TSTypeReference",
                 typeName: {
-                  name: 'T',
-                  type: 'Identifier'
+                  name: "T",
+                  type: "Identifier",
                 },
                 typeParameters: {
                   params: [
                     {
-                      type: 'TSTypeReference',
+                      type: "TSTypeReference",
                       typeName: {
-                        name: 'A',
-                        type: 'Identifier'
-                      }
+                        name: "A",
+                        type: "Identifier",
+                      },
                     },
                     {
-                      type: 'TSTypeReference',
+                      type: "TSTypeReference",
                       typeName: {
-                        name: 'B',
-                        type: 'Identifier'
-                      }
+                        name: "B",
+                        type: "Identifier",
+                      },
                     },
                     {
-                      type: 'TSTypeReference',
+                      type: "TSTypeReference",
                       typeName: {
-                        name: 'C',
-                        type: 'Identifier'
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      }
+                        name: "C",
+                        type: "Identifier",
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        ],
+      },
     });
   });
 });

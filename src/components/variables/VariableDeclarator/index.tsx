@@ -1,10 +1,10 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import TypeAnnotation from '~/components/types/TypeAnnotation';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import TypeAnnotation from "~/components/types/TypeAnnotation";
+import { debugRef } from "~/util";
 
 export interface VariableDeclaratorProps {
   debug?: boolean;
@@ -18,24 +18,24 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
     const { children, debug, id, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const isComponent = (() => {
-      if (typeof children === 'undefined') return false;
+      if (typeof children === "undefined") return false;
       const childrenKeys = new Set(Object.keys(children || {}));
       return (
-        childrenKeys.has('$$typeof') &&
-        childrenKeys.has('key') &&
-        childrenKeys.has('props') &&
-        childrenKeys.has('ref') &&
-        childrenKeys.has('type')
+        childrenKeys.has("$$typeof") &&
+        childrenKeys.has("key") &&
+        childrenKeys.has("props") &&
+        childrenKeys.has("ref") &&
+        childrenKeys.has("type")
       );
     })();
-    const code = `var ${id}${typeAnnotation ? ': T' : ''}${
-      typeof children !== 'undefined' && !isComponent
+    const code = `var ${id}${typeAnnotation ? ": T" : ""}${
+      typeof children !== "undefined" && !isComponent
         ? ` = ${JSON.stringify(children)}`
-        : ''
+        : ""
     }`;
 
     function renderChildren() {
-      if (!isComponent || typeof children === 'undefined') return null;
+      if (!isComponent || typeof children === "undefined") return null;
       return (
         <ParentBodyPathProvider value="init">{children}</ParentBodyPathProvider>
       );
@@ -45,7 +45,7 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
       if (!typeAnnotation) return null;
       return (
         <ParentBodyPathProvider value="id.typeAnnotation">
-          {typeof typeAnnotation === 'string' ? (
+          {typeof typeAnnotation === "string" ? (
             <TypeAnnotation>{typeAnnotation}</TypeAnnotation>
           ) : (
             typeAnnotation
@@ -61,7 +61,7 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
         {renderChildren()}
       </Smart>
     );
-  }
+  },
 );
 
 VariableDeclarator.defaultProps = { debug: false };

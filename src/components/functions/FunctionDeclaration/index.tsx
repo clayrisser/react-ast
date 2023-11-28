@@ -1,13 +1,13 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import BlockStatement from '~/components/BlockStatement';
-import Code from '~/components/Code';
-import Identifier from '~/components/Identifier';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import TypeAnnotation from '~/components/types/TypeAnnotation';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import BlockStatement from "~/components/BlockStatement";
+import Code from "~/components/Code";
+import Identifier from "~/components/Identifier";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import TypeAnnotation from "~/components/types/TypeAnnotation";
+import { debugRef } from "~/util";
 
 export interface FunctionDeclarationProps {
   children?: ReactNode;
@@ -22,12 +22,12 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
   (props: FunctionDeclarationProps, forwardedRef: Ref<BaseElement>) => {
     const { children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `var f = ${props.async ? 'async' : ''} function ${id || ''}()${
-      returnType ? ': T' : ''
+    const code = `var f = ${props.async ? "async" : ""} function ${id || ""}()${
+      returnType ? ": T" : ""
     } {}`;
 
     function renderChildren() {
-      if (typeof children === 'string') {
+      if (typeof children === "string") {
         return <Code>{children}</Code>;
       }
       return children;
@@ -37,7 +37,7 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
       if (!returnType) return null;
       return (
         <ParentBodyPathProvider value="returnType">
-          {typeof returnType === 'string' ? (
+          {typeof returnType === "string" ? (
             <TypeAnnotation>{returnType}</TypeAnnotation>
           ) : (
             returnType
@@ -52,7 +52,7 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
       return (
         <ParentBodyPathProvider value="params">
           {params.map((param: ReactNode) => {
-            if (typeof param === 'string') {
+            if (typeof param === "string") {
               return <Identifier>{param}</Identifier>;
             }
             return param;
@@ -75,11 +75,11 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 FunctionDeclaration.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default FunctionDeclaration;

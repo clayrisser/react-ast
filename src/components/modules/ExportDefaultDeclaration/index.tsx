@@ -1,10 +1,10 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import Code from '~/components/Code';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import Code from "~/components/Code";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface ExportDefaultDeclarationProps {
   children: ReactNode;
@@ -17,10 +17,10 @@ const ExportDefaultDeclaration = forwardRef<
 >((props: ExportDefaultDeclarationProps, forwardedRef: Ref<BaseElement>) => {
   const { children, debug } = props;
   const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-  const code = 'export default d';
+  const code = "export default d";
 
   function renderChildren() {
-    if (typeof children === 'string') {
+    if (typeof children === "string") {
       return <Code>{children}</Code>;
     }
     return children;
@@ -41,7 +41,7 @@ const ExportDefaultDeclaration = forwardRef<
 });
 
 ExportDefaultDeclaration.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default ExportDefaultDeclaration;

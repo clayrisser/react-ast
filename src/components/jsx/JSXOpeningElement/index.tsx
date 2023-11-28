@@ -1,10 +1,10 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import JSXAttribute from '~/components/jsx/JSXAttribute';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import JSXAttribute from "~/components/jsx/JSXAttribute";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface JSXOpeningElementProps {
   attributes?: ReactNode;
@@ -17,21 +17,21 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
   (props: JSXOpeningElementProps, forwardedRef: Ref<BaseElement>) => {
     const { attributes, debug, name, selfClosing } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `<${typeof name === 'undefined' ? '' : name}${
-      typeof name !== 'undefined' && selfClosing
-        ? ' /'
-        : `></${typeof name === 'undefined' ? '' : name}`
+    const code = `<${typeof name === "undefined" ? "" : name}${
+      typeof name !== "undefined" && selfClosing
+        ? " /"
+        : `></${typeof name === "undefined" ? "" : name}`
     }>`;
 
     function isComponent(value: ReactNode) {
-      if (typeof value === 'undefined') return false;
+      if (typeof value === "undefined") return false;
       const childrenKeys = new Set(Object.keys(value || {}));
       return (
-        childrenKeys.has('$$typeof') &&
-        childrenKeys.has('key') &&
-        childrenKeys.has('props') &&
-        childrenKeys.has('ref') &&
-        childrenKeys.has('type')
+        childrenKeys.has("$$typeof") &&
+        childrenKeys.has("key") &&
+        childrenKeys.has("props") &&
+        childrenKeys.has("ref") &&
+        childrenKeys.has("type")
       );
     }
 
@@ -43,7 +43,7 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
           </JSXAttribute>
         );
       }
-      if (typeof attribute === 'string') {
+      if (typeof attribute === "string") {
         return <JSXAttribute name={attribute} />;
       }
       if (isComponent(attribute)) return attribute;
@@ -52,18 +52,18 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
 
     function renderAttributes() {
       if (!attributes) return null;
-      if (typeof attributes === 'string') {
+      if (typeof attributes === "string") {
         return <JSXAttribute name={attributes} />;
       }
       if (isComponent(attributes)) return attributes;
       if (Array.isArray(attributes)) {
         return attributes.map((attribute: ReactNode) =>
-          renderAttribute(attribute)
+          renderAttribute(attribute),
         );
       }
-      if (typeof attributes === 'object') {
+      if (typeof attributes === "object") {
         return Object.entries(attributes).map(([name, attribute]) =>
-          renderAttribute(attribute, name)
+          renderAttribute(attribute, name),
         );
       }
       return null;
@@ -81,12 +81,12 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 JSXOpeningElement.defaultProps = {
   debug: false,
-  selfClosing: false
+  selfClosing: false,
 };
 
 export default JSXOpeningElement;

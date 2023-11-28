@@ -1,14 +1,14 @@
-import _get from 'lodash.get';
-import { flattenPath } from '~/util';
-import BaseElement from './BaseElement';
+import _get from "lodash.get";
+import { flattenPath } from "~/util";
+import BaseElement from "./BaseElement";
 
 export default class Ast extends BaseElement {
-  static defaultProps: Partial<JSX.IntrinsicElements['Ast']> = {
-    bodyPath: 'body',
-    scopePath: ''
+  static defaultProps: Partial<JSX.IntrinsicElements["Ast"]> = {
+    bodyPath: "body",
+    scopePath: "",
   };
 
-  constructor(props: JSX.IntrinsicElements['Ast']) {
+  constructor(props: JSX.IntrinsicElements["Ast"]) {
     const baseNode = props.ast;
     const scopePath = flattenPath(props.scopePath);
     super(
@@ -17,9 +17,9 @@ export default class Ast extends BaseElement {
         : baseNode,
       props,
       {
-        bodyPath: props.bodyPath || 'body',
-        parentBodyPath: props.parentBodyPath
-      }
+        bodyPath: props.bodyPath || "body",
+        parentBodyPath: props.parentBodyPath,
+      },
     );
   }
 }

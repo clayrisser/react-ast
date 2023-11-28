@@ -1,15 +1,15 @@
-import React from 'react';
-import { JSX } from '~/components';
-import { render } from '~/index';
-import FunctionalComponent from './index';
+import React from "react";
+import { JSX } from "~/components";
+import { render } from "~/index";
+import FunctionalComponent from "./index";
 
-describe('<FunctionalComponent />', () => {
-  it('renders functional component', () => {
+describe("<FunctionalComponent />", () => {
+  it("renders functional component", () => {
     const code = render(<FunctionalComponent name="Hello" />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
     expect(code).toBe(`import React, { FC } from 'react';
 export interface HelloProps {}
@@ -22,7 +22,7 @@ Hello.defaultProps = {}
 export default Hello;`);
   });
 
-  it('renders functional component with children', () => {
+  it("renders functional component with children", () => {
     const code = render(
       <FunctionalComponent name="Hello">
         <JSX>
@@ -32,9 +32,9 @@ export default Hello;`);
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`import React, { FC } from 'react';
 export interface HelloProps {}

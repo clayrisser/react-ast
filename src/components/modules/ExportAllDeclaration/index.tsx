@@ -1,8 +1,8 @@
-import React, { Ref, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface ExportAllDeclarationProps {
   debug?: boolean;
@@ -16,11 +16,11 @@ const ExportAllDeclaration = forwardRef<BaseElement, ExportAllDeclarationProps>(
     const code = `export * from '${source}'`;
 
     return <Smart code={code} ref={mergedRef} />;
-  }
+  },
 );
 
 ExportAllDeclaration.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default ExportAllDeclaration;

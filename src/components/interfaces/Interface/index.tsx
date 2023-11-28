@@ -1,12 +1,12 @@
-import React, { Ref, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import { debugRef } from '~/util';
+import React, { Ref, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import { debugRef } from "~/util";
 import InterfaceDeclaration, {
-  InterfaceDeclarationProps
-} from '~/components/interfaces/InterfaceDeclaration';
+  InterfaceDeclarationProps,
+} from "~/components/interfaces/InterfaceDeclaration";
 
-export interface InterfaceProps extends Omit<InterfaceDeclarationProps, 'id'> {
+export interface InterfaceProps extends Omit<InterfaceDeclarationProps, "id"> {
   name: string;
 }
 
@@ -19,11 +19,11 @@ const Interface = forwardRef<BaseElement, InterfaceProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
 
     return <InterfaceDeclaration {...clonedProps} id={name} ref={mergedRef} />;
-  }
+  },
 );
 
 Interface.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default Interface;

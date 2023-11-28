@@ -1,9 +1,9 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface AssignmentExpressionProps {
   children?: ReactNode;
@@ -19,21 +19,21 @@ const AssignmentExpression = forwardRef<BaseElement, AssignmentExpressionProps>(
     const leftIsComponent = isComponent(left);
 
     function isComponent(value: ReactNode): boolean {
-      if (typeof value === 'undefined') return false;
+      if (typeof value === "undefined") return false;
       const valueKeys = new Set(Object.keys(value || {}));
       return (
-        valueKeys.has('$$typeof') &&
-        valueKeys.has('key') &&
-        valueKeys.has('props') &&
-        valueKeys.has('ref') &&
-        valueKeys.has('type')
+        valueKeys.has("$$typeof") &&
+        valueKeys.has("key") &&
+        valueKeys.has("props") &&
+        valueKeys.has("ref") &&
+        valueKeys.has("type")
       );
     }
 
-    const code = `${leftIsComponent ? 'l' : left} = ${
-      typeof children !== 'undefined' && !childrenIsComponent
+    const code = `${leftIsComponent ? "l" : left} = ${
+      typeof children !== "undefined" && !childrenIsComponent
         ? `${JSON.stringify(children)}`
-        : 'undefined'
+        : "undefined"
     }`;
 
     function renderChildren() {
@@ -52,7 +52,7 @@ const AssignmentExpression = forwardRef<BaseElement, AssignmentExpressionProps>(
       <Smart
         bodyPath="right"
         code={code}
-        deletePaths={leftIsComponent ? 'left' : undefined}
+        deletePaths={leftIsComponent ? "left" : undefined}
         ref={mergedRef}
         scopePath="expression"
       >
@@ -62,11 +62,11 @@ const AssignmentExpression = forwardRef<BaseElement, AssignmentExpressionProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 AssignmentExpression.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default AssignmentExpression;

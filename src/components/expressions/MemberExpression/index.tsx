@@ -1,9 +1,9 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface MemberExpressionProps {
   children: ReactNode;
@@ -20,7 +20,7 @@ const MemberExpression = forwardRef<BaseElement, MemberExpressionProps>(
     return (
       <Smart
         bodyPath="object"
-        deletePaths={typeof children === 'undefined' ? 'object' : undefined}
+        deletePaths={typeof children === "undefined" ? "object" : undefined}
         code={code}
         ref={mergedRef}
         scopePath="expression"
@@ -30,11 +30,11 @@ const MemberExpression = forwardRef<BaseElement, MemberExpressionProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 MemberExpression.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default MemberExpression;

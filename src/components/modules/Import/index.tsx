@@ -1,15 +1,15 @@
-import React, { forwardRef, Ref, ReactNode } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import { debugRef } from '~/util';
+import React, { forwardRef, Ref, ReactNode } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import { debugRef } from "~/util";
 import ImportDeclaration, {
-  ImportDeclarationProps
-} from '~/components/modules/ImportDeclaration';
+  ImportDeclarationProps,
+} from "~/components/modules/ImportDeclaration";
 
 export interface ImportProps
   extends Omit<
     ImportDeclarationProps,
-    'defaultSpecifier' | 'source' | 'specifiers' | 'namespaceSpecifier'
+    "defaultSpecifier" | "source" | "specifiers" | "namespaceSpecifier"
   > {
   default?: string;
   from?: string;
@@ -38,11 +38,11 @@ const Import = forwardRef<BaseElement, ImportProps>(
         specifiers={imports}
       />
     );
-  }
+  },
 );
 
 Import.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default Import;

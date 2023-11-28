@@ -1,8 +1,8 @@
-import React, { forwardRef, Ref } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { forwardRef, Ref } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface CodeProps {
   children: string;
@@ -15,11 +15,11 @@ const Code = forwardRef<BaseElement, CodeProps>(
     const { children, scopePath, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     return <Smart code={children} scopePath={scopePath} ref={mergedRef} />;
-  }
+  },
 );
 
 Code.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default Code;

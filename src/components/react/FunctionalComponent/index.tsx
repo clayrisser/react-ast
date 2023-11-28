@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from "react";
 import {
   Export,
   Expression,
@@ -11,8 +11,8 @@ import {
   TypeAnnotation,
   TypeReference,
   Var,
-  VarKind
-} from '~/components';
+  VarKind,
+} from "~/components";
 
 export interface FunctionalComponentProps {
   children?: ReactNode;
@@ -21,12 +21,12 @@ export interface FunctionalComponentProps {
 }
 
 const FunctionalComponent: FC<FunctionalComponentProps> = (
-  props: FunctionalComponentProps
+  props: FunctionalComponentProps,
 ) => {
   const { children, name } = props;
   return (
     <>
-      <Import default="React" imports={['FC']} from="react" />
+      <Import default="React" imports={["FC"]} from="react" />
       <Export>
         <Interface name={`${name}Props`} />
       </Export>
@@ -42,7 +42,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
               }
             >
               props
-            </Identifier>
+            </Identifier>,
           ]}
         >
           <Return>{children || <JSX />}</Return>
@@ -57,7 +57,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
 };
 
 FunctionalComponent.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default FunctionalComponent;

@@ -1,10 +1,10 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Identifier from '~/components/Identifier';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Identifier from "~/components/Identifier";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface CallExpressionProps {
   arguments?: ReactNode;
@@ -17,10 +17,10 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
   (props: CallExpressionProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `${typeof children === 'undefined' ? '' : 'a.'}${name}()`;
+    const code = `${typeof children === "undefined" ? "" : "a."}${name}()`;
 
     function renderArgument(argument: ReactNode) {
-      if (typeof argument === 'string') {
+      if (typeof argument === "string") {
         return <Identifier>{argument}</Identifier>;
       }
       return argument;
@@ -50,11 +50,11 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 CallExpression.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default CallExpression;

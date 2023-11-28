@@ -1,13 +1,13 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import BlockStatement from '~/components/BlockStatement';
-import Code from '~/components/Code';
-import Identifier from '~/components/Identifier';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import TypeAnnotation from '~/components/types/TypeAnnotation';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import BlockStatement from "~/components/BlockStatement";
+import Code from "~/components/Code";
+import Identifier from "~/components/Identifier";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import TypeAnnotation from "~/components/types/TypeAnnotation";
+import { debugRef } from "~/util";
 
 export interface MethodSignatureProps {
   children?: ReactNode;
@@ -21,10 +21,10 @@ const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
   (props: MethodSignatureProps, forwardedRef: Ref<BaseElement>) => {
     const { children, id, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `interface I { ${id}()${returnType ? ': T' : ''}; }`;
+    const code = `interface I { ${id}()${returnType ? ": T" : ""}; }`;
 
     function renderChildren() {
-      if (typeof children === 'string') {
+      if (typeof children === "string") {
         return <Code>{children}</Code>;
       }
       return children;
@@ -34,7 +34,7 @@ const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
       if (!returnType) return null;
       return (
         <ParentBodyPathProvider value="typeAnnotation">
-          {typeof returnType === 'string' ? (
+          {typeof returnType === "string" ? (
             <TypeAnnotation>{returnType}</TypeAnnotation>
           ) : (
             returnType
@@ -49,7 +49,7 @@ const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
       return (
         <ParentBodyPathProvider value="parameters">
           {params.map((param: ReactNode) => {
-            if (typeof param === 'string') {
+            if (typeof param === "string") {
               return <Identifier>{param}</Identifier>;
             }
             return param;
@@ -67,11 +67,11 @@ const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 MethodSignature.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default MethodSignature;

@@ -1,30 +1,30 @@
-import React from 'react';
-import { render } from '~/index';
-import { ImportSpecifier } from '~/components';
-import ImportDeclaration from './index';
+import React from "react";
+import { render } from "~/index";
+import { ImportSpecifier } from "~/components";
+import ImportDeclaration from "./index";
 
-describe('<ImportDeclaration />', () => {
-  it('renders with default specifier', () => {
+describe("<ImportDeclaration />", () => {
+  it("renders with default specifier", () => {
     const code = render(
       <ImportDeclaration defaultSpecifier="hello" source="world" debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import hello from 'world';");
   });
 
-  it('renders with namespace specifier', () => {
+  it("renders with namespace specifier", () => {
     const code = render(
       <ImportDeclaration namespaceSpecifier="hello" source="world" debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import * as hello from 'world';");
   });
 
-  it('renders with namespace specifier override', () => {
+  it("renders with namespace specifier override", () => {
     const code = render(
       <ImportDeclaration
         namespaceSpecifier="hello"
@@ -34,54 +34,54 @@ describe('<ImportDeclaration />', () => {
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import * as hello from 'world';");
   });
 
-  it('renders with specifier', () => {
+  it("renders with specifier", () => {
     const code = render(
       <ImportDeclaration specifiers="hello" source="world" debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import { hello } from 'world';");
   });
 
-  it('renders with specifiers', () => {
+  it("renders with specifiers", () => {
     const code = render(
       <ImportDeclaration
         specifiers={[
           <ImportSpecifier>hello</ImportSpecifier>,
-          <ImportSpecifier>howdy</ImportSpecifier>
+          <ImportSpecifier>howdy</ImportSpecifier>,
         ]}
         source="world"
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import { hello, howdy } from 'world';");
   });
 
-  it('renders with specifiers as string', () => {
+  it("renders with specifiers as string", () => {
     const code = render(
       <ImportDeclaration
-        specifiers={['hello', 'howdy']}
+        specifiers={["hello", "howdy"]}
         source="world"
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import { hello, howdy } from 'world';");
   });
 
-  it('renders with specifiers and default specifier', () => {
+  it("renders with specifiers and default specifier", () => {
     const code = render(
       <ImportDeclaration
         defaultSpecifier="hello"
@@ -90,8 +90,8 @@ describe('<ImportDeclaration />', () => {
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe("import hello, { howdy } from 'world';");
   });

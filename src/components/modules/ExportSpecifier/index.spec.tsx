@@ -1,24 +1,24 @@
-import React from 'react';
-import { render } from '~/index';
-import ExportSpecifier from './index';
+import React from "react";
+import { render } from "~/index";
+import ExportSpecifier from "./index";
 
-describe('<ExportSpecifier />', () => {
-  it('renders import specifier', () => {
+describe("<ExportSpecifier />", () => {
+  it("renders import specifier", () => {
     const code = render(<ExportSpecifier debug>hello</ExportSpecifier>, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('hello');
+    expect(code).toBe("hello");
   });
 
-  it('renders import specifier with local', () => {
+  it("renders import specifier with local", () => {
     const code = render(
       <ExportSpecifier local="world" debug>
         hello
       </ExportSpecifier>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello as world');
+    expect(code).toBe("hello as world");
   });
 });

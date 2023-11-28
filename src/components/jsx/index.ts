@@ -1,9 +1,9 @@
-import JSX from './JSX';
-import JSXAttribute from './JSXAttribute';
-import JSXClosingElement from './JSXClosingElement';
-import JSXElement from './JSXElement';
-import JSXExpressionContainer from './JSXExpressionContainer';
-import JSXOpeningElement from './JSXOpeningElement';
+import JSX from "./JSX";
+import JSXAttribute from "./JSXAttribute";
+import JSXClosingElement from "./JSXClosingElement";
+import JSXElement from "./JSXElement";
+import JSXExpressionContainer from "./JSXExpressionContainer";
+import JSXOpeningElement from "./JSXOpeningElement";
 
 export {
   JSX,
@@ -11,12 +11,12 @@ export {
   JSXClosingElement,
   JSXElement,
   JSXExpressionContainer,
-  JSXOpeningElement
+  JSXOpeningElement,
 };
 
-export * from './JSX';
-export * from './JSXAttribute';
-export * from './JSXClosingElement';
-export * from './JSXElement';
-export * from './JSXExpressionContainer';
-export * from './JSXOpeningElement';
+export * from "./JSX";
+export * from "./JSXAttribute";
+export * from "./JSXClosingElement";
+export * from "./JSXElement";
+export * from "./JSXExpressionContainer";
+export * from "./JSXOpeningElement";

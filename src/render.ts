@@ -1,18 +1,18 @@
-import * as t from '@babel/types';
-import generate from '@babel/generator';
-import parserBabel from 'prettier/parser-babel';
-import prettier from 'prettier/standalone';
-import { Options as PrettierOptions } from 'prettier';
-import Renderer from '~/reconciler';
-import { BundleType, Options } from '~/types';
-import { File } from '~/elements';
-import { dev } from '~/util';
-import { updateContext } from '~/context';
+import * as t from "@babel/types";
+import generate from "@babel/generator";
+import parserBabel from "prettier/parser-babel";
+import prettier from "prettier/standalone";
+import { Options as PrettierOptions } from "prettier";
+import Renderer from "~/reconciler";
+import { BundleType, Options } from "~/types";
+import { File } from "~/elements";
+import { dev } from "~/util";
+import { updateContext } from "~/context";
 
 export function renderAst(
   element: JSX.Element,
   options: Options = {},
-  ast: t.File = t.file(t.program([]), [], [])
+  ast: t.File = t.file(t.program([]), [], []),
 ): t.File {
   updateContext({ parserOptions: options.parserOptions || {} });
   const file = new File();
@@ -23,8 +23,8 @@ export function renderAst(
   });
   Renderer.injectIntoDevTools({
     bundleType: Number(dev) as BundleType,
-    rendererPackageName: 'react-ast',
-    version: '0.2'
+    rendererPackageName: "react-ast",
+    version: "0.2",
     // version: pkg.version
   });
   return file.node as t.File;
@@ -33,23 +33,23 @@ export function renderAst(
 export function render(
   element: JSX.Element,
   options: Options = {},
-  ast: t.File = t.file(t.program([]), [], [])
+  ast: t.File = t.file(t.program([]), [], []),
 ): string {
   options = {
     prettier: true,
-    ...options
+    ...options,
   };
   const { code } = generate(
     renderAst(element, options, ast),
-    options.generatorOptions || {}
+    options.generatorOptions || {},
   );
   if (options.prettier) {
     return prettier.format(code, {
-      ...(typeof options.prettier === 'boolean' ? {} : options.prettier),
+      ...(typeof options.prettier === "boolean" ? {} : options.prettier),
       plugins: [
         parserBabel,
-        ...((options?.prettier as PrettierOptions)?.plugins || [])
-      ]
+        ...((options?.prettier as PrettierOptions)?.plugins || []),
+      ],
     });
   }
   return code;

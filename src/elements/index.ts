@@ -1,9 +1,9 @@
-import Ast from './Ast';
-import ExpressionElement from './ExpressionElement';
-import File from './File';
-import Program from './Program';
-import SmartElement from './SmartElement';
-import { IElement } from './BaseElement';
+import Ast from "./Ast";
+import ExpressionElement from "./ExpressionElement";
+import File from "./File";
+import Program from "./Program";
+import SmartElement from "./SmartElement";
+import { IElement } from "./BaseElement";
 
 export interface Elements {
   [key: string]: IElement<any>;
@@ -16,5 +16,5 @@ export default {
   ExpressionElement,
   File,
   Program,
-  SmartElement
+  SmartElement,
 } as Elements;

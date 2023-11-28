@@ -1,8 +1,8 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface JSXClosingElementProps {
   arguments?: ReactNode;
@@ -14,8 +14,8 @@ const JSXClosingElement = forwardRef<BaseElement, JSXClosingElementProps>(
   (props: JSXClosingElementProps, forwardedRef: Ref<BaseElement>) => {
     const { debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `<${typeof name === 'undefined' ? '' : name}></${
-      typeof name === 'undefined' ? '' : name
+    const code = `<${typeof name === "undefined" ? "" : name}></${
+      typeof name === "undefined" ? "" : name
     }>`;
 
     return (
@@ -25,11 +25,11 @@ const JSXClosingElement = forwardRef<BaseElement, JSXClosingElementProps>(
         scopePath="expression.closingElement"
       />
     );
-  }
+  },
 );
 
 JSXClosingElement.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default JSXClosingElement;

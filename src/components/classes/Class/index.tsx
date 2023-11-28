@@ -1,15 +1,15 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import { debugRef } from "~/util";
 import ClassDeclaration, {
-  ClassDeclarationProps
-} from '~/components/classes/ClassDeclaration';
+  ClassDeclarationProps,
+} from "~/components/classes/ClassDeclaration";
 
 export interface ClassProps
   extends Omit<
     ClassDeclarationProps,
-    'superClass' | 'superTypeParameters' | 'id'
+    "superClass" | "superTypeParameters" | "id"
   > {
   extends?: ReactNode;
   extendsTypeParameters?: ReactNode;
@@ -35,11 +35,11 @@ const Class = forwardRef<BaseElement, ClassProps>(
         superTypeParameters={extendsTypeParameters}
       />
     );
-  }
+  },
 );
 
 Class.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default Class;

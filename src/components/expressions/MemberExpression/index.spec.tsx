@@ -1,10 +1,10 @@
-import React from 'react';
-import { render } from '~/index';
-import { Identifier } from '~/components';
-import MemberExpression from './index';
+import React from "react";
+import { render } from "~/index";
+import { Identifier } from "~/components";
+import MemberExpression from "./index";
 
-describe('<MemberExpression />', () => {
-  it('renders member expression with children', () => {
+describe("<MemberExpression />", () => {
+  it("renders member expression with children", () => {
     const code = render(
       <MemberExpression name="howdy" debug>
         <MemberExpression name="world">
@@ -12,9 +12,9 @@ describe('<MemberExpression />', () => {
         </MemberExpression>
       </MemberExpression>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello.world.howdy');
+    expect(code).toBe("hello.world.howdy");
   });
 });

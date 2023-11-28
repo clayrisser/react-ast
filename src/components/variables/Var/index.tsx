@@ -1,18 +1,18 @@
-import React, { Ref, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import { debugRef } from '~/util';
+import React, { Ref, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import { debugRef } from "~/util";
 import VariableDeclarator, {
-  VariableDeclaratorProps
-} from '~/components/variables/VariableDeclarator';
+  VariableDeclaratorProps,
+} from "~/components/variables/VariableDeclarator";
 import VariableDeclaration, {
   VariableDeclarationKind,
-  VariableDeclarationProps
-} from '~/components/variables/VariableDeclaration';
+  VariableDeclarationProps,
+} from "~/components/variables/VariableDeclaration";
 
 export interface VarProps
-  extends Omit<VariableDeclarationProps, 'children' | 'kind'>,
-    Omit<VariableDeclaratorProps, 'id'> {
+  extends Omit<VariableDeclarationProps, "children" | "kind">,
+    Omit<VariableDeclaratorProps, "id"> {
   kind?: VarKind;
   name: string;
 }
@@ -31,18 +31,18 @@ const Var = forwardRef<BaseElement, VarProps>(
         </VariableDeclarator>
       </VariableDeclaration>
     );
-  }
+  },
 );
 
 export enum VarKind {
   Const = VariableDeclarationKind.Const,
   Let = VariableDeclarationKind.Let,
-  Var = VariableDeclarationKind.Var
+  Var = VariableDeclarationKind.Var,
 }
 
 Var.defaultProps = {
   debug: false,
-  kind: VarKind.Var
+  kind: VarKind.Var,
 };
 
 export default Var;

@@ -1,30 +1,30 @@
-import React from 'react';
-import { Identifier } from '~/components';
-import { render } from '~/index';
-import ReturnStatement from './index';
+import React from "react";
+import { Identifier } from "~/components";
+import { render } from "~/index";
+import ReturnStatement from "./index";
 
-describe('<ReturnStatement />', () => {
-  it('renders return statement', () => {
+describe("<ReturnStatement />", () => {
+  it("renders return statement", () => {
     const code = render(
-      <ReturnStatement debug>{{ hello: 'world' }}</ReturnStatement>,
+      <ReturnStatement debug>{{ hello: "world" }}</ReturnStatement>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe(`return {
   "hello": "world"
 };`);
   });
 
-  it('renders return statement with children', () => {
+  it("renders return statement with children", () => {
     const code = render(
       <ReturnStatement debug>
         <Identifier>hello</Identifier>
       </ReturnStatement>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('return hello;');
+    expect(code).toBe("return hello;");
   });
 });

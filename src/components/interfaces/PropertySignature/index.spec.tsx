@@ -1,24 +1,24 @@
-import React from 'react';
-import { render } from '~/index';
+import React from "react";
+import { render } from "~/index";
 import {
   TypeAnnotation,
   TypeReference,
-  TypeParameterInstantiation
-} from '~/components';
-import PropertySignature from './index';
+  TypeParameterInstantiation,
+} from "~/components";
+import PropertySignature from "./index";
 
-describe('<PropertySignature />', () => {
-  it('renders', () => {
+describe("<PropertySignature />", () => {
+  it("renders", () => {
     const code = render(<PropertySignature id="p" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('p;');
+    expect(code).toBe("p;");
   });
 
-  it('renders with type annotation', () => {
+  it("renders with type annotation", () => {
     const code = render(
       <PropertySignature
         id="p"
@@ -28,14 +28,14 @@ describe('<PropertySignature />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T;');
+    expect(code).toBe("p: T;");
   });
 
-  it('renders with nested type annotation', () => {
+  it("renders with nested type annotation", () => {
     const code = render(
       <PropertySignature
         id="p"
@@ -54,23 +54,23 @@ describe('<PropertySignature />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T<A, B>;');
+    expect(code).toBe("p: T<A, B>;");
   });
 
-  it('renders with annotation as string', () => {
+  it("renders with annotation as string", () => {
     const code = render(
       <PropertySignature id="p" typeAnnotation="T<A>" debug />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T<A>;');
+    expect(code).toBe("p: T<A>;");
   });
 });

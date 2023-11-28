@@ -1,58 +1,58 @@
-import React from 'react';
-import { Identifier, ArrowFunctionExpression } from '~/components';
-import { render } from '~/index';
-import Expression from './index';
+import React from "react";
+import { Identifier, ArrowFunctionExpression } from "~/components";
+import { render } from "~/index";
+import Expression from "./index";
 
-describe('<Expression />', () => {
-  it('renders expression with properties', () => {
+describe("<Expression />", () => {
+  it("renders expression with properties", () => {
     const code = render(
-      <Expression properties={['hello', 'world', 'howdy']} debug />,
+      <Expression properties={["hello", "world", "howdy"]} debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello.world.howdy');
+    expect(code).toBe("hello.world.howdy");
   });
 
-  it('renders expression with properties as string', () => {
+  it("renders expression with properties as string", () => {
     const code = render(<Expression properties="howdy.hello.world" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('howdy.hello.world');
+    expect(code).toBe("howdy.hello.world");
   });
 
-  it('renders expression with property as string', () => {
+  it("renders expression with property as string", () => {
     const code = render(<Expression properties="howdy" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('howdy');
+    expect(code).toBe("howdy");
   });
 
-  it('renders called expression with property as string', () => {
+  it("renders called expression with property as string", () => {
     const code = render(<Expression properties="hello" call debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('hello()');
+    expect(code).toBe("hello()");
   });
 
-  it('renders called expression with properties', () => {
+  it("renders called expression with properties", () => {
     const code = render(
-      <Expression properties={['hello', 'world']} call debug />,
+      <Expression properties={["hello", "world"]} call debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello.world()');
+    expect(code).toBe("hello.world()");
   });
 
-  it('renders called expression with properties as string', () => {
+  it("renders called expression with properties as string", () => {
     const code = render(<Expression properties="howdy.texas" call debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('howdy.texas()');
+    expect(code).toBe("howdy.texas()");
   });
 
-  it('renders called expression with properties and argument', () => {
+  it("renders called expression with properties and argument", () => {
     const code = render(
       <Expression
         properties="hello.world"
@@ -61,72 +61,72 @@ describe('<Expression />', () => {
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello.world(a)');
+    expect(code).toBe("hello.world(a)");
   });
 
-  it('renders called expression with properties and arguments', () => {
+  it("renders called expression with properties and arguments", () => {
     const code = render(
       <Expression
-        properties={['hello', 'world']}
+        properties={["hello", "world"]}
         arguments={[<Identifier>a</Identifier>, <ArrowFunctionExpression />]}
         call
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello.world(a, () => {})');
+    expect(code).toBe("hello.world(a, () => {})");
   });
 
-  it('renders called expression with properties and argument as string', () => {
+  it("renders called expression with properties and argument as string", () => {
     const code = render(
       <Expression properties="howdy.texas" arguments="a" call debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('howdy.texas(a)');
+    expect(code).toBe("howdy.texas(a)");
   });
 
-  it('renders called expression with properties and arguments as string', () => {
+  it("renders called expression with properties and arguments as string", () => {
     const code = render(
       <Expression
-        properties={['howdy', 'texas']}
-        arguments={['a', 'b', 'c']}
+        properties={["howdy", "texas"]}
+        arguments={["a", "b", "c"]}
         call
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('howdy.texas(a, b, c)');
+    expect(code).toBe("howdy.texas(a, b, c)");
   });
 
-  it('renders assigning no children', () => {
+  it("renders assigning no children", () => {
     const code = render(<Expression properties="a.b.c" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('a.b.c');
+    expect(code).toBe("a.b.c");
   });
 
-  it('renders assigning initial value as string', () => {
+  it("renders assigning initial value as string", () => {
     const code = render(
       <Expression properties="a.b.c" debug>
         hello
       </Expression>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
     expect(code).toBe('a.b.c = "hello"');
   });
 
-  it('renders assigning initial value as boolean', () => {
+  it("renders assigning initial value as boolean", () => {
     const code = render(
       <Expression properties="a.b.c" debug>
         {true}
@@ -134,14 +134,14 @@ describe('<Expression />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('a.b.c = true');
+    expect(code).toBe("a.b.c = true");
   });
 
-  it('renders assigning initial value as number', () => {
+  it("renders assigning initial value as number", () => {
     const code = render(
       <Expression properties="a.b.c" debug>
         {0}
@@ -149,31 +149,31 @@ describe('<Expression />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('a.b.c = 0');
+    expect(code).toBe("a.b.c = 0");
   });
 
-  it('renders assigning initial value as object', () => {
+  it("renders assigning initial value as object", () => {
     const code = render(
       <Expression properties="a.b.c" debug>
-        {{ hello: 'world' }}
+        {{ hello: "world" }}
       </Expression>,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`a.b.c = {
   "hello": "world"
 }`);
   });
 
-  it('renders assigning initial value as component', () => {
+  it("renders assigning initial value as component", () => {
     const code = render(
       <Expression properties="a.b.c" debug>
         <ArrowFunctionExpression />
@@ -181,10 +181,10 @@ describe('<Expression />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('a.b.c = () => {}');
+    expect(code).toBe("a.b.c = () => {}");
   });
 });

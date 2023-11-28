@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 import {
   ArrowFunctionExpression,
   TypeAnnotation,
   VariableDeclarationKind,
-  VariableDeclarator
-} from '~/components';
-import { render } from '~/index';
-import VariableDeclaration from './index';
+  VariableDeclarator,
+} from "~/components";
+import { render } from "~/index";
+import VariableDeclaration from "./index";
 
-describe('<VariableDeclaration />', () => {
-  it('renders', () => {
+describe("<VariableDeclaration />", () => {
+  it("renders", () => {
     const code = render(<VariableDeclaration debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('var ;');
+    expect(code).toBe("var ;");
   });
 
-  it('renders as kind var', () => {
+  it("renders as kind var", () => {
     const code = render(
       <VariableDeclaration kind={VariableDeclarationKind.Var} debug>
         <VariableDeclarator id="v" typeAnnotation="T" />
@@ -24,14 +24,14 @@ describe('<VariableDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('var v: T;');
+    expect(code).toBe("var v: T;");
   });
 
-  it('renders as kind const', () => {
+  it("renders as kind const", () => {
     const code = render(
       <VariableDeclaration kind={VariableDeclarationKind.Const} debug>
         <VariableDeclarator
@@ -42,14 +42,14 @@ describe('<VariableDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('const c: T;');
+    expect(code).toBe("const c: T;");
   });
 
-  it('renders as kind let', () => {
+  it("renders as kind let", () => {
     const code = render(
       <VariableDeclaration kind={VariableDeclarationKind.Let} debug>
         <VariableDeclarator id="l" />
@@ -57,14 +57,14 @@ describe('<VariableDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('let l;');
+    expect(code).toBe("let l;");
   });
 
-  it('renders with children', () => {
+  it("renders with children", () => {
     const code = render(
       <VariableDeclaration debug>
         <VariableDeclarator
@@ -77,14 +77,14 @@ describe('<VariableDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('var v: T = () => {};');
+    expect(code).toBe("var v: T = () => {};");
   });
 
-  it('renders with children as string', () => {
+  it("renders with children as string", () => {
     const code = render(
       <VariableDeclaration debug>
         <VariableDeclarator
@@ -97,9 +97,9 @@ describe('<VariableDeclaration />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe('var v: T = "hello";');
   });

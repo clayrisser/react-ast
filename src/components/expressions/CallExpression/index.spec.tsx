@@ -1,21 +1,21 @@
-import React from 'react';
+import React from "react";
 import {
   Identifier,
   ArrowFunctionExpression,
-  MemberExpression
-} from '~/components';
-import { render } from '~/index';
-import CallExpression from './index';
+  MemberExpression,
+} from "~/components";
+import { render } from "~/index";
+import CallExpression from "./index";
 
-describe('<CallExpression />', () => {
-  it('renders call expression', () => {
+describe("<CallExpression />", () => {
+  it("renders call expression", () => {
     const code = render(<CallExpression name="hello" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('hello()');
+    expect(code).toBe("hello()");
   });
 
-  it('renders call expression with children', () => {
+  it("renders call expression with children", () => {
     const code = render(
       <CallExpression name="world" debug>
         <MemberExpression name="hello">
@@ -23,13 +23,13 @@ describe('<CallExpression />', () => {
         </MemberExpression>
       </CallExpression>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('howdy.hello.world()');
+    expect(code).toBe("howdy.hello.world()");
   });
 
-  it('renders call expression with argument', () => {
+  it("renders call expression with argument", () => {
     const code = render(
       <CallExpression
         name="hello"
@@ -37,13 +37,13 @@ describe('<CallExpression />', () => {
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello(a)');
+    expect(code).toBe("hello(a)");
   });
 
-  it('renders call expression with arguments', () => {
+  it("renders call expression with arguments", () => {
     const code = render(
       <CallExpression
         name="hello"
@@ -51,26 +51,26 @@ describe('<CallExpression />', () => {
         debug
       />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello(a, () => {})');
+    expect(code).toBe("hello(a, () => {})");
   });
 
-  it('renders call expression with argument as string', () => {
+  it("renders call expression with argument as string", () => {
     const code = render(<CallExpression name="hello" arguments="a" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('hello(a)');
+    expect(code).toBe("hello(a)");
   });
 
-  it('renders call expression with arguments as string', () => {
+  it("renders call expression with arguments as string", () => {
     const code = render(
-      <CallExpression name="hello" arguments={['a', 'b', 'c']} debug />,
+      <CallExpression name="hello" arguments={["a", "b", "c"]} debug />,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('hello(a, b, c)');
+    expect(code).toBe("hello(a, b, c)");
   });
 });

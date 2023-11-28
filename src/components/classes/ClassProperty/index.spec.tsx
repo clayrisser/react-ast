@@ -1,34 +1,34 @@
-import React from 'react';
-import { render } from '~/index';
+import React from "react";
+import { render } from "~/index";
 import {
   TypeAnnotation,
   TypeReference,
-  TypeParameterInstantiation
-} from '~/components';
-import ClassProperty, { ClassPropertyAccessibility } from './index';
+  TypeParameterInstantiation,
+} from "~/components";
+import ClassProperty, { ClassPropertyAccessibility } from "./index";
 
-describe('<ClassProperty />', () => {
-  it('renders', () => {
+describe("<ClassProperty />", () => {
+  it("renders", () => {
     const code = render(<ClassProperty id="p" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('p;');
+    expect(code).toBe("p;");
   });
 
-  it('renders with static', () => {
+  it("renders with static", () => {
     const code = render(<ClassProperty static id="p" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('static p;');
+    expect(code).toBe("static p;");
   });
 
-  it('renders with accessibility', () => {
+  it("renders with accessibility", () => {
     const code = render(
       <ClassProperty
         id="p"
@@ -38,14 +38,14 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('private p;');
+    expect(code).toBe("private p;");
   });
 
-  it('renders with static accessibility', () => {
+  it("renders with static accessibility", () => {
     const code = render(
       <ClassProperty
         accessibility={ClassPropertyAccessibility.Private}
@@ -56,14 +56,14 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('private static p;');
+    expect(code).toBe("private static p;");
   });
 
-  it('renders with type annotation', () => {
+  it("renders with type annotation", () => {
     const code = render(
       <ClassProperty
         id="p"
@@ -73,14 +73,14 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T;');
+    expect(code).toBe("p: T;");
   });
 
-  it('renders with nested type annotation', () => {
+  it("renders with nested type annotation", () => {
     const code = render(
       <ClassProperty
         id="p"
@@ -99,24 +99,24 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T<A, B>;');
+    expect(code).toBe("p: T<A, B>;");
   });
 
-  it('renders with annotation as string', () => {
+  it("renders with annotation as string", () => {
     const code = render(<ClassProperty id="p" typeAnnotation="T<A>" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('p: T<A>;');
+    expect(code).toBe("p: T<A>;");
   });
 
-  it('renders with initial value as string', () => {
+  it("renders with initial value as string", () => {
     const code = render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         hello
@@ -124,14 +124,14 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe('p: T<A> = "hello";');
   });
 
-  it('renders with initial value as boolean', () => {
+  it("renders with initial value as boolean", () => {
     const code = render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {true}
@@ -139,14 +139,14 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T<A> = true;');
+    expect(code).toBe("p: T<A> = true;");
   });
 
-  it('renders with initial value as number', () => {
+  it("renders with initial value as number", () => {
     const code = render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {0}
@@ -154,24 +154,24 @@ describe('<ClassProperty />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('p: T<A> = 0;');
+    expect(code).toBe("p: T<A> = 0;");
   });
 
-  it('renders with initial value as object', () => {
+  it("renders with initial value as object", () => {
     const code = render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
-        {{ hello: 'world' }}
+        {{ hello: "world" }}
       </ClassProperty>,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`p: T<A> = {
   "hello": "world"

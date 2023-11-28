@@ -1,11 +1,11 @@
-import React, { Ref, ReactNode, forwardRef } from 'react';
-import useMergedRef from '@react-hook/merged-ref';
-import BaseElement from '~/elements/BaseElement';
-import Code from '~/components/Code';
-import ExportSpecifier from '~/components/modules/ExportSpecifier';
-import ParentBodyPathProvider from '~/providers/ParentBodyPathProvider';
-import Smart from '~/components/Smart';
-import { debugRef } from '~/util';
+import React, { Ref, ReactNode, forwardRef } from "react";
+import useMergedRef from "@react-hook/merged-ref";
+import BaseElement from "~/elements/BaseElement";
+import Code from "~/components/Code";
+import ExportSpecifier from "~/components/modules/ExportSpecifier";
+import ParentBodyPathProvider from "~/providers/ParentBodyPathProvider";
+import Smart from "~/components/Smart";
+import { debugRef } from "~/util";
 
 export interface ExportNamedDeclarationProps {
   children?: ReactNode;
@@ -20,17 +20,17 @@ const ExportNamedDeclaration = forwardRef<
 >((props: ExportNamedDeclarationProps, forwardedRef: Ref<BaseElement>) => {
   const { children, debug, source, specifiers } = props;
   const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-  const code = `export {}${source ? ` from '${source}'` : ''}`;
+  const code = `export {}${source ? ` from '${source}'` : ""}`;
 
   function renderChildren() {
-    if (typeof children === 'string') {
+    if (typeof children === "string") {
       return <Code>{children}</Code>;
     }
     return children;
   }
 
   function renderSpecifier(specifier: ReactNode) {
-    if (typeof specifier === 'string') {
+    if (typeof specifier === "string") {
       return <ExportSpecifier>{specifier}</ExportSpecifier>;
     }
     return specifier;
@@ -58,7 +58,7 @@ const ExportNamedDeclaration = forwardRef<
 });
 
 ExportNamedDeclaration.defaultProps = {
-  debug: false
+  debug: false,
 };
 
 export default ExportNamedDeclaration;

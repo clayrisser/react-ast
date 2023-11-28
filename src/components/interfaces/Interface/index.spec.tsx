@@ -1,52 +1,52 @@
-import React from 'react';
-import { render } from '~/index';
+import React from "react";
+import { render } from "~/index";
 import {
   MethodSignature,
   PropertySignature,
   TypeParameterInstantiation,
-  TypeReference
-} from '~/components';
-import Interface from './index';
+  TypeReference,
+} from "~/components";
+import Interface from "./index";
 
-describe('<Interface />', () => {
-  it('renders', () => {
+describe("<Interface />", () => {
+  it("renders", () => {
     const code = render(<Interface name="Hello" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('interface Hello {}');
+    expect(code).toBe("interface Hello {}");
   });
 
-  it('renders with type parameters', () => {
+  it("renders with type parameters", () => {
     const code = render(
       <Interface
         name="Hello"
-        typeParameters={['A', <TypeReference name="B" />]}
+        typeParameters={["A", <TypeReference name="B" />]}
         debug
       />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('interface Hello<A, B> {}');
+    expect(code).toBe("interface Hello<A, B> {}");
   });
 
-  it('renders with type parameters as string', () => {
+  it("renders with type parameters as string", () => {
     const code = render(<Interface name="Hello" typeParameters="T" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('interface Hello<T> {}');
+    expect(code).toBe("interface Hello<T> {}");
   });
 
-  it('renders with nested type parameters', () => {
+  it("renders with nested type parameters", () => {
     const code = render(
       <Interface
         name="Hello"
@@ -63,14 +63,14 @@ describe('<Interface />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('interface Hello<T<A, B>> {}');
+    expect(code).toBe("interface Hello<T<A, B>> {}");
   });
 
-  it('renders with interface property signatures', () => {
+  it("renders with interface property signatures", () => {
     const code = render(
       <Interface name="Hello" debug>
         <PropertySignature id="hello" typeAnnotation="T" />
@@ -78,16 +78,16 @@ describe('<Interface />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`interface Hello {
   hello: T;
 }`);
   });
 
-  it('renders with interface method signatures', () => {
+  it("renders with interface method signatures", () => {
     const code = render(
       <Interface name="Hello" debug>
         <MethodSignature id="hello" returnType="T" />
@@ -95,16 +95,16 @@ describe('<Interface />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`interface Hello {
   hello(): T;
 }`);
   });
 
-  it('renders with interface method and property signatures', () => {
+  it("renders with interface method and property signatures", () => {
     const code = render(
       <Interface name="Hello" debug>
         <PropertySignature id="hello" typeAnnotation="T" />
@@ -113,9 +113,9 @@ describe('<Interface />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe(`interface Hello {
   hello: T;

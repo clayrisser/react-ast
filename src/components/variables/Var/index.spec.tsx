@@ -1,30 +1,30 @@
-import React from 'react';
-import { ArrowFunctionExpression, TypeAnnotation, VarKind } from '~/components';
-import { render } from '~/index';
-import Var from './index';
+import React from "react";
+import { ArrowFunctionExpression, TypeAnnotation, VarKind } from "~/components";
+import { render } from "~/index";
+import Var from "./index";
 
-describe('<Var />', () => {
-  it('renders', () => {
+describe("<Var />", () => {
+  it("renders", () => {
     const code = render(<Var name="v" debug />, {
-      prettier: false
+      prettier: false,
     });
-    expect(code).toBe('var v;');
+    expect(code).toBe("var v;");
   });
 
-  it('renders as kind var', () => {
+  it("renders as kind var", () => {
     const code = render(
       <Var kind={VarKind.Var} name="v" typeAnnotation="T" debug />,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('var v: T;');
+    expect(code).toBe("var v: T;");
   });
 
-  it('renders as kind const', () => {
+  it("renders as kind const", () => {
     const code = render(
       <Var
         kind={VarKind.Const}
@@ -35,24 +35,24 @@ describe('<Var />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('const c: T;');
+    expect(code).toBe("const c: T;");
   });
 
-  it('renders as kind let', () => {
+  it("renders as kind let", () => {
     const code = render(<Var kind={VarKind.Let} name="l" debug />, {
       prettier: false,
       parserOptions: {
-        plugins: ['jsx', 'classProperties', 'typescript']
-      }
+        plugins: ["jsx", "classProperties", "typescript"],
+      },
     });
-    expect(code).toBe('let l;');
+    expect(code).toBe("let l;");
   });
 
-  it('renders with children', () => {
+  it("renders with children", () => {
     const code = render(
       <Var name="v" typeAnnotation={<TypeAnnotation>T</TypeAnnotation>} debug>
         <ArrowFunctionExpression />
@@ -60,14 +60,14 @@ describe('<Var />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('var v: T = () => {};');
+    expect(code).toBe("var v: T = () => {};");
   });
 
-  it('renders with children as string', () => {
+  it("renders with children as string", () => {
     const code = render(
       <Var name="v" typeAnnotation={<TypeAnnotation>T</TypeAnnotation>} debug>
         hello
@@ -75,9 +75,9 @@ describe('<Var />', () => {
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
     expect(code).toBe('var v: T = "hello";');
   });

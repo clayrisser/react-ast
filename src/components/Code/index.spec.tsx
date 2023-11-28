@@ -1,27 +1,27 @@
-import React from 'react';
-import { render } from '~/index';
-import Code from './index';
+import React from "react";
+import { render } from "~/index";
+import Code from "./index";
 
-describe('<Code />', () => {
-  it('renders', () => {
+describe("<Code />", () => {
+  it("renders", () => {
     const code = render(<Code debug>const hello = &apos;world&apos;</Code>, {
-      prettier: false
+      prettier: false,
     });
     expect(code).toBe("const hello = 'world';");
   });
 
-  it('renders with scope path', () => {
+  it("renders with scope path", () => {
     const code = render(
       <Code scopePath="expression" debug>
-        {'<></>'}
+        {"<></>"}
       </Code>,
       {
         prettier: false,
         parserOptions: {
-          plugins: ['jsx', 'classProperties', 'typescript']
-        }
-      }
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
     );
-    expect(code).toBe('<></>');
+    expect(code).toBe("<></>");
   });
 });

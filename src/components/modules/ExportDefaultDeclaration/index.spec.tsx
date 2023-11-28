@@ -1,18 +1,18 @@
-import React from 'react';
-import { ArrowFunctionExpression } from '~/components';
-import { render } from '~/index';
-import ExportDefaultDeclaration from './index';
+import React from "react";
+import { ArrowFunctionExpression } from "~/components";
+import { render } from "~/index";
+import ExportDefaultDeclaration from "./index";
 
-describe('<ExportDefaultDeclaration />', () => {
-  it('renders with children', () => {
+describe("<ExportDefaultDeclaration />", () => {
+  it("renders with children", () => {
     const code = render(
       <ExportDefaultDeclaration debug>
         <ArrowFunctionExpression />
       </ExportDefaultDeclaration>,
       {
-        prettier: false
-      }
+        prettier: false,
+      },
     );
-    expect(code).toBe('export default (() => {});');
+    expect(code).toBe("export default (() => {});");
   });
 });

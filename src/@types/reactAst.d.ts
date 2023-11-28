@@ -1,9 +1,9 @@
 declare namespace JSX {
-  type PublicReplacements = import('@babel/template').PublicReplacements;
-  type ReactNode = import('react').ReactNode;
-  type Ref<T> = import('react').Ref<T>;
+  type PublicReplacements = import("@babel/template").PublicReplacements;
+  type ReactNode = import("react").ReactNode;
+  type Ref<T> = import("react").Ref<T>;
   type TemplateBuilderOptions =
-    import('@babel/template').TemplateBuilderOptions;
+    import("@babel/template").TemplateBuilderOptions;
 
   interface DeepArray<T> extends Array<T | DeepArray<T>> {}
 
