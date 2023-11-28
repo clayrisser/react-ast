@@ -62,7 +62,7 @@ import {
   VarKind,
 } from "react-ast";
 
-const code = render(
+const code = await render(
   <>
     <Import default="React" imports={["FC"]} from="react" />
     <Export>

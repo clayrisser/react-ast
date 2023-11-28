@@ -29,8 +29,8 @@ import {
 import PropertySignature from "./index";
 
 describe("<PropertySignature />", () => {
-  it("renders", () => {
-    const code = render(<PropertySignature id="p" debug />, {
+  it("renders", async () => {
+    const code = await render(<PropertySignature id="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -39,8 +39,8 @@ describe("<PropertySignature />", () => {
     expect(code).toBe("p;");
   });
 
-  it("renders with type annotation", () => {
-    const code = render(
+  it("renders with type annotation", async () => {
+    const code = await render(
       <PropertySignature
         id="p"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
@@ -56,8 +56,8 @@ describe("<PropertySignature />", () => {
     expect(code).toBe("p: T;");
   });
 
-  it("renders with nested type annotation", () => {
-    const code = render(
+  it("renders with nested type annotation", async () => {
+    const code = await render(
       <PropertySignature
         id="p"
         typeAnnotation={
@@ -82,8 +82,8 @@ describe("<PropertySignature />", () => {
     expect(code).toBe("p: T<A, B>;");
   });
 
-  it("renders with annotation as string", () => {
-    const code = render(
+  it("renders with annotation as string", async () => {
+    const code = await render(
       <PropertySignature id="p" typeAnnotation="T<A>" debug />,
       {
         prettier: false,

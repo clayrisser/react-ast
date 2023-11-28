@@ -23,15 +23,15 @@ import React from "react";
 import { CallExpression, StringLiteral, Var, render } from "../../../index";
 
 describe("<StringLiteral />", () => {
-  it("renders string", () => {
-    const code = render(<StringLiteral debug>HI</StringLiteral>, {
+  it("renders string", async () => {
+    const code = await render(<StringLiteral debug>HI</StringLiteral>, {
       prettier: false,
     });
     expect(code).toBe('"HI"');
   });
 
-  it("renders string inside function argument", () => {
-    const code = render(
+  it("renders string inside function argument", async () => {
+    const code = await render(
       <CallExpression
         name="fn"
         arguments={<StringLiteral>Hi</StringLiteral>}
@@ -41,8 +41,8 @@ describe("<StringLiteral />", () => {
     expect(code).toBe('fn("Hi")');
   });
 
-  it("renders code as a string", () => {
-    const code = render(
+  it("renders code as a string", async () => {
+    const code = await render(
       <Var name="a">
         <StringLiteral>a</StringLiteral>
       </Var>,

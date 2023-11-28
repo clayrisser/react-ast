@@ -47,9 +47,15 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
         : defaultSpecifier || "I"
     } from '${source}'`;
 
-    function renderSpecifier(specifier: ReactNode) {
+    function renderSpecifier(specifier: ReactNode, i?: number) {
       if (typeof specifier === "string") {
-        return <ImportSpecifier>{specifier}</ImportSpecifier>;
+        return (
+          <ImportSpecifier
+            key={typeof i !== "undefined" ? i.toString() : undefined}
+          >
+            {specifier}
+          </ImportSpecifier>
+        );
       }
       return specifier;
     }

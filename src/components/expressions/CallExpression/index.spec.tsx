@@ -29,15 +29,15 @@ import { render } from "../../../index";
 import CallExpression from "./index";
 
 describe("<CallExpression />", () => {
-  it("renders call expression", () => {
-    const code = render(<CallExpression name="hello" debug />, {
+  it("renders call expression", async () => {
+    const code = await render(<CallExpression name="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("hello()");
   });
 
-  it("renders call expression with children", () => {
-    const code = render(
+  it("renders call expression with children", async () => {
+    const code = await render(
       <CallExpression name="world" debug>
         <MemberExpression name="hello">
           <Identifier>howdy</Identifier>
@@ -50,8 +50,8 @@ describe("<CallExpression />", () => {
     expect(code).toBe("howdy.hello.world()");
   });
 
-  it("renders call expression with argument", () => {
-    const code = render(
+  it("renders call expression with argument", async () => {
+    const code = await render(
       <CallExpression
         name="hello"
         arguments={<Identifier>a</Identifier>}
@@ -64,8 +64,8 @@ describe("<CallExpression />", () => {
     expect(code).toBe("hello(a)");
   });
 
-  it("renders call expression with arguments", () => {
-    const code = render(
+  it("renders call expression with arguments", async () => {
+    const code = await render(
       <CallExpression
         name="hello"
         arguments={[<Identifier>a</Identifier>, <ArrowFunctionExpression />]}
@@ -78,15 +78,18 @@ describe("<CallExpression />", () => {
     expect(code).toBe("hello(a, () => {})");
   });
 
-  it("renders call expression with argument as string", () => {
-    const code = render(<CallExpression name="hello" arguments="a" debug />, {
-      prettier: false,
-    });
+  it("renders call expression with argument as string", async () => {
+    const code = await render(
+      <CallExpression name="hello" arguments="a" debug />,
+      {
+        prettier: false,
+      },
+    );
     expect(code).toBe("hello(a)");
   });
 
-  it("renders call expression with arguments as string", () => {
-    const code = render(
+  it("renders call expression with arguments as string", async () => {
+    const code = await render(
       <CallExpression name="hello" arguments={["a", "b", "c"]} debug />,
       {
         prettier: false,

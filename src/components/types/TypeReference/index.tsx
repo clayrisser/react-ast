@@ -37,7 +37,7 @@ const TypeReference = forwardRef<BaseElement, TypeReferenceProps>(
   (props: TypeReferenceProps, forwardedRef: Ref<BaseElement>) => {
     const { children, name, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `const c: ${name}`;
+    const code = `const c: ${name} = 0`;
     return (
       <Smart
         bodyPath="typeParameters"

@@ -25,15 +25,15 @@ import { render } from "../../../index";
 import ExpressionStatement from "./index";
 
 describe("<ExpressionStatement />", () => {
-  it("renders expression statement", () => {
-    const code = render(<ExpressionStatement debug />, {
+  it("renders expression statement", async () => {
+    const code = await render(<ExpressionStatement debug />, {
       prettier: false,
     });
     expect(code).toBe(";");
   });
 
-  it("renders expression statement with children", () => {
-    const code = render(
+  it("renders expression statement with children", async () => {
+    const code = await render(
       <ExpressionStatement debug>
         <CallExpression name="hello" />
       </ExpressionStatement>,

@@ -24,8 +24,8 @@ import React from "react";
 import { render } from "../../../index";
 
 describe("<ExportAllDeclaration />", () => {
-  it("renders with source", () => {
-    const code = render(<ExportAllDeclaration source="world" debug />, {
+  it("renders with source", async () => {
+    const code = await render(<ExportAllDeclaration source="world" debug />, {
       prettier: false,
     });
     expect(code).toBe("export * from 'world';");

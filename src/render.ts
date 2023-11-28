@@ -22,13 +22,14 @@
 import * as t from "@babel/types";
 import Renderer from "./reconciler";
 import generate from "@babel/generator";
-// import parserBabel from "prettier/parser-babel";
-import prettier from "prettier/standalone";
+import prettier from "prettier";
 import type { BundleType, Options } from "./types";
 import type { Options as PrettierOptions } from "prettier";
 import { File } from "./elements";
 import { dev } from "./util";
 import { updateContext } from "./context";
+
+console.log("prettier", prettier);
 
 export function renderAst(
   element: JSX.Element,
@@ -74,10 +75,8 @@ export async function render(
   if (options.prettier) {
     return prettier.format(code, {
       ...(typeof options.prettier === "boolean" ? {} : options.prettier),
-      plugins: [
-        // parserBabel,
-        ...((options?.prettier as PrettierOptions)?.plugins || []),
-      ],
+      plugins: [...((options?.prettier as PrettierOptions)?.plugins || [])],
+      parser: "babel",
     });
   }
   return code;

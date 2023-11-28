@@ -32,15 +32,15 @@ import {
 } from "../../../components";
 
 describe("<Class />", () => {
-  it("renders", () => {
-    const code = render(<Class name="Hello" debug />, {
+  it("renders", async () => {
+    const code = await render(<Class name="Hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("class Hello {}");
   });
 
-  it("renders with type parameters", () => {
-    const code = render(
+  it("renders with type parameters", async () => {
+    const code = await render(
       <Class
         name="Hello"
         typeParameters={["A", <TypeReference key={0} name="B" />]}
@@ -56,8 +56,8 @@ describe("<Class />", () => {
     expect(code).toBe("class Hello<A, B> {}");
   });
 
-  it("renders with type parameters as string", () => {
-    const code = render(<Class name="Hello" typeParameters="T" debug />, {
+  it("renders with type parameters as string", async () => {
+    const code = await render(<Class name="Hello" typeParameters="T" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -66,8 +66,8 @@ describe("<Class />", () => {
     expect(code).toBe("class Hello<T> {}");
   });
 
-  it("renders with nested type parameters", () => {
-    const code = render(
+  it("renders with nested type parameters", async () => {
+    const code = await render(
       <Class
         name="Hello"
         typeParameters={
@@ -90,8 +90,8 @@ describe("<Class />", () => {
     expect(code).toBe("class Hello<T<A, B>> {}");
   });
 
-  it("renders with super class", () => {
-    const code = render(
+  it("renders with super class", async () => {
+    const code = await render(
       <Class
         name="Hello"
         typeParameters={
@@ -123,8 +123,8 @@ describe("<Class />", () => {
     expect(code).toBe("class Hello<T<A, B>> extends Howdy<A<B, C>> {}");
   });
 
-  it("renders with class properties", () => {
-    const code = render(
+  it("renders with class properties", async () => {
+    const code = await render(
       <Class name="Hello" debug>
         <ClassProperty
           id="hello"
@@ -146,8 +146,8 @@ describe("<Class />", () => {
 }`);
   });
 
-  it("renders with class methods", () => {
-    const code = render(
+  it("renders with class methods", async () => {
+    const code = await render(
       <Class name="Hello" debug>
         <ClassMethod
           id="hello"
@@ -167,8 +167,8 @@ describe("<Class />", () => {
 }`);
   });
 
-  it("renders with class properties and methods", () => {
-    const code = render(
+  it("renders with class properties and methods", async () => {
+    const code = await render(
       <Class name="Hello" debug>
         <ClassProperty
           id="hello"
@@ -192,7 +192,6 @@ describe("<Class />", () => {
     );
     expect(code).toBe(`class Hello {
   protected hello: T = "world";
-
   protected hello(): T {}
 }`);
   });

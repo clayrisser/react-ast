@@ -1,5 +1,6 @@
 ast
 cjs
+corejs
 cspell
 declarator
 dharmendra
@@ -14,6 +15,7 @@ lang
 loc
 microtask
 minify
+namespace
 rajak
 reconciler
 renderer

@@ -30,8 +30,8 @@ import {
 import MethodSignature from "./index";
 
 describe("<MethodSignature />", () => {
-  it("renders empty method signature", () => {
-    const code = render(<MethodSignature id="hello" debug />, {
+  it("renders empty method signature", async () => {
+    const code = await render(<MethodSignature id="hello" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -40,8 +40,8 @@ describe("<MethodSignature />", () => {
     expect(code).toBe("hello();");
   });
 
-  it("renders with nested return type", () => {
-    const code = render(
+  it("renders with nested return type", async () => {
+    const code = await render(
       <MethodSignature
         id="hello"
         returnType={
@@ -66,8 +66,8 @@ describe("<MethodSignature />", () => {
     expect(code).toBe("hello(): T<A, B>;");
   });
 
-  it("renders with return type as string", () => {
-    const code = render(
+  it("renders with return type as string", async () => {
+    const code = await render(
       <MethodSignature id="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
@@ -79,8 +79,8 @@ describe("<MethodSignature />", () => {
     expect(code).toBe("hello(): T<A, B, C>;");
   });
 
-  it("renders with params as string", () => {
-    const code = render(
+  it("renders with params as string", async () => {
+    const code = await render(
       <MethodSignature id="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
@@ -89,14 +89,19 @@ describe("<MethodSignature />", () => {
     expect(code).toBe("hello(a, b, c);");
   });
 
-  it("renders with typed params", () => {
-    const code = render(
+  it("renders with typed params", async () => {
+    const code = await render(
       <MethodSignature
         id="hello"
         params={[
-          <Identifier typeAnnotation="A">a</Identifier>,
-          <Identifier typeAnnotation="T<A, B>">b</Identifier>,
+          <Identifier key={0} typeAnnotation="A">
+            a
+          </Identifier>,
+          <Identifier key={1} typeAnnotation="T<A, B>">
+            b
+          </Identifier>,
           <Identifier
+            key={2}
             typeAnnotation={
               <TypeAnnotation>
                 <TypeReference name="T">
@@ -124,13 +129,17 @@ describe("<MethodSignature />", () => {
     expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>);");
   });
 
-  it("renders with all props", () => {
-    const code = render(
+  it("renders with all props", async () => {
+    const code = await render(
       <MethodSignature
         returnType="T<A, B>"
         params={[
-          <Identifier typeAnnotation="A">a</Identifier>,
-          <Identifier typeAnnotation="B">b</Identifier>,
+          <Identifier key={0} typeAnnotation="A">
+            a
+          </Identifier>,
+          <Identifier key={1} typeAnnotation="B">
+            b
+          </Identifier>,
         ]}
         id="hello"
         debug

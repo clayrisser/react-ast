@@ -39,7 +39,7 @@ const TypeParameterInstantiation = forwardRef<
 >((props: TypeParameterInstantiationProps, forwardedRef: Ref<BaseElement>) => {
   const { children, debug } = props;
   const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-  const code = "const c: T<any>";
+  const code = "const c: T<any> = 0";
 
   function renderChildren() {
     if (typeof children === "string") {

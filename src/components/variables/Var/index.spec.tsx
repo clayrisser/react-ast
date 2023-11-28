@@ -25,15 +25,15 @@ import { render } from "../../../index";
 import Var from "./index";
 
 describe("<Var />", () => {
-  it("renders", () => {
-    const code = render(<Var name="v" debug />, {
+  it("renders", async () => {
+    const code = await render(<Var name="v" debug />, {
       prettier: false,
     });
     expect(code).toBe("var v;");
   });
 
-  it("renders as kind var", () => {
-    const code = render(
+  it("renders as kind var", async () => {
+    const code = await render(
       <Var kind={VarKind.Var} name="v" typeAnnotation="T" debug />,
       {
         prettier: false,
@@ -45,8 +45,8 @@ describe("<Var />", () => {
     expect(code).toBe("var v: T;");
   });
 
-  it("renders as kind const", () => {
-    const code = render(
+  it("renders as kind const", async () => {
+    const code = await render(
       <Var
         kind={VarKind.Const}
         name="c"
@@ -63,8 +63,8 @@ describe("<Var />", () => {
     expect(code).toBe("const c: T;");
   });
 
-  it("renders as kind let", () => {
-    const code = render(<Var kind={VarKind.Let} name="l" debug />, {
+  it("renders as kind let", async () => {
+    const code = await render(<Var kind={VarKind.Let} name="l" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -73,8 +73,8 @@ describe("<Var />", () => {
     expect(code).toBe("let l;");
   });
 
-  it("renders with children", () => {
-    const code = render(
+  it("renders with children", async () => {
+    const code = await render(
       <Var name="v" typeAnnotation={<TypeAnnotation>T</TypeAnnotation>} debug>
         <ArrowFunctionExpression />
       </Var>,
@@ -88,8 +88,8 @@ describe("<Var />", () => {
     expect(code).toBe("var v: T = () => {};");
   });
 
-  it("renders with children as string", () => {
-    const code = render(
+  it("renders with children as string", async () => {
+    const code = await render(
       <Var name="v" typeAnnotation={<TypeAnnotation>T</TypeAnnotation>} debug>
         hello
       </Var>,

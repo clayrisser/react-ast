@@ -64,7 +64,7 @@ function isDev(): boolean {
       : process.env.__DEV__.toLowerCase() !== "false";
   }
   return (
-    process.env.NODE_ENV.toLowerCase() !== "prod" ||
+    process.env.NODE_ENV.toLowerCase() !== "prod" &&
     process.env.NODE_ENV.toLowerCase() !== "production"
   );
 }

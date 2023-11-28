@@ -29,14 +29,14 @@ import {
 import Identifier from "./index";
 
 describe("<Identifier />", () => {
-  it("renders", () => {
-    const code = render(<Identifier debug>i</Identifier>, {
+  it("renders", async () => {
+    const code = await render(<Identifier debug>i</Identifier>, {
       prettier: false,
     });
     expect(code).toBe("i");
   });
 
-  it("renders with nested type annotation", () => {
+  it("renders with nested type annotation", async () => {
     const code = renderAst(
       <Identifier
         typeAnnotation={
@@ -100,7 +100,7 @@ describe("<Identifier />", () => {
     });
   });
 
-  it("renders with nested type annotation as string", () => {
+  it("renders with nested type annotation as string", async () => {
     const code = renderAst(
       <Identifier typeAnnotation="T<A, B, C>" debug>
         i

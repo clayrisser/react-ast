@@ -23,15 +23,15 @@ import React from "react";
 import { render, NumberLiteral, CallExpression, Var } from "../../../index";
 
 describe("<NumberLiteral />", () => {
-  it("render number literal", () => {
-    const code = render(<NumberLiteral>{1}</NumberLiteral>, {
+  it("render number literal", async () => {
+    const code = await render(<NumberLiteral>{1}</NumberLiteral>, {
       prettier: false,
     });
     expect(code).toBe("1");
   });
 
-  it("renders number literal inside function argument", () => {
-    const code = render(
+  it("renders number literal inside function argument", async () => {
+    const code = await render(
       <CallExpression
         name="fn"
         arguments={<NumberLiteral>{1}</NumberLiteral>}
@@ -41,8 +41,8 @@ describe("<NumberLiteral />", () => {
     expect(code).toBe("fn(1)");
   });
 
-  it("renders a code and using number literal", () => {
-    const code = render(
+  it("renders a code and using number literal", async () => {
+    const code = await render(
       <Var name="age">
         <NumberLiteral>{25}</NumberLiteral>
       </Var>,

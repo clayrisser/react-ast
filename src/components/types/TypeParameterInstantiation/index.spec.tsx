@@ -25,8 +25,8 @@ import { render } from "../../../index";
 import TypeParameterInstantiation from "./index";
 
 describe("<TypeParameterInstantiation />", () => {
-  it("renders with children ", () => {
-    const code = render(
+  it("renders with children ", async () => {
+    const code = await render(
       <TypeParameterInstantiation debug>
         <TypeReference name="A" />
         <TypeReference name="B" />
@@ -41,8 +41,8 @@ describe("<TypeParameterInstantiation />", () => {
     expect(code).toBe("<A, B>");
   });
 
-  it("renders with children as string", () => {
-    const code = render(
+  it("renders with children as string", async () => {
+    const code = await render(
       <TypeParameterInstantiation debug>T</TypeParameterInstantiation>,
       {
         prettier: false,

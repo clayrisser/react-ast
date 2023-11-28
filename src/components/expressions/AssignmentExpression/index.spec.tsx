@@ -29,15 +29,15 @@ import {
 } from "../../../components";
 
 describe("<AssignmentExpression />", () => {
-  it("renders with no children", () => {
-    const code = render(<AssignmentExpression left="v" debug />, {
+  it("renders with no children", async () => {
+    const code = await render(<AssignmentExpression left="v" debug />, {
       prettier: false,
     });
     expect(code).toBe("v = undefined");
   });
 
-  it("renders with left as component", () => {
-    const code = render(
+  it("renders with left as component", async () => {
+    const code = await render(
       <AssignmentExpression
         left={
           <MemberExpression name="howdy" debug>
@@ -55,8 +55,8 @@ describe("<AssignmentExpression />", () => {
     expect(code).toBe("hello.world.howdy = undefined");
   });
 
-  it("renders with initial value as string", () => {
-    const code = render(
+  it("renders with initial value as string", async () => {
+    const code = await render(
       <AssignmentExpression left="v" debug>
         hello
       </AssignmentExpression>,
@@ -67,8 +67,8 @@ describe("<AssignmentExpression />", () => {
     expect(code).toBe('v = "hello"');
   });
 
-  it("renders with initial value as boolean", () => {
-    const code = render(
+  it("renders with initial value as boolean", async () => {
+    const code = await render(
       <AssignmentExpression left="v" debug>
         {true}
       </AssignmentExpression>,
@@ -82,8 +82,8 @@ describe("<AssignmentExpression />", () => {
     expect(code).toBe("v = true");
   });
 
-  it("renders with initial value as number", () => {
-    const code = render(
+  it("renders with initial value as number", async () => {
+    const code = await render(
       <AssignmentExpression left="v" debug>
         {0}
       </AssignmentExpression>,
@@ -97,8 +97,8 @@ describe("<AssignmentExpression />", () => {
     expect(code).toBe("v = 0");
   });
 
-  it("renders with initial value as object", () => {
-    const code = render(
+  it("renders with initial value as object", async () => {
+    const code = await render(
       <AssignmentExpression left="v" debug>
         {{ hello: "world" }}
       </AssignmentExpression>,
@@ -114,8 +114,8 @@ describe("<AssignmentExpression />", () => {
 }`);
   });
 
-  it("renders with initial value as component", () => {
-    const code = render(
+  it("renders with initial value as component", async () => {
+    const code = await render(
       <AssignmentExpression left="v" debug>
         <ArrowFunctionExpression />
       </AssignmentExpression>,
