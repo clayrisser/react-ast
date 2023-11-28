@@ -2,10 +2,11 @@ cjs
 dts
 esm
 estree
+hydratable
+jsx
 minify
 risser
 transpile
 tsbuildinfo
 tsup
 yarnpkg
-hydratable
