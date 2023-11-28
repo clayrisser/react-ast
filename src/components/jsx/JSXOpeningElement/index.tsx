@@ -29,7 +29,7 @@ import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
 
 export interface JSXOpeningElementProps {
-  attributes?: ReactNode;
+  attributes?: any;
   debug?: boolean;
   name?: string;
   selfClosing?: boolean;
@@ -57,7 +57,7 @@ const JSXOpeningElement = forwardRef<BaseElement, JSXOpeningElementProps>(
       );
     }
 
-    function renderAttribute(attribute: ReactNode, name?: string) {
+    function renderAttribute(attribute: any, name?: string) {
       if (name) {
         return (
           <JSXAttribute name={name}>

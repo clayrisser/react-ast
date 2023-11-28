@@ -1,8 +1,8 @@
 /**
  * File: /src/components/expressions/Expression/index.tsx
  * Project: react-ast
- * File Created: 28-11-2023 15:04:04
- * Author: dharmendra
+ * File Created: 28-11-2023 04:58:47
+ * Author: Clay Risser
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
@@ -19,6 +19,8 @@
  * limitations under the License.
  */
 
+/* eslint-disable react/no-unstable-nested-components */
+
 import AssignmentExpression from "../../../components/expressions/AssignmentExpression";
 import CallExpression from "../../../components/expressions/CallExpression";
 import Identifier from "../../../components/Identifier";
@@ -32,7 +34,7 @@ import { debugRef } from "../../../util";
 
 export interface ExpressionProps extends Omit<CallExpressionProps, "name"> {
   call?: boolean;
-  children?: ReactNode;
+  children?: any;
   properties: string | string[];
 }
 
@@ -61,6 +63,7 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
       return properties;
     }
 
+    // TODO: solve a different way
     function renderProperties(properties: string[]) {
       const Comp = properties.reverse().reduce(
         (Comp: FC<CompProps>, property: string, i: number) => {

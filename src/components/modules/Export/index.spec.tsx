@@ -23,6 +23,7 @@ import React from "react";
 import { render } from "../../../index";
 import {
   ArrowFunctionExpression,
+  Export,
   ExportSpecifier,
   VariableDeclaration,
   VariableDeclarator,
@@ -50,8 +51,8 @@ describe("<Export />", () => {
     const code = render(
       <Export
         exports={[
-          <ExportSpecifier>hello</ExportSpecifier>,
-          <ExportSpecifier>world</ExportSpecifier>,
+          <ExportSpecifier key={0}>hello</ExportSpecifier>,
+          <ExportSpecifier key={1}>world</ExportSpecifier>,
         ]}
         debug
       />,

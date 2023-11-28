@@ -43,11 +43,11 @@ export default class SmartElement extends BaseElement {
 
   constructor(
     props: JSX.IntrinsicElements["SmartElement"],
-    parserOptions: ParserOptions = {}
+    parserOptions: ParserOptions = {},
   ) {
     const baseNode = template.smart(
       props.code,
-      _merge(parserOptions, props.options) as TemplateBuilderOptions
+      _merge(parserOptions, props.options) as TemplateBuilderOptions,
     )(props.replacements as PublicReplacements);
     const scopePath = flattenPath(props.scopePath);
     const node =

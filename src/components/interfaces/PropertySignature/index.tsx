@@ -59,7 +59,7 @@ const PropertySignature = forwardRef<BaseElement, PropertySignatureProps>(
         {renderTypeAnnotation()}
       </Smart>
     );
-  }
+  },
 );
 
 PropertySignature.defaultProps = { debug: false };

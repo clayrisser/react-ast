@@ -30,7 +30,7 @@ import { debugRef } from "../../../util";
 
 export interface ClassPropertyProps {
   accessibility?: ClassPropertyAccessibility;
-  children?: ReactNode;
+  children?: any;
   debug?: boolean;
   id: string;
   static?: boolean;

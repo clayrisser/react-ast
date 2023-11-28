@@ -39,7 +39,7 @@ describe("<ExpressionStatement />", () => {
       </ExpressionStatement>,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello();");
   });

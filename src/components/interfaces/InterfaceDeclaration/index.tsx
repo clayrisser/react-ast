@@ -79,7 +79,7 @@ const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 InterfaceDeclaration.defaultProps = {

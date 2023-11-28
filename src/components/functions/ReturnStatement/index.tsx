@@ -23,12 +23,12 @@ import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import React, { forwardRef } from "react";
 import Smart from "../../../components/Smart";
 import type BaseElement from "../../../elements/BaseElement";
-import type { Ref, ReactNode } from "react";
+import type { Ref } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
 
 export interface ReturnStatementProps {
-  children?: ReactNode;
+  children?: any;
   debug?: boolean;
 }
 

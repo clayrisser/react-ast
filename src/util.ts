@@ -20,13 +20,15 @@
  */
 
 import _get from "lodash.get";
-import BaseElement from "./elements/BaseElement";
-import { HashMap, Path } from "./types";
+import type BaseElement from "./elements/BaseElement";
+import type { Path } from "./types";
 
 const logger = console;
 const g = typeof window === "undefined" ? global : window;
 const process =
-  typeof g.process === "undefined" ? { env: {} as HashMap<string> } : g.process;
+  typeof g.process === "undefined"
+    ? { env: {} as Record<string, string> }
+    : g.process;
 
 export function flattenPath(path?: Path | undefined): string {
   if (typeof path !== "number" && !path) return "";

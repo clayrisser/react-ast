@@ -20,7 +20,9 @@
  */
 
 import ReactReconciler from "react-reconciler";
+import type { Lane } from "react-reconciler";
 import createElement from "./createElement";
+import { DefaultEventPriority } from "react-reconciler/constants";
 import { SmartElement } from "./elements";
 import { dev } from "./util";
 import type {
@@ -197,8 +199,6 @@ export default ReactReconciler<
     return {};
   },
 
-  now: Date.now,
-
   commitUpdate(
     instance: Instance,
     _updatePayload: any,
@@ -232,7 +232,7 @@ export default ReactReconciler<
     logger.debug("preparePortalMount");
   },
 
-  queueMicrotask(callback: () => void) {
+  scheduleMicrotask(callback: () => unknown) {
     queueMicrotask(callback);
   },
 
@@ -249,4 +249,37 @@ export default ReactReconciler<
   supportsPersistence: false,
 
   supportsHydration: false,
+
+  getCurrentEventPriority(): Lane {
+    return DefaultEventPriority;
+  },
+
+  getInstanceFromNode(_node: any) {
+    logger.debug("getInstanceFromNode");
+    return null;
+  },
+
+  getInstanceFromScope(scopeInstance: any): null | Instance {
+    logger.debug("getInstanceFromScope");
+    if (scopeInstance.node) {
+      return scopeInstance as Instance;
+    }
+    return null;
+  },
+
+  beforeActiveInstanceBlur() {
+    logger.debug("beforeActiveInstanceBlur");
+  },
+
+  afterActiveInstanceBlur() {
+    logger.debug("afterActiveInstanceBlur");
+  },
+
+  prepareScopeUpdate(_scopeInstance: any, _instance: any) {
+    logger.debug("prepareScopeUpdate");
+  },
+
+  detachDeletedInstance(_node: Instance) {
+    logger.debug("detachDeletedInstance");
+  },
 });

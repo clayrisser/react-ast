@@ -30,7 +30,7 @@ describe("<Expression />", () => {
       <Expression properties={["hello", "world", "howdy"]} debug />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello.world.howdy");
   });
@@ -61,7 +61,7 @@ describe("<Expression />", () => {
       <Expression properties={["hello", "world"]} call debug />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello.world()");
   });
@@ -83,7 +83,7 @@ describe("<Expression />", () => {
       />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello.world(a)");
   });
@@ -92,13 +92,16 @@ describe("<Expression />", () => {
     const code = render(
       <Expression
         properties={["hello", "world"]}
-        arguments={[<Identifier>a</Identifier>, <ArrowFunctionExpression />]}
+        arguments={[
+          <Identifier key={0}>a</Identifier>,
+          <ArrowFunctionExpression key={1} />,
+        ]}
         call
         debug
       />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello.world(a, () => {})");
   });
@@ -108,7 +111,7 @@ describe("<Expression />", () => {
       <Expression properties="howdy.texas" arguments="a" call debug />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("howdy.texas(a)");
   });
@@ -123,7 +126,7 @@ describe("<Expression />", () => {
       />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("howdy.texas(a, b, c)");
   });
@@ -142,7 +145,7 @@ describe("<Expression />", () => {
       </Expression>,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe('a.b.c = "hello"');
   });
@@ -157,7 +160,7 @@ describe("<Expression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("a.b.c = true");
   });
@@ -172,7 +175,7 @@ describe("<Expression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("a.b.c = 0");
   });
@@ -187,7 +190,7 @@ describe("<Expression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe(`a.b.c = {
   "hello": "world"
@@ -204,7 +207,7 @@ describe("<Expression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("a.b.c = () => {}");
   });

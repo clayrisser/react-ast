@@ -22,7 +22,7 @@
 import * as t from "@babel/types";
 import Renderer from "./reconciler";
 import generate from "@babel/generator";
-import parserBabel from "prettier/parser-babel";
+// import parserBabel from "prettier/parser-babel";
 import prettier from "prettier/standalone";
 import type { BundleType, Options } from "./types";
 import type { Options as PrettierOptions } from "prettier";
@@ -38,10 +38,17 @@ export function renderAst(
   updateContext({ parserOptions: options.parserOptions || {} });
   const file = new File();
   file.node = ast;
-  const root = Renderer.createContainer(file, 0, false, null);
-  Renderer.updateContainer(element, root, null, () => {
-    // noop
-  });
+  const root = Renderer.createContainer(
+    file,
+    0,
+    null,
+    false,
+    null,
+    "react_ast_",
+    (_err: Error) => undefined,
+    null,
+  );
+  Renderer.updateContainer(element, root, null, () => undefined);
   Renderer.injectIntoDevTools({
     bundleType: Number(dev) as BundleType,
     rendererPackageName: "react-ast",
@@ -51,11 +58,11 @@ export function renderAst(
   return file.node as t.File;
 }
 
-export function render(
+export async function render(
   element: JSX.Element,
   options: Options = {},
   ast: t.File = t.file(t.program([]), [], []),
-): string {
+): Promise<string> {
   options = {
     prettier: true,
     ...options,
@@ -68,7 +75,7 @@ export function render(
     return prettier.format(code, {
       ...(typeof options.prettier === "boolean" ? {} : options.prettier),
       plugins: [
-        parserBabel,
+        // parserBabel,
         ...((options?.prettier as PrettierOptions)?.plugins || []),
       ],
     });

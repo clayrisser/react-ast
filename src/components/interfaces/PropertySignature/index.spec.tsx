@@ -51,7 +51,7 @@ describe("<PropertySignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("p: T;");
   });
@@ -77,7 +77,7 @@ describe("<PropertySignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("p: T<A, B>;");
   });
@@ -90,7 +90,7 @@ describe("<PropertySignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("p: T<A>;");
   });
