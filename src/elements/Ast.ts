@@ -1,19 +1,6 @@
 /*
  *  File: /src/elements/Ast.ts
  *  Project: react-ast
-<<<<<<< HEAD
- *  File Created: 28-11-2023 15:06:23
- *  Author: Clay Risser
- *  -----
- *  BitSpur (c) Copyright 2019 - 2023
- * 
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- * 
- *      http://www.apache.org/licenses/LICENSE-2.0
- * 
-=======
  *  File Created: 28-11-2023 15:04:04
  *  Author: dharmendra
  *  -----
@@ -25,7 +12,6 @@
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
->>>>>>> a36e988e53bf5d88c24e729e0af3bb3499ec2851
  *  Unless required by applicable law or agreed to in writing, software
  *  distributed under the License is distributed on an "AS IS" BASIS,
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

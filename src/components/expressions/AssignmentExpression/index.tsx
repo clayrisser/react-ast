@@ -19,10 +19,11 @@
  * limitations under the License.
  */
 
-import React, { Ref, ReactNode, forwardRef } from "react";
+import type { Ref, ReactNode } from "react";
+import React, { forwardRef } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
-import BaseElement from "../../../elements/BaseElement";
+import type BaseElement from "../../../elements/BaseElement";
 import Smart from "../../../components/Smart";
 import { debugRef } from "../../../util";
 
@@ -83,7 +84,7 @@ const AssignmentExpression = forwardRef<BaseElement, AssignmentExpressionProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 AssignmentExpression.defaultProps = {
