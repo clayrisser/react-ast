@@ -20,14 +20,13 @@
  */
 
 import React from "react";
+import { render } from "../../../index";
 import {
+  ArrowFunctionExpression,
   ExportSpecifier,
   VariableDeclaration,
   VariableDeclarator,
-  ArrowFunctionExpression,
-} from "../..";
-import { render } from "../../../index";
-import Export from "./index";
+} from "../../../components";
 
 describe("<Export />", () => {
   it("renders empty named declaration", () => {

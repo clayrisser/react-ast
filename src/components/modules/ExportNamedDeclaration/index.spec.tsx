@@ -1,8 +1,8 @@
 /**
  * File: /src/components/modules/ExportNamedDeclaration/index.spec.tsx
  * Project: react-ast
- * File Created: 28-11-2023 15:05:44
- * Author: Lalit rajak
+ * File Created: 28-11-2023 02:58:22
+ * Author: Clay Risser
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
@@ -20,14 +20,14 @@
  */
 
 import React from "react";
+import { render } from "../../../index";
+import ExportNamedDeclaration from "./index";
 import {
   ExportSpecifier,
   VariableDeclaration,
   VariableDeclarator,
   ArrowFunctionExpression,
-} from "../..";
-import { render } from "../../../index";
-import ExportNamedDeclaration from "./index";
+} from "../../../components";
 
 describe("<ExportNamedDeclaration />", () => {
   it("renders empty named declaration", () => {

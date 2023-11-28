@@ -1,8 +1,8 @@
 /*
  *  File: /src/elements/SmartElement.ts
  *  Project: react-ast
- *  File Created: 28-11-2023 15:04:04
- *  Author: dharmendra
+ *  File Created: 28-11-2023 15:06:23
+ *  Author: Clay Risser
  *  -----
  *  BitSpur (c) Copyright 2019 - 2023
  *
