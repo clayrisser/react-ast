@@ -1,5 +1,5 @@
-import FunctionalComponent from './FunctionalComponent';
+import FunctionalComponent from "./FunctionalComponent";
 
 export { FunctionalComponent };
 
-export * from './FunctionalComponent';
+export * from "./FunctionalComponent";

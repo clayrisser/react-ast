@@ -1,8 +1,31 @@
-import ReactReconciler from 'react-reconciler';
-import createElement from '~/createElement';
-import { SmartElement } from '~/elements';
-import { dev } from '~/util';
-import {
+/*
+ *  File: /src/reconciler.ts
+ *  Project: react-ast
+ *  File Created: 28-11-2023 02:58:22
+ *  Author: Clay Risser
+ *  -----
+ *  BitSpur (c) Copyright 2019 - 2023
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+import ReactReconciler from "react-reconciler";
+import type { Lane } from "react-reconciler";
+import createElement from "./createElement";
+import { DefaultEventPriority } from "react-reconciler/constants";
+import { SmartElement } from "./elements";
+import { dev } from "./util";
+import type {
   ChildSet,
   Container,
   HostContext,
@@ -15,12 +38,12 @@ import {
   TextInstance,
   TimeoutHandle,
   Type,
-  UpdatePayload
-} from '~/types';
+  UpdatePayload,
+} from "./types";
 
 const logger = {
   ...console,
-  debug: (..._args: any[]) => undefined
+  debug: (..._args: any[]) => undefined,
 };
 
 // bindings to the react reconciliation lifecycle methods
@@ -43,17 +66,17 @@ export default ReactReconciler<
     type: Type,
     props: Props,
     _rootContainerInstance: Container,
-    _hostContext: HostContext
+    _hostContext: HostContext,
   ): Instance {
-    logger.debug('createInstance');
+    logger.debug("createInstance");
     return createElement(type, props);
   },
 
   appendInitialChild(
     parentInstance: Instance,
-    child: Instance | TextInstance
+    child: Instance | TextInstance,
   ): void {
-    logger.debug('appendInitialChild');
+    logger.debug("appendInitialChild");
     parentInstance.appendChild(child);
   },
 
@@ -62,30 +85,30 @@ export default ReactReconciler<
     _type: Type,
     _props: Props,
     _rootContainerInstance: Container,
-    _hostContext: HostContext
+    _hostContext: HostContext,
   ): boolean {
-    logger.debug('finalizeInitialChildren');
+    logger.debug("finalizeInitialChildren");
     return true;
   },
 
   createTextInstance(
     text: string,
     _rootContainerInstance: Container,
-    _hostContext: HostContext
+    _hostContext: HostContext,
   ): TextInstance {
-    logger.debug('createTextInstance');
+    logger.debug("createTextInstance");
     const label = new SmartElement({ code: text }, {});
     label.commitMount(); // prob should run at a later point
     return label;
   },
 
   getPublicInstance(instance: Instance | TextInstance): PublicInstance {
-    logger.debug('getPublicInstance');
+    logger.debug("getPublicInstance");
     return instance;
   },
 
   prepareForCommit(_containerInfo: Container): Record<string, any> | null {
-    logger.debug('prepareForCommit');
+    logger.debug("prepareForCommit");
     return null;
   },
 
@@ -95,73 +118,73 @@ export default ReactReconciler<
     _oldProps: Props,
     _newProps: Props,
     _rootContainerInstance: Container,
-    _hostContext: HostContext
+    _hostContext: HostContext,
   ): null | UpdatePayload {
-    logger.debug('prepareUpdate');
+    logger.debug("prepareUpdate");
     return true;
   },
 
   resetAfterCommit(_containerInfo: Container): void {
-    logger.debug('resetAfterCommit');
+    logger.debug("resetAfterCommit");
   },
 
   resetTextContent(_instance: Instance): void {
-    logger.debug('resetTextContent');
+    logger.debug("resetTextContent");
     // noop
   },
 
   commitTextUpdate(
     _textInstance: TextInstance,
     _oldText: string,
-    _newText: string
+    _newText: string,
   ): void {
-    logger.debug('commitTextUpdate');
-    throw new Error('commitTextUpdate should not be called');
+    logger.debug("commitTextUpdate");
+    throw new Error("commitTextUpdate should not be called");
   },
 
   removeChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    logger.debug('removeChild');
+    logger.debug("removeChild");
     parentInstance.removeChild(child);
   },
 
   removeChildFromContainer(
     _container: Container,
-    _child: Instance | TextInstance
+    _child: Instance | TextInstance,
   ): void {
-    logger.debug('removeChildFromContainer');
+    logger.debug("removeChildFromContainer");
     if (dev) logger.warn("'removeChildFromContainer' not supported");
   },
 
   insertBefore(
     _parentInstance: Instance,
     _child: Instance | TextInstance,
-    _beforeChild: Instance | TextInstance
+    _beforeChild: Instance | TextInstance,
   ): void {
-    logger.debug('insertBefore');
+    logger.debug("insertBefore");
     if (dev) logger.warn("'insertBefore' not supported");
   },
 
   appendChildToContainer(
     container: Container,
-    child: Instance | TextInstance
+    child: Instance | TextInstance,
   ): void {
-    logger.debug('appendChildToContainer');
+    logger.debug("appendChildToContainer");
     container.appendChild(child);
   },
 
   appendChild(parentInstance: Instance, child: Instance | TextInstance): void {
-    logger.debug('appendChild');
+    logger.debug("appendChild");
     parentInstance.appendChild(child);
   },
 
   shouldSetTextContent(_type: Type, props: Props): boolean {
-    logger.debug('shouldSetTextContent');
-    if (typeof props.children === 'string') return true;
+    logger.debug("shouldSetTextContent");
+    if (typeof props.children === "string") return true;
     return false;
   },
 
   getRootHostContext(_rootContainerInstance: Container): HostContext {
-    logger.debug('getRootHostContext');
+    logger.debug("getRootHostContext");
     if (dev) logger.warn("'getRootHostContext' not supported");
     return {};
   },
@@ -169,54 +192,52 @@ export default ReactReconciler<
   getChildHostContext(
     _parentHostContext: HostContext,
     _type: Type,
-    _rootContainerInstance: Container
+    _rootContainerInstance: Container,
   ): HostContext {
-    logger.debug('getChildHostContext');
+    logger.debug("getChildHostContext");
     if (dev) logger.warn("'getChildHostContext' not supported");
     return {};
   },
-
-  now: Date.now,
 
   commitUpdate(
     instance: Instance,
     _updatePayload: any,
     _type: string,
     _oldProps: Props,
-    newProps: Props
+    newProps: Props,
   ): void {
-    logger.debug('commitUpdate');
+    logger.debug("commitUpdate");
     return instance.commitUpdate(newProps);
   },
 
   commitMount(instance: Instance, _type: Type, _newProps: Props): void {
-    logger.debug('commitMount');
+    logger.debug("commitMount");
     instance.commitMount();
   },
 
   scheduleTimeout(
     handler: (...args: any[]) => void,
-    timeout: number
+    timeout: number,
   ): TimeoutHandle | NoTimeout {
-    logger.debug('setTimeout');
+    logger.debug("setTimeout");
     return setTimeout(handler, timeout);
   },
 
   cancelTimeout(handle: TimeoutHandle | NoTimeout): void {
-    logger.debug('clearTimeout');
+    logger.debug("clearTimeout");
     return clearTimeout(handle);
   },
 
   preparePortalMount() {
-    logger.debug('preparePortalMount');
+    logger.debug("preparePortalMount");
   },
 
-  queueMicrotask(callback: () => void) {
+  scheduleMicrotask(callback: () => unknown) {
     queueMicrotask(callback);
   },
 
   clearContainer(_container: Container) {
-    logger.debug('clearContainer');
+    logger.debug("clearContainer");
   },
 
   noTimeout: -1 as NoTimeout,
@@ -227,5 +248,38 @@ export default ReactReconciler<
 
   supportsPersistence: false,
 
-  supportsHydration: false
+  supportsHydration: false,
+
+  getCurrentEventPriority(): Lane {
+    return DefaultEventPriority;
+  },
+
+  getInstanceFromNode(_node: any) {
+    logger.debug("getInstanceFromNode");
+    return null;
+  },
+
+  getInstanceFromScope(scopeInstance: any): null | Instance {
+    logger.debug("getInstanceFromScope");
+    if (scopeInstance.node) {
+      return scopeInstance as Instance;
+    }
+    return null;
+  },
+
+  beforeActiveInstanceBlur() {
+    logger.debug("beforeActiveInstanceBlur");
+  },
+
+  afterActiveInstanceBlur() {
+    logger.debug("afterActiveInstanceBlur");
+  },
+
+  prepareScopeUpdate(_scopeInstance: any, _instance: any) {
+    logger.debug("prepareScopeUpdate");
+  },
+
+  detachDeletedInstance(_node: Instance) {
+    logger.debug("detachDeletedInstance");
+  },
 });

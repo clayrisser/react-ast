@@ -45,7 +45,7 @@ npm install --save react-ast
 ### Render Code
 
 ```ts
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import {
   Export,
   Expression,
@@ -59,12 +59,12 @@ import {
   TypeAnnotation,
   TypeReference,
   Var,
-  VarKind
-} from 'react-ast';
+  VarKind,
+} from "react-ast";
 
-const code = render(
+const code = await render(
   <>
-    <Import default="React" imports={['FC']} from="react" />
+    <Import default="React" imports={["FC"]} from="react" />
     <Export>
       <Interface name="HelloProps" />
     </Export>
@@ -80,7 +80,7 @@ const code = render(
             }
           >
             props
-          </Identifier>
+          </Identifier>,
         ]}
       >
         <Return>
@@ -101,7 +101,7 @@ console.log(code);
 The rendered code
 
 ```ts
-import React, { FC } from 'react';
+import React, { FC } from "react";
 export interface HelloProps {}
 
 const Hello: FC<HelloProps> = (props: HelloProps) => {
@@ -118,8 +118,8 @@ Sometimes you might want to render the ast instead of
 rendering the code.
 
 ```ts
-import React from 'react';
-import { ClassDeclaration, renderAst } from 'react-ast';
+import React from "react";
+import { ClassDeclaration, renderAst } from "react-ast";
 
 const ast = renderAst(<Class name="Hello" />);
 

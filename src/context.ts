@@ -1,11 +1,11 @@
-import _merge from 'lodash.merge';
-import { TemplateBuilderOptions } from '@babel/template';
+import _merge from "lodash.merge";
+import { TemplateBuilderOptions } from "@babel/template";
 
 const globalContext: Context = {
   parserOptions: {
     placeholderPattern: false,
-    placeholderWhitelist: new Set()
-  }
+    placeholderWhitelist: new Set(),
+  },
 };
 
 export interface Context {

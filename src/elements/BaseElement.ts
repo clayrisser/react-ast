@@ -1,14 +1,42 @@
-import PropTypes from 'prop-types';
-import _get from 'lodash.get';
-import _set from 'lodash.set';
-import { ParserOptions } from '@babel/parser';
-import { BaseNode, HashMap, Path, Node, Instance, Props } from '~/types';
-import { flattenPath } from '~/util';
+/*
+ *  File: /src/elements/BaseElement.ts
+ *  Project: react-ast
+ *  File Created: 28-11-2023 15:04:04
+ *  Author: dharmendra
+ *  -----
+ *  BitSpur (c) Copyright 2019 - 2023
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+import PropTypes from "prop-types";
+import _get from "lodash.get";
+import _set from "lodash.set";
+import type { ParserOptions } from "@babel/parser";
+import type {
+  BaseNode,
+  Path,
+  Node,
+  TextInstance,
+  Instance,
+  Props,
+} from "../types";
+import { flattenPath } from "../util";
 
 export interface IElement<P = Props> {
-  new (props?: P, parserOptions?: ParserOptions): BaseElement;
-  propTypes: HashMap;
+  propTypes: Record<string, any>;
   defaultProps: Props;
+  new (props?: P, parserOptions?: ParserOptions): BaseElement;
 }
 
 export interface Meta {
@@ -19,18 +47,34 @@ export interface Meta {
 export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
-  static propTypes: HashMap = {};
+  static propTypes: Record<string, any> = {};
 
   node: Node;
 
   props: Props;
 
-  children: BaseElement[] = [];
+  children: (Instance | TextInstance)[] = [];
 
   meta: Meta = {
-    bodyPath: 'body',
-    parentBodyPath: null
+    bodyPath: "body",
+    parentBodyPath: null,
   };
+
+  constructor(
+    baseNode: BaseNode | BaseNode[],
+    props: Props = {},
+    meta?: Partial<Meta>,
+  ) {
+    if (Array.isArray(baseNode)) throw new Error("cannot be array");
+    if (meta) {
+      this.meta = {
+        ...this.meta,
+        ...meta,
+      };
+    }
+    this.node = baseNode;
+    this.props = this.getProps(props);
+  }
 
   getBodyPath(path?: Path | null): string {
     return flattenPath(path || this.meta.bodyPath);
@@ -38,7 +82,7 @@ export default class BaseElement implements Instance {
 
   getBody(
     body: BaseNode | BaseNode[],
-    path?: Path | null
+    path?: Path | null,
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
     if (!bodyPath.length) return body;
@@ -48,30 +92,14 @@ export default class BaseElement implements Instance {
   setBody(
     body: BaseNode | BaseNode[],
     value: BaseNode | BaseNode[],
-    path?: Path | null
+    path?: Path | null,
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
     if (!bodyPath.length) return body;
     return _set(body, bodyPath, value);
   }
 
-  constructor(
-    baseNode: BaseNode | BaseNode[],
-    props: Props = {},
-    meta?: Partial<Meta>
-  ) {
-    if (Array.isArray(baseNode)) throw new Error('cannot be array');
-    if (meta) {
-      this.meta = {
-        ...this.meta,
-        ...meta
-      };
-    }
-    this.node = baseNode;
-    this.props = this.getProps(props);
-  }
-
-  appendChild(child: BaseElement) {
+  appendChild(child: Instance | TextInstance) {
     const body = this.getBody(this.node, child.meta.parentBodyPath);
     this.children.push(child);
     if (Array.isArray(body)) {
@@ -81,7 +109,7 @@ export default class BaseElement implements Instance {
     }
   }
 
-  removeChild(child: BaseElement) {
+  removeChild(child: Instance | TextInstance) {
     const body = this.getBody(this.node, child.meta.parentBodyPath);
     if (!body || !Array.isArray(body)) return;
     this.children.splice(this.children.indexOf(child), 1);
@@ -95,7 +123,7 @@ export default class BaseElement implements Instance {
   commitUpdate(newProps: Props) {
     this.props = {
       ...this.props,
-      ...newProps
+      ...newProps,
     };
   }
 
@@ -104,11 +132,11 @@ export default class BaseElement implements Instance {
     const { defaultProps, propTypes } = this.constructor as IElement;
     Object.keys(defaultProps).forEach((key) => {
       const defaultProp = defaultProps[key];
-      if (typeof props[key] === 'undefined' || props[key] === null) {
+      if (typeof props[key] === "undefined" || props[key] === null) {
         props[key] = defaultProp;
       }
     });
-    PropTypes.checkPropTypes(propTypes, props, 'prop', this.constructor.name);
+    PropTypes.checkPropTypes(propTypes, props, "prop", this.constructor.name);
     return props;
   }
 }
