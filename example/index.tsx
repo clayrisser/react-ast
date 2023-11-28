@@ -23,19 +23,19 @@ import {
 
 const logger = console;
 
-const jsx = (
-  <>
-    <ClassDeclaration id="Hello" />
-    <FunctionDeclaration id="add" params={['a', 'b']}>
-      <VariableDeclaration kind={VariableDeclarationKind.Const}>
-        <VariableDeclarator id="result">{0}</VariableDeclarator>
-      </VariableDeclaration>
-      <ReturnStatement>
-        <Identifier>result</Identifier>
-      </ReturnStatement>
-    </FunctionDeclaration>
-  </>
-);
+// const jsx = (
+//   <>
+//     <ClassDeclaration id="Hello" />
+//     <FunctionDeclaration id="add" params={['a', 'b']}>
+//       <VariableDeclaration kind={VariableDeclarationKind.Const}>
+//         <VariableDeclarator id="result">{0}</VariableDeclarator>
+//       </VariableDeclaration>
+//       <ReturnStatement>
+//         <Identifier>result</Identifier>
+//       </ReturnStatement>
+//     </FunctionDeclaration>
+//   </>
+// );
 
 logger.log('======== RECONCILER LIFECYCLE ========');
 
