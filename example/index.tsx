@@ -88,7 +88,7 @@ const fuc = (
 
 logger.log('======== RENDER AST ========');
 
-logger.log(renderAst(jsx, { prettier: false }).program.body[1]);
+logger.log(renderAst(fuc, { prettier: false }).program.body[0]);
 
 logger.log('======== RENDER ========');
-logger.log(render(fuc, { prettier: false }));
+// logger.log(render(fuc, { prettier: false }));
