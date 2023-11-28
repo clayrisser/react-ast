@@ -1,13 +1,8 @@
 /**
  * File: /src/components/expressions/CallExpression/index.tsx
  * Project: react-ast
-<<<<<<< HEAD
- * File Created: 28-11-2023 15:04:04
- * Author: dharmendra
-=======
  * File Created: 28-11-2023 02:58:22
  * Author: Clay Risser
->>>>>>> 23c3ab733a93c5560e55719516b5c4ed4f821b27
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
