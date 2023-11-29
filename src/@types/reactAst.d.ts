@@ -30,13 +30,9 @@ declare namespace JSX {
 
   type Path = string | number | DeepArray<string | number>;
 
-  interface HashMap<T = any> {
-    [key: string]: T;
-  }
-
   interface IntrinsicElements {
     Ast: {
-      ast: HashMap;
+      ast: Record<string, any>;
       bodyPath?: Path;
       children?: ReactNode;
       parentBodyPath?: Path;

@@ -23,7 +23,6 @@ import _get from "lodash.get";
 import type BaseElement from "./elements/BaseElement";
 import type { Path } from "./types";
 
-const logger = console;
 const g = typeof window === "undefined" ? global : window;
 const process =
   typeof g.process === "undefined"
@@ -69,9 +68,14 @@ function isDev(): boolean {
   );
 }
 
+export const dev = isDev();
+
+export const logger = {
+  ...console,
+  debug: dev ? console.debug : (..._args: any[]) => undefined,
+};
+
 export function debugRef(debug = true) {
   if (!debug) return () => undefined;
   return (ref: BaseElement) => logger.debug(JSON.stringify(ref.node, null, 2));
 }
-
-export const dev = isDev();

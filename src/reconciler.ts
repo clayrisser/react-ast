@@ -24,7 +24,7 @@ import type { Lane } from "react-reconciler";
 import createElement from "./createElement";
 import { DefaultEventPriority } from "react-reconciler/constants";
 import { SmartElement } from "./elements";
-import { dev } from "./util";
+import { dev, logger } from "./util";
 import type {
   ChildSet,
   Container,
@@ -41,12 +41,10 @@ import type {
   UpdatePayload,
 } from "./types";
 
-const logger = {
-  ...console,
-  debug: (..._args: any[]) => undefined,
-};
+// https://blog.atulr.com/react-custom-renderer-3
+// https://github.com/nitin42/Making-a-custom-React-renderer/blob/master/part-one.md
+// https://www.youtube.com/watch?v=SXx-CymMjDM
 
-// bindings to the react reconciliation lifecycle methods
 export default ReactReconciler<
   Type,
   Props,
@@ -62,6 +60,16 @@ export default ReactReconciler<
   TimeoutHandle,
   NoTimeout
 >({
+  noTimeout: -1 as NoTimeout,
+
+  isPrimaryRenderer: true,
+
+  supportsMutation: true,
+
+  supportsPersistence: false,
+
+  supportsHydration: false,
+
   createInstance(
     type: Type,
     props: Props,
@@ -130,7 +138,6 @@ export default ReactReconciler<
 
   resetTextContent(_instance: Instance): void {
     logger.debug("resetTextContent");
-    // noop
   },
 
   commitTextUpdate(
@@ -219,7 +226,7 @@ export default ReactReconciler<
     handler: (...args: any[]) => void,
     timeout: number,
   ): TimeoutHandle | NoTimeout {
-    logger.debug("setTimeout");
+    logger.debug("scheduleTimeout");
     return setTimeout(handler, timeout);
   },
 
@@ -239,16 +246,6 @@ export default ReactReconciler<
   clearContainer(_container: Container) {
     logger.debug("clearContainer");
   },
-
-  noTimeout: -1 as NoTimeout,
-
-  isPrimaryRenderer: true,
-
-  supportsMutation: true,
-
-  supportsPersistence: false,
-
-  supportsHydration: false,
 
   getCurrentEventPriority(): Lane {
     return DefaultEventPriority;

@@ -54,7 +54,6 @@ export function renderAst(
     bundleType: Number(dev) as BundleType,
     rendererPackageName: "react-ast",
     version: "0.2",
-    // version: pkg.version
   });
   return file.node as t.File;
 }
