@@ -71,8 +71,12 @@
     "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.3",
     "@babel/node": "^7.22.19",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@swc/core": "^1.3.99",
     "@types/babel__parser": "^7.1.1",
+    "@types/babel__preset-env": "^7",
     "@types/estree": "^1.0.5",
     "@types/jest": "^29.5.10",
     "@types/lodash.get": "^4.4.9",
@@ -83,6 +87,7 @@
     "@types/react-reconciler": "^0.28.8",
     "@typescript-eslint/eslint-plugin": "^6.13.0",
     "@typescript-eslint/parser": "^6.13.0",
+    "babel-jest": "^29.7.0",
     "cspell": "^8.0.0",
     "eslint": "^8.54.0",
     "eslint-config-alloy": "^5.1.2",
@@ -101,12 +106,11 @@
     "lib"
   ],
   "jest": {
-    "testRegex": "((/(tests|__tests__)((/|/[^_.\n][^/\n]*(/[^_.\n][^/\n]+)*/)[^_.\n][^/\n]*))|((/|/.*/)(([^_.\n][^/\n]*.(spec|test))|(spec|test)))).[jt]sx?$",
+    "testRegex": "\\.(spec|test)\\.[cm]?[jt]sx?$",
     "testEnvironment": "node",
     "verbose": true,
     "testPathIgnorePatterns": [
-      "<rootDir>/lib/",
-      "<rootDir>/dist/"
+      "<rootDir>/lib/"
     ]
   },
   "jestSonar": {

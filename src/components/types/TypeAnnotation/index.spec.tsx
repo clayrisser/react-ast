@@ -28,8 +28,8 @@ import {
 import TypeAnnotation from "./index";
 
 describe("<TypeAnnotation />", () => {
-  it("renders with children", () => {
-    const code = render(
+  it("renders with children", async () => {
+    const code = await render(
       <TypeAnnotation debug>
         <TypeReference name="T" />
       </TypeAnnotation>,
@@ -43,8 +43,8 @@ describe("<TypeAnnotation />", () => {
     expect(code).toBe(": T");
   });
 
-  it("renders with nested children", () => {
-    const code = render(
+  it("renders with nested children", async () => {
+    const code = await render(
       <TypeAnnotation debug>
         <TypeReference name="T">
           <TypeParameterInstantiation>
@@ -63,8 +63,8 @@ describe("<TypeAnnotation />", () => {
     expect(code).toBe(": T<A, B>");
   });
 
-  it("renders with children as string", () => {
-    const code = render(<TypeAnnotation debug>T</TypeAnnotation>, {
+  it("renders with children as string", async () => {
+    const code = await render(<TypeAnnotation debug>T</TypeAnnotation>, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],

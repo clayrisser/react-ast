@@ -19,18 +19,18 @@
  * limitations under the License.
  */
 
-import JSXClosingElement from "../../../components/jsx/JSXClosingElement";
-import JSXOpeningElement from "../../../components/jsx/JSXOpeningElement";
+import JsxClosingElement from "../../../components/jsx/JsxClosingElement";
+import JsxOpeningElement from "../../../components/jsx/JsxOpeningElement";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import React, { forwardRef } from "react";
 import Smart from "../../../components/Smart";
 import type BaseElement from "../../../elements/BaseElement";
-import type { JSXOpeningElementProps } from "../../../components/jsx/JSXOpeningElement";
+import type { JsxOpeningElementProps } from "../../../components/jsx/JsxOpeningElement";
 import type { Ref, ReactNode } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
 
-export interface JSXElementProps extends JSXOpeningElementProps {
+export interface JSXElementProps extends JsxOpeningElementProps {
   children?: ReactNode;
 }
 
@@ -45,7 +45,7 @@ const JSXElement = forwardRef<BaseElement, JSXElementProps>(
     function renderOpeningElement() {
       return (
         <ParentBodyPathProvider value="openingElement">
-          <JSXOpeningElement
+          <JsxOpeningElement
             attributes={attributes}
             name={name}
             selfClosing={!children && selfClosing}
@@ -57,7 +57,7 @@ const JSXElement = forwardRef<BaseElement, JSXElementProps>(
     function renderClosingElement() {
       return (
         <ParentBodyPathProvider value="closingElement">
-          <JSXClosingElement name={name} />
+          <JsxClosingElement name={name} />
         </ParentBodyPathProvider>
       );
     }

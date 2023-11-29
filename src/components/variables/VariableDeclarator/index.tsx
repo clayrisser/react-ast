@@ -29,9 +29,9 @@ import TypeAnnotation from "../../types/TypeAnnotation";
 import { debugRef } from "../../../util";
 
 export interface VariableDeclaratorProps {
+  children?: any;
   debug?: boolean;
   id: string;
-  children?: ReactNode;
   typeAnnotation?: ReactNode;
 }
 

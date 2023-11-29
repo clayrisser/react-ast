@@ -32,22 +32,22 @@ import {
 } from "../../../components";
 
 describe("<Function />", () => {
-  it("renders empty function", () => {
-    const code = render(<Function name="hello" debug />, {
+  it("renders empty function", async () => {
+    const code = await render(<Function name="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("function hello() {}");
   });
 
-  it("renders anonymous function", () => {
-    const code = render(<Function debug />, {
+  it("renders anonymous function", async () => {
+    const code = await render(<Function debug />, {
       prettier: false,
     });
     expect(code).toBe("function () {}");
   });
 
-  it("renders function with nested return type", () => {
-    const code = render(
+  it("renders function with nested return type", async () => {
+    const code = await render(
       <Function
         name="hello"
         returnType={
@@ -72,8 +72,8 @@ describe("<Function />", () => {
     expect(code).toBe("function hello(): T<A, B> {}");
   });
 
-  it("renders function with return type as string", () => {
-    const code = render(
+  it("renders function with return type as string", async () => {
+    const code = await render(
       <Function name="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
@@ -85,8 +85,8 @@ describe("<Function />", () => {
     expect(code).toBe("function hello(): T<A, B, C> {}");
   });
 
-  it("renders function with nested children", () => {
-    const code = render(
+  it("renders function with nested children", async () => {
+    const code = await render(
       <Function name="hello" debug>
         <VariableDeclaration debug>
           <VariableDeclarator
@@ -110,8 +110,8 @@ describe("<Function />", () => {
 }`);
   });
 
-  it("renders function with params as string", () => {
-    const code = render(
+  it("renders function with params as string", async () => {
+    const code = await render(
       <Function name="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
@@ -120,8 +120,8 @@ describe("<Function />", () => {
     expect(code).toBe("function hello(a, b, c) {}");
   });
 
-  it("renders function with children as string", () => {
-    const code = render(
+  it("renders function with children as string", async () => {
+    const code = await render(
       <Function name="hello" debug>
         const hello = 0;
       </Function>,
@@ -134,8 +134,8 @@ describe("<Function />", () => {
 }`);
   });
 
-  it("renders function with typed params", () => {
-    const code = render(
+  it("renders function with typed params", async () => {
+    const code = await render(
       <Function
         name="hello"
         params={[
@@ -166,8 +166,8 @@ describe("<Function />", () => {
     expect(code).toBe("function hello(a: A, b: T<A, B>, c: T<A, B, C>) {}");
   });
 
-  it("renders function with all props", () => {
-    const code = render(
+  it("renders function with all props", async () => {
+    const code = await render(
       <Function
         returnType="T<A, B>"
         params={[
@@ -199,15 +199,15 @@ describe("<Function />", () => {
 }`);
   });
 
-  it("renders empty arrow function", () => {
-    const code = render(<Function arrow debug />, {
+  it("renders empty arrow function", async () => {
+    const code = await render(<Function arrow debug />, {
       prettier: false,
     });
     expect(code).toBe("() => {}");
   });
 
-  it("renders arrow function with nested return type", () => {
-    const code = render(
+  it("renders arrow function with nested return type", async () => {
+    const code = await render(
       <Function
         arrow
         returnType={
@@ -232,18 +232,21 @@ describe("<Function />", () => {
     expect(code).toBe("(): T<A, B> => {}");
   });
 
-  it("renders arrow function with return type as string", () => {
-    const code = render(<Function arrow returnType="T<A, B, C>" debug />, {
-      prettier: false,
-      parserOptions: {
-        plugins: ["jsx", "classProperties", "typescript"],
+  it("renders arrow function with return type as string", async () => {
+    const code = await render(
+      <Function arrow returnType="T<A, B, C>" debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
       },
-    });
+    );
     expect(code).toBe("(): T<A, B, C> => {}");
   });
 
-  it("renders arrow function with nested children", () => {
-    const code = render(
+  it("renders arrow function with nested children", async () => {
+    const code = await render(
       <Function arrow debug>
         <VariableDeclaration debug>
           <VariableDeclarator
@@ -267,15 +270,18 @@ describe("<Function />", () => {
 }`);
   });
 
-  it("renders arrow function with params as string", () => {
-    const code = render(<Function arrow params={["a", "b", "c"]} debug />, {
-      prettier: false,
-    });
+  it("renders arrow function with params as string", async () => {
+    const code = await render(
+      <Function arrow params={["a", "b", "c"]} debug />,
+      {
+        prettier: false,
+      },
+    );
     expect(code).toBe("(a, b, c) => {}");
   });
 
-  it("renders arrow function with children as string", () => {
-    const code = render(
+  it("renders arrow function with children as string", async () => {
+    const code = await render(
       <Function arrow debug>
         const hello = 0;
       </Function>,
@@ -288,8 +294,8 @@ describe("<Function />", () => {
 }`);
   });
 
-  it("renders arrow function with typed params", () => {
-    const code = render(
+  it("renders arrow function with typed params", async () => {
+    const code = await render(
       <Function
         arrow
         params={[
@@ -320,8 +326,8 @@ describe("<Function />", () => {
     expect(code).toBe("(a: A, b: T<A, B>, c: T<A, B, C>) => {}");
   });
 
-  it("renders arrow function with all props", () => {
-    const code = render(
+  it("renders arrow function with all props", async () => {
+    const code = await render(
       <Function
         arrow
         returnType="T<A, B>"

@@ -69,9 +69,9 @@ const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
       if (!params?.length) return null;
       return (
         <ParentBodyPathProvider value="parameters">
-          {params.map((param: ReactNode) => {
+          {params.map((param: ReactNode, i: number) => {
             if (typeof param === "string") {
-              return <Identifier>{param}</Identifier>;
+              return <Identifier key={`${param}${i}`}>{param}</Identifier>;
             }
             return param;
           })}

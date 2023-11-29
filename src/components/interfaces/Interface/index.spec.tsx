@@ -30,8 +30,8 @@ import {
 import Interface from "./index";
 
 describe("<Interface />", () => {
-  it("renders", () => {
-    const code = render(<Interface name="Hello" debug />, {
+  it("renders", async () => {
+    const code = await render(<Interface name="Hello" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -40,8 +40,8 @@ describe("<Interface />", () => {
     expect(code).toBe("interface Hello {}");
   });
 
-  it("renders with type parameters", () => {
-    const code = render(
+  it("renders with type parameters", async () => {
+    const code = await render(
       <Interface
         name="Hello"
         typeParameters={["A", <TypeReference name="B" />]}
@@ -57,18 +57,21 @@ describe("<Interface />", () => {
     expect(code).toBe("interface Hello<A, B> {}");
   });
 
-  it("renders with type parameters as string", () => {
-    const code = render(<Interface name="Hello" typeParameters="T" debug />, {
-      prettier: false,
-      parserOptions: {
-        plugins: ["jsx", "classProperties", "typescript"],
+  it("renders with type parameters as string", async () => {
+    const code = await render(
+      <Interface name="Hello" typeParameters="T" debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
       },
-    });
+    );
     expect(code).toBe("interface Hello<T> {}");
   });
 
-  it("renders with nested type parameters", () => {
-    const code = render(
+  it("renders with nested type parameters", async () => {
+    const code = await render(
       <Interface
         name="Hello"
         typeParameters={
@@ -91,8 +94,8 @@ describe("<Interface />", () => {
     expect(code).toBe("interface Hello<T<A, B>> {}");
   });
 
-  it("renders with interface property signatures", () => {
-    const code = render(
+  it("renders with interface property signatures", async () => {
+    const code = await render(
       <Interface name="Hello" debug>
         <PropertySignature id="hello" typeAnnotation="T" />
       </Interface>,
@@ -108,8 +111,8 @@ describe("<Interface />", () => {
 }`);
   });
 
-  it("renders with interface method signatures", () => {
-    const code = render(
+  it("renders with interface method signatures", async () => {
+    const code = await render(
       <Interface name="Hello" debug>
         <MethodSignature id="hello" returnType="T" />
       </Interface>,
@@ -125,8 +128,8 @@ describe("<Interface />", () => {
 }`);
   });
 
-  it("renders with interface method and property signatures", () => {
-    const code = render(
+  it("renders with interface method and property signatures", async () => {
+    const code = await render(
       <Interface name="Hello" debug>
         <PropertySignature id="hello" typeAnnotation="T" />
         <MethodSignature id="hello" returnType="T" />

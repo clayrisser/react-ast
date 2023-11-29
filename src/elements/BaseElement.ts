@@ -22,14 +22,21 @@
 import PropTypes from "prop-types";
 import _get from "lodash.get";
 import _set from "lodash.set";
-import { ParserOptions } from "@babel/parser";
-import { BaseNode, HashMap, Path, Node, Instance, Props } from "../types";
+import type { ParserOptions } from "@babel/parser";
+import type {
+  BaseNode,
+  Path,
+  Node,
+  TextInstance,
+  Instance,
+  Props,
+} from "../types";
 import { flattenPath } from "../util";
 
 export interface IElement<P = Props> {
-  new (props?: P, parserOptions?: ParserOptions): BaseElement;
-  propTypes: HashMap;
+  propTypes: Record<string, any>;
   defaultProps: Props;
+  new (props?: P, parserOptions?: ParserOptions): BaseElement;
 }
 
 export interface Meta {
@@ -40,18 +47,34 @@ export interface Meta {
 export default class BaseElement implements Instance {
   static defaultProps: Props = {};
 
-  static propTypes: HashMap = {};
+  static propTypes: Record<string, any> = {};
 
   node: Node;
 
   props: Props;
 
-  children: BaseElement[] = [];
+  children: (Instance | TextInstance)[] = [];
 
   meta: Meta = {
     bodyPath: "body",
     parentBodyPath: null,
   };
+
+  constructor(
+    baseNode: BaseNode | BaseNode[],
+    props: Props = {},
+    meta?: Partial<Meta>,
+  ) {
+    if (Array.isArray(baseNode)) throw new Error("cannot be array");
+    if (meta) {
+      this.meta = {
+        ...this.meta,
+        ...meta,
+      };
+    }
+    this.node = baseNode;
+    this.props = this.getProps(props);
+  }
 
   getBodyPath(path?: Path | null): string {
     return flattenPath(path || this.meta.bodyPath);
@@ -76,23 +99,7 @@ export default class BaseElement implements Instance {
     return _set(body, bodyPath, value);
   }
 
-  constructor(
-    baseNode: BaseNode | BaseNode[],
-    props: Props = {},
-    meta?: Partial<Meta>,
-  ) {
-    if (Array.isArray(baseNode)) throw new Error("cannot be array");
-    if (meta) {
-      this.meta = {
-        ...this.meta,
-        ...meta,
-      };
-    }
-    this.node = baseNode;
-    this.props = this.getProps(props);
-  }
-
-  appendChild(child: BaseElement) {
+  appendChild(child: Instance | TextInstance) {
     const body = this.getBody(this.node, child.meta.parentBodyPath);
     this.children.push(child);
     if (Array.isArray(body)) {
@@ -102,7 +109,7 @@ export default class BaseElement implements Instance {
     }
   }
 
-  removeChild(child: BaseElement) {
+  removeChild(child: Instance | TextInstance) {
     const body = this.getBody(this.node, child.meta.parentBodyPath);
     if (!body || !Array.isArray(body)) return;
     this.children.splice(this.children.indexOf(child), 1);

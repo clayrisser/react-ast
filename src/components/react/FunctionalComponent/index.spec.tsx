@@ -20,13 +20,13 @@
  */
 
 import React from "react";
-import { JSX } from "../..";
+import { Jsx } from "../..";
 import { render } from "../../../index";
 import FunctionalComponent from "./index";
 
 describe("<FunctionalComponent />", () => {
-  it("renders functional component", () => {
-    const code = render(<FunctionalComponent name="Hello" />, {
+  it("renders functional component", async () => {
+    const code = await render(<FunctionalComponent name="Hello" />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -34,21 +34,19 @@ describe("<FunctionalComponent />", () => {
     });
     expect(code).toBe(`import React, { FC } from 'react';
 export interface HelloProps {}
-
 const Hello: FC<HelloProps> = (props: HelloProps) => {
   return <></>;
 };
-
 Hello.defaultProps = {}
 export default Hello;`);
   });
 
-  it("renders functional component with children", () => {
-    const code = render(
+  it("renders functional component with children", async () => {
+    const code = await render(
       <FunctionalComponent name="Hello">
-        <JSX>
-          <JSX name="Hello" />
-        </JSX>
+        <Jsx>
+          <Jsx name="Hello" />
+        </Jsx>
       </FunctionalComponent>,
       {
         prettier: false,
@@ -59,11 +57,9 @@ export default Hello;`);
     );
     expect(code).toBe(`import React, { FC } from 'react';
 export interface HelloProps {}
-
 const Hello: FC<HelloProps> = (props: HelloProps) => {
   return <><Hello /></>;
 };
-
 Hello.defaultProps = {}
 export default Hello;`);
   });

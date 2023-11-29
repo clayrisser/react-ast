@@ -32,22 +32,22 @@ import {
 import ClassMethod, { ClassMethodAccessibility } from "./index";
 
 describe("<ClassMethod />", () => {
-  it("renders empty method", () => {
-    const code = render(<ClassMethod id="hello" debug />, {
+  it("renders empty method", async () => {
+    const code = await render(<ClassMethod id="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("hello() {}");
   });
 
-  it("renders with static", () => {
-    const code = render(<ClassMethod static id="hello" debug />, {
+  it("renders with static", async () => {
+    const code = await render(<ClassMethod static id="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("static hello() {}");
   });
 
-  it("renders with accessibility", () => {
-    const code = render(
+  it("renders with accessibility", async () => {
+    const code = await render(
       <ClassMethod
         id="hello"
         accessibility={ClassMethodAccessibility.Private}
@@ -63,8 +63,8 @@ describe("<ClassMethod />", () => {
     expect(code).toBe("private hello() {}");
   });
 
-  it("renders with static accessibility", () => {
-    const code = render(
+  it("renders with static accessibility", async () => {
+    const code = await render(
       <ClassMethod
         static
         accessibility={ClassMethodAccessibility.Private}
@@ -81,8 +81,8 @@ describe("<ClassMethod />", () => {
     expect(code).toBe("private static hello() {}");
   });
 
-  it("renders with nested return type", () => {
-    const code = render(
+  it("renders with nested return type", async () => {
+    const code = await render(
       <ClassMethod
         id="hello"
         returnType={
@@ -107,8 +107,8 @@ describe("<ClassMethod />", () => {
     expect(code).toBe("hello(): T<A, B> {}");
   });
 
-  it("renders with return type as string", () => {
-    const code = render(
+  it("renders with return type as string", async () => {
+    const code = await render(
       <ClassMethod id="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
@@ -120,8 +120,8 @@ describe("<ClassMethod />", () => {
     expect(code).toBe("hello(): T<A, B, C> {}");
   });
 
-  it("renders with nested children", () => {
-    const code = render(
+  it("renders with nested children", async () => {
+    const code = await render(
       <ClassMethod id="hello" debug>
         <VariableDeclaration debug>
           <VariableDeclarator
@@ -145,8 +145,8 @@ describe("<ClassMethod />", () => {
 }`);
   });
 
-  it("renders with params as string", () => {
-    const code = render(
+  it("renders with params as string", async () => {
+    const code = await render(
       <ClassMethod id="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
@@ -155,8 +155,8 @@ describe("<ClassMethod />", () => {
     expect(code).toBe("hello(a, b, c) {}");
   });
 
-  it("renders with children as string", () => {
-    const code = render(
+  it("renders with children as string", async () => {
+    const code = await render(
       <ClassMethod id="hello" debug>
         const hello = 0;
       </ClassMethod>,
@@ -169,8 +169,8 @@ describe("<ClassMethod />", () => {
 }`);
   });
 
-  it("renders with typed params", () => {
-    const code = render(
+  it("renders with typed params", async () => {
+    const code = await render(
       <ClassMethod
         id="hello"
         params={[
@@ -201,8 +201,8 @@ describe("<ClassMethod />", () => {
     expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>) {}");
   });
 
-  it("renders with all props", () => {
-    const code = render(
+  it("renders with all props", async () => {
+    const code = await render(
       <ClassMethod
         returnType="T<A, B>"
         params={[

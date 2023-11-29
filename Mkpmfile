@@ -24,8 +24,9 @@ include $(MKPM)/yarn
 include $(MKPM)/envcache
 include $(MKPM)/dotenv
 
-export PRETTIER ?= $(call yarn_binary,prettier)
-export TSUP ?= $(call yarn_binary,tsup)
+JEST ?= $(call yarn_binary,jest)
+PRETTIER ?= $(call yarn_binary,prettier)
+TSUP ?= $(call yarn_binary,tsup)
 
 ACTIONS += deps
 $(ACTION)/deps: package.json
@@ -50,7 +51,9 @@ $(ACTION)/lint: $(call git_deps,\.([jt]sx?)$$)
 ACTIONS += test~lint ##
 $(ACTION)/test: $(call git_deps,\.([jt]sx?)$$)
 	-@$(MKDIR) -p node_modules/.tmp
-	-@$(call jest,$?,$(TEST_ARGS))
+	-@$(RM) -rf lib $(NOOUT)
+	-@export NODE_OPTIONS="--experimental-vm-modules" && \
+		$(call jest,$?,$(TEST_ARGS))
 	@$(call done,$@)
 
 ACTIONS += build~test ##
@@ -75,6 +78,10 @@ count:
 publish: ~build +publish
 +publish:
 	@$(NPM) publish --access=public
+
+.PHONY: jest
+jest:
+	@$(JEST) $(JEST_ARGS)
 
 -include $(call chain)
 

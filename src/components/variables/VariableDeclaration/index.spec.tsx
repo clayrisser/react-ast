@@ -30,15 +30,15 @@ import { render } from "../../../index";
 import VariableDeclaration from "./index";
 
 describe("<VariableDeclaration />", () => {
-  it("renders", () => {
-    const code = render(<VariableDeclaration debug />, {
+  it("renders", async () => {
+    const code = await render(<VariableDeclaration debug />, {
       prettier: false,
     });
     expect(code).toBe("var ;");
   });
 
-  it("renders as kind var", () => {
-    const code = render(
+  it("renders as kind var", async () => {
+    const code = await render(
       <VariableDeclaration kind={VariableDeclarationKind.Var} debug>
         <VariableDeclarator id="v" typeAnnotation="T" />
       </VariableDeclaration>,
@@ -52,8 +52,8 @@ describe("<VariableDeclaration />", () => {
     expect(code).toBe("var v: T;");
   });
 
-  it("renders as kind const", () => {
-    const code = render(
+  it("renders as kind const", async () => {
+    const code = await render(
       <VariableDeclaration kind={VariableDeclarationKind.Const} debug>
         <VariableDeclarator
           id="c"
@@ -70,8 +70,8 @@ describe("<VariableDeclaration />", () => {
     expect(code).toBe("const c: T;");
   });
 
-  it("renders as kind let", () => {
-    const code = render(
+  it("renders as kind let", async () => {
+    const code = await render(
       <VariableDeclaration kind={VariableDeclarationKind.Let} debug>
         <VariableDeclarator id="l" />
       </VariableDeclaration>,
@@ -85,8 +85,8 @@ describe("<VariableDeclaration />", () => {
     expect(code).toBe("let l;");
   });
 
-  it("renders with children", () => {
-    const code = render(
+  it("renders with children", async () => {
+    const code = await render(
       <VariableDeclaration debug>
         <VariableDeclarator
           id="v"
@@ -105,8 +105,8 @@ describe("<VariableDeclaration />", () => {
     expect(code).toBe("var v: T = () => {};");
   });
 
-  it("renders with children as string", () => {
-    const code = render(
+  it("renders with children as string", async () => {
+    const code = await render(
       <VariableDeclaration debug>
         <VariableDeclarator
           id="v"

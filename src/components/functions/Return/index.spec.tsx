@@ -25,8 +25,8 @@ import { Identifier } from "../../../components";
 import { render } from "../../../index";
 
 describe("<Return />", () => {
-  it("renders return statement", () => {
-    const code = render(<Return debug>{{ hello: "world" }}</Return>, {
+  it("renders return statement", async () => {
+    const code = await render(<Return debug>{{ hello: "world" }}</Return>, {
       prettier: false,
     });
     expect(code).toBe(`return {
@@ -34,8 +34,8 @@ describe("<Return />", () => {
 };`);
   });
 
-  it("renders return statement with children", () => {
-    const code = render(
+  it("renders return statement with children", async () => {
+    const code = await render(
       <Return debug>
         <Identifier>hello</Identifier>
       </Return>,

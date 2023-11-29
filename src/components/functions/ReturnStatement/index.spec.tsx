@@ -25,8 +25,8 @@ import { Identifier } from "../../../components";
 import { render } from "../../../index";
 
 describe("<ReturnStatement />", () => {
-  it("renders return statement", () => {
-    const code = render(
+  it("renders return statement", async () => {
+    const code = await render(
       <ReturnStatement debug>{{ hello: "world" }}</ReturnStatement>,
       {
         prettier: false,
@@ -37,8 +37,8 @@ describe("<ReturnStatement />", () => {
 };`);
   });
 
-  it("renders return statement with children", () => {
-    const code = render(
+  it("renders return statement with children", async () => {
+    const code = await render(
       <ReturnStatement debug>
         <Identifier>hello</Identifier>
       </ReturnStatement>,

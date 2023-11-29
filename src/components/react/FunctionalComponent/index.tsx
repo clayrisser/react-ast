@@ -28,7 +28,7 @@ import {
   Identifier,
   Import,
   Interface,
-  JSX,
+  Jsx,
   Return,
   TypeAnnotation,
   TypeReference,
@@ -57,6 +57,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
           arrow
           params={[
             <Identifier
+              key={0}
               typeAnnotation={
                 <TypeAnnotation>
                   <TypeReference name={`${name}Props`} />
@@ -67,7 +68,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
             </Identifier>,
           ]}
         >
-          <Return>{children || <JSX />}</Return>
+          <Return>{children || <Jsx />}</Return>
         </Function>
       </Var>
       <Expression properties={`${name}.defaultProps`}>{{}}</Expression>

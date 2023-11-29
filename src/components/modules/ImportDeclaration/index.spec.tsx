@@ -25,8 +25,8 @@ import { ImportSpecifier } from "../..";
 import ImportDeclaration from "./index";
 
 describe("<ImportDeclaration />", () => {
-  it("renders with default specifier", () => {
-    const code = render(
+  it("renders with default specifier", async () => {
+    const code = await render(
       <ImportDeclaration defaultSpecifier="hello" source="world" debug />,
       {
         prettier: false,
@@ -35,8 +35,8 @@ describe("<ImportDeclaration />", () => {
     expect(code).toBe("import hello from 'world';");
   });
 
-  it("renders with namespace specifier", () => {
-    const code = render(
+  it("renders with namespace specifier", async () => {
+    const code = await render(
       <ImportDeclaration namespaceSpecifier="hello" source="world" debug />,
       {
         prettier: false,
@@ -45,8 +45,8 @@ describe("<ImportDeclaration />", () => {
     expect(code).toBe("import * as hello from 'world';");
   });
 
-  it("renders with namespace specifier override", () => {
-    const code = render(
+  it("renders with namespace specifier override", async () => {
+    const code = await render(
       <ImportDeclaration
         namespaceSpecifier="hello"
         defaultSpecifier="hello"
@@ -61,8 +61,8 @@ describe("<ImportDeclaration />", () => {
     expect(code).toBe("import * as hello from 'world';");
   });
 
-  it("renders with specifier", () => {
-    const code = render(
+  it("renders with specifier", async () => {
+    const code = await render(
       <ImportDeclaration specifiers="hello" source="world" debug />,
       {
         prettier: false,
@@ -71,8 +71,8 @@ describe("<ImportDeclaration />", () => {
     expect(code).toBe("import { hello } from 'world';");
   });
 
-  it("renders with specifiers", () => {
-    const code = render(
+  it("renders with specifiers", async () => {
+    const code = await render(
       <ImportDeclaration
         specifiers={[
           <ImportSpecifier>hello</ImportSpecifier>,
@@ -88,8 +88,8 @@ describe("<ImportDeclaration />", () => {
     expect(code).toBe("import { hello, howdy } from 'world';");
   });
 
-  it("renders with specifiers as string", () => {
-    const code = render(
+  it("renders with specifiers as string", async () => {
+    const code = await render(
       <ImportDeclaration
         specifiers={["hello", "howdy"]}
         source="world"
@@ -102,8 +102,8 @@ describe("<ImportDeclaration />", () => {
     expect(code).toBe("import { hello, howdy } from 'world';");
   });
 
-  it("renders with specifiers and default specifier", () => {
-    const code = render(
+  it("renders with specifiers and default specifier", async () => {
+    const code = await render(
       <ImportDeclaration
         defaultSpecifier="hello"
         specifiers={[<ImportSpecifier>howdy</ImportSpecifier>]}

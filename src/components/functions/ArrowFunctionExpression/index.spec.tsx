@@ -33,15 +33,15 @@ import {
 } from "../../../components";
 
 describe("<ArrowFunctionExpression />", () => {
-  it("renders empty function", () => {
-    const code = render(<ArrowFunctionExpression debug />, {
+  it("renders empty function", async () => {
+    const code = await render(<ArrowFunctionExpression debug />, {
       prettier: false,
     });
     expect(code).toBe("() => {}");
   });
 
-  it("renders function with nested return type", () => {
-    const code = render(
+  it("renders function with nested return type", async () => {
+    const code = await render(
       <ArrowFunctionExpression
         returnType={
           <TypeAnnotation>
@@ -65,8 +65,8 @@ describe("<ArrowFunctionExpression />", () => {
     expect(code).toBe("(): T<A, B> => {}");
   });
 
-  it("renders function with return type as string", () => {
-    const code = render(
+  it("renders function with return type as string", async () => {
+    const code = await render(
       <ArrowFunctionExpression returnType="T<A, B, C>" debug />,
       {
         prettier: false,
@@ -78,8 +78,8 @@ describe("<ArrowFunctionExpression />", () => {
     expect(code).toBe("(): T<A, B, C> => {}");
   });
 
-  it("renders function with nested children", () => {
-    const code = render(
+  it("renders function with nested children", async () => {
+    const code = await render(
       <ArrowFunctionExpression debug>
         <VariableDeclaration debug>
           <VariableDeclarator
@@ -103,8 +103,8 @@ describe("<ArrowFunctionExpression />", () => {
 }`);
   });
 
-  it("renders function with params as string", () => {
-    const code = render(
+  it("renders function with params as string", async () => {
+    const code = await render(
       <ArrowFunctionExpression params={["a", "b", "c"]} debug />,
       {
         prettier: false,
@@ -113,8 +113,8 @@ describe("<ArrowFunctionExpression />", () => {
     expect(code).toBe("(a, b, c) => {}");
   });
 
-  it("renders function with children as string", () => {
-    const code = render(
+  it("renders function with children as string", async () => {
+    const code = await render(
       <ArrowFunctionExpression debug>const hello = 0;</ArrowFunctionExpression>,
       {
         prettier: false,
@@ -125,8 +125,8 @@ describe("<ArrowFunctionExpression />", () => {
 }`);
   });
 
-  it("renders function with typed params", () => {
-    const code = render(
+  it("renders function with typed params", async () => {
+    const code = await render(
       <ArrowFunctionExpression
         params={[
           <Identifier typeAnnotation="A">a</Identifier>,
@@ -156,8 +156,8 @@ describe("<ArrowFunctionExpression />", () => {
     expect(code).toBe("(a: A, b: T<A, B>, c: T<A, B, C>) => {}");
   });
 
-  it("renders function with all props", () => {
-    const code = render(
+  it("renders function with all props", async () => {
+    const code = await render(
       <ArrowFunctionExpression
         returnType="T<A, B>"
         params={[
@@ -188,15 +188,15 @@ describe("<ArrowFunctionExpression />", () => {
 }`);
   });
 
-  it("renders async ArrowFunctionExpression", () => {
-    const code = render(<ArrowFunctionExpression async debug />, {
+  it("renders async ArrowFunctionExpression", async () => {
+    const code = await render(<ArrowFunctionExpression async debug />, {
       prettier: false,
     });
     expect(code).toBe("async () => {}");
   });
 
-  it("renders function declaration with async ArrowFunctionExpression", () => {
-    const code = render(
+  it("renders function declaration with async ArrowFunctionExpression", async () => {
+    const code = await render(
       <Var name="fetchData">
         <ArrowFunctionExpression async debug />
       </Var>,

@@ -37,7 +37,7 @@ const TypeAnnotation = forwardRef<BaseElement, TypeAnnotationProps>(
   (props: TypeAnnotationProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = "const c: any";
+    const code = "const c: any = 0";
 
     function renderChildren() {
       if (typeof children === "string") {

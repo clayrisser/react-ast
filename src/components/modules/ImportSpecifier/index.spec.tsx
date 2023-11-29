@@ -24,15 +24,15 @@ import { render } from "../../../index";
 import ImportSpecifier from "./index";
 
 describe("<ImportSpecifier />", () => {
-  it("renders import specifier", () => {
-    const code = render(<ImportSpecifier debug>hello</ImportSpecifier>, {
+  it("renders import specifier", async () => {
+    const code = await render(<ImportSpecifier debug>hello</ImportSpecifier>, {
       prettier: false,
     });
     expect(code).toBe("hello");
   });
 
-  it("renders import specifier with local", () => {
-    const code = render(
+  it("renders import specifier with local", async () => {
+    const code = await render(
       <ImportSpecifier local="world" debug>
         hello
       </ImportSpecifier>,

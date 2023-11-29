@@ -29,8 +29,8 @@ import {
 import ClassProperty, { ClassPropertyAccessibility } from "./index";
 
 describe("<ClassProperty />", () => {
-  it("renders", () => {
-    const code = render(<ClassProperty id="p" debug />, {
+  it("renders", async () => {
+    const code = await render(<ClassProperty id="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -39,8 +39,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("p;");
   });
 
-  it("renders with static", () => {
-    const code = render(<ClassProperty static id="p" debug />, {
+  it("renders with static", async () => {
+    const code = await render(<ClassProperty static id="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -49,8 +49,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("static p;");
   });
 
-  it("renders with accessibility", () => {
-    const code = render(
+  it("renders with accessibility", async () => {
+    const code = await render(
       <ClassProperty
         id="p"
         accessibility={ClassPropertyAccessibility.Private}
@@ -66,8 +66,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("private p;");
   });
 
-  it("renders with static accessibility", () => {
-    const code = render(
+  it("renders with static accessibility", async () => {
+    const code = await render(
       <ClassProperty
         accessibility={ClassPropertyAccessibility.Private}
         static
@@ -84,8 +84,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("private static p;");
   });
 
-  it("renders with type annotation", () => {
-    const code = render(
+  it("renders with type annotation", async () => {
+    const code = await render(
       <ClassProperty
         id="p"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
@@ -101,8 +101,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("p: T;");
   });
 
-  it("renders with nested type annotation", () => {
-    const code = render(
+  it("renders with nested type annotation", async () => {
+    const code = await render(
       <ClassProperty
         id="p"
         typeAnnotation={
@@ -127,18 +127,21 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("p: T<A, B>;");
   });
 
-  it("renders with annotation as string", () => {
-    const code = render(<ClassProperty id="p" typeAnnotation="T<A>" debug />, {
-      prettier: false,
-      parserOptions: {
-        plugins: ["jsx", "classProperties", "typescript"],
+  it("renders with annotation as string", async () => {
+    const code = await render(
+      <ClassProperty id="p" typeAnnotation="T<A>" debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
       },
-    });
+    );
     expect(code).toBe("p: T<A>;");
   });
 
-  it("renders with initial value as string", () => {
-    const code = render(
+  it("renders with initial value as string", async () => {
+    const code = await render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         hello
       </ClassProperty>,
@@ -152,8 +155,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe('p: T<A> = "hello";');
   });
 
-  it("renders with initial value as boolean", () => {
-    const code = render(
+  it("renders with initial value as boolean", async () => {
+    const code = await render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {true}
       </ClassProperty>,
@@ -167,8 +170,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("p: T<A> = true;");
   });
 
-  it("renders with initial value as number", () => {
-    const code = render(
+  it("renders with initial value as number", async () => {
+    const code = await render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {0}
       </ClassProperty>,
@@ -182,8 +185,8 @@ describe("<ClassProperty />", () => {
     expect(code).toBe("p: T<A> = 0;");
   });
 
-  it("renders with initial value as object", () => {
-    const code = render(
+  it("renders with initial value as object", async () => {
+    const code = await render(
       <ClassProperty id="p" typeAnnotation="T<A>" debug>
         {{ hello: "world" }}
       </ClassProperty>,

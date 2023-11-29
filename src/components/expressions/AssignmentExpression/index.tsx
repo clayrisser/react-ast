@@ -28,7 +28,7 @@ import Smart from "../../../components/Smart";
 import { debugRef } from "../../../util";
 
 export interface AssignmentExpressionProps {
-  children?: ReactNode;
+  children?: any;
   debug?: boolean;
   left: ReactNode;
 }

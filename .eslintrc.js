@@ -50,7 +50,6 @@ module.exports = {
   },
   ignorePatterns: ["!.storybook"],
   rules: {
-    "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/lines-between-class-members": [
       "error",
       "always",
@@ -91,5 +90,6 @@ module.exports = {
     "max-params": "off",
     "no-param-reassign": "off",
     "no-promise-executor-return": "off",
+    "@typescript-eslint/consistent-type-imports": "off",
   },
 };

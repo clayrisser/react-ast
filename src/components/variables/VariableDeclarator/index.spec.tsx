@@ -30,8 +30,8 @@ import {
 import VariableDeclarator from "./index";
 
 describe("<VariableDeclarator />", () => {
-  it("renders", () => {
-    const code = render(<VariableDeclarator id="v" debug />, {
+  it("renders", async () => {
+    const code = await render(<VariableDeclarator id="v" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -40,8 +40,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe("v");
   });
 
-  it("renders with type annotation", () => {
-    const code = render(
+  it("renders with type annotation", async () => {
+    const code = await render(
       <VariableDeclarator
         id="v"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
@@ -57,8 +57,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe("v: T");
   });
 
-  it("renders with nested type annotation", () => {
-    const code = render(
+  it("renders with nested type annotation", async () => {
+    const code = await render(
       <VariableDeclarator
         id="v"
         typeAnnotation={
@@ -83,8 +83,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe("v: T<A, B>");
   });
 
-  it("renders with annotation as string", () => {
-    const code = render(
+  it("renders with annotation as string", async () => {
+    const code = await render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug />,
       {
         prettier: false,
@@ -96,8 +96,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe("v: T<A>");
   });
 
-  it("renders with initial value as string", () => {
-    const code = render(
+  it("renders with initial value as string", async () => {
+    const code = await render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
         hello
       </VariableDeclarator>,
@@ -111,8 +111,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe('v: T<A> = "hello"');
   });
 
-  it("renders with initial value as boolean", () => {
-    const code = render(
+  it("renders with initial value as boolean", async () => {
+    const code = await render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
         {true}
       </VariableDeclarator>,
@@ -126,8 +126,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe("v: T<A> = true");
   });
 
-  it("renders with initial value as number", () => {
-    const code = render(
+  it("renders with initial value as number", async () => {
+    const code = await render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
         {0}
       </VariableDeclarator>,
@@ -141,8 +141,8 @@ describe("<VariableDeclarator />", () => {
     expect(code).toBe("v: T<A> = 0");
   });
 
-  it("renders with initial value as object", () => {
-    const code = render(
+  it("renders with initial value as object", async () => {
+    const code = await render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
         {{ hello: "world" }}
       </VariableDeclarator>,
@@ -158,8 +158,8 @@ describe("<VariableDeclarator />", () => {
 }`);
   });
 
-  it("renders with initial value as component", () => {
-    const code = render(
+  it("renders with initial value as component", async () => {
+    const code = await render(
       <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
         <ArrowFunctionExpression />
       </VariableDeclarator>,

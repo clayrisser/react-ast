@@ -25,15 +25,15 @@ import { render } from "../..";
 import BlockStatement from "./index";
 
 describe("<BlockStatement />", () => {
-  it("renders", () => {
-    const code = render(<BlockStatement debug />, {
+  it("renders", async () => {
+    const code = await render(<BlockStatement debug />, {
       prettier: false,
     });
     expect(code).toBe("{}");
   });
 
-  it("renders with children", () => {
-    const code = render(
+  it("renders with children", async () => {
+    const code = await render(
       <BlockStatement debug>
         <Code>const hello = &apos;world&apos;;</Code>
       </BlockStatement>,
@@ -46,8 +46,8 @@ describe("<BlockStatement />", () => {
 }`);
   });
 
-  it("renders with children as string", () => {
-    const code = render(
+  it("renders with children as string", async () => {
+    const code = await render(
       <BlockStatement debug>
         <Code>const howdy = &apos;texas&apos;;</Code>
       </BlockStatement>,

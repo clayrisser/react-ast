@@ -25,8 +25,8 @@ import { ArrowFunctionExpression } from "../..";
 import { render } from "../../../index";
 
 describe("<ExportDefaultDeclaration />", () => {
-  it("renders with children", () => {
-    const code = render(
+  it("renders with children", async () => {
+    const code = await render(
       <ExportDefaultDeclaration debug>
         <ArrowFunctionExpression />
       </ExportDefaultDeclaration>,

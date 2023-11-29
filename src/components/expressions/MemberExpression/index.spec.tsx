@@ -25,8 +25,8 @@ import { Identifier } from "../../../components";
 import MemberExpression from "./index";
 
 describe("<MemberExpression />", () => {
-  it("renders member expression with children", () => {
-    const code = render(
+  it("renders member expression with children", async () => {
+    const code = await render(
       <MemberExpression name="howdy" debug>
         <MemberExpression name="world">
           <Identifier>hello</Identifier>
