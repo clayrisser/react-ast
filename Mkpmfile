@@ -76,7 +76,8 @@ publish: ~build +publish
 
 .PHONY: jest
 jest:
-	@$(JEST) $(JEST_ARGS)
+	@NODE_OPTIONS="--experimental-vm-modules" \
+		$(JEST) $(JEST_ARGS)
 
 .PHONY: upgrade
 upgrade:
