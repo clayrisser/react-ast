@@ -58,7 +58,7 @@ describe("<Identifier />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toMatchObject({
       program: {
@@ -110,7 +110,7 @@ describe("<Identifier />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toMatchObject({
       program: {

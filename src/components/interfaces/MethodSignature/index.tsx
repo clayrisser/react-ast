@@ -88,7 +88,7 @@ const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 MethodSignature.defaultProps = {

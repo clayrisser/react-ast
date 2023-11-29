@@ -61,7 +61,7 @@ const Identifier = forwardRef<BaseElement, IdentifierProps>(
         </ParentBodyPathProvider>
       </Smart>
     );
-  }
+  },
 );
 
 Identifier.defaultProps = { debug: false };

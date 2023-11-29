@@ -40,7 +40,7 @@ export default class Ast extends BaseElement {
       {
         bodyPath: props.bodyPath || "body",
         parentBodyPath: props.parentBodyPath,
-      }
+      },
     );
   }
 }

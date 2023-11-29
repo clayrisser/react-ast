@@ -40,7 +40,7 @@ const Interface = forwardRef<BaseElement, InterfaceProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
 
     return <InterfaceDeclaration {...clonedProps} id={name} ref={mergedRef} />;
-  }
+  },
 );
 
 Interface.defaultProps = {

@@ -61,7 +61,7 @@ describe("<MethodSignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("hello(): T<A, B>;");
   });
@@ -74,7 +74,7 @@ describe("<MethodSignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("hello(): T<A, B, C>;");
   });
@@ -84,7 +84,7 @@ describe("<MethodSignature />", () => {
       <MethodSignature id="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello(a, b, c);");
   });
@@ -119,7 +119,7 @@ describe("<MethodSignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>);");
   });
@@ -140,7 +140,7 @@ describe("<MethodSignature />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("hello(a: A, b: B): T<A, B>;");
   });

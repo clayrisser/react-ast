@@ -52,7 +52,7 @@ describe("<InterfaceDeclaration />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("interface Hello<A, B> {}");
   });
@@ -65,7 +65,7 @@ describe("<InterfaceDeclaration />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("interface Hello<T> {}");
   });
@@ -89,7 +89,7 @@ describe("<InterfaceDeclaration />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("interface Hello<T<A, B>> {}");
   });
@@ -104,7 +104,7 @@ describe("<InterfaceDeclaration />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe(`interface Hello {
   hello: T;
@@ -121,7 +121,7 @@ describe("<InterfaceDeclaration />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe(`interface Hello {
   hello(): T;
@@ -139,7 +139,7 @@ describe("<InterfaceDeclaration />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe(`interface Hello {
   hello: T;

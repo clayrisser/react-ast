@@ -34,7 +34,7 @@ describe("<MemberExpression />", () => {
       </MemberExpression>,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello.world.howdy");
   });

@@ -45,7 +45,7 @@ describe("<CallExpression />", () => {
       </CallExpression>,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("howdy.hello.world()");
   });
@@ -59,7 +59,7 @@ describe("<CallExpression />", () => {
       />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello(a)");
   });
@@ -73,7 +73,7 @@ describe("<CallExpression />", () => {
       />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello(a, () => {})");
   });
@@ -90,7 +90,7 @@ describe("<CallExpression />", () => {
       <CallExpression name="hello" arguments={["a", "b", "c"]} debug />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello(a, b, c)");
   });

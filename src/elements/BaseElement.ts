@@ -59,7 +59,7 @@ export default class BaseElement implements Instance {
 
   getBody(
     body: BaseNode | BaseNode[],
-    path?: Path | null
+    path?: Path | null,
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
     if (!bodyPath.length) return body;
@@ -69,7 +69,7 @@ export default class BaseElement implements Instance {
   setBody(
     body: BaseNode | BaseNode[],
     value: BaseNode | BaseNode[],
-    path?: Path | null
+    path?: Path | null,
   ): BaseNode | BaseNode[] {
     const bodyPath = this.getBodyPath(path);
     if (!bodyPath.length) return body;
@@ -79,7 +79,7 @@ export default class BaseElement implements Instance {
   constructor(
     baseNode: BaseNode | BaseNode[],
     props: Props = {},
-    meta?: Partial<Meta>
+    meta?: Partial<Meta>,
   ) {
     if (Array.isArray(baseNode)) throw new Error("cannot be array");
     if (meta) {

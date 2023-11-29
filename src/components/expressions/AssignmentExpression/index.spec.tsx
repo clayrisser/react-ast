@@ -50,7 +50,7 @@ describe("<AssignmentExpression />", () => {
       />,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe("hello.world.howdy = undefined");
   });
@@ -62,7 +62,7 @@ describe("<AssignmentExpression />", () => {
       </AssignmentExpression>,
       {
         prettier: false,
-      }
+      },
     );
     expect(code).toBe('v = "hello"');
   });
@@ -77,7 +77,7 @@ describe("<AssignmentExpression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("v = true");
   });
@@ -92,7 +92,7 @@ describe("<AssignmentExpression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("v = 0");
   });
@@ -107,7 +107,7 @@ describe("<AssignmentExpression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe(`v = {
   "hello": "world"
@@ -124,7 +124,7 @@ describe("<AssignmentExpression />", () => {
         parserOptions: {
           plugins: ["jsx", "classProperties", "typescript"],
         },
-      }
+      },
     );
     expect(code).toBe("v = () => {}");
   });
