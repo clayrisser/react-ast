@@ -1,6 +1,6 @@
 {
   "name": "react-ast",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "render abstract syntax trees with react",
   "sideEffects": false,
   "keywords": [
@@ -38,13 +38,14 @@
   "types": "lib/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/index.mjs",
+      "import": "./es/index.js",
       "require": "./lib/index.js",
       "types": "./lib/index.d.ts"
     }
   },
   "files": [
     "lib",
+    "es",
     "src"
   ],
   "repository": {
