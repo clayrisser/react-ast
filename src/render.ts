@@ -21,7 +21,7 @@
 
 import * as t from "@babel/types";
 import Renderer from "./reconciler";
-import generate from "@babel/generator";
+import generator from "@babel/generator";
 import prettier from "prettier";
 import type { BundleType, Options } from "./types";
 import type { Options as PrettierOptions } from "prettier";
@@ -29,14 +29,25 @@ import { File } from "./elements";
 import { dev } from "./util";
 import { updateContext } from "./context";
 
-console.log("prettier", prettier);
+// TODO: seems there is a bug in the way generator is exported
+const generate = ((generator as any).default || generator) as typeof generator;
 
 export function renderAst(
   element: JSX.Element,
   options: Options = {},
   ast: t.File = t.file(t.program([]), [], []),
 ): t.File {
-  updateContext({ parserOptions: options.parserOptions || {} });
+  updateContext({
+    parserOptions: {
+      ...options.parserOptions,
+      plugins: [
+        "classProperties",
+        "jsx",
+        "typescript",
+        ...(options.parserOptions?.plugins || []),
+      ],
+    },
+  });
   const file = new File();
   file.node = ast;
   const root = Renderer.createContainer(
@@ -75,7 +86,7 @@ export async function render(
     return prettier.format(code, {
       ...(typeof options.prettier === "boolean" ? {} : options.prettier),
       plugins: [...((options?.prettier as PrettierOptions)?.plugins || [])],
-      parser: "babel",
+      parser: "babel-ts",
     });
   }
   return code;

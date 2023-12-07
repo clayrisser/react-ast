@@ -22,7 +22,7 @@
 import ReactReconciler from "react-reconciler";
 import type { Lane } from "react-reconciler";
 import createElement from "./createElement";
-import { DefaultEventPriority } from "react-reconciler/constants";
+import { DefaultEventPriority } from "react-reconciler/constants.js";
 import { SmartElement } from "./elements";
 import { dev, logger } from "./util";
 import type {
