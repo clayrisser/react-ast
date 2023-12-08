@@ -34,6 +34,7 @@ export interface ExportNamedDeclarationProps {
   debug?: boolean;
   source?: string;
   specifiers?: ReactNode;
+  exportKind?: "type" | "value";
 }
 
 const ExportNamedDeclaration = forwardRef<
@@ -42,7 +43,9 @@ const ExportNamedDeclaration = forwardRef<
 >((props: ExportNamedDeclarationProps, forwardedRef: Ref<BaseElement>) => {
   const { children, debug, source, specifiers } = props;
   const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-  const code = `export {}${source ? ` from '${source}'` : ""}`;
+  const code = `export ${props.exportKind === "type" ? "type" : ""} {}${
+    source ? ` from '${source}'` : ""
+  }`;
 
   function renderChildren() {
     if (typeof children === "string") {
@@ -62,9 +65,15 @@ const ExportNamedDeclaration = forwardRef<
     if (!specifiers) return null;
     return (
       <ParentBodyPathProvider value="specifiers">
-        {Array.isArray(specifiers)
-          ? specifiers.map(renderSpecifier)
-          : renderSpecifier(specifiers)}
+        {Array.isArray(specifiers) ? (
+          specifiers.map((specifier, index) => (
+            <React.Fragment key={index}>
+              {renderSpecifier(specifier)}
+            </React.Fragment>
+          ))
+        ) : (
+          <React.Fragment key={0}>{renderSpecifier(specifiers)}</React.Fragment>
+        )}
       </ParentBodyPathProvider>
     );
   }
