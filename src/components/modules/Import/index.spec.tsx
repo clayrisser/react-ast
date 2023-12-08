@@ -66,8 +66,8 @@ describe("<Import />", () => {
     const code = await render(
       <Import
         imports={[
-          <ImportSpecifier>hello</ImportSpecifier>,
-          <ImportSpecifier>howdy</ImportSpecifier>,
+          <ImportSpecifier key="hello">hello</ImportSpecifier>,
+          <ImportSpecifier key="howdy">howdy</ImportSpecifier>,
         ]}
         from="world"
         debug
@@ -93,7 +93,7 @@ describe("<Import />", () => {
     const code = await render(
       <Import
         default="hello"
-        imports={[<ImportSpecifier>howdy</ImportSpecifier>]}
+        imports={[<ImportSpecifier key="howdy">howdy</ImportSpecifier>]}
         from="world"
         debug
       />,

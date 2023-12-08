@@ -36,7 +36,9 @@ describe("<ObjectLiteral />", () => {
       <CallExpression
         name="test"
         debug
-        arguments={[<ObjectLiteral>{JSON.stringify({ a: 1 })}</ObjectLiteral>]}
+        arguments={[
+          <ObjectLiteral key="a">{JSON.stringify({ a: 1 })}</ObjectLiteral>,
+        ]}
       />,
       { prettier: false },
     );

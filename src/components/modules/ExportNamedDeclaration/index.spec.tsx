@@ -54,8 +54,8 @@ describe("<ExportNamedDeclaration />", () => {
     const code = await render(
       <ExportNamedDeclaration
         specifiers={[
-          <ExportSpecifier>hello</ExportSpecifier>,
-          <ExportSpecifier>world</ExportSpecifier>,
+          <ExportSpecifier key="hello">hello</ExportSpecifier>,
+          <ExportSpecifier key="world">world</ExportSpecifier>,
         ]}
         debug
       />,

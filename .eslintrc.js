@@ -59,7 +59,7 @@ module.exports = {
     "react/jsx-no-useless-fragment": ["error", { allowExpressions: true }],
     complexity: ["error", 50],
     "react/jsx-pascal-case": ["error", { allowAllCaps: true }],
-    "max-lines-per-function": ["warn", 300],
+    "max-lines-per-function": ["warn", 350],
     "no-empty-function": ["warn", { allow: ["constructors"] }],
     "@typescript-eslint/no-unused-vars": [
       "warn",

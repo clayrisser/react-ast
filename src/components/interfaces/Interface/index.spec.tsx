@@ -44,7 +44,7 @@ describe("<Interface />", () => {
     const code = await render(
       <Interface
         name="Hello"
-        typeParameters={["A", <TypeReference name="B" />]}
+        typeParameters={["A", <TypeReference key="B" name="B" />]}
         debug
       />,
       {
