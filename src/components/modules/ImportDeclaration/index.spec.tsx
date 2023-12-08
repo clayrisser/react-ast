@@ -116,4 +116,18 @@ describe("<ImportDeclaration />", () => {
     );
     expect(code).toBe("import hello, { howdy } from 'world';");
   });
+
+  it("renders import type", async () => {
+    const code = await render(
+      <ImportDeclaration
+        importKind="type"
+        specifiers={["hello", "howdy"]}
+        source="world"
+      />,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe("import type { hello, howdy } from 'world';");
+  });
 });
