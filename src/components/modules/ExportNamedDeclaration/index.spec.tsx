@@ -122,4 +122,21 @@ describe("<ExportNamedDeclaration />", () => {
     );
     expect(code).toBe("export var hello = () => {};");
   });
+
+  it("renders the export kind type", async () => {
+    const code = await render(
+      <ExportNamedDeclaration
+        exportKind="type"
+        specifiers={[
+          <ExportSpecifier key="hello">hello</ExportSpecifier>,
+          <ExportSpecifier key="ok">ok</ExportSpecifier>,
+        ]}
+        debug
+      />,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe("export type { hello, ok };");
+  });
 });

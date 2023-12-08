@@ -34,6 +34,7 @@ export interface ImportDeclarationProps {
   namespaceSpecifier?: string;
   source?: string;
   specifiers?: ReactNode;
+  importKind?: "type" | "value";
 }
 
 const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
@@ -41,7 +42,7 @@ const ImportDeclaration = forwardRef<BaseElement, ImportDeclarationProps>(
     const { debug, defaultSpecifier, namespaceSpecifier, source, specifiers } =
       props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `import ${
+    const code = `import ${props.importKind === "type" ? "type" : ""} ${
       namespaceSpecifier
         ? ` * as ${namespaceSpecifier}`
         : defaultSpecifier || "I"
