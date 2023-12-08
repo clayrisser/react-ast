@@ -75,7 +75,7 @@ const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
         <ParentBodyPathProvider value="params">
           {params.map((param: ReactNode) => {
             if (typeof param === "string") {
-              return <Identifier>{param}</Identifier>;
+              return <Identifier key={param}>{param}</Identifier>;
             }
             return param;
           })}

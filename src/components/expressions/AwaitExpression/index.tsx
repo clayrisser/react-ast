@@ -36,7 +36,7 @@ const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `const a = await ${children} `;
     return (
-      <Smart code={code} ref={mergedRef} bodyPath={"declarations.0.init"}>
+      <Smart code={code} ref={mergedRef} bodyPath="declarations.0.init">
         {children}
       </Smart>
     );

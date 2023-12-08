@@ -68,7 +68,10 @@ describe("<CallExpression />", () => {
     const code = await render(
       <CallExpression
         name="hello"
-        arguments={[<Identifier>a</Identifier>, <ArrowFunctionExpression />]}
+        arguments={[
+          <Identifier key="a">a</Identifier>,
+          <ArrowFunctionExpression key="arrow" />,
+        ]}
         debug
       />,
       {

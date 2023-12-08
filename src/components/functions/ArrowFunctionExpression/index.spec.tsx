@@ -129,9 +129,14 @@ describe("<ArrowFunctionExpression />", () => {
     const code = await render(
       <ArrowFunctionExpression
         params={[
-          <Identifier typeAnnotation="A">a</Identifier>,
-          <Identifier typeAnnotation="T<A, B>">b</Identifier>,
+          <Identifier key="a" typeAnnotation="A">
+            a
+          </Identifier>,
+          <Identifier key="b" typeAnnotation="T<A, B>">
+            b
+          </Identifier>,
           <Identifier
+            key="c"
             typeAnnotation={
               <TypeAnnotation>
                 <TypeReference name="T">
@@ -161,8 +166,12 @@ describe("<ArrowFunctionExpression />", () => {
       <ArrowFunctionExpression
         returnType="T<A, B>"
         params={[
-          <Identifier typeAnnotation="A">a</Identifier>,
-          <Identifier typeAnnotation="B">b</Identifier>,
+          <Identifier key="a" typeAnnotation="A">
+            a
+          </Identifier>,
+          <Identifier key="b" typeAnnotation="B">
+            b
+          </Identifier>,
         ]}
         debug
       >

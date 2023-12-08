@@ -58,6 +58,7 @@ const jsx = (
 );
 
 logger.log("======== RECONCILER LIFECYCLE ========");
+console.log("jsx", jsx);
 
 // const stringLiteral = (
 //   <Var name="a">
@@ -91,7 +92,7 @@ logger.log(callExpression);
 // logger.log(render(numberLiteral, { prettier: false }));
 // logger.log(render(objectLiteral, { prettier: false }));
 
-const fuc = (
+const functionDeclaration = (
   <FunctionDeclaration async id="getData" params={["url"]}>
     <VariableDeclaration kind={VariableDeclarationKind.Const}>
       <VariableDeclarator id="result">
@@ -108,7 +109,6 @@ const fuc = (
 
 logger.log("======== RENDER AST ========");
 
-logger.log(renderAst(fuc, { prettier: false }).program.body[0]);
+logger.log(renderAst(functionDeclaration, { prettier: false }).program.body[0]);
 
 logger.log("======== RENDER ========");
-// logger.log(render(fuc, { prettier: false }));

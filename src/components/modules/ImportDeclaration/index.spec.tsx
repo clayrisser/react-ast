@@ -75,8 +75,8 @@ describe("<ImportDeclaration />", () => {
     const code = await render(
       <ImportDeclaration
         specifiers={[
-          <ImportSpecifier>hello</ImportSpecifier>,
-          <ImportSpecifier>howdy</ImportSpecifier>,
+          <ImportSpecifier key="hello">hello</ImportSpecifier>,
+          <ImportSpecifier key="howdy">howdy</ImportSpecifier>,
         ]}
         source="world"
         debug
@@ -106,7 +106,7 @@ describe("<ImportDeclaration />", () => {
     const code = await render(
       <ImportDeclaration
         defaultSpecifier="hello"
-        specifiers={[<ImportSpecifier>howdy</ImportSpecifier>]}
+        specifiers={[<ImportSpecifier key="howdy">howdy</ImportSpecifier>]}
         source="world"
         debug
       />,

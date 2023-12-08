@@ -4,6 +4,7 @@ babelv
 bitspur
 cjs
 corejs
+callee
 cspell
 declarator
 dharmendra
