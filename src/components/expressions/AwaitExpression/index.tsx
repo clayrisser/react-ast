@@ -19,25 +19,44 @@
  * limitations under the License.
  */
 
-import React, { Ref, ReactNode, forwardRef } from "react";
+import React, { forwardRef } from "react";
+import type { Ref, ReactNode } from "react";
 import useMergedRef from "@react-hook/merged-ref";
-import BaseElement from "../../../elements/BaseElement";
+import type BaseElement from "../../../elements/BaseElement";
+import Code from "../../../components/Code";
+import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import Smart from "../../../components/Smart";
 import { debugRef } from "../../../util";
 
 export interface AwaitExpressionProps {
-  children?: ReactNode;
+  argument: ReactNode;
   debug?: boolean;
 }
 
 const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
   (props: AwaitExpressionProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug } = props;
+    const { argument, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `const a = await ${children} `;
+    const code = `async function f() { await data() }`;
+
+    function renderArgument() {
+      if (typeof argument === "string") {
+        return <Code>{argument}</Code>;
+      }
+      return argument;
+    }
+
     return (
-      <Smart code={code} ref={mergedRef} bodyPath="declarations.0.init">
-        {children}
+      <Smart
+        code={code}
+        deletePaths="body.body.0.expression"
+        ref={mergedRef}
+        scopePath="body.body.0.expression"
+      >
+        <ParentBodyPathProvider value={undefined}>
+          <Code>{`await `}</Code>
+          {renderArgument()}
+        </ParentBodyPathProvider>
       </Smart>
     );
   },
