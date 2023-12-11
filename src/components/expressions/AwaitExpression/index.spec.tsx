@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 import React from "react";
-import { CallExpression, Code, render, NumericLiteral } from "../../../index";
+import { CallExpression, render } from "../../../index";
 import FunctionDeclaration from "../../../components/functions/FunctionDeclaration";
 import VariableDeclaration, {
   VariableDeclarationKind,
