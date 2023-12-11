@@ -1,5 +1,5 @@
 /**
- * File: /src/components/enums/PropertySignature/index.spec.tsx
+ * File: /src/components/enums/EnumMember/index.spec.tsx
  * Project: react-ast
  * File Created: 28-11-2023 15:04:04
  * Author: dharmendra
@@ -25,18 +25,22 @@ import {
   TypeAnnotation,
   TypeReference,
   TypeParameterInstantiation,
-} from "../../../components";
-import PropertySignature from "./index";
+} from "../..";
+import EnumMember from ".";
 
-describe("<PropertySignature />", () => {
+describe("<EnumMember />", () => {
   it("renders", async () => {
-    const code = await render(<PropertySignature id="hello" value="hello" />, {
-      prettier: false,
-      parserOptions: {
-        plugins: ["jsx", "classProperties", "typescript"],
+    const code = await render(
+      <EnumMember member={{ name: "lalit", value: "hello" }} />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
       },
-    });
-    expect(code).toBe("p;");
+    );
+    console.log("code", code);
+    expect(code).toBe("{ hello = 10 }");
   });
 
   // it("renders with type annotation", async () => {

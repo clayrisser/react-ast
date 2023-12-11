@@ -60,6 +60,7 @@ describe("<Identifier />", () => {
         },
       },
     );
+    console.log(code);
     expect(code).toMatchObject({
       program: {
         body: [

@@ -1,5 +1,5 @@
 /**
- * File: /src/components/enums/PropertySignature/index.tsx
+ * File: /src/components/enums/EnumMember/index.tsx
  * Project: react-ast
  * File Created: 28-11-2023 15:04:04
  * Author: dharmendra
@@ -18,38 +18,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import React, { Ref, ReactNode, forwardRef } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import BaseElement from "../../../elements/BaseElement";
-import Smart from "../../../components/Smart";
+import Smart from "../../Smart";
+import TypeAnnotation from "../../types/TypeAnnotation";
 import { debugRef } from "../../../util";
+import Identifier from "../../Identifier";
+import BlockStatement from "../../BlockStatement";
+import Code from "../../Code";
 
-export interface PropertySignatureProps {
-  debug?: boolean;
-  id: string;
-  value?: string | number | boolean | null | undefined;
+interface Member {
+  name: string;
+  value?: string | number;
 }
 
-const PropertySignature = forwardRef<BaseElement, PropertySignatureProps>(
-  (props: PropertySignatureProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug, id } = props;
+export interface EnumMemberProps {
+  debug?: boolean;
+  member: Member;
+}
+
+const EnumMember = forwardRef<BaseElement, EnumMemberProps>(
+  (props: EnumMemberProps, forwardedRef: Ref<BaseElement>) => {
+    const { debug, member } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `enum E {
-  ${id} = ${props.value},
-}`;
+      ${member.name}
+    }`;
 
-    function renderTypeAnnotation() {
-      return null;
-    }
-
-    return (
-      <Smart scopePath="body.body.0" code={code} ref={mergedRef}>
-        {renderTypeAnnotation()}
-      </Smart>
-    );
+    return <Smart scopePath="body.body" code={code} ref={mergedRef} />;
   },
 );
 
-PropertySignature.defaultProps = { debug: false };
+EnumMember.defaultProps = { debug: false };
 
-export default PropertySignature;
+export default EnumMember;
