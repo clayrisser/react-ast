@@ -40,14 +40,13 @@
  * limitations under the License.
  */
 import React from "react";
-import { Code, render } from "../../../index";
+import { render } from "../../../index";
 import FunctionDeclaration from "../../../components/functions/FunctionDeclaration";
 import VariableDeclaration, {
   VariableDeclarationKind,
 } from "../../../components/variables/VariableDeclaration";
 import VariableDeclarator from "../../../components/variables/VariableDeclarator";
 import AwaitExpression from "../../../components/expressions/AwaitExpression";
-import CallExpression from "../../../components/expressions/CallExpression";
 import Identifier from "../../../components/Identifier";
 
 describe("FunctionDeclaration with Await and Call Expressions", () => {
@@ -57,11 +56,8 @@ describe("FunctionDeclaration with Await and Call Expressions", () => {
         <VariableDeclaration kind={VariableDeclarationKind.Const}>
           <VariableDeclarator id="result">
             <AwaitExpression
-              argument={
-                <CallExpression name="data">
-                  <Identifier>fetchData</Identifier>
-                </CallExpression>
-              }
+              name="fetch"
+              arguments={<Identifier>url</Identifier>}
             />
           </VariableDeclarator>
         </VariableDeclaration>
