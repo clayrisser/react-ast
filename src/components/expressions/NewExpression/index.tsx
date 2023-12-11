@@ -1,8 +1,8 @@
 /**
- * File: /src/components/expressions/AwaitExpression/index.tsx
+ * File: /src/components/expressions/NewExpression/index.tsx
  * Project: react-ast
- * File Created: 28-11-2023 12:57:07
- * Author: Clay Risser
+ * File Created: 11-12-2023 11:00:13
+ * Author: dharmendra
  * -----
  * BitSpur (c) Copyright 2019 - 2023
  *
@@ -19,29 +19,27 @@
  * limitations under the License.
  */
 
-import Identifier from "../../../components/Identifier";
-import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import React, { forwardRef } from "react";
-import Smart from "../../../components/Smart";
+import Smart from "../../Smart";
 import type BaseElement from "../../../elements/BaseElement";
 import type { Ref, ReactNode } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
+import Identifier from "../../Identifier";
+import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 
-export interface AwaitExpressionProps {
+export interface NewExpressionProps {
   arguments?: ReactNode;
   children?: ReactNode;
   debug?: boolean;
   name: string;
 }
 
-const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
-  (props: AwaitExpressionProps, forwardedRef: Ref<BaseElement>) => {
+const NewExpression = forwardRef<BaseElement, NewExpressionProps>(
+  (props: NewExpressionProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `await ${name}(${
-      typeof children === "undefined" ? "" : "a."
-    })`;
+    const code = `new ${typeof children === "undefined" ? "" : "a."}${name}()`;
 
     function renderArgument(argument: ReactNode) {
       if (typeof argument === "string") {
@@ -77,8 +75,8 @@ const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
   },
 );
 
-AwaitExpression.defaultProps = {
+NewExpression.defaultProps = {
   debug: false,
 };
 
-export default AwaitExpression;
+export default NewExpression;
