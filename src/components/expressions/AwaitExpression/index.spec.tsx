@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 import React from "react";
-import { render } from "../../../index";
+import { Code, render } from "../../../index";
 import FunctionDeclaration from "../../../components/functions/FunctionDeclaration";
 import VariableDeclaration, {
   VariableDeclarationKind,
@@ -56,12 +56,13 @@ describe("FunctionDeclaration with Await and Call Expressions", () => {
       <FunctionDeclaration async id="getData" params={["url"]}>
         <VariableDeclaration kind={VariableDeclarationKind.Const}>
           <VariableDeclarator id="result">
-            <AwaitExpression>
-              <CallExpression
-                name="fetch"
-                arguments={<Identifier>url</Identifier>}
-              />
-            </AwaitExpression>
+            <AwaitExpression
+              argument={
+                <CallExpression name="data">
+                  <Identifier>fetchData</Identifier>
+                </CallExpression>
+              }
+            />
           </VariableDeclarator>
         </VariableDeclaration>
       </FunctionDeclaration>,
@@ -70,7 +71,7 @@ describe("FunctionDeclaration with Await and Call Expressions", () => {
       },
     );
     expect(code).toBe(`async function getData(url) {
-  const result = await fetch(url);
-}`);
+    const result = await fetch(url);
+  }`);
   });
 });
