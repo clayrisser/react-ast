@@ -1,6 +1,6 @@
 {
   "name": "react-ast",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "render abstract syntax trees with react",
   "sideEffects": false,
   "keywords": [

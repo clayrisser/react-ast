@@ -29,56 +29,32 @@ import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
 
 export interface AwaitExpressionProps {
-  arguments?: ReactNode;
-  children?: ReactNode;
+  children: ReactNode;
   debug?: boolean;
-  name: string;
 }
 
 const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
   (props: AwaitExpressionProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug, name } = props;
+    const { children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `await ${name}(${
-      typeof children === "undefined" ? "" : "a."
-    })`;
+    const code = `await ${JSON.stringify(children)}`;
 
-    function renderArgument(argument: ReactNode) {
-      if (typeof argument === "string") {
-        return <Identifier>{argument}</Identifier>;
+    function renderChildren() {
+      if (typeof children === "string") {
+        return <Identifier>{children}</Identifier>;
       }
-      return argument;
-    }
 
-    function renderArguments() {
-      if (!props.arguments) return null;
-      return (
-        <ParentBodyPathProvider value="arguments">
-          {Array.isArray(props.arguments)
-            ? props.arguments.map(renderArgument)
-            : renderArgument(props.arguments)}
-        </ParentBodyPathProvider>
-      );
+      return children;
     }
 
     return (
-      <Smart
-        code={code}
-        ref={mergedRef}
-        scopePath="expression"
-        bodyPath="callee.object"
-      >
-        <ParentBodyPathProvider value={undefined}>
-          {renderArguments()}
-          {children}
+      <Smart code={code} ref={mergedRef} scopePath="expression">
+        <ParentBodyPathProvider value="argument">
+          {renderChildren()}
         </ParentBodyPathProvider>
       </Smart>
     );
   },
 );
-
-AwaitExpression.defaultProps = {
-  debug: false,
-};
 
 export default AwaitExpression;

@@ -1,5 +1,5 @@
 /**
- * File: /src/components/literals/NumberLiteral/index.tsx
+ * File: /src/components/literals/NumericLiteral/index.tsx
  * Project: react-ast
  * File Created: 28-11-2023 02:58:22
  * Author: Clay Risser
@@ -26,13 +26,13 @@ import useMergedRef from "@react-hook/merged-ref";
 import { Smart } from "../../../index";
 import { debugRef } from "../../../util";
 
-export interface NumberLiteralProps {
+export interface NumericLiteralProps {
   children: number;
   debug?: boolean;
 }
 
-const NumberLiteral = forwardRef<BaseElement, NumberLiteralProps>(
-  (props: NumberLiteralProps, forwardedRef: Ref<BaseElement>) => {
+const NumericLiteral = forwardRef<BaseElement, NumericLiteralProps>(
+  (props: NumericLiteralProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug } = props;
 
     const code = `var a = ${children}`;
@@ -44,4 +44,4 @@ const NumberLiteral = forwardRef<BaseElement, NumberLiteralProps>(
   },
 );
 
-export default NumberLiteral;
+export default NumericLiteral;

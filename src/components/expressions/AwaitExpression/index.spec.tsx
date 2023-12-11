@@ -40,7 +40,7 @@
  * limitations under the License.
  */
 import React from "react";
-import { Code, render } from "../../../index";
+import { CallExpression, Code, render, NumericLiteral } from "../../../index";
 import FunctionDeclaration from "../../../components/functions/FunctionDeclaration";
 import VariableDeclaration, {
   VariableDeclarationKind,
@@ -55,10 +55,12 @@ describe("FunctionDeclaration with Await and Call Expressions", () => {
       <FunctionDeclaration async id="getData" params={["url"]}>
         <VariableDeclaration kind={VariableDeclarationKind.Const}>
           <VariableDeclarator id="result">
-            <AwaitExpression
-              name="fetch"
-              arguments={<Identifier>url</Identifier>}
-            />
+            <AwaitExpression>
+              <CallExpression
+                name="fetch"
+                arguments={<Identifier>url</Identifier>}
+              />
+            </AwaitExpression>
           </VariableDeclarator>
         </VariableDeclaration>
       </FunctionDeclaration>,
@@ -67,7 +69,33 @@ describe("FunctionDeclaration with Await and Call Expressions", () => {
       },
     );
     expect(code).toBe(`async function getData(url) {
-    const result = await fetch(url);
-  }`);
+  const result = await fetch(url);
+}`);
+  });
+
+  it("renders a function declaration with an await expression and a call expression with multiple arguments", async () => {
+    const code = await render(
+      <FunctionDeclaration async id="getData" params={["url"]}>
+        <VariableDeclaration kind={VariableDeclarationKind.Const}>
+          <VariableDeclarator id="result">
+            <AwaitExpression>
+              <CallExpression
+                name="fetch"
+                arguments={[
+                  <Identifier key="0">url</Identifier>,
+                  <Identifier key="1">options</Identifier>,
+                ]}
+              />
+            </AwaitExpression>
+          </VariableDeclarator>
+        </VariableDeclaration>
+      </FunctionDeclaration>,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe(`async function getData(url) {
+  const result = await fetch(url, options);
+}`);
   });
 });

@@ -1,5 +1,5 @@
 /**
- * File: /src/components/literals/NumberLiteral/index.spec.tsx
+ * File: /src/components/literals/NumericLiteral/index.spec.tsx
  * Project: react-ast
  * File Created: 28-11-2023 02:58:22
  * Author: Clay Risser
@@ -20,11 +20,11 @@
  */
 
 import React from "react";
-import { render, NumberLiteral, CallExpression, Var } from "../../../index";
+import { render, NumericLiteral, CallExpression, Var } from "../../../index";
 
-describe("<NumberLiteral />", () => {
+describe("<NumericLiteral />", () => {
   it("render number literal", async () => {
-    const code = await render(<NumberLiteral>{1}</NumberLiteral>, {
+    const code = await render(<NumericLiteral>{1}</NumericLiteral>, {
       prettier: false,
     });
     expect(code).toBe("1");
@@ -34,7 +34,7 @@ describe("<NumberLiteral />", () => {
     const code = await render(
       <CallExpression
         name="fn"
-        arguments={<NumberLiteral>{1}</NumberLiteral>}
+        arguments={<NumericLiteral>{1}</NumericLiteral>}
       />,
       { prettier: false },
     );
@@ -44,7 +44,7 @@ describe("<NumberLiteral />", () => {
   it("renders a code and using number literal", async () => {
     const code = await render(
       <Var name="age">
-        <NumberLiteral>{25}</NumberLiteral>
+        <NumericLiteral>{25}</NumericLiteral>
       </Var>,
       { prettier: false },
     );
