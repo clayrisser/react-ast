@@ -19,43 +19,58 @@
  * limitations under the License.
  */
 
+import Identifier from "../../../components/Identifier";
+import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import React, { forwardRef } from "react";
+import Smart from "../../../components/Smart";
+import type BaseElement from "../../../elements/BaseElement";
 import type { Ref, ReactNode } from "react";
 import useMergedRef from "@react-hook/merged-ref";
-import type BaseElement from "../../../elements/BaseElement";
-import Code from "../../../components/Code";
-import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
-import Smart from "../../../components/Smart";
 import { debugRef } from "../../../util";
 
 export interface AwaitExpressionProps {
-  argument: ReactNode;
+  arguments?: ReactNode;
+  children?: ReactNode;
   debug?: boolean;
+  name: string;
 }
 
 const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
   (props: AwaitExpressionProps, forwardedRef: Ref<BaseElement>) => {
-    const { argument, debug } = props;
+    const { children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `async function f() { await data() }`;
+    const code = `await ${name}(${
+      typeof children === "undefined" ? "" : "a."
+    })`;
 
-    function renderArgument() {
+    function renderArgument(argument: ReactNode) {
       if (typeof argument === "string") {
-        return <Code>{argument}</Code>;
+        return <Identifier>{argument}</Identifier>;
       }
       return argument;
+    }
+
+    function renderArguments() {
+      if (!props.arguments) return null;
+      return (
+        <ParentBodyPathProvider value="arguments">
+          {Array.isArray(props.arguments)
+            ? props.arguments.map(renderArgument)
+            : renderArgument(props.arguments)}
+        </ParentBodyPathProvider>
+      );
     }
 
     return (
       <Smart
         code={code}
-        deletePaths="body.body.0.expression"
         ref={mergedRef}
-        scopePath="body.body.0.expression"
+        scopePath="expression"
+        bodyPath="callee.object"
       >
         <ParentBodyPathProvider value={undefined}>
-          <Code>{`await `}</Code>
-          {renderArgument()}
+          {renderArguments()}
+          {children}
         </ParentBodyPathProvider>
       </Smart>
     );
