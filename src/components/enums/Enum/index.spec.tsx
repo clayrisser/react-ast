@@ -1,5 +1,5 @@
 /**
- * File: /src/components/interfaces/Interface/index.spec.tsx
+ * File: /src/components/enums/Enum/index.spec.tsx
  * Project: react-ast
  * File Created: 28-11-2023 15:04:04
  * Author: dharmendra
@@ -21,129 +21,34 @@
 
 import React from "react";
 import { render } from "../../../index";
-import {
-  MethodSignature,
-  PropertySignature,
-  TypeParameterInstantiation,
-  TypeReference,
-} from "../../../components";
-import Interface from "./index";
+import Enum from "./index";
+import EnumMember from "../EnumMember";
 
-describe("<Interface />", () => {
+describe("<Enum />", () => {
   it("renders", async () => {
-    const code = await render(<Interface name="Hello" debug />, {
+    const code = await render(<Enum name="Size" />, {
       prettier: false,
       parserOptions: {
-        plugins: ["jsx", "classProperties", "typescript"],
+        plugins: ["jsx", "typescript"],
       },
     });
-    expect(code).toBe("interface Hello {}");
+    expect(code).toBe("enum Size {}");
   });
 
-  it("renders with type parameters", async () => {
+  it("enum with members", async () => {
     const code = await render(
-      <Interface
-        name="Hello"
-        typeParameters={["A", <TypeReference key="B" name="B" />]}
-        debug
-      />,
+      <Enum name="Size">
+        <EnumMember member={{ name: "One", value: 1 }} />
+      </Enum>,
       {
         prettier: false,
         parserOptions: {
-          plugins: ["jsx", "classProperties", "typescript"],
+          plugins: ["jsx", "typescript"],
         },
       },
     );
-    expect(code).toBe("interface Hello<A, B> {}");
-  });
-
-  it("renders with type parameters as string", async () => {
-    const code = await render(
-      <Interface name="Hello" typeParameters="T" debug />,
-      {
-        prettier: false,
-        parserOptions: {
-          plugins: ["jsx", "classProperties", "typescript"],
-        },
-      },
-    );
-    expect(code).toBe("interface Hello<T> {}");
-  });
-
-  it("renders with nested type parameters", async () => {
-    const code = await render(
-      <Interface
-        name="Hello"
-        typeParameters={
-          <TypeReference name="T">
-            <TypeParameterInstantiation>
-              <TypeReference name="A" />
-              <TypeReference name="B" />
-            </TypeParameterInstantiation>
-          </TypeReference>
-        }
-        debug
-      />,
-      {
-        prettier: false,
-        parserOptions: {
-          plugins: ["jsx", "classProperties", "typescript"],
-        },
-      },
-    );
-    expect(code).toBe("interface Hello<T<A, B>> {}");
-  });
-
-  it("renders with interface property signatures", async () => {
-    const code = await render(
-      <Interface name="Hello" debug>
-        <PropertySignature id="hello" typeAnnotation="T" />
-      </Interface>,
-      {
-        prettier: false,
-        parserOptions: {
-          plugins: ["jsx", "classProperties", "typescript"],
-        },
-      },
-    );
-    expect(code).toBe(`interface Hello {
-  hello: T;
-}`);
-  });
-
-  it("renders with interface method signatures", async () => {
-    const code = await render(
-      <Interface name="Hello" debug>
-        <MethodSignature id="hello" returnType="T" />
-      </Interface>,
-      {
-        prettier: false,
-        parserOptions: {
-          plugins: ["jsx", "classProperties", "typescript"],
-        },
-      },
-    );
-    expect(code).toBe(`interface Hello {
-  hello(): T;
-}`);
-  });
-
-  it("renders with interface method and property signatures", async () => {
-    const code = await render(
-      <Interface name="Hello" debug>
-        <PropertySignature id="hello" typeAnnotation="T" />
-        <MethodSignature id="hello" returnType="T" />
-      </Interface>,
-      {
-        prettier: false,
-        parserOptions: {
-          plugins: ["jsx", "classProperties", "typescript"],
-        },
-      },
-    );
-    expect(code).toBe(`interface Hello {
-  hello: T;
-  hello(): T;
-}`);
+    expect(code).toBe(`enum Size {
+  One = 1,
+    }`);
   });
 });

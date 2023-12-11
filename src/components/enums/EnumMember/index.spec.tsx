@@ -21,17 +21,29 @@
 
 import React from "react";
 import { render } from "../../../index";
-import {
-  TypeAnnotation,
-  TypeReference,
-  TypeParameterInstantiation,
-} from "../..";
 import EnumMember from ".";
+import EnumDeclaration from "../EnumDeclaration";
 
 describe("<EnumMember />", () => {
   it("renders", async () => {
     const code = await render(
-      <EnumMember member={{ name: "lalit", value: "hello" }} />,
+      <EnumMember member={{ name: "hello", value: "'world'" }} debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe("hello = 'world',");
+  });
+
+  it("renders with enum declaration", async () => {
+    const code = await render(
+      <EnumDeclaration id="Hello">
+        <EnumMember member={{ name: "hello", value: "world" }} />
+        <EnumMember member={{ name: "One", value: 1 }} />
+      </EnumDeclaration>,
       {
         prettier: false,
         parserOptions: {
@@ -39,63 +51,19 @@ describe("<EnumMember />", () => {
         },
       },
     );
-    console.log("code", code);
-    expect(code).toBe("{ hello = 10 }");
+    expect(code).toBe(`enum Hello{
+  hello = world,
+  One = 1,
+    }`);
   });
 
-  // it("renders with type annotation", async () => {
-  //   const code = await render(
-  //     <PropertySignature
-  //       id="p"
-  //       typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
-  //       debug
-  //     />,
-  //     {
-  //       prettier: false,
-  //       parserOptions: {
-  //         plugins: ["jsx", "classProperties", "typescript"],
-  //       },
-  //     },
-  //   );
-  //   expect(code).toBe("p: T;");
-  // });
-
-  // it("renders with nested type annotation", async () => {
-  //   const code = await render(
-  //     <PropertySignature
-  //       id="p"
-  //       typeAnnotation={
-  //         <TypeAnnotation>
-  //           <TypeReference name="T">
-  //             <TypeParameterInstantiation>
-  //               <TypeReference name="A" />
-  //               <TypeReference name="B" />
-  //             </TypeParameterInstantiation>
-  //           </TypeReference>
-  //         </TypeAnnotation>
-  //       }
-  //       debug
-  //     />,
-  //     {
-  //       prettier: false,
-  //       parserOptions: {
-  //         plugins: ["jsx", "classProperties", "typescript"],
-  //       },
-  //     },
-  //   );
-  //   expect(code).toBe("p: T<A, B>;");
-  // });
-
-  // it("renders with annotation as string", async () => {
-  //   const code = await render(
-  //     <PropertySignature id="p" typeAnnotation="T<A>" debug />,
-  //     {
-  //       prettier: false,
-  //       parserOptions: {
-  //         plugins: ["jsx", "classProperties", "typescript"],
-  //       },
-  //     },
-  //   );
-  //   expect(code).toBe("p: T<A>;");
-  // });
+  it("renders with only keys", async () => {
+    const code = await render(<EnumMember member={{ name: "Monday" }} />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ["jsx", "typescript"],
+      },
+    });
+    expect(code).toBe("Monday,");
+  });
 });

@@ -19,15 +19,11 @@
  * limitations under the License.
  */
 
-import React, { Ref, ReactNode, forwardRef } from "react";
+import React, { Ref, forwardRef } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import BaseElement from "../../../elements/BaseElement";
 import Smart from "../../Smart";
-import TypeAnnotation from "../../types/TypeAnnotation";
 import { debugRef } from "../../../util";
-import Identifier from "../../Identifier";
-import BlockStatement from "../../BlockStatement";
-import Code from "../../Code";
 
 interface Member {
   name: string;
@@ -44,10 +40,10 @@ const EnumMember = forwardRef<BaseElement, EnumMemberProps>(
     const { debug, member } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `enum E {
-      ${member.name}
+      ${member.name}${member.value ? `= ${member.value}` : ""},
     }`;
 
-    return <Smart scopePath="body.body" code={code} ref={mergedRef} />;
+    return <Smart scopePath="members.0" code={code} ref={mergedRef} />;
   },
 );
 
