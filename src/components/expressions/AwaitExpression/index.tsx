@@ -37,7 +37,7 @@ const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
   (props: AwaitExpressionProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `await ${JSON.stringify(children)}`;
+    const code = `await fetchData(url)`;
 
     function renderChildren() {
       if (typeof children === "string") {
@@ -48,7 +48,7 @@ const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
     }
 
     return (
-      <Smart code={code} ref={mergedRef} scopePath="expression">
+      <Smart code={code} ref={(e) => console.log(e)} scopePath="expression">
         <ParentBodyPathProvider value="argument">
           {renderChildren()}
         </ParentBodyPathProvider>
