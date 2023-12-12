@@ -1,5 +1,5 @@
 /**
- * File: /src/components/enums/EnumMember/index.tsx
+ * File: /src/components/enum/EnumMember/index.tsx
  * Project: react-ast
  * File Created: 28-11-2023 15:04:04
  * Author: dharmendra
@@ -19,31 +19,41 @@
  * limitations under the License.
  */
 
-import React, { Ref, forwardRef } from "react";
+import React, { ReactNode, Ref, forwardRef } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import BaseElement from "../../../elements/BaseElement";
 import Smart from "../../Smart";
 import { debugRef } from "../../../util";
-
-interface Member {
-  name: string;
-  value?: string | number;
-}
+import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
+import Identifier from "../../Identifier";
+import Code from "../../Code";
 
 export interface EnumMemberProps {
+  name: string;
+  children?: ReactNode;
   debug?: boolean;
-  member: Member;
 }
 
 const EnumMember = forwardRef<BaseElement, EnumMemberProps>(
   (props: EnumMemberProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug, member } = props;
+    const { debug, name, children } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `enum E {
-      ${member.name}${member.value ? `= ${member.value}` : ""},
+      ${name}${children ? `= "ONE"` : ""},
     }`;
 
-    return <Smart scopePath="members.0" code={code} ref={mergedRef} />;
+    return (
+      <Smart
+        scopePath="members.0"
+        deletePaths="initializer.value"
+        code={code}
+        ref={mergedRef}
+      >
+        <ParentBodyPathProvider value="initializer">
+          {children}
+        </ParentBodyPathProvider>
+      </Smart>
+    );
   },
 );
 

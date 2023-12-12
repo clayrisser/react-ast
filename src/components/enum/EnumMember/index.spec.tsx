@@ -20,14 +20,16 @@
  */
 
 import React from "react";
-import { render } from "../../../index";
+import { NumericLiteral, StringLiteral, render } from "../../../index";
 import EnumMember from ".";
 import EnumDeclaration from "../EnumDeclaration";
 
 describe("<EnumMember />", () => {
   it("renders", async () => {
     const code = await render(
-      <EnumMember member={{ name: "hello", value: "'world'" }} debug />,
+      <EnumMember name="hello" debug>
+        <StringLiteral>world</StringLiteral>
+      </EnumMember>,
       {
         prettier: false,
         parserOptions: {
@@ -35,14 +37,18 @@ describe("<EnumMember />", () => {
         },
       },
     );
-    expect(code).toBe("hello = 'world',");
+    expect(code).toBe('hello = "world",');
   });
 
   it("renders with enum declaration", async () => {
     const code = await render(
       <EnumDeclaration id="Hello">
-        <EnumMember member={{ name: "hello", value: "world" }} />
-        <EnumMember member={{ name: "One", value: 1 }} />
+        <EnumMember name="hello">
+          <StringLiteral>world</StringLiteral>
+        </EnumMember>
+        <EnumMember name="One">
+          <NumericLiteral>{1}</NumericLiteral>
+        </EnumMember>
       </EnumDeclaration>,
       {
         prettier: false,
@@ -52,13 +58,13 @@ describe("<EnumMember />", () => {
       },
     );
     expect(code).toBe(`enum Hello {
-  hello = world,
+  hello = "world",
   One = 1,
 }`);
   });
 
   it("renders with only keys", async () => {
-    const code = await render(<EnumMember member={{ name: "Monday" }} />, {
+    const code = await render(<EnumMember name="Monday" />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "typescript"],
