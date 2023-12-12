@@ -1,8 +1,8 @@
 /*
  *  File: /src/components/enums/index.ts
  *  Project: react-ast
- *  File Created: 08-12-2023 16:00:46
- *  Author: Lalit rajak
+ *  File Created: 12-12-2023 12:33:12
+ *  Author: dharmendra
  *  -----
  *  BitSpur (c) Copyright 2019 - 2023
  *
@@ -19,10 +19,10 @@
  *  limitations under the License.
  */
 
-import Enum from "./Enum";
 import EnumDeclaration from "./EnumDeclaration";
+import EnumMember from "./EnumMember";
 
-export { Enum, EnumDeclaration };
+export { EnumDeclaration, EnumMember };
 
-export * from "./Enum";
 export * from "./EnumDeclaration";
+export * from "./EnumMember";

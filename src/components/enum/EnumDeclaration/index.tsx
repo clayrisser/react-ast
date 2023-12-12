@@ -1,5 +1,5 @@
 /**
- * File: /src/components/enums/EnumDeclaration/index.tsx
+ * File: /src/components/enum/EnumDeclaration/index.tsx
  * Project: react-ast
  * File Created: 28-11-2023 15:04:04
  * Author: dharmendra
@@ -22,10 +22,10 @@
 import React, { Ref, ReactNode, forwardRef } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import BaseElement from "../../../elements/BaseElement";
-import BlockStatement from "../../../components/BlockStatement";
-import Code from "../../../components/Code";
+import BlockStatement from "../../BlockStatement";
+import Code from "../../Code";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
-import Smart from "../../../components/Smart";
+import Smart from "../../Smart";
 import { debugRef } from "../../../util";
 
 export interface EnumDeclarationProps {
@@ -49,8 +49,8 @@ const EnumDeclaration = forwardRef<BaseElement, EnumDeclarationProps>(
 
     return (
       <Smart code={code} deletePaths="body.body" ref={mergedRef}>
-        <ParentBodyPathProvider value={undefined}>
-          <BlockStatement>{renderChildren()}</BlockStatement>
+        <ParentBodyPathProvider value="members">
+          {renderChildren()}
         </ParentBodyPathProvider>
       </Smart>
     );

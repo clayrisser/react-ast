@@ -1,5 +1,5 @@
 /**
- * File: /src/components/enums/Enum/index.spec.tsx
+ * File: /src/components/enum/EnumMember/index.spec.tsx
  * Project: react-ast
  * File Created: 28-11-2023 15:04:04
  * Author: dharmendra
@@ -21,25 +21,13 @@
 
 import React from "react";
 import { render } from "../../../index";
-import Enum from "./index";
-import EnumMember from "../EnumMember";
+import EnumMember from ".";
+import EnumDeclaration from "../EnumDeclaration";
 
-describe("<Enum />", () => {
+describe("<EnumMember />", () => {
   it("renders", async () => {
-    const code = await render(<Enum name="Size" />, {
-      prettier: false,
-      parserOptions: {
-        plugins: ["jsx", "typescript"],
-      },
-    });
-    expect(code).toBe("enum Size {}");
-  });
-
-  it("enum with members", async () => {
     const code = await render(
-      <Enum name="Size">
-        <EnumMember member={{ name: "One", value: 1 }} />
-      </Enum>,
+      <EnumMember member={{ name: "hello", value: "'world'" }} debug />,
       {
         prettier: false,
         parserOptions: {
@@ -47,8 +35,35 @@ describe("<Enum />", () => {
         },
       },
     );
-    expect(code).toBe(`enum Size {
+    expect(code).toBe("hello = 'world',");
+  });
+
+  it("renders with enum declaration", async () => {
+    const code = await render(
+      <EnumDeclaration id="Hello">
+        <EnumMember member={{ name: "hello", value: "world" }} />
+        <EnumMember member={{ name: "One", value: 1 }} />
+      </EnumDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe(`enum Hello {
+  hello = world,
   One = 1,
-    }`);
+}`);
+  });
+
+  it("renders with only keys", async () => {
+    const code = await render(<EnumMember member={{ name: "Monday" }} />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ["jsx", "typescript"],
+      },
+    });
+    expect(code).toBe("Monday,");
   });
 });
