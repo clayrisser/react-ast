@@ -25,8 +25,6 @@ import BaseElement from "../../../elements/BaseElement";
 import Smart from "../../Smart";
 import { debugRef } from "../../../util";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
-import Identifier from "../../Identifier";
-import Code from "../../Code";
 
 export interface EnumMemberProps {
   name: string;

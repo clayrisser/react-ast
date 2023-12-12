@@ -22,7 +22,6 @@
 import React, { Ref, ReactNode, forwardRef } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import BaseElement from "../../../elements/BaseElement";
-import BlockStatement from "../../BlockStatement";
 import Code from "../../Code";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 import Smart from "../../Smart";

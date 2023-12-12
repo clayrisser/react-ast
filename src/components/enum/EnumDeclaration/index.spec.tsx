@@ -20,7 +20,12 @@
  */
 
 import React from "react";
-import { render, EnumMember } from "../../../index";
+import {
+  render,
+  EnumMember,
+  StringLiteral,
+  NumericLiteral,
+} from "../../../index";
 
 import EnumDeclaration from "./index";
 
@@ -38,8 +43,12 @@ describe("<EnumDeclaration />", () => {
   it("renders with enum declaration", async () => {
     const code = await render(
       <EnumDeclaration id="Hello">
-        <EnumMember member={{ name: "hello", value: "world" }} />
-        <EnumMember member={{ name: "One", value: 1 }} />
+        <EnumMember name="hello">
+          <StringLiteral>world</StringLiteral>
+        </EnumMember>
+        <EnumMember name="One">
+          <NumericLiteral>{1}</NumericLiteral>
+        </EnumMember>
       </EnumDeclaration>,
       {
         prettier: false,
@@ -49,7 +58,7 @@ describe("<EnumDeclaration />", () => {
       },
     );
     expect(code).toBe(`enum Hello {
-  hello = world,
+  hello = "world",
   One = 1,
 }`);
   });
