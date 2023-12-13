@@ -25,6 +25,7 @@ import Expression from "./Expression";
 import ExpressionStatement from "./ExpressionStatement";
 import MemberExpression from "./MemberExpression";
 import AwaitExpression from "./AwaitExpression";
+import { ObjectExpression, ObjectProperty } from "./object";
 
 export {
   AssignmentExpression,
@@ -33,6 +34,8 @@ export {
   ExpressionStatement,
   MemberExpression,
   AwaitExpression,
+  ObjectExpression,
+  ObjectProperty,
 };
 
 export * from "./AssignmentExpression";
@@ -41,3 +44,4 @@ export * from "./Expression";
 export * from "./ExpressionStatement";
 export * from "./MemberExpression";
 export * from "./AwaitExpression";
+export * from "./object";

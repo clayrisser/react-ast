@@ -48,7 +48,7 @@ const AwaitExpression = forwardRef<BaseElement, AwaitExpressionProps>(
     }
 
     return (
-      <Smart code={code} ref={(e) => console.log(e)} scopePath="expression">
+      <Smart code={code} ref={mergedRef} scopePath="expression">
         <ParentBodyPathProvider value="argument">
           {renderChildren()}
         </ParentBodyPathProvider>
