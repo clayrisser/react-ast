@@ -42,7 +42,7 @@ describe("<EnumMember />", () => {
 
   it("renders with enum declaration", async () => {
     const code = await render(
-      <EnumDeclaration id="Hello">
+      <EnumDeclaration name="Hello">
         <EnumMember name="hello">
           <StringLiteral>world</StringLiteral>
         </EnumMember>

@@ -35,7 +35,7 @@ import { debugRef } from "../../../util";
 export interface ExpressionProps extends Omit<CallExpressionProps, "name"> {
   call?: boolean;
   children?: any;
-  properties: string | string[];
+  identifiers: string | string[];
 }
 
 export interface CompProps {
@@ -49,9 +49,9 @@ const Expression = forwardRef<BaseElement, ExpressionProps>(
 
     function renderAssignmentExpression() {
       const properties = renderProperties(
-        (typeof props.properties === "string"
-          ? props.properties.split(".")
-          : props.properties) || [],
+        (typeof props.identifiers === "string"
+          ? props.identifiers.split(".")
+          : props.identifiers) || [],
       );
       if (typeof children !== "undefined") {
         return (

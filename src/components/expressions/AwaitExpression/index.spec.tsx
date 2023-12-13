@@ -39,15 +39,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import React from "react";
-import { CallExpression, NumericLiteral, render } from "../../../index";
+
+import AwaitExpression from "../../../components/expressions/AwaitExpression";
 import FunctionDeclaration from "../../../components/functions/FunctionDeclaration";
+import Identifier from "../../../components/Identifier";
+import React from "react";
+import VariableDeclarator from "../../../components/variables/VariableDeclarator";
+import { CallExpression, render } from "../../../index";
 import VariableDeclaration, {
   VariableDeclarationKind,
 } from "../../../components/variables/VariableDeclaration";
-import VariableDeclarator from "../../../components/variables/VariableDeclarator";
-import AwaitExpression from "../../../components/expressions/AwaitExpression";
-import Identifier from "../../../components/Identifier";
 
 describe("FunctionDeclaration with Await and Call Expressions", () => {
   it("renders a function declaration with an await expression and a call expression", async () => {

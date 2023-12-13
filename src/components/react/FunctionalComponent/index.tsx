@@ -71,7 +71,7 @@ const FunctionalComponent: FC<FunctionalComponentProps> = (
           <Return>{children || <Jsx />}</Return>
         </Function>
       </Var>
-      <Expression properties={`${name}.defaultProps`}>{{}}</Expression>
+      <Expression identifiers={`${name}.defaultProps`}>{{}}</Expression>
       <Export default>
         <Identifier>{name}</Identifier>
       </Export>

@@ -20,28 +20,30 @@
  */
 
 import AssignmentExpression from "./AssignmentExpression";
+import AwaitExpression from "./AwaitExpression";
 import CallExpression from "./CallExpression";
 import Expression from "./Expression";
 import ExpressionStatement from "./ExpressionStatement";
 import MemberExpression from "./MemberExpression";
-import AwaitExpression from "./AwaitExpression";
-import { ObjectExpression, ObjectProperty } from "./object";
+import ObjectExpression from "./ObjectExpression";
+import ObjectProperty from "./ObjectProperty";
 
 export {
   AssignmentExpression,
+  AwaitExpression,
   CallExpression,
   Expression,
   ExpressionStatement,
   MemberExpression,
-  AwaitExpression,
   ObjectExpression,
   ObjectProperty,
 };
 
 export * from "./AssignmentExpression";
+export * from "./AwaitExpression";
 export * from "./CallExpression";
 export * from "./Expression";
 export * from "./ExpressionStatement";
 export * from "./MemberExpression";
-export * from "./AwaitExpression";
-export * from "./object";
+export * from "./ObjectExpression";
+export * from "./ObjectProperty";

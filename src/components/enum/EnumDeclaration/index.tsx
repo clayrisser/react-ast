@@ -30,14 +30,14 @@ import { debugRef } from "../../../util";
 export interface EnumDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
-  id: string;
+  name: string;
 }
 
 const EnumDeclaration = forwardRef<BaseElement, EnumDeclarationProps>(
   (props: EnumDeclarationProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug, id } = props;
+    const { children, debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `enum ${id} {}`;
+    const code = `enum ${name} {}`;
 
     function renderChildren() {
       if (typeof children === "string") {

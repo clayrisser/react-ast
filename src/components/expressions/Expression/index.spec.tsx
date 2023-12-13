@@ -27,7 +27,7 @@ import Expression from "./index";
 describe("<Expression />", () => {
   it("renders expression with properties", async () => {
     const code = await render(
-      <Expression properties={["hello", "world", "howdy"]} debug />,
+      <Expression identifiers={["hello", "world", "howdy"]} debug />,
       {
         prettier: false,
       },
@@ -37,7 +37,7 @@ describe("<Expression />", () => {
 
   it("renders expression with properties as string", async () => {
     const code = await render(
-      <Expression properties="howdy.hello.world" debug />,
+      <Expression identifiers="howdy.hello.world" debug />,
       {
         prettier: false,
       },
@@ -46,14 +46,14 @@ describe("<Expression />", () => {
   });
 
   it("renders expression with property as string", async () => {
-    const code = await render(<Expression properties="howdy" debug />, {
+    const code = await render(<Expression identifiers="howdy" debug />, {
       prettier: false,
     });
     expect(code).toBe("howdy");
   });
 
   it("renders called expression with property as string", async () => {
-    const code = await render(<Expression properties="hello" call debug />, {
+    const code = await render(<Expression identifiers="hello" call debug />, {
       prettier: false,
     });
     expect(code).toBe("hello()");
@@ -61,7 +61,7 @@ describe("<Expression />", () => {
 
   it("renders called expression with properties", async () => {
     const code = await render(
-      <Expression properties={["hello", "world"]} call debug />,
+      <Expression identifiers={["hello", "world"]} call debug />,
       {
         prettier: false,
       },
@@ -71,7 +71,7 @@ describe("<Expression />", () => {
 
   it("renders called expression with properties as string", async () => {
     const code = await render(
-      <Expression properties="howdy.texas" call debug />,
+      <Expression identifiers="howdy.texas" call debug />,
       {
         prettier: false,
       },
@@ -82,7 +82,7 @@ describe("<Expression />", () => {
   it("renders called expression with properties and argument", async () => {
     const code = await render(
       <Expression
-        properties="hello.world"
+        identifiers="hello.world"
         arguments={<Identifier>a</Identifier>}
         call
         debug
@@ -97,7 +97,7 @@ describe("<Expression />", () => {
   it("renders called expression with properties and arguments", async () => {
     const code = await render(
       <Expression
-        properties={["hello", "world"]}
+        identifiers={["hello", "world"]}
         arguments={[
           <Identifier key={0}>a</Identifier>,
           <ArrowFunctionExpression key={1} />,
@@ -114,7 +114,7 @@ describe("<Expression />", () => {
 
   it("renders called expression with properties and argument as string", async () => {
     const code = await render(
-      <Expression properties="howdy.texas" arguments="a" call debug />,
+      <Expression identifiers="howdy.texas" arguments="a" call debug />,
       {
         prettier: false,
       },
@@ -125,7 +125,7 @@ describe("<Expression />", () => {
   it("renders called expression with properties and arguments as string", async () => {
     const code = await render(
       <Expression
-        properties={["howdy", "texas"]}
+        identifiers={["howdy", "texas"]}
         arguments={["a", "b", "c"]}
         call
         debug
@@ -138,7 +138,7 @@ describe("<Expression />", () => {
   });
 
   it("renders assigning no children", async () => {
-    const code = await render(<Expression properties="a.b.c" debug />, {
+    const code = await render(<Expression identifiers="a.b.c" debug />, {
       prettier: false,
     });
     expect(code).toBe("a.b.c");
@@ -146,7 +146,7 @@ describe("<Expression />", () => {
 
   it("renders assigning initial value as string", async () => {
     const code = await render(
-      <Expression properties="a.b.c" debug>
+      <Expression identifiers="a.b.c" debug>
         hello
       </Expression>,
       {
@@ -158,7 +158,7 @@ describe("<Expression />", () => {
 
   it("renders assigning initial value as boolean", async () => {
     const code = await render(
-      <Expression properties="a.b.c" debug>
+      <Expression identifiers="a.b.c" debug>
         {true}
       </Expression>,
       {
@@ -173,7 +173,7 @@ describe("<Expression />", () => {
 
   it("renders assigning initial value as number", async () => {
     const code = await render(
-      <Expression properties="a.b.c" debug>
+      <Expression identifiers="a.b.c" debug>
         {0}
       </Expression>,
       {
@@ -188,7 +188,7 @@ describe("<Expression />", () => {
 
   it("renders assigning initial value as object", async () => {
     const code = await render(
-      <Expression properties="a.b.c" debug>
+      <Expression identifiers="a.b.c" debug>
         {{ hello: "world" }}
       </Expression>,
       {
@@ -205,7 +205,7 @@ describe("<Expression />", () => {
 
   it("renders assigning initial value as component", async () => {
     const code = await render(
-      <Expression properties="a.b.c" debug>
+      <Expression identifiers="a.b.c" debug>
         <ArrowFunctionExpression />
       </Expression>,
       {

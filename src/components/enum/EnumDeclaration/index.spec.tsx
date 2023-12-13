@@ -31,7 +31,7 @@ import EnumDeclaration from "./index";
 
 describe("<EnumDeclaration />", () => {
   it("renders", async () => {
-    const code = await render(<EnumDeclaration id="Hello" />, {
+    const code = await render(<EnumDeclaration name="Hello" />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -42,7 +42,7 @@ describe("<EnumDeclaration />", () => {
 
   it("renders with enum declaration", async () => {
     const code = await render(
-      <EnumDeclaration id="Hello">
+      <EnumDeclaration name="Hello">
         <EnumMember name="hello">
           <StringLiteral>world</StringLiteral>
         </EnumMember>
