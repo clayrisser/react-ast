@@ -22,7 +22,7 @@
 import React from "react";
 import { StringLiteral, render } from "../../../index";
 import ObjectExpression from "./index";
-import ObjectProperty from "../ObjectProperty";
+import Property from "../Property";
 
 describe("<ObjectExpression />", () => {
   it("render ObjectExpression", async () => {
@@ -35,9 +35,9 @@ describe("<ObjectExpression />", () => {
   it("render ObjectExpression with property", async () => {
     const code = await render(
       <ObjectExpression>
-        <ObjectProperty name="a">
+        <Property name="a">
           <StringLiteral>Hello</StringLiteral>
-        </ObjectProperty>
+        </Property>
       </ObjectExpression>,
       {
         prettier: false,
@@ -51,12 +51,12 @@ describe("<ObjectExpression />", () => {
   it("render ObjectExpression with properties", async () => {
     const code = await render(
       <ObjectExpression>
-        <ObjectProperty key="1" name="a">
+        <Property key="1" name="a">
           <StringLiteral>Hello</StringLiteral>
-        </ObjectProperty>
-        <ObjectProperty key="2" name="b">
+        </Property>
+        <Property key="2" name="b">
           <StringLiteral>Ok</StringLiteral>
-        </ObjectProperty>
+        </Property>
       </ObjectExpression>,
       {
         prettier: false,

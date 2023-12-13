@@ -76,8 +76,8 @@ describe("<ClassDeclaration />", () => {
         typeParameters={
           <TypeReference name="T">
             <TypeParameterInstantiation>
-              <TypeReference name="A" />
-              <TypeReference name="B" />
+              <TypeReference key={0} name="A" />
+              <TypeReference key={1} name="B" />
             </TypeParameterInstantiation>
           </TypeReference>
         }

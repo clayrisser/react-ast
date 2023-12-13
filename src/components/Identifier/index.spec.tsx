@@ -30,7 +30,7 @@ import Identifier from "./index";
 
 describe("<Identifier />", () => {
   it("renders", async () => {
-    const code = await render(<Identifier debug>i</Identifier>, {
+    const code = await render(<Identifier>i</Identifier>, {
       prettier: false,
     });
     expect(code).toBe("i");
@@ -60,7 +60,7 @@ describe("<Identifier />", () => {
         },
       },
     );
-    console.log(code);
+
     expect(code).toMatchObject({
       program: {
         body: [
@@ -103,9 +103,7 @@ describe("<Identifier />", () => {
 
   it("renders with nested type annotation as string", async () => {
     const code = renderAst(
-      <Identifier typeAnnotation="T<A, B, C>" debug>
-        i
-      </Identifier>,
+      <Identifier typeAnnotation="T<A, B, C>">i</Identifier>,
       {
         prettier: false,
         parserOptions: {
