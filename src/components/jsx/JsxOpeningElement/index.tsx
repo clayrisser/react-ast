@@ -60,13 +60,13 @@ const JSXOpeningElement = forwardRef<BaseElement, JsxOpeningElementProps>(
     function renderAttribute(attribute: any, name?: string) {
       if (name) {
         return (
-          <JsxAttribute name={name}>
+          <JsxAttribute name={name} key={name}>
             {attribute === true ? undefined : attribute}
           </JsxAttribute>
         );
       }
       if (typeof attribute === "string") {
-        return <JsxAttribute name={attribute} />;
+        return <JsxAttribute name={attribute} key={attribute} />;
       }
       if (isComponent(attribute)) return attribute;
       return null;
@@ -75,7 +75,7 @@ const JSXOpeningElement = forwardRef<BaseElement, JsxOpeningElementProps>(
     function renderAttributes() {
       if (!attributes) return null;
       if (typeof attributes === "string") {
-        return <JsxAttribute name={attributes} />;
+        return <JsxAttribute name={attributes} key={attributes} />;
       }
       if (isComponent(attributes)) return attributes;
       if (Array.isArray(attributes)) {

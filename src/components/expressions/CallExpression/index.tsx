@@ -41,11 +41,13 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `${typeof children === "undefined" ? "" : "a."}${name}()`;
 
-    function renderArgument(argument: ReactNode) {
+    function renderArgument(argument: ReactNode, index: number) {
       if (typeof argument === "string") {
-        return <Identifier>{argument}</Identifier>;
+        return <Identifier key={index}>{argument}</Identifier>;
+      } else if (React.isValidElement(argument)) {
+        return React.cloneElement(argument, { key: index });
       }
-      return argument;
+      return;
     }
 
     function renderArguments() {
@@ -54,7 +56,7 @@ const CallExpression = forwardRef<BaseElement, CallExpressionProps>(
         <ParentBodyPathProvider value="arguments">
           {Array.isArray(props.arguments)
             ? props.arguments.map(renderArgument)
-            : renderArgument(props.arguments)}
+            : renderArgument(props.arguments, 0)}
         </ParentBodyPathProvider>
       );
     }
