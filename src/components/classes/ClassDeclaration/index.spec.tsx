@@ -26,6 +26,7 @@ import {
   ClassMethodAccessibility,
   ClassProperty,
   ClassPropertyAccessibility,
+  Identifier,
   TypeParameterInstantiation,
   TypeReference,
 } from "../../../components";
@@ -197,5 +198,24 @@ describe("<ClassDeclaration />", () => {
   protected hello: T = "world";
   protected hello(): T {}
 }`);
+  });
+
+  it("renders class Declaration with implements", async () => {
+    const code = await render(
+      <ClassDeclaration
+        id="Hello"
+        implements={[
+          <Identifier key={0}>b</Identifier>,
+          <Identifier key={1}>c</Identifier>,
+        ]}
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe("class Hello implements b, c {}");
   });
 });

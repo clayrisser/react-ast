@@ -36,6 +36,7 @@ export interface ClassDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
   id: string;
+  implements?: ReactNode;
   superClass?: ReactNode;
   superTypeParameters?: ReactNode;
   typeParameters?: ReactNode;
@@ -52,7 +53,16 @@ const ClassDeclaration = forwardRef<BaseElement, ClassDeclarationProps>(
       typeParameters,
     } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `class ${id} {}`;
+    const code = `class ${id} ${props.implements ? "implements b" : ""} {}`;
+
+    function renderImplements() {
+      if (!props.implements) return;
+      return (
+        <ParentBodyPathProvider value="implements">
+          {props.implements}
+        </ParentBodyPathProvider>
+      );
+    }
 
     function renderSuperClass() {
       return (
@@ -66,12 +76,13 @@ const ClassDeclaration = forwardRef<BaseElement, ClassDeclarationProps>(
       );
     }
 
-    function renderTypeParameter(typeParameter: ReactNode) {
-      return typeof typeParameter === "string" ? (
-        <TypeReference name={typeParameter} />
-      ) : (
-        typeParameter
-      );
+    function renderTypeParameter(typeParameter: ReactNode, index: number) {
+      if (typeof typeParameter === "string") {
+        return <TypeReference key={index} name={typeParameter} />;
+      } else if (React.isValidElement(typeParameter)) {
+        return React.cloneElement(typeParameter, { key: index });
+      }
+      return null;
     }
 
     function renderTypeParameters() {
@@ -80,8 +91,10 @@ const ClassDeclaration = forwardRef<BaseElement, ClassDeclarationProps>(
         <ParentBodyPathProvider value="typeParameters">
           <TypeParameterDeclaration>
             {Array.isArray(typeParameters)
-              ? typeParameters.map(renderTypeParameter)
-              : renderTypeParameter(typeParameters)}
+              ? typeParameters.map((typeParameter, index) =>
+                  renderTypeParameter(typeParameter, index),
+                )
+              : renderTypeParameter(typeParameters, 0)}
           </TypeParameterDeclaration>
         </ParentBodyPathProvider>
       );
@@ -93,8 +106,10 @@ const ClassDeclaration = forwardRef<BaseElement, ClassDeclarationProps>(
         <ParentBodyPathProvider value="superTypeParameters">
           <TypeParameterDeclaration>
             {Array.isArray(superTypeParameters)
-              ? superTypeParameters.map(renderTypeParameter)
-              : renderTypeParameter(superTypeParameters)}
+              ? superTypeParameters.map((typeParameter, index) =>
+                  renderTypeParameter(typeParameter, index),
+                )
+              : renderTypeParameter(superTypeParameters, 0)}
           </TypeParameterDeclaration>
         </ParentBodyPathProvider>
       );
@@ -108,11 +123,12 @@ const ClassDeclaration = forwardRef<BaseElement, ClassDeclarationProps>(
     }
 
     return (
-      <Smart code={code} deletePaths="body.body" ref={mergedRef}>
+      <Smart code={code} deletePaths="implements.0" ref={mergedRef}>
         <ParentBodyPathProvider value={undefined}>
           {renderSuperClass()}
           {renderSuperTypeParameters()}
           {renderTypeParameters()}
+          {renderImplements()}
           <BlockStatement>{renderChildren()}</BlockStatement>
         </ParentBodyPathProvider>
       </Smart>
