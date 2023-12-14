@@ -35,7 +35,7 @@ import { debugRef } from "../../../util";
 export interface ClassDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
-  id: string;
+  name: string;
   implements?: ReactNode;
   superClass?: ReactNode;
   superTypeParameters?: ReactNode;
@@ -47,13 +47,13 @@ const ClassDeclaration = forwardRef<BaseElement, ClassDeclarationProps>(
     const {
       children,
       debug,
-      id,
+      name,
       superClass,
       superTypeParameters,
       typeParameters,
     } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `class ${id} ${props.implements ? "implements b" : ""} {}`;
+    const code = `class ${name} ${props.implements ? "implements b" : ""} {}`;
 
     function renderImplements() {
       if (!props.implements) return;

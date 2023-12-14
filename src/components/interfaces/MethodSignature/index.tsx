@@ -33,16 +33,16 @@ import { debugRef } from "../../../util";
 export interface MethodSignatureProps {
   children?: ReactNode;
   debug?: boolean;
-  id: string;
+  name: string;
   params?: ReactNode[];
   returnType?: ReactNode;
 }
 
 const MethodSignature = forwardRef<BaseElement, MethodSignatureProps>(
   (props: MethodSignatureProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, id, debug, returnType, params } = props;
+    const { children, name, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `interface I { ${id}()${returnType ? ": T" : ""}; }`;
+    const code = `interface I { ${name}()${returnType ? ": T" : ""}; }`;
 
     function renderChildren() {
       if (typeof children === "string") {

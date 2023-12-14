@@ -32,19 +32,19 @@ export interface ClassPropertyProps {
   accessibility?: ClassPropertyAccessibility;
   children?: any;
   debug?: boolean;
-  id: string;
+  name: string;
   static?: boolean;
   typeAnnotation?: ReactNode;
 }
 
 const ClassProperty = forwardRef<BaseElement, ClassPropertyProps>(
   (props: ClassPropertyProps, forwardedRef: Ref<BaseElement>) => {
-    const { accessibility, children, debug, id, typeAnnotation } = props;
+    const { accessibility, children, debug, name, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `class C {
   ${accessibility ? `${accessibility} ` : ""}${
     props.static ? "static " : ""
-  }${id}${typeAnnotation ? ": T" : ""}${
+  }${name}${typeAnnotation ? ": T" : ""}${
     typeof children !== "undefined" ? ` = ${JSON.stringify(children)}` : ""
   }
 }`;

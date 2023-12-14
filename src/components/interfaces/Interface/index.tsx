@@ -27,7 +27,8 @@ import InterfaceDeclaration, {
   InterfaceDeclarationProps,
 } from "../../../components/interfaces/InterfaceDeclaration";
 
-export interface InterfaceProps extends Omit<InterfaceDeclarationProps, "id"> {
+export interface InterfaceProps
+  extends Omit<InterfaceDeclarationProps, "name"> {
   name: string;
 }
 
@@ -39,7 +40,9 @@ const Interface = forwardRef<BaseElement, InterfaceProps>(
     const { debug, name } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
 
-    return <InterfaceDeclaration {...clonedProps} id={name} ref={mergedRef} />;
+    return (
+      <InterfaceDeclaration {...clonedProps} name={name} ref={mergedRef} />
+    );
   },
 );
 

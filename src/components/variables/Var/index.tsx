@@ -33,7 +33,7 @@ import VariableDeclaration, {
 
 export interface VarProps
   extends Omit<VariableDeclarationProps, "children" | "kind">,
-    Omit<VariableDeclaratorProps, "id"> {
+    Omit<VariableDeclaratorProps, "name"> {
   kind?: VarKind;
   name: string;
 }
@@ -47,7 +47,7 @@ const Var = forwardRef<BaseElement, VarProps>(
         kind={kind as unknown as VariableDeclarationKind}
         ref={mergedRef}
       >
-        <VariableDeclarator id={name} typeAnnotation={typeAnnotation}>
+        <VariableDeclarator name={name} typeAnnotation={typeAnnotation}>
           {children}
         </VariableDeclarator>
       </VariableDeclaration>

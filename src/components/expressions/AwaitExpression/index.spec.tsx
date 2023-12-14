@@ -53,9 +53,9 @@ import VariableDeclaration, {
 describe("FunctionDeclaration with Await and Call Expressions", () => {
   it("renders a function declaration with an await expression and a call expression", async () => {
     const code = await render(
-      <FunctionDeclaration async id="getData" params={["url"]}>
+      <FunctionDeclaration async name="getData" params={["url"]}>
         <VariableDeclaration kind={VariableDeclarationKind.Const}>
-          <VariableDeclarator id="result">
+          <VariableDeclarator name="result">
             <AwaitExpression>
               <CallExpression
                 name="fetch"
@@ -76,9 +76,9 @@ describe("FunctionDeclaration with Await and Call Expressions", () => {
 
   it("renders a function declaration with an await expression and a call expression with multiple arguments", async () => {
     const code = await render(
-      <FunctionDeclaration async id="getData" params={["url"]}>
+      <FunctionDeclaration async name="getData" params={["url"]}>
         <VariableDeclaration kind={VariableDeclarationKind.Const}>
-          <VariableDeclarator id="result">
+          <VariableDeclarator name="result">
             <AwaitExpression>
               <CallExpression
                 name="fetch"

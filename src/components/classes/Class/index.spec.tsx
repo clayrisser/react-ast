@@ -127,7 +127,7 @@ describe("<Class />", () => {
     const code = await render(
       <Class name="Hello" debug>
         <ClassProperty
-          id="hello"
+          name="hello"
           typeAnnotation="T"
           accessibility={ClassPropertyAccessibility.Protected}
         >
@@ -150,7 +150,7 @@ describe("<Class />", () => {
     const code = await render(
       <Class name="Hello" debug>
         <ClassMethod
-          id="hello"
+          name="hello"
           returnType="T"
           accessibility={ClassMethodAccessibility.Protected}
         />
@@ -171,14 +171,14 @@ describe("<Class />", () => {
     const code = await render(
       <Class name="Hello" debug>
         <ClassProperty
-          id="hello"
+          name="hello"
           typeAnnotation="T"
           accessibility={ClassPropertyAccessibility.Protected}
         >
           world
         </ClassProperty>
         <ClassMethod
-          id="hello"
+          name="hello"
           returnType="T"
           accessibility={ClassMethodAccessibility.Protected}
         />

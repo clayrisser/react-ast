@@ -40,7 +40,7 @@ describe("<VariableDeclaration />", () => {
   it("renders as kind var", async () => {
     const code = await render(
       <VariableDeclaration kind={VariableDeclarationKind.Var} debug>
-        <VariableDeclarator id="v" typeAnnotation="T" />
+        <VariableDeclarator name="v" typeAnnotation="T" />
       </VariableDeclaration>,
       {
         prettier: false,
@@ -56,7 +56,7 @@ describe("<VariableDeclaration />", () => {
     const code = await render(
       <VariableDeclaration kind={VariableDeclarationKind.Const} debug>
         <VariableDeclarator
-          id="c"
+          name="c"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         />
       </VariableDeclaration>,
@@ -73,7 +73,7 @@ describe("<VariableDeclaration />", () => {
   it("renders as kind let", async () => {
     const code = await render(
       <VariableDeclaration kind={VariableDeclarationKind.Let} debug>
-        <VariableDeclarator id="l" />
+        <VariableDeclarator name="l" />
       </VariableDeclaration>,
       {
         prettier: false,
@@ -89,7 +89,7 @@ describe("<VariableDeclaration />", () => {
     const code = await render(
       <VariableDeclaration debug>
         <VariableDeclarator
-          id="v"
+          name="v"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         >
           <ArrowFunctionExpression />
@@ -109,7 +109,7 @@ describe("<VariableDeclaration />", () => {
     const code = await render(
       <VariableDeclaration debug>
         <VariableDeclarator
-          id="v"
+          name="v"
           typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         >
           hello

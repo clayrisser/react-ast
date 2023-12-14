@@ -45,10 +45,10 @@ const logger = console;
 
 const jsx = (
   <>
-    <ClassDeclaration id="Hello" />
-    <FunctionDeclaration id="add" params={["a", "b"]}>
+    <ClassDeclaration name="Hello" />
+    <FunctionDeclaration name="add" params={["a", "b"]}>
       <VariableDeclaration kind={VariableDeclarationKind.Const}>
-        <VariableDeclarator id="result">{0}</VariableDeclarator>
+        <VariableDeclarator name="result">{0}</VariableDeclarator>
       </VariableDeclaration>
       <ReturnStatement>
         <Identifier>result</Identifier>
@@ -93,9 +93,9 @@ logger.log(callExpression);
 // logger.log(render(objectLiteral, { prettier: false }));
 
 const functionDeclaration = (
-  <FunctionDeclaration async id="getData" params={["url"]}>
+  <FunctionDeclaration async name="getData" params={["url"]}>
     <VariableDeclaration kind={VariableDeclarationKind.Const}>
-      <VariableDeclarator id="result">
+      <VariableDeclarator name="result">
         <AwaitExpression>
           <CallExpression
             name="fetch"

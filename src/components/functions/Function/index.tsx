@@ -28,7 +28,7 @@ import type { Ref } from "react";
 import useMergedRef from "@react-hook/merged-ref";
 import { debugRef } from "../../../util";
 
-export interface FunctionProps extends Omit<FunctionDeclarationProps, "id"> {
+export interface FunctionProps extends Omit<FunctionDeclarationProps, "name"> {
   name?: string;
   arrow?: boolean;
 }
@@ -43,7 +43,7 @@ const Function = forwardRef<BaseElement, FunctionProps>(
     if (arrow) {
       return <ArrowFunctionExpression {...clonedProps} ref={mergedRef} />;
     }
-    return <FunctionDeclaration {...clonedProps} id={name} ref={mergedRef} />;
+    return <FunctionDeclaration {...clonedProps} name={name} ref={mergedRef} />;
   },
 );
 

@@ -30,7 +30,7 @@ import ClassProperty, { ClassPropertyAccessibility } from "./index";
 
 describe("<ClassProperty />", () => {
   it("renders", async () => {
-    const code = await render(<ClassProperty id="p" debug />, {
+    const code = await render(<ClassProperty name="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -40,7 +40,7 @@ describe("<ClassProperty />", () => {
   });
 
   it("renders with static", async () => {
-    const code = await render(<ClassProperty static id="p" debug />, {
+    const code = await render(<ClassProperty static name="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -52,7 +52,7 @@ describe("<ClassProperty />", () => {
   it("renders with accessibility", async () => {
     const code = await render(
       <ClassProperty
-        id="p"
+        name="p"
         accessibility={ClassPropertyAccessibility.Private}
         debug
       />,
@@ -71,7 +71,7 @@ describe("<ClassProperty />", () => {
       <ClassProperty
         accessibility={ClassPropertyAccessibility.Private}
         static
-        id="p"
+        name="p"
         debug
       />,
       {
@@ -87,7 +87,7 @@ describe("<ClassProperty />", () => {
   it("renders with type annotation", async () => {
     const code = await render(
       <ClassProperty
-        id="p"
+        name="p"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         debug
       />,
@@ -104,7 +104,7 @@ describe("<ClassProperty />", () => {
   it("renders with nested type annotation", async () => {
     const code = await render(
       <ClassProperty
-        id="p"
+        name="p"
         typeAnnotation={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -129,7 +129,7 @@ describe("<ClassProperty />", () => {
 
   it("renders with annotation as string", async () => {
     const code = await render(
-      <ClassProperty id="p" typeAnnotation="T<A>" debug />,
+      <ClassProperty name="p" typeAnnotation="T<A>" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -142,7 +142,7 @@ describe("<ClassProperty />", () => {
 
   it("renders with initial value as string", async () => {
     const code = await render(
-      <ClassProperty id="p" typeAnnotation="T<A>" debug>
+      <ClassProperty name="p" typeAnnotation="T<A>" debug>
         hello
       </ClassProperty>,
       {
@@ -157,7 +157,7 @@ describe("<ClassProperty />", () => {
 
   it("renders with initial value as boolean", async () => {
     const code = await render(
-      <ClassProperty id="p" typeAnnotation="T<A>" debug>
+      <ClassProperty name="p" typeAnnotation="T<A>" debug>
         {true}
       </ClassProperty>,
       {
@@ -172,7 +172,7 @@ describe("<ClassProperty />", () => {
 
   it("renders with initial value as number", async () => {
     const code = await render(
-      <ClassProperty id="p" typeAnnotation="T<A>" debug>
+      <ClassProperty name="p" typeAnnotation="T<A>" debug>
         {0}
       </ClassProperty>,
       {
@@ -187,7 +187,7 @@ describe("<ClassProperty />", () => {
 
   it("renders with initial value as object", async () => {
     const code = await render(
-      <ClassProperty id="p" typeAnnotation="T<A>" debug>
+      <ClassProperty name="p" typeAnnotation="T<A>" debug>
         {{ hello: "world" }}
       </ClassProperty>,
       {

@@ -83,7 +83,7 @@ describe("<ArrowFunctionExpression />", () => {
       <ArrowFunctionExpression debug>
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -177,7 +177,7 @@ describe("<ArrowFunctionExpression />", () => {
       >
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >

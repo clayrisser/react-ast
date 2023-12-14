@@ -33,16 +33,16 @@ import { debugRef } from "../../../util";
 export interface InterfaceDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
-  id: string;
+  name: string;
   typeParameters?: ReactNode;
   extends?: ReactNode;
 }
 
 const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
   (props: InterfaceDeclarationProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug, id, typeParameters } = props;
+    const { children, debug, name, typeParameters } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `interface ${id} ${props.extends ? "extends b" : ""} {}`;
+    const code = `interface ${name} ${props.extends ? "extends b" : ""} {}`;
 
     function renderExtends() {
       if (!props.extends) return;

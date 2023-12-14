@@ -111,7 +111,7 @@ describe("<ExportNamedDeclaration />", () => {
     const code = await render(
       <ExportNamedDeclaration debug>
         <VariableDeclaration>
-          <VariableDeclarator id="hello">
+          <VariableDeclarator name="hello">
             <ArrowFunctionExpression />
           </VariableDeclarator>
         </VariableDeclaration>

@@ -34,7 +34,7 @@ import { debugRef } from "../../../util";
 export interface FunctionDeclarationProps {
   children?: ReactNode;
   debug?: boolean;
-  id?: string;
+  name?: string;
   async?: boolean;
   params?: ReactNode[];
   returnType?: ReactNode;
@@ -42,11 +42,11 @@ export interface FunctionDeclarationProps {
 
 const FunctionDeclaration = forwardRef<BaseElement, FunctionDeclarationProps>(
   (props: FunctionDeclarationProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, id, debug, returnType, params } = props;
+    const { children, name, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `var f = ${props.async ? "async" : ""} function ${id || ""}()${
-      returnType ? ": T" : ""
-    } {}`;
+    const code = `var f = ${props.async ? "async" : ""} function ${
+      name || ""
+    }()${returnType ? ": T" : ""} {}`;
 
     function renderChildren() {
       if (typeof children === "string") {

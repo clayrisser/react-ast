@@ -35,7 +35,7 @@ export interface ClassMethodProps {
   accessibility?: ClassMethodAccessibility;
   children?: ReactNode;
   debug?: boolean;
-  id: string;
+  name: string;
   params?: ReactNode[];
   returnType?: ReactNode;
   static?: boolean;
@@ -43,11 +43,11 @@ export interface ClassMethodProps {
 
 const ClassMethod = forwardRef<BaseElement, ClassMethodProps>(
   (props: ClassMethodProps, forwardedRef: Ref<BaseElement>) => {
-    const { accessibility, children, id, debug, returnType, params } = props;
+    const { accessibility, children, name, debug, returnType, params } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `class C { ${accessibility ? `${accessibility} ` : ""}${
       props.static ? "static " : ""
-    }${id}()${returnType ? ": T" : ""} {} }`;
+    }${name}()${returnType ? ": T" : ""} {} }`;
 
     function renderChildren() {
       if (typeof children === "string") {

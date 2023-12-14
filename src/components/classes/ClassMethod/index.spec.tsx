@@ -33,14 +33,14 @@ import ClassMethod, { ClassMethodAccessibility } from "./index";
 
 describe("<ClassMethod />", () => {
   it("renders empty method", async () => {
-    const code = await render(<ClassMethod id="hello" debug />, {
+    const code = await render(<ClassMethod name="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("hello() {}");
   });
 
   it("renders with static", async () => {
-    const code = await render(<ClassMethod static id="hello" debug />, {
+    const code = await render(<ClassMethod static name="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("static hello() {}");
@@ -49,7 +49,7 @@ describe("<ClassMethod />", () => {
   it("renders with accessibility", async () => {
     const code = await render(
       <ClassMethod
-        id="hello"
+        name="hello"
         accessibility={ClassMethodAccessibility.Private}
         debug
       />,
@@ -68,7 +68,7 @@ describe("<ClassMethod />", () => {
       <ClassMethod
         static
         accessibility={ClassMethodAccessibility.Private}
-        id="hello"
+        name="hello"
         debug
       />,
       {
@@ -84,7 +84,7 @@ describe("<ClassMethod />", () => {
   it("renders with nested return type", async () => {
     const code = await render(
       <ClassMethod
-        id="hello"
+        name="hello"
         returnType={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -109,7 +109,7 @@ describe("<ClassMethod />", () => {
 
   it("renders with return type as string", async () => {
     const code = await render(
-      <ClassMethod id="hello" returnType="T<A, B, C>" debug />,
+      <ClassMethod name="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -122,10 +122,10 @@ describe("<ClassMethod />", () => {
 
   it("renders with nested children", async () => {
     const code = await render(
-      <ClassMethod id="hello" debug>
+      <ClassMethod name="hello" debug>
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -147,7 +147,7 @@ describe("<ClassMethod />", () => {
 
   it("renders with params as string", async () => {
     const code = await render(
-      <ClassMethod id="hello" params={["a", "b", "c"]} debug />,
+      <ClassMethod name="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
       },
@@ -157,7 +157,7 @@ describe("<ClassMethod />", () => {
 
   it("renders with children as string", async () => {
     const code = await render(
-      <ClassMethod id="hello" debug>
+      <ClassMethod name="hello" debug>
         const hello = 0;
       </ClassMethod>,
       {
@@ -172,7 +172,7 @@ describe("<ClassMethod />", () => {
   it("renders with typed params", async () => {
     const code = await render(
       <ClassMethod
-        id="hello"
+        name="hello"
         params={[
           <Identifier key="a" typeAnnotation="A">
             a
@@ -218,12 +218,12 @@ describe("<ClassMethod />", () => {
             b
           </Identifier>,
         ]}
-        id="hello"
+        name="hello"
         debug
       >
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >

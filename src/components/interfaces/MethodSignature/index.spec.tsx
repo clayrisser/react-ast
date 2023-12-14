@@ -31,7 +31,7 @@ import MethodSignature from "./index";
 
 describe("<MethodSignature />", () => {
   it("renders empty method signature", async () => {
-    const code = await render(<MethodSignature id="hello" debug />, {
+    const code = await render(<MethodSignature name="hello" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -43,7 +43,7 @@ describe("<MethodSignature />", () => {
   it("renders with nested return type", async () => {
     const code = await render(
       <MethodSignature
-        id="hello"
+        name="hello"
         returnType={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -68,7 +68,7 @@ describe("<MethodSignature />", () => {
 
   it("renders with return type as string", async () => {
     const code = await render(
-      <MethodSignature id="hello" returnType="T<A, B, C>" debug />,
+      <MethodSignature name="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -81,7 +81,7 @@ describe("<MethodSignature />", () => {
 
   it("renders with params as string", async () => {
     const code = await render(
-      <MethodSignature id="hello" params={["a", "b", "c"]} debug />,
+      <MethodSignature name="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
       },
@@ -92,7 +92,7 @@ describe("<MethodSignature />", () => {
   it("renders with typed params", async () => {
     const code = await render(
       <MethodSignature
-        id="hello"
+        name="hello"
         params={[
           <Identifier key={0} typeAnnotation="A">
             a
@@ -141,7 +141,7 @@ describe("<MethodSignature />", () => {
             b
           </Identifier>,
         ]}
-        id="hello"
+        name="hello"
         debug
       />,
       {

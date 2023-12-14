@@ -32,7 +32,7 @@ import InterfaceDeclaration from "./index";
 
 describe("<InterfaceDeclaration />", () => {
   it("renders", async () => {
-    const code = await render(<InterfaceDeclaration id="Hello" debug />, {
+    const code = await render(<InterfaceDeclaration name="Hello" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -48,7 +48,7 @@ describe("<InterfaceDeclaration />", () => {
           <Identifier key={0}>Hello</Identifier>,
           <Identifier key={1}>Ok</Identifier>,
         ]}
-        id="Hello"
+        name="Hello"
         debug
       />,
       {
@@ -64,7 +64,7 @@ describe("<InterfaceDeclaration />", () => {
   it("renders with type parameters", async () => {
     const code = await render(
       <InterfaceDeclaration
-        id="Hello"
+        name="Hello"
         typeParameters={["A", <TypeReference key="B" name="B" />]}
         debug
       />,
@@ -80,7 +80,7 @@ describe("<InterfaceDeclaration />", () => {
 
   it("renders with type parameters as string", async () => {
     const code = await render(
-      <InterfaceDeclaration id="Hello" typeParameters="T" debug />,
+      <InterfaceDeclaration name="Hello" typeParameters="T" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -94,7 +94,7 @@ describe("<InterfaceDeclaration />", () => {
   it("renders with nested type parameters", async () => {
     const code = await render(
       <InterfaceDeclaration
-        id="Hello"
+        name="Hello"
         typeParameters={
           <TypeReference name="T">
             <TypeParameterInstantiation>
@@ -117,8 +117,8 @@ describe("<InterfaceDeclaration />", () => {
 
   it("renders with interface property signatures", async () => {
     const code = await render(
-      <InterfaceDeclaration id="Hello" debug>
-        <PropertySignature id="hello" typeAnnotation="T" />
+      <InterfaceDeclaration name="Hello" debug>
+        <PropertySignature name="hello" typeAnnotation="T" />
       </InterfaceDeclaration>,
       {
         prettier: false,
@@ -134,8 +134,8 @@ describe("<InterfaceDeclaration />", () => {
 
   it("renders with interface method signatures", async () => {
     const code = await render(
-      <InterfaceDeclaration id="Hello" debug>
-        <MethodSignature id="hello" returnType="T" />
+      <InterfaceDeclaration name="Hello" debug>
+        <MethodSignature name="hello" returnType="T" />
       </InterfaceDeclaration>,
       {
         prettier: false,
@@ -151,9 +151,9 @@ describe("<InterfaceDeclaration />", () => {
 
   it("renders with interface method and property signatures", async () => {
     const code = await render(
-      <InterfaceDeclaration id="Hello" debug>
-        <PropertySignature id="hello" typeAnnotation="T" />
-        <MethodSignature id="hello" returnType="T" />
+      <InterfaceDeclaration name="Hello" debug>
+        <PropertySignature name="hello" typeAnnotation="T" />
+        <MethodSignature name="hello" returnType="T" />
       </InterfaceDeclaration>,
       {
         prettier: false,

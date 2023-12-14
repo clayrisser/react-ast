@@ -31,13 +31,13 @@ import { debugRef } from "../../../util";
 export interface VariableDeclaratorProps {
   children?: any;
   debug?: boolean;
-  id: string;
+  name: string;
   typeAnnotation?: ReactNode;
 }
 
 const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
   (props: VariableDeclaratorProps, forwardedRef: Ref<BaseElement>) => {
-    const { children, debug, id, typeAnnotation } = props;
+    const { children, debug, name, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const isComponent = (() => {
       if (typeof children === "undefined") return false;
@@ -50,7 +50,7 @@ const VariableDeclarator = forwardRef<BaseElement, VariableDeclaratorProps>(
         childrenKeys.has("type")
       );
     })();
-    const code = `var ${id}${typeAnnotation ? ": T" : ""}${
+    const code = `var ${name}${typeAnnotation ? ": T" : ""}${
       typeof children !== "undefined" && !isComponent
         ? ` = ${JSON.stringify(children)}`
         : ""

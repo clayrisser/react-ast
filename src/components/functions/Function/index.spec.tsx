@@ -90,7 +90,7 @@ describe("<Function />", () => {
       <Function name="hello" debug>
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -188,7 +188,7 @@ describe("<Function />", () => {
       >
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -259,7 +259,7 @@ describe("<Function />", () => {
       <Function arrow debug>
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -357,7 +357,7 @@ describe("<Function />", () => {
       >
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >

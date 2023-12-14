@@ -33,7 +33,7 @@ import {
 
 describe("<FunctionDeclaration />", () => {
   it("renders empty function", async () => {
-    const code = await render(<FunctionDeclaration id="hello" debug />, {
+    const code = await render(<FunctionDeclaration name="hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("function hello() {}");
@@ -49,7 +49,7 @@ describe("<FunctionDeclaration />", () => {
   it("renders function with nested return type", async () => {
     const code = await render(
       <FunctionDeclaration
-        id="hello"
+        name="hello"
         returnType={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -74,7 +74,7 @@ describe("<FunctionDeclaration />", () => {
 
   it("renders function with return type as string", async () => {
     const code = await render(
-      <FunctionDeclaration id="hello" returnType="T<A, B, C>" debug />,
+      <FunctionDeclaration name="hello" returnType="T<A, B, C>" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -87,10 +87,10 @@ describe("<FunctionDeclaration />", () => {
 
   it("renders function with nested children", async () => {
     const code = await render(
-      <FunctionDeclaration id="hello" debug>
+      <FunctionDeclaration name="hello" debug>
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -112,7 +112,7 @@ describe("<FunctionDeclaration />", () => {
 
   it("renders function with params as string", async () => {
     const code = await render(
-      <FunctionDeclaration id="hello" params={["a", "b", "c"]} debug />,
+      <FunctionDeclaration name="hello" params={["a", "b", "c"]} debug />,
       {
         prettier: false,
       },
@@ -122,7 +122,7 @@ describe("<FunctionDeclaration />", () => {
 
   it("renders function with children as string", async () => {
     const code = await render(
-      <FunctionDeclaration id="hello" debug>
+      <FunctionDeclaration name="hello" debug>
         const hello = 0;
       </FunctionDeclaration>,
       {
@@ -137,7 +137,7 @@ describe("<FunctionDeclaration />", () => {
   it("renders function with typed params", async () => {
     const code = await render(
       <FunctionDeclaration
-        id="hello"
+        name="hello"
         params={[
           <Identifier key="a" typeAnnotation="A">
             a
@@ -183,12 +183,12 @@ describe("<FunctionDeclaration />", () => {
             b
           </Identifier>,
         ]}
-        id="hello"
+        name="hello"
         debug
       >
         <VariableDeclaration debug>
           <VariableDeclarator
-            id="v"
+            name="v"
             typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
             debug
           >
@@ -209,9 +209,12 @@ describe("<FunctionDeclaration />", () => {
   });
 
   it("renders async function", async () => {
-    const code = await render(<FunctionDeclaration id="hello" async debug />, {
-      prettier: false,
-    });
+    const code = await render(
+      <FunctionDeclaration name="hello" async debug />,
+      {
+        prettier: false,
+      },
+    );
 
     expect(code).toBe("async function hello() {}");
   });

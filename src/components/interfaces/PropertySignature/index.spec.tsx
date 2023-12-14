@@ -30,7 +30,7 @@ import PropertySignature from "./index";
 
 describe("<PropertySignature />", () => {
   it("renders", async () => {
-    const code = await render(<PropertySignature id="p" debug />, {
+    const code = await render(<PropertySignature name="p" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -42,7 +42,7 @@ describe("<PropertySignature />", () => {
   it("renders with type annotation", async () => {
     const code = await render(
       <PropertySignature
-        id="p"
+        name="p"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         debug
       />,
@@ -59,7 +59,7 @@ describe("<PropertySignature />", () => {
   it("renders with nested type annotation", async () => {
     const code = await render(
       <PropertySignature
-        id="p"
+        name="p"
         typeAnnotation={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -84,7 +84,7 @@ describe("<PropertySignature />", () => {
 
   it("renders with annotation as string", async () => {
     const code = await render(
-      <PropertySignature id="p" typeAnnotation="T<A>" debug />,
+      <PropertySignature name="p" typeAnnotation="T<A>" debug />,
       {
         prettier: false,
         parserOptions: {

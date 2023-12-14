@@ -97,7 +97,7 @@ describe("<Interface />", () => {
   it("renders with interface property signatures", async () => {
     const code = await render(
       <Interface name="Hello" debug>
-        <PropertySignature id="hello" typeAnnotation="T" />
+        <PropertySignature name="hello" typeAnnotation="T" />
       </Interface>,
       {
         prettier: false,
@@ -114,7 +114,7 @@ describe("<Interface />", () => {
   it("renders with interface method signatures", async () => {
     const code = await render(
       <Interface name="Hello" debug>
-        <MethodSignature id="hello" returnType="T" />
+        <MethodSignature name="hello" returnType="T" />
       </Interface>,
       {
         prettier: false,
@@ -131,8 +131,8 @@ describe("<Interface />", () => {
   it("renders with interface method and property signatures", async () => {
     const code = await render(
       <Interface name="Hello" debug>
-        <PropertySignature id="hello" typeAnnotation="T" />
-        <MethodSignature id="hello" returnType="T" />
+        <PropertySignature name="hello" typeAnnotation="T" />
+        <MethodSignature name="hello" returnType="T" />
       </Interface>,
       {
         prettier: false,

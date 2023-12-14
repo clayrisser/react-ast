@@ -30,7 +30,7 @@ import type { ClassDeclarationProps } from "../../../components/classes/ClassDec
 export interface ClassProps
   extends Omit<
     ClassDeclarationProps,
-    "superClass" | "superTypeParameters" | "id"
+    "superClass" | "superTypeParameters" | "name"
   > {
   extends?: ReactNode;
   extendsTypeParameters?: ReactNode;
@@ -50,7 +50,7 @@ const Class = forwardRef<BaseElement, ClassProps>(
     return (
       <ClassDeclaration
         {...clonedProps}
-        id={name}
+        name={name}
         ref={mergedRef}
         superClass={props.extends}
         superTypeParameters={extendsTypeParameters}

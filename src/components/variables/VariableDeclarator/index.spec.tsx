@@ -31,7 +31,7 @@ import VariableDeclarator from "./index";
 
 describe("<VariableDeclarator />", () => {
   it("renders", async () => {
-    const code = await render(<VariableDeclarator id="v" debug />, {
+    const code = await render(<VariableDeclarator name="v" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -43,7 +43,7 @@ describe("<VariableDeclarator />", () => {
   it("renders with type annotation", async () => {
     const code = await render(
       <VariableDeclarator
-        id="v"
+        name="v"
         typeAnnotation={<TypeAnnotation>T</TypeAnnotation>}
         debug
       />,
@@ -60,7 +60,7 @@ describe("<VariableDeclarator />", () => {
   it("renders with nested type annotation", async () => {
     const code = await render(
       <VariableDeclarator
-        id="v"
+        name="v"
         typeAnnotation={
           <TypeAnnotation>
             <TypeReference name="T">
@@ -85,7 +85,7 @@ describe("<VariableDeclarator />", () => {
 
   it("renders with annotation as string", async () => {
     const code = await render(
-      <VariableDeclarator id="v" typeAnnotation="T<A>" debug />,
+      <VariableDeclarator name="v" typeAnnotation="T<A>" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -98,7 +98,7 @@ describe("<VariableDeclarator />", () => {
 
   it("renders with initial value as string", async () => {
     const code = await render(
-      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+      <VariableDeclarator name="v" typeAnnotation="T<A>" debug>
         hello
       </VariableDeclarator>,
       {
@@ -113,7 +113,7 @@ describe("<VariableDeclarator />", () => {
 
   it("renders with initial value as boolean", async () => {
     const code = await render(
-      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+      <VariableDeclarator name="v" typeAnnotation="T<A>" debug>
         {true}
       </VariableDeclarator>,
       {
@@ -128,7 +128,7 @@ describe("<VariableDeclarator />", () => {
 
   it("renders with initial value as number", async () => {
     const code = await render(
-      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+      <VariableDeclarator name="v" typeAnnotation="T<A>" debug>
         {0}
       </VariableDeclarator>,
       {
@@ -143,7 +143,7 @@ describe("<VariableDeclarator />", () => {
 
   it("renders with initial value as object", async () => {
     const code = await render(
-      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+      <VariableDeclarator name="v" typeAnnotation="T<A>" debug>
         {{ hello: "world" }}
       </VariableDeclarator>,
       {
@@ -160,7 +160,7 @@ describe("<VariableDeclarator />", () => {
 
   it("renders with initial value as component", async () => {
     const code = await render(
-      <VariableDeclarator id="v" typeAnnotation="T<A>" debug>
+      <VariableDeclarator name="v" typeAnnotation="T<A>" debug>
         <ArrowFunctionExpression />
       </VariableDeclarator>,
       {

@@ -34,7 +34,7 @@ import ClassDeclaration from "./index";
 
 describe("<ClassDeclaration />", () => {
   it("renders", async () => {
-    const code = await render(<ClassDeclaration id="Hello" debug />, {
+    const code = await render(<ClassDeclaration name="Hello" debug />, {
       prettier: false,
     });
     expect(code).toBe("class Hello {}");
@@ -43,7 +43,7 @@ describe("<ClassDeclaration />", () => {
   it("renders with type parameters", async () => {
     const code = await render(
       <ClassDeclaration
-        id="Hello"
+        name="Hello"
         typeParameters={["A", <TypeReference key={0} name="B" />]}
         debug
       />,
@@ -59,7 +59,7 @@ describe("<ClassDeclaration />", () => {
 
   it("renders with type parameters as string", async () => {
     const code = await render(
-      <ClassDeclaration id="Hello" typeParameters="T" debug />,
+      <ClassDeclaration name="Hello" typeParameters="T" debug />,
       {
         prettier: false,
         parserOptions: {
@@ -73,7 +73,7 @@ describe("<ClassDeclaration />", () => {
   it("renders with nested type parameters", async () => {
     const code = await render(
       <ClassDeclaration
-        id="Hello"
+        name="Hello"
         typeParameters={
           <TypeReference name="T">
             <TypeParameterInstantiation>
@@ -97,7 +97,7 @@ describe("<ClassDeclaration />", () => {
   it("renders with super class", async () => {
     const code = await render(
       <ClassDeclaration
-        id="Hello"
+        name="Hello"
         typeParameters={
           <TypeReference name="T">
             <TypeParameterInstantiation>
@@ -129,9 +129,9 @@ describe("<ClassDeclaration />", () => {
 
   it("renders with class properties", async () => {
     const code = await render(
-      <ClassDeclaration id="Hello" debug>
+      <ClassDeclaration name="Hello" debug>
         <ClassProperty
-          id="hello"
+          name="hello"
           typeAnnotation="T"
           accessibility={ClassPropertyAccessibility.Protected}
         >
@@ -152,9 +152,9 @@ describe("<ClassDeclaration />", () => {
 
   it("renders with class methods", async () => {
     const code = await render(
-      <ClassDeclaration id="Hello" debug>
+      <ClassDeclaration name="Hello" debug>
         <ClassMethod
-          id="hello"
+          name="hello"
           returnType="T"
           accessibility={ClassMethodAccessibility.Protected}
         />
@@ -173,16 +173,16 @@ describe("<ClassDeclaration />", () => {
 
   it("renders with class properties and methods", async () => {
     const code = await render(
-      <ClassDeclaration id="Hello" debug>
+      <ClassDeclaration name="Hello" debug>
         <ClassProperty
-          id="hello"
+          name="hello"
           typeAnnotation="T"
           accessibility={ClassPropertyAccessibility.Protected}
         >
           world
         </ClassProperty>
         <ClassMethod
-          id="hello"
+          name="hello"
           returnType="T"
           accessibility={ClassMethodAccessibility.Protected}
         />
@@ -203,7 +203,7 @@ describe("<ClassDeclaration />", () => {
   it("renders class Declaration with implements", async () => {
     const code = await render(
       <ClassDeclaration
-        id="Hello"
+        name="Hello"
         implements={[
           <Identifier key={0}>b</Identifier>,
           <Identifier key={1}>c</Identifier>,
