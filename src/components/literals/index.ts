@@ -19,12 +19,22 @@
  *  limitations under the License.
  */
 
+import ArrayLiteral from "./ArrayLiteral";
+import BooleanLiteral from "./BooleanLiteral";
 import NumericLiteral from "./NumericLiteral";
-import StringLiteral from "./StringLiteral";
 import ObjectLiteral from "./ObjectLiteral";
+import StringLiteral from "./StringLiteral";
 
-export { NumericLiteral, StringLiteral, ObjectLiteral };
+export {
+  ObjectLiteral,
+  ArrayLiteral,
+  BooleanLiteral,
+  NumericLiteral,
+  StringLiteral,
+};
 
+export * from "./ArrayLiteral";
+export * from "./BooleanLiteral";
 export * from "./NumericLiteral";
-export * from "./StringLiteral";
 export * from "./ObjectLiteral";
+export * from "./StringLiteral";

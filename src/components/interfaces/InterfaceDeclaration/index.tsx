@@ -35,20 +35,31 @@ export interface InterfaceDeclarationProps {
   debug?: boolean;
   id: string;
   typeParameters?: ReactNode;
+  extends?: ReactNode;
 }
 
 const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
   (props: InterfaceDeclarationProps, forwardedRef: Ref<BaseElement>) => {
     const { children, debug, id, typeParameters } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `interface ${id} {}`;
+    const code = `interface ${id} ${props.extends ? "extends b" : ""} {}`;
 
-    function renderTypeParameter(typeParameter: ReactNode) {
-      return typeof typeParameter === "string" ? (
-        <TypeReference name={typeParameter} />
-      ) : (
-        typeParameter
+    function renderExtends() {
+      if (!props.extends) return;
+      return (
+        <ParentBodyPathProvider value="extends">
+          {props.extends}
+        </ParentBodyPathProvider>
       );
+    }
+
+    function renderTypeParameter(typeParameter: ReactNode, index: number) {
+      if (typeof typeParameter === "string") {
+        return <TypeReference key={index} name={typeParameter} />;
+      } else if (React.isValidElement(typeParameter)) {
+        return React.cloneElement(typeParameter, { key: index });
+      }
+      return null;
     }
 
     function renderTypeParameters() {
@@ -57,8 +68,10 @@ const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
         <ParentBodyPathProvider value="typeParameters">
           <TypeParameterDeclaration>
             {Array.isArray(typeParameters)
-              ? typeParameters.map(renderTypeParameter)
-              : renderTypeParameter(typeParameters)}
+              ? typeParameters.map((typeParameter, index) =>
+                  renderTypeParameter(typeParameter, index),
+                )
+              : renderTypeParameter(typeParameters, 0)}
           </TypeParameterDeclaration>
         </ParentBodyPathProvider>
       );
@@ -72,9 +85,10 @@ const InterfaceDeclaration = forwardRef<BaseElement, InterfaceDeclarationProps>(
     }
 
     return (
-      <Smart code={code} deletePaths="body.body" ref={mergedRef}>
+      <Smart code={code} deletePaths="extends.0" ref={mergedRef}>
         <ParentBodyPathProvider value={undefined}>
           {renderTypeParameters()}
+          {renderExtends()}
           <BlockStatement>{renderChildren()}</BlockStatement>
         </ParentBodyPathProvider>
       </Smart>

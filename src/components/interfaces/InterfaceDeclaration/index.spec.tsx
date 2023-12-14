@@ -22,6 +22,7 @@
 import React from "react";
 import { render } from "../../../index";
 import {
+  Identifier,
   MethodSignature,
   PropertySignature,
   TypeParameterInstantiation,
@@ -38,6 +39,26 @@ describe("<InterfaceDeclaration />", () => {
       },
     });
     expect(code).toBe("interface Hello {}");
+  });
+
+  it("renders", async () => {
+    const code = await render(
+      <InterfaceDeclaration
+        extends={[
+          <Identifier key={0}>Hello</Identifier>,
+          <Identifier key={1}>Ok</Identifier>,
+        ]}
+        id="Hello"
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe("interface Hello extends Hello, Ok {}");
   });
 
   it("renders with type parameters", async () => {

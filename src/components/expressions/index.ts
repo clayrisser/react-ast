@@ -25,6 +25,7 @@ import CallExpression from "./CallExpression";
 import Expression from "./Expression";
 import ExpressionStatement from "./ExpressionStatement";
 import MemberExpression from "./MemberExpression";
+import NewExpression from "./NewExpression";
 import ObjectExpression from "./ObjectExpression";
 import Property from "./Property";
 
@@ -35,6 +36,7 @@ export {
   Expression,
   ExpressionStatement,
   MemberExpression,
+  NewExpression,
   ObjectExpression,
   Property,
 };
@@ -45,5 +47,6 @@ export * from "./CallExpression";
 export * from "./Expression";
 export * from "./ExpressionStatement";
 export * from "./MemberExpression";
+export * from "./NewExpression";
 export * from "./ObjectExpression";
 export * from "./Property";
