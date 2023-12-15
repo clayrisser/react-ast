@@ -38,4 +38,25 @@ describe("<ArrayExpression />", () => {
     );
     expect(code).toBe(`["Hello", true, 6]`);
   });
+
+  it("render nested Array", async () => {
+    const code = await render(
+      <ArrayExpression>
+        <ArrayExpression key={0}>
+          <StringLiteral key={0}>Hello</StringLiteral>
+          <BooleanLiteral key={1}>{true}</BooleanLiteral>
+          <NumericLiteral key={2}>{6}</NumericLiteral>
+        </ArrayExpression>
+        <ArrayExpression key={1}>
+          <StringLiteral key={0}>Hello</StringLiteral>
+          <BooleanLiteral key={1}>{true}</BooleanLiteral>
+          <NumericLiteral key={2}>{6}</NumericLiteral>
+        </ArrayExpression>
+      </ArrayExpression>,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe(`[["Hello", true, 6], ["Hello", true, 6]]`);
+  });
 });

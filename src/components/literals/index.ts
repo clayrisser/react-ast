@@ -20,21 +20,27 @@
  */
 
 import ArrayLiteral from "./ArrayLiteral";
+import BigIntLiteral from "./BigIntLiteral";
 import BooleanLiteral from "./BooleanLiteral";
+import Literal from "./Literal";
 import NumericLiteral from "./NumericLiteral";
 import ObjectLiteral from "./ObjectLiteral";
 import StringLiteral from "./StringLiteral";
 
 export {
-  ObjectLiteral,
   ArrayLiteral,
+  BigIntLiteral,
   BooleanLiteral,
+  Literal,
   NumericLiteral,
+  ObjectLiteral,
   StringLiteral,
 };
 
 export * from "./ArrayLiteral";
+export * from "./BigIntLiteral";
 export * from "./BooleanLiteral";
+export * from "./Literal";
 export * from "./NumericLiteral";
 export * from "./ObjectLiteral";
 export * from "./StringLiteral";
