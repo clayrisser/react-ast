@@ -27,6 +27,7 @@ import ExportSpecifier from "./ExportSpecifier";
 import Import from "./Import";
 import ImportDeclaration from "./ImportDeclaration";
 import ImportSpecifier from "./ImportSpecifier";
+import ModuleDeclaration from "./ModuleDeclaration";
 
 export {
   Export,
@@ -37,6 +38,7 @@ export {
   Import,
   ImportDeclaration,
   ImportSpecifier,
+  ModuleDeclaration,
 };
 
 export * from "./Export";
@@ -47,3 +49,4 @@ export * from "./ExportSpecifier";
 export * from "./Import";
 export * from "./ImportDeclaration";
 export * from "./ImportSpecifier";
+export * from "./ModuleDeclaration";
