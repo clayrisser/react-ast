@@ -26,27 +26,40 @@ import { StringLiteral } from "../../literals";
 import BlockStatement from "../../BlockStatement";
 import Identifier from "../../Identifier";
 import Smart from "../../Smart";
-import { ExpressionStatement, MemberExpression } from "../../expressions";
+import {
+  ExpressionStatement,
+  MemberExpression,
+  Property,
+} from "../../expressions";
+import { PropertySignature } from "../../interfaces";
+import TypeAnnotation from "../TypeAnnotation";
 
 describe("<TypeAliasDeclaration />", () => {
-  // it("renders correctly", async () => {
-  //   const code = await render(<TypeAliasDeclaration name="Box" />, {
-  //     prettier: false,
-  //     parserOptions: {
-  //       plugins: ["jsx", "typescript"],
-  //     },
-  //   });
-  //   expect(code).toBe("type Box = {};");
-  // });
+  it("renders correctly", async () => {
+    const code = await render(<TypeAliasDeclaration name="Box" />, {
+      prettier: false,
+      parserOptions: {
+        plugins: ["jsx", "typescript"],
+      },
+    });
+    expect(code).toBe("type Box = {};");
+  });
 
-  it("renders typeAliasDeclaration with children", async () => {
+  it("renders with children", async () => {
     const code = await render(
-      <TypeAliasDeclaration debug name="Box">
-        {/* <MemberExpression name="[Box]"> */}
-        <MemberExpression name="IntrinsicElements">
-          <Identifier>JSX</Identifier>
-        </MemberExpression>
-        {/* </MemberExpression> */}
+      <TypeAliasDeclaration name="Box">
+        <BlockStatement>
+          <PropertySignature
+            key={0}
+            name="hello"
+            typeAnnotation={<TypeAnnotation>string</TypeAnnotation>}
+          />
+          <PropertySignature
+            key={1}
+            name="hi"
+            typeAnnotation={<TypeAnnotation>string</TypeAnnotation>}
+          />
+        </BlockStatement>
       </TypeAliasDeclaration>,
       {
         prettier: false,
@@ -55,6 +68,43 @@ describe("<TypeAliasDeclaration />", () => {
         },
       },
     );
-    expect(code).toBe("type Box = JSX.IntrinsicElements['Box'];");
+    expect(code).toBe(`type Box = {
+  hello: string;
+  hi: string;
+};`);
   });
+
+  it("renders type for single line", async () => {
+    const code = await render(
+      <TypeAliasDeclaration name="Box">
+        <Identifier>string</Identifier>
+      </TypeAliasDeclaration>,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe(`type Box = string;`);
+  });
+
+  // it("renders typeAliasDeclaration with children", async () => {
+  //   const code = await render(
+  //     <TypeAliasDeclaration debug name="Box">
+  //       {/* <MemberExpression name="[Box]"> */}
+  //       <MemberExpression name="IntrinsicElements">
+  //         <Identifier>JSX</Identifier>
+  //       </MemberExpression>
+  //       {/* </MemberExpression> */}
+  //     </TypeAliasDeclaration>,
+  //     {
+  //       prettier: false,
+  //       parserOptions: {
+  //         plugins: ["jsx", "typescript"],
+  //       },
+  //     },
+  //   );
+  //   expect(code).toBe("type Box = JSX.IntrinsicElements['Box'];");
+  // });
 });
