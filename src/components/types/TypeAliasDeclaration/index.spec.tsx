@@ -21,16 +21,8 @@
 import React from "react";
 import TypeAliasDeclaration from "./index";
 import { render } from "../../../render";
-import Code from "../../Code";
-import { StringLiteral } from "../../literals";
 import BlockStatement from "../../BlockStatement";
 import Identifier from "../../Identifier";
-import Smart from "../../Smart";
-import {
-  ExpressionStatement,
-  MemberExpression,
-  Property,
-} from "../../expressions";
 import { PropertySignature } from "../../interfaces";
 import TypeAnnotation from "../TypeAnnotation";
 
