@@ -38,7 +38,7 @@ const TypeAliasDeclaration = forwardRef<BaseElement, TypeAliasDeclarationProps>(
     const code = `type ${name} = {}`;
 
     return (
-      <Smart code={code} ref={(e) => console.log(e.node)}>
+      <Smart code={code} ref={mergedRef}>
         <ParentBodyPathProvider value="typeAnnotation">
           {children}
         </ParentBodyPathProvider>

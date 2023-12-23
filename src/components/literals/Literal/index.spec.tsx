@@ -35,7 +35,6 @@ describe("<Literal />", () => {
     const code = await render(<Literal>Hello</Literal>, {
       prettier: false,
     });
-    console.log(code);
     expect(code).toBe('"Hello"');
   });
 

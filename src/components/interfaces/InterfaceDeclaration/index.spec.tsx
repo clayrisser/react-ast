@@ -22,7 +22,9 @@
 import React from "react";
 import { render } from "../../../index";
 import {
+  ExpressionWithTypeArguments,
   Identifier,
+  InterfaceTypeReference,
   MethodSignature,
   PropertySignature,
   TypeParameterInstantiation,
@@ -89,6 +91,29 @@ describe("<InterfaceDeclaration />", () => {
       },
     );
     expect(code).toBe("interface Hello<T> {}");
+  });
+
+  it("renders with type arguments", async () => {
+    const code = await render(
+      <InterfaceDeclaration
+        name="A"
+        extends={[
+          <ExpressionWithTypeArguments key={0} name="B">
+            <InterfaceTypeReference>C</InterfaceTypeReference>
+            <InterfaceTypeReference>D</InterfaceTypeReference>
+          </ExpressionWithTypeArguments>,
+          <Identifier key={2}>E</Identifier>,
+        ]}
+        debug
+      />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe("interface A extends B<C, D>, E {}");
   });
 
   it("renders with nested type parameters", async () => {

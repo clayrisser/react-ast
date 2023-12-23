@@ -31,7 +31,6 @@ describe("<BigIntLiteral />", () => {
         prettier: false,
       },
     );
-    console.log(typeof code);
     expect(code).toBe("9007199254740991n");
   });
 });

@@ -41,8 +41,6 @@ describe("<ModuleDeclaration />", () => {
         },
       },
     );
-
-    console.log(code);
     expect(code).toBe(
       `declare global {
   namespace jsx {
