@@ -41,6 +41,6 @@ describe("<Property />", () => {
     const code = await render(<Property name="a" debug={true} />, {
       prettier: false,
     });
-    expect(code).toBe(`a`);
+    expect(code).toBe(`a: undefined`);
   });
 });

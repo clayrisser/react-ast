@@ -94,4 +94,17 @@ describe("<PropertySignature />", () => {
     );
     expect(code).toBe("p: T<A>;");
   });
+
+  it("renders with optional", async () => {
+    const code = await render(
+      <PropertySignature name="p" typeAnnotation="T" optional debug />,
+      {
+        prettier: false,
+        parserOptions: {
+          plugins: ["jsx", "classProperties", "typescript"],
+        },
+      },
+    );
+    expect(code).toBe("p?: T;");
+  });
 });

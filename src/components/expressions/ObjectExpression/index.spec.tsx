@@ -67,4 +67,24 @@ describe("<ObjectExpression />", () => {
   b: "Ok"
 }`);
   });
+
+  it("render ObjectExpression with optional properties", async () => {
+    const code = await render(
+      <ObjectExpression>
+        <Property key="1" name="a">
+          <StringLiteral>Hello</StringLiteral>
+        </Property>
+        <Property key="2" name="b">
+          <StringLiteral>Ok</StringLiteral>
+        </Property>
+      </ObjectExpression>,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe(`{
+  a: "Hello",
+  b: "Ok"
+}`);
+  });
 });

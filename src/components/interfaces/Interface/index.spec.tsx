@@ -132,7 +132,8 @@ describe("<Interface />", () => {
     const code = await render(
       <Interface name="Hello" debug>
         <PropertySignature name="hello" typeAnnotation="T" />
-        <MethodSignature name="hello" returnType="T" />
+        <PropertySignature name="world" optional typeAnnotation="T" />
+        <MethodSignature name="foo" returnType="T" />
       </Interface>,
       {
         prettier: false,
@@ -143,7 +144,8 @@ describe("<Interface />", () => {
     );
     expect(code).toBe(`interface Hello {
   hello: T;
-  hello(): T;
+  world?: T;
+  foo(): T;
 }`);
   });
 });

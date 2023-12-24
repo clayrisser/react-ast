@@ -30,15 +30,16 @@ import { debugRef } from "../../../util";
 export interface PropertySignatureProps {
   debug?: boolean;
   name: string;
+  optional?: boolean;
   typeAnnotation?: ReactNode;
 }
 
 const PropertySignature = forwardRef<BaseElement, PropertySignatureProps>(
   (props: PropertySignatureProps, forwardedRef: Ref<BaseElement>) => {
-    const { debug, name, typeAnnotation } = props;
+    const { debug, name, optional, typeAnnotation } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
     const code = `interface I {
-  ${name}${typeAnnotation ? ": T" : ""};
+  ${name}${typeAnnotation ? `${optional ? "?" : ""}: T` : ""};
 }`;
 
     function renderTypeAnnotation() {
