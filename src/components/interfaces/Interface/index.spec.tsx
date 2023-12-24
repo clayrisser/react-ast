@@ -134,6 +134,7 @@ describe("<Interface />", () => {
         <PropertySignature name="hello" typeAnnotation="T" />
         <PropertySignature name="world" optional typeAnnotation="T" />
         <MethodSignature name="foo" returnType="T" />
+        <MethodSignature name="bar" optional returnType="T" />
       </Interface>,
       {
         prettier: false,
@@ -146,6 +147,7 @@ describe("<Interface />", () => {
   hello: T;
   world?: T;
   foo(): T;
+  bar?(): T;
 }`);
   });
 });

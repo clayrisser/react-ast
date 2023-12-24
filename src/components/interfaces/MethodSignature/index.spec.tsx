@@ -19,6 +19,7 @@
  * limitations under the License.
  */
 
+import MethodSignature from "./index";
 import React from "react";
 import { render } from "../../../index";
 import {
@@ -27,7 +28,6 @@ import {
   TypeParameterInstantiation,
   TypeReference,
 } from "../../../components";
-import MethodSignature from "./index";
 
 describe("<MethodSignature />", () => {
   it("renders empty method signature", async () => {
@@ -37,7 +37,7 @@ describe("<MethodSignature />", () => {
         plugins: ["jsx", "classProperties", "typescript"],
       },
     });
-    expect(code).toBe("hello();");
+    expect(code).toBe("hello(): any;");
   });
 
   it("renders with nested return type", async () => {
@@ -86,7 +86,7 @@ describe("<MethodSignature />", () => {
         prettier: false,
       },
     );
-    expect(code).toBe("hello(a, b, c);");
+    expect(code).toBe("hello(a, b, c): any;");
   });
 
   it("renders with typed params", async () => {
@@ -126,7 +126,7 @@ describe("<MethodSignature />", () => {
         },
       },
     );
-    expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>);");
+    expect(code).toBe("hello(a: A, b: T<A, B>, c: T<A, B, C>): any;");
   });
 
   it("renders with all props", async () => {
