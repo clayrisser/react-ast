@@ -36,7 +36,7 @@ const Property = forwardRef<BaseElement, PropertyProps>(
   (props: PropertyProps, forwardedRef: Ref<BaseElement>) => {
     const { name, children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `var a = { ${name}: ${children ? "1" : "undefined"}}`;
+    const code = `var a = { ${name} ${children ? `: 1` : ""}}`;
 
     function renderChildren() {
       if (!children) return null;
