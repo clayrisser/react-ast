@@ -43,6 +43,8 @@ describe("<TypeAnnotation />", () => {
     expect(code).toBe(": T");
   });
 
+  // h:[string,string,string]
+
   it("renders with nested children", async () => {
     const code = await render(
       <TypeAnnotation debug>

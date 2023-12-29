@@ -60,6 +60,7 @@ describe("<TypeAliasDeclaration />", () => {
         },
       },
     );
+    console.log(code);
     expect(code).toBe(`type Box = {
   hello: string;
   hi: string;
