@@ -19,22 +19,28 @@
  *  limitations under the License.
  */
 
+import IntersectionType from "./IntersectionType";
 import TypeAliasDeclaration from "./TypeAliasDeclaration";
 import TypeAnnotation from "./TypeAnnotation";
 import TypeParameterDeclaration from "./TypeParameterDeclaration";
 import TypeParameterInstantiation from "./TypeParameterInstantiation";
 import TypeReference from "./TypeReference";
+import UnionType from "./UnionType";
 
 export {
+  IntersectionType,
   TypeAliasDeclaration,
   TypeAnnotation,
   TypeParameterDeclaration,
   TypeParameterInstantiation,
   TypeReference,
+  UnionType,
 };
 
+export * from "./IntersectionType";
 export * from "./TypeAliasDeclaration";
 export * from "./TypeAnnotation";
 export * from "./TypeParameterDeclaration";
 export * from "./TypeParameterInstantiation";
 export * from "./TypeReference";
+export * from "./UnionType";
