@@ -19,6 +19,7 @@
  *  limitations under the License.
  */
 
+import ArrayExpression from "./ArrayExpression";
 import AssignmentExpression from "./AssignmentExpression";
 import AwaitExpression from "./AwaitExpression";
 import CallExpression from "./CallExpression";
@@ -30,6 +31,7 @@ import ObjectExpression from "./ObjectExpression";
 import Property from "./Property";
 
 export {
+  ArrayExpression,
   AssignmentExpression,
   AwaitExpression,
   CallExpression,
@@ -41,6 +43,7 @@ export {
   Property,
 };
 
+export * from "./ArrayExpression";
 export * from "./AssignmentExpression";
 export * from "./AwaitExpression";
 export * from "./CallExpression";
