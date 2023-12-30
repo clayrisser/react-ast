@@ -22,14 +22,42 @@
 import React from "react";
 import { render } from "../../../index";
 import {
+  ArrayExpression,
   MethodSignature,
   PropertySignature,
+  TypeAnnotation,
   TypeParameterInstantiation,
   TypeReference,
 } from "../../../components";
 import Interface from "./index";
 
 describe("<Interface />", () => {
+  it("r", async () => {
+    const arr = ["GTK.Widget", "any", "GLib.DestroyNotify"];
+    const code = await render(
+      <Interface name="I">
+        <PropertySignature
+          name="a"
+          typeAnnotation={
+            <TypeAnnotation>
+              <ArrayExpression>
+                {arr.map((item, index) => (
+                  <TypeReference key={index} name={item} />
+                ))}
+              </ArrayExpression>
+            </TypeAnnotation>
+          }
+        />
+      </Interface>,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe(`interface I {
+  a: [GTK.Widget, any, GLib.DestroyNotify];
+}`);
+  });
+
   it("renders", async () => {
     const code = await render(<Interface name="Hello" debug />, {
       prettier: false,
