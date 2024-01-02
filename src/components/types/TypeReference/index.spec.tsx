@@ -22,11 +22,11 @@
 import React from "react";
 import { TypeParameterInstantiation } from "../..";
 import { render } from "../../../index";
-import TypeAnnotation from "./index";
+import TypeReference from "./index";
 
-describe("<TypeAnnotation />", () => {
+describe("<TypeReference />", () => {
   it("renders with children", async () => {
-    const code = await render(<TypeAnnotation name="T" debug />, {
+    const code = await render(<TypeReference name="T" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
@@ -37,12 +37,12 @@ describe("<TypeAnnotation />", () => {
 
   it("renders with nested children", async () => {
     const code = await render(
-      <TypeAnnotation name="T" debug>
+      <TypeReference name="T" debug>
         <TypeParameterInstantiation>
-          <TypeAnnotation name="A" debug />
-          <TypeAnnotation name="B" debug />
+          <TypeReference name="A" debug />
+          <TypeReference name="B" debug />
         </TypeParameterInstantiation>
-      </TypeAnnotation>,
+      </TypeReference>,
       {
         prettier: false,
         parserOptions: {
@@ -54,7 +54,7 @@ describe("<TypeAnnotation />", () => {
   });
 
   it("renders with children as string", async () => {
-    const code = await render(<TypeAnnotation name="T<A>" debug />, {
+    const code = await render(<TypeReference name="T<A>" debug />, {
       prettier: false,
       parserOptions: {
         plugins: ["jsx", "classProperties", "typescript"],
