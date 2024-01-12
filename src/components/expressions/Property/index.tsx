@@ -27,7 +27,7 @@ import { Smart } from "../../../index";
 import ParentBodyPathProvider from "../../../providers/ParentBodyPathProvider";
 
 export interface PropertyProps {
-  name: string;
+  name: ReactNode;
   children?: ReactNode;
   debug?: boolean;
 }
@@ -36,7 +36,14 @@ const Property = forwardRef<BaseElement, PropertyProps>(
   (props: PropertyProps, forwardedRef: Ref<BaseElement>) => {
     const { name, children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `var a = { ${name} ${children ? `: 1` : ""}}`;
+    const code = `var a = { a ${children ? `: 1` : ""}}`;
+
+    function renderName() {
+      if (!name) return null;
+      return (
+        <ParentBodyPathProvider value="key">{name}</ParentBodyPathProvider>
+      );
+    }
 
     function renderChildren() {
       if (!children) return null;
@@ -51,9 +58,13 @@ const Property = forwardRef<BaseElement, PropertyProps>(
       <Smart
         code={code}
         scopePath="declarations.0.init.properties.0"
-        deletePaths="declarations.0.init.properties.0.value"
+        deletePaths={[
+          "declarations.0.init.properties.0.value",
+          "declarations.0.init.properties.0.key",
+        ]}
         ref={mergedRef}
       >
+        {renderName()}
         {renderChildren()}
       </Smart>
     );

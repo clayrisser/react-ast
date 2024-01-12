@@ -43,4 +43,16 @@ describe("<Property />", () => {
     });
     expect(code).toBe(`a`);
   });
+
+  it("render Property with name also stringLiteral", async () => {
+    const code = await render(
+      <Property name={<StringLiteral>a</StringLiteral>} debug={true}>
+        <StringLiteral>Hello</StringLiteral>
+      </Property>,
+      {
+        prettier: false,
+      },
+    );
+    expect(code).toBe(`"a": "Hello"`);
+  });
 });
