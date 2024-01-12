@@ -36,7 +36,9 @@ const Property = forwardRef<BaseElement, PropertyProps>(
   (props: PropertyProps, forwardedRef: Ref<BaseElement>) => {
     const { name, children, debug } = props;
     const mergedRef = useMergedRef<any>(forwardedRef, debugRef(debug));
-    const code = `var a = { a ${children ? `: 1` : ""}}`;
+    const code = `var a = { ${typeof name === "string" ? name : "a"} ${
+      children ? `: 1` : ""
+    }}`;
 
     function renderName() {
       if (!name) return null;

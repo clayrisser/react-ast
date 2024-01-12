@@ -62,6 +62,7 @@ describe("<ObjectExpression />", () => {
         prettier: false,
       },
     );
+    console.log("code ", code);
     expect(code).toBe(`{
   a: "Hello",
   b: "Ok"
